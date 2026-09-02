@@ -2,7 +2,6 @@ import { Button, Col, Row, Space, Statistic, Tag, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import Reveal from '../components/Reveal'
-import { VerdictLegend } from '../components/figma'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -36,6 +35,13 @@ function MaskTerminal() {
     </div>
   )
 }
+
+const ASSURANCES = [
+  'Runs in your VPC or on-prem',
+  'All ML inference local',
+  'No prompt content leaves your network',
+  'Compatible with frontier-model APIs',
+]
 
 function Hero() {
   return (
@@ -73,7 +79,14 @@ function Hero() {
           </Col>
         </Row>
         <div className="hero-legend">
-          <VerdictLegend />
+          <div className="verdict-grid assure-grid">
+            {ASSURANCES.map((t) => (
+              <div className="vg-cell" key={t}>
+                <span className="sq" aria-hidden="true" />
+                <Paragraph>{t}</Paragraph>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

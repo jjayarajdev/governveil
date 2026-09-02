@@ -2380,3 +2380,23 @@ body {
 .hero-legend {
   margin: 52px 0 48px;
 }
+
+
+/* hero assurances in the features-legend grid style */
+.assure-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.assure-grid .vg-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+  padding: 16px 20px;
+}
+
+.assure-grid .vg-cell div.ant-typography {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(32, 30, 29, 0.75);
+}
