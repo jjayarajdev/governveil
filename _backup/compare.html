@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GovernVeil vs alternatives</title>
+<meta name="description" content="Keep your endpoint and M365 perimeter. GovernVeil takes the API path, Claude coverage, reversible redaction, and in-perimeter verdicts that endpoint DLP cannot reach.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="compare.html" aria-current="page">Compare</a>
+        <a href="benchmark.html">Benchmark</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="pilot.html">Book a pilot</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>Additive to what you own, not a rip-and-replace</h1>
+    <p class="lede">Endpoint and SSE DLP such as Microsoft Purview covers the browser and M365 perimeter well. Keep it. GovernVeil takes the paths it cannot reach: your applications' API calls, Claude, non-Microsoft endpoints, and reversible redaction.</p>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th></th>
+            <th>GovernVeil</th>
+            <th>Endpoint / SSE DLP (Purview, SASE)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inline redaction and graduated verdicts</strong></td>
+            <td class="yes">Allow, review, redact, mask, block</td>
+            <td class="no">Allow, block, audit</td>
+          </tr>
+          <tr>
+            <td><strong>Reversible masking</strong> (restore inbound)</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+          </tr>
+          <tr>
+            <td><strong>LLM API-traffic enforcement</strong> (your apps' calls)</td>
+            <td class="yes">Reverse proxy, base-URL change</td>
+            <td class="no">No, or an SDK that sends prompts to a vendor cloud</td>
+          </tr>
+          <tr>
+            <td><strong>Enterprise-API scope-gating</strong></td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+          </tr>
+          <tr>
+            <td><strong>Claude coverage</strong> (claude.ai and the Anthropic API)</td>
+            <td class="yes">Both, today</td>
+            <td class="partial">Partial or absent</td>
+          </tr>
+          <tr>
+            <td><strong>Verdict computed in your perimeter</strong> (air-gap capable)</td>
+            <td class="yes">Local inference</td>
+            <td class="no">Vendor cloud</td>
+          </tr>
+          <tr>
+            <td><strong>Reproducible published benchmark</strong></td>
+            <td class="yes">Public harness in the repo</td>
+            <td class="no">None</td>
+          </tr>
+          <tr>
+            <td><strong>Pricing</strong></td>
+            <td class="yes">Flat, per governed AI user</td>
+            <td class="partial">E5 uplift plus usage meters, or per-user floors</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:16px">Competitor characteristics reflect independently verified public-record research, dated August 2026 and re-checked quarterly.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="callout">
+      <p><strong>The question that settles most evaluations:</strong> where does the prompt go for the verdict? If the answer is a vendor or hyperscaler cloud, the tool is unusable in a data-residency conversation, whatever the datasheet says about self-hosting.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final">
+      <div class="inner">
+        <div>
+          <h2>Run the comparison on your own traffic</h2>
+          <p>A pilot answers the table above with your data, in your environment.</p>
+        </div>
+        <a class="btn btn-primary" href="pilot.html">Book a pilot</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="compare.html">Compare</a>
+        <a href="benchmark.html">Benchmark</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

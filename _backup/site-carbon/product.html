@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How GovernVeil works</title>
+<meta name="description" content="Connect in an afternoon, govern every request, and hand your auditor a trail they will accept. GovernVeil runs where your data lives.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<meta property="og:title" content="How GovernVeil works">
+<meta property="og:description" content="Connect in an afternoon, govern every request, and hand your auditor a trail they will accept. GovernVeil runs where your data lives.">
+<meta property="og:site_name" content="GovernVeil">
+<meta property="og:type" content="website">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html" aria-current="page">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <cds-button class="nav-cta" size="md" href="pilot.html">Book a pilot</cds-button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>One governed point between your enterprise and <span class="grad-word">every model</span></h1>
+    <p class="lede">GovernVeil is a gateway plus a managed browser extension. Apps reach models through it, people reach ChatGPT and Claude through it, and everything that passes is governed and evidenced in your environment.</p>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2>Connect in an afternoon</h2>
+      <p>GovernVeil speaks the OpenAI API. For your applications, integration is a base-URL change, not a rewrite. For people, IT pushes the browser extension and ChatGPT and claude.ai are covered the same day.</p>
+      <p>No SDK to embed, no agents on servers, no traffic re-architecture.</p>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <!-- Integration surface only. Example values. -->
+      <div class="exchange" aria-label="Integrating an application is a one-line base URL change.">
+        <span class="lbl">Before</span>
+        <pre>client = OpenAI(base_url=<span class="s">"https://api.openai.com/v1"</span>)</pre>
+        <span class="lbl">After</span>
+        <pre>client = OpenAI(base_url=<span class="m">"https://ai.yourcompany.internal/v1"</span>)</pre>
+        <span class="lbl">That's the integration</span>
+        <pre><span class="dim">Same API. Same responses. Now governed and evidenced.</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Govern every request, without stopping the work</h2>
+      <p>Every prompt, upload, and API call gets one of four audited outcomes. The default for sensitive content is mask, not block, so your teams keep moving while your data stays home.</p>
+    </div>
+    <div class="ladder reveal">
+      <cds-tag type="green" size="md">allow</cds-tag>
+      <cds-tag type="purple" size="md">review</cds-tag>
+      <cds-tag type="blue" size="md">redact / mask</cds-tag>
+      <cds-tag type="red" size="md">block</cds-tag>
+    </div>
+    <div class="feature-grid" style="margin-top: 32px">
+      <div class="feature-card reveal">
+        <h3>Sensitive values never leave</h3>
+        <p>Reversible masking swaps real values for realistic surrogates on the way out. Your apps' API calls get the real values restored in the answer; browser users keep working with the stand-ins on screen.</p>
+      </div>
+      <div class="feature-card reveal" style="--rd: 0.08s">
+        <h3>Decisions made in your walls</h3>
+        <p>Detection runs on local models inside your environment. There is no vendor cloud in the verdict path, which is why the same deployment works air-gapped.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Grey areas get a human</h3>
+        <p>Borderline prompts are flagged for review instead of silently failing or punishing the user, and reviewer decisions make detection sharper over time.</p>
+      </div>
+      <div class="feature-card reveal" style="--rd: 0.08s">
+        <h3>More than prompts</h3>
+        <p>Document uploads are swept for hostile content before any model sees them, and vendor AI credentials are scoped, monitored, and killable inline.</p>
+      </div>
+    </div>
+    <figure class="shot reveal" style="margin:32px 0 0">
+      <img src="assets/img/product/policies.png" alt="The live policy list from the governance console: Business Data Protection set to redact, toxicity, PII, harmful-content and behavioural-anomaly policies set to block, all enabled.">
+    </figure>
+    <p class="shot-cap reveal">The policy set, live in the console. Each policy carries its own action and can be changed without a redeploy.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap split rev">
+    <div class="reveal">
+      <!-- Illustrative audit excerpt. Example values. -->
+      <div class="exchange" aria-label="An excerpt of the audit trail: every event carries the actor, verdict, latency, and a tamper-evident chain reference.">
+        <span class="lbl">Audit trail</span>
+        <pre><span class="dim">14:02:11</span>  claims-app      <span class="m">masked</span>   2 spans   4 ms
+<span class="dim">14:02:37</span>  browser: r.iyer <span class="m">masked</span>   1 span    3 ms
+<span class="dim">14:05:04</span>  vendor: acturis <span class="s">blocked</span>  scope     1 ms
+<span class="dim">14:09:48</span>  claims-app      allowed            2 ms</pre>
+        <span class="lbl">Integrity</span>
+        <pre><span class="dim">every entry chained to the one before it
+export to your SIEM, verify independently</span></pre>
+      </div>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <h2>Prove it to your auditor</h2>
+      <p>Every decision lands in a tamper-evident, hash-chained log: who, what, verdict, and latency, mapped to the control language your assessor already works from.</p>
+      <p>When the board asks "can we prove we govern AI?", the answer is a report, not a promise.</p>
+      <p style="margin:0"><a href="security.html">See the control mappings</a></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Runs where your data lives</h2>
+    </div>
+    <div class="bento">
+      <div class="bento-cell c2 reveal">
+        <h3>Your VPC or on-prem</h3>
+        <p>Deploys on the infrastructure you already run and trust. Nothing is exposed to the internet.</p>
+      </div>
+      <div class="bento-cell c2 tint reveal" style="--rd: 0.06s">
+        <h3>Air-gap capable</h3>
+        <p>Verdicts are computed locally, so the same product works with no outbound connectivity at all.</p>
+      </div>
+      <div class="bento-cell c2 reveal" style="--rd: 0.12s">
+        <h3>Pilot in week one</h3>
+        <p>One app or one team governed in your environment in the first week of a design-partner pilot.</p>
+      </div>
+    </div>
+    <div class="callout reveal" style="margin-top: 32px">
+      <p><strong>Want the architecture deep-dive?</strong> Reference architectures, sizing, and the full technical walkthrough are shared under NDA as part of a pilot conversation. We publish our benchmark for everyone; we don't publish our internals.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <div class="inner">
+        <div>
+          <h2>See it govern your traffic, not a demo tenant</h2>
+          <p>Week one of a pilot runs against your apps, your people, and your controls list.</p>
+        </div>
+        <cds-button href="pilot.html">Book a pilot</cds-button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/vendor/carbon/button.min.js"></script>
+<script type="module" src="assets/vendor/carbon/tag.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

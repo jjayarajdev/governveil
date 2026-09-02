@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GovernVeil: self-hosted AI data-egress control and evidence</title>
+<meta name="description" content="GovernVeil governs every AI action in your own environment. Sensitive values are masked on the way out and restored on the way back. Nothing leaves your perimeter.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<meta property="og:title" content="GovernVeil: self-hosted AI data-egress control and evidence">
+<meta property="og:description" content="GovernVeil governs every AI action in your own environment. Sensitive values are masked on the way out and restored on the way back. Nothing leaves your perimeter.">
+<meta property="og:site_name" content="GovernVeil">
+<meta property="og:type" content="website">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="pilot.html">Book a pilot</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Self-hosted AI data-egress control and evidence</span>
+      <h1 data-stagger>Let your teams use AI. The data <span class="grad-word">never leaves.</span></h1>
+      <p class="hero-sub">Sensitive values become realistic stand-ins before any prompt leaves. On your apps' API calls, the answers come back restored.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="pilot.html">Book a pilot</a>
+        <a class="btn btn-ghost" href="product.html">See the architecture</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Real product behaviour rendered as an annotated API exchange. Values are examples. -->
+      <div class="exchange" aria-label="Example of GovernVeil masking a prompt before it reaches the model provider, then restoring the response.">
+        <span class="lbl">Your app sends</span>
+        <pre>POST /v1/chat/completions
+"Draft renewal terms for <span class="s">Meridian Trust</span>,
+ account <span class="s">IN-4471-0392</span>,
+ contact <span class="s">priya.raghavan@meridiantrust.in</span>"</pre>
+        <span class="lbl">The provider receives</span>
+        <pre>"Draft renewal terms for <span class="flip m" data-real="Meridian Trust" data-mask="Halberd Mutual">Halberd Mutual</span>,
+ account <span class="flip m" data-real="IN-4471-0392" data-mask="IN-9083-5517">IN-9083-5517</span>,
+ contact <span class="flip m" data-real="priya.raghavan@meridiantrust.in" data-mask="anaya.k@halberd.example">anaya.k@halberd.example</span>"</pre>
+        <span class="lbl">Your caller gets back</span>
+        <pre>The full answer, restored to the real values.
+<span class="dim">verdict: masked (3 spans)   fast path 3.1 ms</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logo-strip">
+  <div class="wrap">
+    <p class="cap">Sits in front of the providers you already use. Deploys on the stack you already run.</p>
+    <div class="logo-row">
+      <img src="assets/img/logos/openai.svg" alt="OpenAI" height="26">
+      <img src="assets/img/logos/anthropic.svg" alt="Anthropic" height="26">
+      <img src="assets/img/logos/docker.svg" alt="Docker" height="26">
+      <img src="assets/img/logos/kubernetes.svg" alt="Kubernetes" height="26">
+      <img src="assets/img/logos/postgresql.svg" alt="PostgreSQL" height="26">
+      <img src="assets/img/logos/grafana.svg" alt="Grafana" height="26">
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>The gap your AI licence leaves open</h2>
+    </div>
+    <div class="prob-rows">
+      <div class="prob-row reveal">
+        <span class="prob-num" aria-hidden="true">01</span>
+        <h3>The licence doesn't see everything</h3>
+        <p>ChatGPT Enterprise and Copilot cover people in a browser. They don't cover your applications and agents calling model APIs directly, or the personal accounts staff still use.</p>
+      </div>
+      <div class="prob-row reveal" style="--rd: 0.08s">
+        <span class="prob-num" aria-hidden="true">02</span>
+        <h3>Blocking stops the work</h3>
+        <p>Traditional DLP either lets a prompt through or walls the user off, so they switch to a personal device and you lose visibility entirely.</p>
+      </div>
+      <div class="prob-row reveal" style="--rd: 0.16s">
+        <span class="prob-num" aria-hidden="true">03</span>
+        <h3>You can't prove any of it</h3>
+        <p>Only about a third of organisations send AI logs anywhere an auditor would accept. The contract transfers liability; it doesn't produce evidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>The life of one API call</h2>
+      <p>Follow a single request through the gateway: scanned, masked, answered, restored, and evidenced. The whole round trip takes less time than a blink.</p>
+    </div>
+    <div class="journey reveal" id="journey" aria-label="Animated story of one API call: an app sends a prompt, the fast path and local models scan it inside your VPC, sensitive values are masked, only surrogates cross the perimeter to the provider, the answer is restored at the edge, and the evidence is written to the audit log.">
+      <div class="j-track">
+        <div class="j-line">
+          <span class="j-fill"></span>
+          <span class="j-packet" aria-hidden="true"></span>
+        </div>
+        <span class="j-perimeter" aria-hidden="true">your perimeter</span>
+        <div class="j-stations" aria-hidden="true">
+          <span class="j-st">your app</span>
+          <span class="j-st">fast path</span>
+          <span class="j-st">local ML</span>
+          <span class="j-st">mask</span>
+          <span class="j-st">provider</span>
+        </div>
+      </div>
+      <div class="j-payload">
+        <!-- Example values. -->
+        <pre>"Summarise renewal risk for <span class="s">Meridian Trust</span>,
+ account <span class="s">IN-4471-0392</span>"</pre>
+      </div>
+      <p class="j-caption">claims-app calls POST /v1/chat/completions</p>
+      <p class="j-audit">audit: <span class="m">masked (2 spans)</span>, 187 ms end to end, entry chained to the one before it</p>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Prompt injection</span><span>PII</span><span>Contextual multi-turn PII</span><span>Toxicity</span><span>Business-critical content</span><span>Harmful intent</span><span>Hidden document payloads</span><span>Credential leakage</span>
+    <span>Prompt injection</span><span>PII</span><span>Contextual multi-turn PII</span><span>Toxicity</span><span>Business-critical content</span><span>Harmful intent</span><span>Hidden document payloads</span><span>Credential leakage</span>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>This is not a mock-up</h2>
+      <p>The governance console, captured from the running pilot deployment: 26,685 requests governed at time of capture, every verdict logged.</p>
+    </div>
+    <figure class="shot reveal" style="margin:0">
+      <img src="assets/img/product/console.png" alt="The GovernVeil governance console: 26,685 governed requests, 12,284 blocked, 1,631 PII detections, a request-outcomes chart, a live feed of shadow-AI detections from chatgpt.com, and the active policy list.">
+    </figure>
+    <p class="shot-cap reveal">Captured live. Average response includes the model's own generation time; detection itself adds under 200 ms of that.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>What it does</h2>
+    </div>
+    <div class="bento">
+      <div class="bento-cell c4 accent reveal">
+        <span class="bento-icon" style="--icon: url(assets/img/icons/swap.svg)"></span>
+        <h3>Reversible masking</h3>
+        <p>On your apps' API calls, values are masked outbound and restored inbound, a full round trip. In the browser, stand-ins go out and stay on screen. Either way the provider never sees real data.</p>
+      </div>
+      <div class="bento-cell c2 reveal" style="--rd: 0.06s">
+        <span class="bento-icon" style="--icon: url(assets/img/icons/stack.svg)"></span>
+        <h3>Two enforcement planes</h3>
+        <p>Content inspection on LLM traffic, plus role-to-scope gating on any enterprise API.</p>
+      </div>
+      <div class="bento-cell c2 reveal">
+        <span class="bento-icon" style="--icon: url(assets/img/icons/browsers.svg)"></span>
+        <h3>Shadow-AI coverage</h3>
+        <p>A browser extension that masks outbound or blocks on ChatGPT and claude.ai, plus a forward-proxy variant for the network path.</p>
+      </div>
+      <div class="bento-cell c4 tint reveal" style="--rd: 0.06s">
+        <span class="bento-icon" style="--icon: url(assets/img/icons/file-magnifying-glass.svg)"></span>
+        <h3>Document-upload sweep</h3>
+        <p>Catches hidden text, OOXML tricks, macros and PDF JavaScript before a file reaches an LLM or a RAG pipeline: the blind spot perimeter DLP doesn't look into.</p>
+      </div>
+      <div class="bento-cell c3 reveal">
+        <span class="bento-icon" style="--icon: url(assets/img/icons/key.svg)"></span>
+        <h3>Vendor and agent governance</h3>
+        <p>Every third-party AI credential scoped, monitored, and killable inline. The kill-switch enforces in about half a millisecond.</p>
+      </div>
+      <div class="bento-cell c3 reveal" style="--rd: 0.06s">
+        <span class="bento-icon" style="--icon: url(assets/img/icons/seal-check.svg)"></span>
+        <h3>Audit-grade evidence</h3>
+        <p>Tamper-evident, hash-chained logs mapped line-by-line to named controls your auditor already knows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="mask-feature reveal">
+      <div>
+        <h2>From "we blocked it" to "we let the work happen safely"</h2>
+        <p>On your apps' model-API calls, GovernVeil replaces a sensitive value with a reversible surrogate on the way out and restores it on the way back. In the browser it masks outbound, so nothing real ever leaves the tab. It runs entirely in your perimeter, which is why it works air-gapped.</p>
+        <p style="margin:0"><a href="features.html">How masking works</a></p>
+      </div>
+      <table class="swap-table">
+        <tr><td class="who">App sends</td><td class="real">NHS number 485 777 3456</td></tr>
+        <tr><td class="who">Provider sees</td><td class="surr">NHS number 943 210 8871</td></tr>
+        <tr><td class="who">App gets back</td><td class="real">NHS number 485 777 3456</td></tr>
+        <tr><td class="who">Audit shows</td><td>1 span masked, restored, hash-chained</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="wrap">
+    <p class="man-kicker">The standard we hold ourselves to</p>
+    <p class="man-line">Claims are cheap. <span class="man-em">Evidence is the product.</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Proof, not claims</h2>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><span class="num" data-count-from="90" data-count-to="99.4" data-decimals="1" data-suffix="%">99.4%</span><p>Harmful-prompt block rate on AdvBench, with a public, re-runnable harness in the repo.</p></div>
+      <div class="stat reveal" style="--rd: 0.08s"><span class="num">0</span><p>False positives in the same benchmark run. A guard that cries wolf gets routed around; ours doesn't.</p></div>
+      <div class="stat reveal" style="--rd: 0.16s"><span class="num">&lt;5 ms</span><p>Fast-path latency, and about 190 ms p50 for the ML path on GPU. Two numbers with methodology, not one marketing figure.</p></div>
+    </div>
+    <p class="measure reveal">Detection also improves where it matters: a review-tier classifier learns from your reviewers' own labels, in-house. It closed a real evasion from 85% to 100% on held-out data with no new false positives, and your data never left.</p>
+    <p class="reveal small muted">The full harness and methodology travel with pilot conversations.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <div class="inner">
+        <div>
+          <h2>See it mask a real prompt in 90 seconds</h2>
+          <p>A paid design-partner pilot: one app or one team, in your environment, in week one.</p>
+        </div>
+        <a class="btn btn-primary" href="pilot.html">Book a pilot</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

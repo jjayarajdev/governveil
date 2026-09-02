@@ -1,0 +1,601 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Portals" [ref=e7] [cursor=pointer]:
+          - /url: "#"
+          - text: Portals
+        - generic [ref=e10]:
+          - link "Product" [ref=e11] [cursor=pointer]:
+            - /url: "#features"
+          - link "Solutions" [ref=e12] [cursor=pointer]:
+            - /url: "#"
+          - link "Pricing" [ref=e13] [cursor=pointer]:
+            - /url: "#"
+          - link "Changelog" [ref=e14] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e15]:
+        - link "Log in" [ref=e16] [cursor=pointer]:
+          - /url: "#"
+        - link "Get started" [ref=e17] [cursor=pointer]:
+          - /url: "#"
+  - generic [ref=e19]:
+    - generic [ref=e20]: "New: Automations 2.0 is here"
+    - heading "Customer relationship magic." [level=1] [ref=e22]:
+      - text: Customer relationship
+      - text: magic.
+    - paragraph [ref=e23]: The CRM that works the way your team thinks. Powerful enough for sales, flexible enough for everyone.
+    - generic [ref=e24]:
+      - link "Get started free" [ref=e25] [cursor=pointer]:
+        - /url: "#"
+      - link "Talk to sales" [ref=e26] [cursor=pointer]:
+        - /url: "#"
+        - text: Talk to sales
+        - img [ref=e27]
+    - generic [ref=e29]:
+      - generic [ref=e34]: app.portals.io/deals
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: Workspace
+          - button "Deals" [ref=e38]: Deals
+          - button "Contacts" [ref=e40]: Contacts
+          - button "Companies" [ref=e42]: Companies
+          - button "Sequences" [ref=e44]: Sequences
+          - button "Reports" [ref=e46]: Reports
+          - generic [ref=e48]: Views
+          - button "Pipeline" [ref=e49]
+          - button "Table" [ref=e50]
+          - button "Board" [ref=e51]
+          - button "Activity" [ref=e52]
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - heading "All Deals" [level=2] [ref=e56]
+              - generic [ref=e57]: "247"
+            - generic [ref=e58]:
+              - button "Filter" [ref=e59]:
+                - img [ref=e60]
+                - text: Filter
+              - button "New deal" [ref=e62]:
+                - img [ref=e63]
+                - text: New deal
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - generic [ref=e68]: Qualified
+                - generic [ref=e69]: "1"
+              - generic [ref=e71] [cursor=pointer]:
+                - generic [ref=e72]:
+                  - generic [ref=e73]: DD
+                  - generic [ref=e74]: Dusk Digital
+                - generic [ref=e75]: $15,200
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - generic [ref=e80]: Demo
+                - generic [ref=e81]: "1"
+              - generic [ref=e83] [cursor=pointer]:
+                - generic [ref=e84]:
+                  - generic [ref=e85]: BL
+                  - generic [ref=e86]: Beacon Labs
+                - generic [ref=e87]: $8,500
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - generic [ref=e92]: Proposal
+                - generic [ref=e93]: "2"
+              - generic [ref=e94]:
+                - generic [ref=e95] [cursor=pointer]:
+                  - generic [ref=e96]:
+                    - generic [ref=e97]: AC
+                    - generic [ref=e98]: Acme Corp
+                  - generic [ref=e99]: $24,000
+                - generic [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]:
+                    - generic [ref=e104]: ES
+                    - generic [ref=e105]: Echo Systems
+                  - generic [ref=e106]: $31,800
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]: Negotiation
+                - generic [ref=e112]: "1"
+              - generic [ref=e114] [cursor=pointer]:
+                - generic [ref=e115]:
+                  - generic [ref=e116]: CI
+                  - generic [ref=e117]: Clearview Inc
+                - generic [ref=e118]: $52,000
+            - generic [ref=e121]:
+              - generic [ref=e122]:
+                - generic [ref=e123]: Closed Won
+                - generic [ref=e124]: "1"
+              - generic [ref=e126] [cursor=pointer]:
+                - generic [ref=e127]:
+                  - generic [ref=e128]: FC
+                  - generic [ref=e129]: Frontier Co.
+                - generic [ref=e130]: $67,000
+  - generic [ref=e134]:
+    - paragraph [ref=e135]: Trusted by teams at world-class companies
+    - generic [ref=e136]:
+      - generic [ref=e137]: PayPal
+      - generic [ref=e138]: Shopify
+      - generic [ref=e139]: Figma
+      - generic [ref=e140]: Zoom
+      - generic [ref=e141]: Salesforce
+      - generic [ref=e142]: Notion
+      - generic [ref=e143]: Stripe
+  - generic [ref=e145]:
+    - generic [ref=e146]:
+      - generic [ref=e147]: Customization
+      - heading "Build a CRM that's truly your own." [level=2] [ref=e148]:
+        - text: Build a CRM that's
+        - text: truly your own.
+      - paragraph [ref=e149]: No rigid templates. Define your own objects, fields, and relationships. Portals adapts to how your team actually works — not the other way around.
+      - list [ref=e150]:
+        - listitem [ref=e151]:
+          - img [ref=e152]
+          - text: Custom objects & fields
+        - listitem [ref=e154]:
+          - img [ref=e155]
+          - text: Drag-and-drop layouts
+        - listitem [ref=e157]:
+          - img [ref=e158]
+          - text: Configurable pipelines
+        - listitem [ref=e160]:
+          - img [ref=e161]
+          - text: Formula fields & rollups
+      - link "Explore customization" [ref=e163] [cursor=pointer]:
+        - /url: "#"
+        - text: Explore customization
+        - img [ref=e164]
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - generic [ref=e169]: Object builder — Deals
+        - button "Save changes" [ref=e170]
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - button "Deal" [ref=e173]
+          - button "Contact" [ref=e174]
+          - button "Company" [ref=e175]
+          - button "Custom" [ref=e176]
+        - generic [ref=e177]:
+          - generic [ref=e178]: Fields
+          - generic [ref=e179]:
+            - generic [ref=e180]:
+              - generic [ref=e182]: Deal name
+              - generic [ref=e183]: "*"
+            - generic [ref=e184]:
+              - generic [ref=e185]: Text
+              - button [ref=e186]:
+                - img [ref=e187]
+          - generic [ref=e189]:
+            - generic [ref=e190]:
+              - generic [ref=e192]: Value
+              - generic [ref=e193]: "*"
+            - generic [ref=e194]:
+              - generic [ref=e195]: Currency
+              - button [ref=e196]:
+                - img [ref=e197]
+          - generic [ref=e199]:
+            - generic [ref=e202]: Close date
+            - generic [ref=e203]:
+              - generic [ref=e204]: Date
+              - button [ref=e205]:
+                - img [ref=e206]
+          - generic [ref=e208]:
+            - generic [ref=e211]: Owner
+            - generic [ref=e212]:
+              - generic [ref=e213]: User
+              - button [ref=e214]:
+                - img [ref=e215]
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - generic [ref=e220]: Stage
+              - generic [ref=e221]: "*"
+            - generic [ref=e222]:
+              - generic [ref=e223]: Select
+              - button [ref=e224]:
+                - img [ref=e225]
+          - generic [ref=e227]:
+            - generic [ref=e230]: Probability
+            - generic [ref=e231]:
+              - generic [ref=e232]: Number
+              - button [ref=e233]:
+                - img [ref=e234]
+          - button "Add field" [ref=e236]:
+            - img [ref=e237]
+            - text: Add field
+  - generic [ref=e240]:
+    - generic [ref=e241]:
+      - generic [ref=e242]:
+        - generic [ref=e243]: Contacts — All records
+        - generic [ref=e246]: Live
+      - table [ref=e248]:
+        - rowgroup [ref=e249]:
+          - row "Name Stage Value Updated" [ref=e250]:
+            - columnheader "Name" [ref=e251]
+            - columnheader "Stage" [ref=e252]
+            - columnheader "Value" [ref=e253]
+            - columnheader "Updated" [ref=e254]
+        - rowgroup [ref=e255]:
+          - row "SC Sarah Chen Acme Corp Proposal $24K 2m ago" [ref=e256] [cursor=pointer]:
+            - cell "SC Sarah Chen Acme Corp" [ref=e257]:
+              - generic [ref=e258]:
+                - generic [ref=e259]: SC
+                - generic [ref=e260]:
+                  - generic [ref=e261]: Sarah Chen
+                  - generic [ref=e262]: Acme Corp
+            - cell "Proposal" [ref=e263]
+            - cell "$24K" [ref=e264]
+            - cell "2m ago" [ref=e265]
+          - row "JR James Rivera Beacon Labs Demo $8.5K 15m ago" [ref=e266] [cursor=pointer]:
+            - cell "JR James Rivera Beacon Labs" [ref=e267]:
+              - generic [ref=e268]:
+                - generic [ref=e269]: JR
+                - generic [ref=e270]:
+                  - generic [ref=e271]: James Rivera
+                  - generic [ref=e272]: Beacon Labs
+            - cell "Demo" [ref=e273]
+            - cell "$8.5K" [ref=e274]
+            - cell "15m ago" [ref=e275]
+          - row "EW Emily Watson Clearview Negotiation $52K 1h ago" [ref=e276] [cursor=pointer]:
+            - cell "EW Emily Watson Clearview" [ref=e277]:
+              - generic [ref=e278]:
+                - generic [ref=e279]: EW
+                - generic [ref=e280]:
+                  - generic [ref=e281]: Emily Watson
+                  - generic [ref=e282]: Clearview
+            - cell "Negotiation" [ref=e283]
+            - cell "$52K" [ref=e284]
+            - cell "1h ago" [ref=e285]
+          - row "ML Marcus Lee Dusk Digital Qualified $15K 3h ago" [ref=e286] [cursor=pointer]:
+            - cell "ML Marcus Lee Dusk Digital" [ref=e287]:
+              - generic [ref=e288]:
+                - generic [ref=e289]: ML
+                - generic [ref=e290]:
+                  - generic [ref=e291]: Marcus Lee
+                  - generic [ref=e292]: Dusk Digital
+            - cell "Qualified" [ref=e293]
+            - cell "$15K" [ref=e294]
+            - cell "3h ago" [ref=e295]
+          - row "PS Priya Sharma Echo Systems Proposal $32K 1d ago" [ref=e296] [cursor=pointer]:
+            - cell "PS Priya Sharma Echo Systems" [ref=e297]:
+              - generic [ref=e298]:
+                - generic [ref=e299]: PS
+                - generic [ref=e300]:
+                  - generic [ref=e301]: Priya Sharma
+                  - generic [ref=e302]: Echo Systems
+            - cell "Proposal" [ref=e303]
+            - cell "$32K" [ref=e304]
+            - cell "1d ago" [ref=e305]
+      - generic [ref=e320]:
+        - generic [ref=e321]: Jan
+        - generic [ref=e322]: Dec
+    - generic [ref=e323]:
+      - generic [ref=e324]: Live data
+      - heading "Real-time relationships need real-time data." [level=2] [ref=e325]
+      - paragraph [ref=e326]: Every interaction, every update, every signal — reflected instantly across your entire team. No more stale records or out-of-sync pipelines.
+      - list [ref=e327]:
+        - listitem [ref=e328]:
+          - img [ref=e329]
+          - text: Live record sync across all views
+        - listitem [ref=e331]:
+          - img [ref=e332]
+          - text: Activity feed with full history
+        - listitem [ref=e334]:
+          - img [ref=e335]
+          - text: Automatic data enrichment
+        - listitem [ref=e337]:
+          - img [ref=e338]
+          - text: Email & calendar integration
+  - generic [ref=e341]:
+    - generic [ref=e342]:
+      - generic [ref=e343]: Collaboration
+      - heading "Designed for multiplayer." [level=2] [ref=e344]:
+        - text: Designed for
+        - text: multiplayer.
+      - paragraph [ref=e345]: Whole-team visibility, shared pipelines, and granular permissions. Sales, success, and support — all in sync, all in one place.
+      - list [ref=e346]:
+        - listitem [ref=e347]:
+          - img [ref=e348]
+          - text: Role-based permissions
+        - listitem [ref=e350]:
+          - img [ref=e351]
+          - text: Shared views & reports
+        - listitem [ref=e353]:
+          - img [ref=e354]
+          - text: Commenting & @mentions
+        - listitem [ref=e356]:
+          - img [ref=e357]
+          - text: Deal rooms & portals
+    - generic [ref=e359]:
+      - generic [ref=e360]:
+        - generic [ref=e361]: Deal room — Acme Corp
+        - generic [ref=e362]:
+          - generic "Alex K." [ref=e363]: A
+          - generic "Sam T." [ref=e364]: S
+          - generic "Jordan M." [ref=e365]: J
+          - generic "Riley P." [ref=e366]: R
+      - generic [ref=e367]:
+        - generic [ref=e368]:
+          - generic [ref=e369]: AK
+          - generic [ref=e370]:
+            - text: Alex K.
+            - generic [ref=e371]: moved deal to Proposal
+            - generic [ref=e372]: just now
+        - generic [ref=e373]:
+          - generic [ref=e374]: JM
+          - generic [ref=e375]:
+            - text: Jordan M.
+            - generic [ref=e376]: "added a note: 'Follow up on Q4 budget'"
+            - generic [ref=e377]: 2m ago
+        - generic [ref=e378]:
+          - generic [ref=e379]: ST
+          - generic [ref=e380]:
+            - text: Sam T.
+            - generic [ref=e381]: logged a call — 32 min
+            - generic [ref=e382]: 1h ago
+        - generic [ref=e383]:
+          - generic [ref=e384]: RP
+          - generic [ref=e385]:
+            - text: Riley P.
+            - generic [ref=e386]: shared proposal document
+            - generic [ref=e387]: 3h ago
+      - generic [ref=e388]:
+        - generic [ref=e389]: A
+        - generic [ref=e390]: Leave a comment or @mention a teammate…
+  - generic [ref=e392]:
+    - generic [ref=e393]:
+      - generic [ref=e394]: The platform
+      - heading "Powered by Portals." [level=2] [ref=e395]
+      - paragraph [ref=e396]: Everything a modern revenue team needs — sequences, enrichment, reporting, and AI — built in, not bolted on.
+    - generic [ref=e397]:
+      - generic [ref=e398]:
+        - img [ref=e400]
+        - generic [ref=e402]: Sequences
+        - generic [ref=e403]: Automated outreach that feels human
+      - generic [ref=e404]:
+        - img [ref=e406]
+        - generic [ref=e408]: Enrichment
+        - generic [ref=e409]: Data that populates itself
+      - generic [ref=e410]:
+        - img [ref=e412]
+        - generic [ref=e414]: Reports
+        - generic [ref=e415]: Revenue intelligence at a glance
+      - generic [ref=e416]:
+        - img [ref=e418]
+        - generic [ref=e420]: Automations
+        - generic [ref=e421]: If this, then that — at scale
+      - generic [ref=e422]:
+        - img [ref=e424]
+        - generic [ref=e426]: API & Webhooks
+        - generic [ref=e427]: Connect anything to everything
+      - generic [ref=e428]:
+        - img [ref=e430]
+        - generic [ref=e432]: AI Assist
+        - generic [ref=e433]: Write, summarize, and surface insights
+    - generic [ref=e439]:
+      - generic [ref=e440]:
+        - generic [ref=e441]:
+          - generic [ref=e442]: Pipeline value
+          - generic [ref=e443]: $2.4M
+          - generic [ref=e444]: +12%
+        - generic [ref=e445]:
+          - generic [ref=e446]: Deals won (30d)
+          - generic [ref=e447]: "48"
+          - generic [ref=e448]: +8%
+        - generic [ref=e449]:
+          - generic [ref=e450]: Win rate
+          - generic [ref=e451]: 34%
+          - generic [ref=e452]: +3pp
+      - generic [ref=e454]: Revenue over time
+  - generic [ref=e469]:
+    - generic [ref=e470]:
+      - generic [ref=e471]: And more
+      - heading "Build so much more…" [level=2] [ref=e472]
+    - generic [ref=e473]:
+      - generic [ref=e474]:
+        - generic [ref=e475]: Email sync
+        - generic [ref=e476]: Two-way sync with Gmail and Outlook. Every email logged automatically.
+      - generic [ref=e477]:
+        - generic [ref=e478]: Calendar integration
+        - generic [ref=e479]: Meetings logged, attendees linked, follow-ups created.
+      - generic [ref=e480]:
+        - generic [ref=e481]: Slack integration
+        - generic [ref=e482]: Deal alerts and digests straight to your channels.
+      - generic [ref=e483]:
+        - generic [ref=e484]: Document tracking
+        - generic [ref=e485]: Know when a prospect opens your proposal.
+      - generic [ref=e486]:
+        - generic [ref=e487]: Lead scoring
+        - generic [ref=e488]: AI-powered scores that surface your hottest leads.
+      - generic [ref=e489]:
+        - generic [ref=e490]: Forecasting
+        - generic [ref=e491]: Commit, best case, worst case — with confidence.
+      - generic [ref=e492]:
+        - generic [ref=e493]: Territory management
+        - generic [ref=e494]: Route leads and manage quotas across regions.
+      - generic [ref=e495]:
+        - generic [ref=e496]: Mobile app
+        - generic [ref=e497]: Full-featured iOS and Android apps for your team on the go.
+      - generic [ref=e498]:
+        - generic [ref=e499]: Data import
+        - generic [ref=e500]: Migrate from any CRM with our guided import wizard.
+  - generic [ref=e502]:
+    - generic [ref=e503]:
+      - generic [ref=e504]: Social proof
+      - heading "Loved by revenue teams." [level=2] [ref=e505]
+    - generic [ref=e506]:
+      - generic [ref=e507]:
+        - generic [ref=e508]:
+          - img [ref=e509]
+          - img [ref=e511]
+          - img [ref=e513]
+          - img [ref=e515]
+          - img [ref=e517]
+        - paragraph [ref=e519]: “Portals replaced five different tools we were using. Our team onboarded in a day and our pipeline visibility went from chaotic to crystal clear.”
+        - generic [ref=e520]:
+          - generic [ref=e521]: MJ
+          - generic [ref=e522]:
+            - generic [ref=e523]: Maya Johnson
+            - generic [ref=e524]: Head of Sales, Beacon Labs
+      - generic [ref=e525]:
+        - generic [ref=e526]:
+          - img [ref=e527]
+          - img [ref=e529]
+          - img [ref=e531]
+          - img [ref=e533]
+          - img [ref=e535]
+        - paragraph [ref=e537]: “The customization is insane. We built a CRM that fits exactly how we sell — not how some software vendor thinks we should sell.”
+        - generic [ref=e538]:
+          - generic [ref=e539]: CR
+          - generic [ref=e540]:
+            - generic [ref=e541]: Carlos Reyes
+            - generic [ref=e542]: VP Revenue, Clearview
+      - generic [ref=e543]:
+        - generic [ref=e544]:
+          - img [ref=e545]
+          - img [ref=e547]
+          - img [ref=e549]
+          - img [ref=e551]
+          - img [ref=e553]
+        - paragraph [ref=e555]: “Real-time sync across the team means no more 'I thought you had that deal' conversations. Everyone sees the same picture.”
+        - generic [ref=e556]:
+          - generic [ref=e557]: AP
+          - generic [ref=e558]:
+            - generic [ref=e559]: Aisha Patel
+            - generic [ref=e560]: Revenue Operations, Dusk Digital
+      - generic [ref=e561]:
+        - generic [ref=e562]:
+          - img [ref=e563]
+          - img [ref=e565]
+          - img [ref=e567]
+          - img [ref=e569]
+          - img [ref=e571]
+        - paragraph [ref=e573]: “The AI suggestions for sequences are genuinely good. Open rates up 28% in the first month.”
+        - generic [ref=e574]:
+          - generic [ref=e575]: TE
+          - generic [ref=e576]:
+            - generic [ref=e577]: Tom Erikson
+            - generic [ref=e578]: AE Lead, Echo Systems
+      - generic [ref=e579]:
+        - generic [ref=e580]:
+          - img [ref=e581]
+          - img [ref=e583]
+          - img [ref=e585]
+          - img [ref=e587]
+          - img [ref=e589]
+        - paragraph [ref=e591]: “We migrated from Salesforce in a weekend. The import wizard held our hand the whole way. Zero data loss.”
+        - generic [ref=e592]:
+          - generic [ref=e593]: SL
+          - generic [ref=e594]:
+            - generic [ref=e595]: Sophie Laurent
+            - generic [ref=e596]: Sales Ops, Frontier Co.
+      - generic [ref=e597]:
+        - generic [ref=e598]:
+          - img [ref=e599]
+          - img [ref=e601]
+          - img [ref=e603]
+          - img [ref=e605]
+          - img [ref=e607]
+        - paragraph [ref=e609]: “Deal rooms are a game changer. Sending a portal to a prospect instead of a Google doc — feels 10x more professional.”
+        - generic [ref=e610]:
+          - generic [ref=e611]: RM
+          - generic [ref=e612]:
+            - generic [ref=e613]: Raj Mehta
+            - generic [ref=e614]: Enterprise AE, Apex Group
+  - generic [ref=e617]:
+    - heading "Ready to build your team's smart CRM?" [level=2] [ref=e618]:
+      - text: Ready to build your
+      - text: team's smart CRM?
+    - paragraph [ref=e619]: Start free — no credit card required. Set up in minutes, not months.
+    - generic [ref=e620]:
+      - textbox "Enter your work email" [ref=e621]
+      - button "Get started free" [ref=e622]
+    - paragraph [ref=e623]: Loved by 2,000+ revenue teams worldwide.
+  - contentinfo [ref=e624]:
+    - generic [ref=e625]:
+      - generic [ref=e626]:
+        - generic [ref=e627]:
+          - link "Portals" [ref=e628] [cursor=pointer]:
+            - /url: "#"
+            - text: Portals
+          - paragraph [ref=e631]: The CRM built for modern revenue teams.
+        - generic [ref=e632]:
+          - generic [ref=e633]: Product
+          - list [ref=e634]:
+            - listitem [ref=e635]:
+              - link "Features" [ref=e636] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e637]:
+              - link "Pricing" [ref=e638] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e639]:
+              - link "Changelog" [ref=e640] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e641]:
+              - link "Roadmap" [ref=e642] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e643]:
+              - link "Status" [ref=e644] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e645]:
+          - generic [ref=e646]: Solutions
+          - list [ref=e647]:
+            - listitem [ref=e648]:
+              - link "Sales teams" [ref=e649] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e650]:
+              - link "Customer success" [ref=e651] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e652]:
+              - link "Revenue ops" [ref=e653] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e654]:
+              - link "Agencies" [ref=e655] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e656]:
+              - link "Startups" [ref=e657] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e658]:
+          - generic [ref=e659]: Resources
+          - list [ref=e660]:
+            - listitem [ref=e661]:
+              - link "Docs" [ref=e662] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e663]:
+              - link "Blog" [ref=e664] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e665]:
+              - link "Templates" [ref=e666] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e667]:
+              - link "Webinars" [ref=e668] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e669]:
+              - link "Community" [ref=e670] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e671]:
+          - generic [ref=e672]: Company
+          - list [ref=e673]:
+            - listitem [ref=e674]:
+              - link "About" [ref=e675] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e676]:
+              - link "Careers" [ref=e677] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e678]:
+              - link "Press" [ref=e679] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e680]:
+              - link "Privacy" [ref=e681] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e682]:
+              - link "Terms" [ref=e683] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e684]:
+        - generic [ref=e685]: © 2026 Portals, Inc. All rights reserved.
+        - generic [ref=e686]:
+          - link "Twitter" [ref=e687] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=e688] [cursor=pointer]:
+            - /url: "#"
+          - link "GitHub" [ref=e689] [cursor=pointer]:
+            - /url: "#"

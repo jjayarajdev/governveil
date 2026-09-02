@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a design-partner pilot | GovernVeil</title>
+<meta name="description" content="A paid 8-to-12-week pilot. Week one: point one app at the gateway or install the extension for a team, watch it mask a real prompt, and see the audit trail.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="pilot.html" aria-current="page">Book a pilot</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>Be in your environment producing a surprising result before you have to trust us</h1>
+    <p class="lede">A paid pilot of 8 to 12 weeks. In week one we point one app at the gateway or install the extension for one team. You watch it mask a real prompt and restore the answer, and you see the audit trail your auditor will accept.</p>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <form class="form" id="pilot-form" novalidate>
+      <div class="form-field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+        <span class="form-error">Please enter your name.</span>
+      </div>
+      <div class="form-field">
+        <label for="f-email">Work email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+        <span class="form-error">Please enter a valid work email.</span>
+      </div>
+      <div class="form-field">
+        <label for="f-company">Company</label>
+        <input id="f-company" name="company" type="text" autocomplete="organization" required>
+        <span class="form-error">Please enter your company.</span>
+      </div>
+      <div class="form-field">
+        <label for="f-region">Region</label>
+        <select id="f-region" name="region">
+          <option>India</option>
+          <option>Australia / New Zealand</option>
+          <option>Middle East / GCC</option>
+          <option>Europe</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="f-traffic">What AI traffic can't you see today?</label>
+        <span class="hint">Apps calling model APIs, browser use of ChatGPT or Claude, vendor agents, anything else.</span>
+        <textarea id="f-traffic" name="traffic" rows="4"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Book a pilot</button>
+      <p class="small muted" id="form-note">This opens a pre-filled email; the localhost build has no backend.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+  const form = document.getElementById('pilot-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+    for (const id of ['f-name', 'f-email', 'f-company']) {
+      const input = document.getElementById(id);
+      const field = input.closest('.form-field');
+      const bad = !input.value.trim() || (input.type === 'email' && !input.checkValidity());
+      field.classList.toggle('invalid', bad);
+      if (bad) valid = false;
+    }
+    if (!valid) return;
+    const v = (id) => document.getElementById(id).value.trim();
+    const body = encodeURIComponent(
+      'Name: ' + v('f-name') + '\nCompany: ' + v('f-company') +
+      '\nRegion: ' + v('f-region') + '\n\nAI traffic we cannot see today:\n' + v('f-traffic')
+    );
+    location.href = 'mailto:hello@syntegreti.com?subject=' +
+      encodeURIComponent('Design-partner pilot request: ' + v('f-company')) + '&body=' + body;
+  });
+</script>
+</body>
+</html>

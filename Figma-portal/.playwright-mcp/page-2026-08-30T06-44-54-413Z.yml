@@ -1,0 +1,215 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "GovernVeil" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e9]
+          - generic [ref=e11]: GovernVeil
+        - navigation [ref=e12]:
+          - link "Product" [ref=e13] [cursor=pointer]:
+            - /url: /product
+          - link "Features" [ref=e14] [cursor=pointer]:
+            - /url: /features
+          - link "Security" [ref=e15] [cursor=pointer]:
+            - /url: /security
+          - link "Benchmark" [ref=e16] [cursor=pointer]:
+            - /url: /benchmark
+          - link "Pricing" [active] [ref=e17] [cursor=pointer]:
+            - /url: /pricing
+          - link "Compare" [ref=e18] [cursor=pointer]:
+            - /url: /compare
+      - generic [ref=e19]:
+        - link "Docs" [ref=e20] [cursor=pointer]:
+          - /url: /docs
+        - link "Book a pilot" [ref=e21] [cursor=pointer]:
+          - /url: /pilot
+  - main [ref=e22]:
+    - generic [ref=e428]:
+      - paragraph [ref=e429]: Pricing
+      - heading "Flat, self-hosted, predictable." [level=1] [ref=e430]
+      - paragraph [ref=e431]: Priced per governed-AI-user — not per token you run on your own hardware, and not a $100k+ floor.
+    - generic [ref=e433]:
+      - generic [ref=e434]:
+        - generic [ref=e435]:
+          - generic [ref=e436]: ~$96 / governed-AI-user / year
+          - paragraph [ref=e437]: 500-seat floor. A 1,500-person org with 500 AI users is finally in-category. Land small, expand on seats. (Confirm final numbers before signing.)
+        - generic [ref=e438]:
+          - generic [ref=e439]: "What you also pay:"
+          - text: Your own infra. Reference pilot ≈ low-hundreds/month. Production ≈ low-thousands/month on AWS. No per-token surprise on renewal.
+      - generic [ref=e440]:
+        - generic [ref=e441]:
+          - generic [ref=e442]:
+            - generic [ref=e443]: Core
+            - generic [ref=e444]:
+              - generic [ref=e445]: ~$96
+              - generic [ref=e446]: / governed-AI-user / year
+            - generic [ref=e447]: 500-seat floor
+            - paragraph [ref=e448]: Content detection and audit evidence. Enforce policies, produce a verifiable audit trail.
+            - generic [ref=e449]:
+              - generic [ref=e450]:
+                - img [ref=e451]
+                - text: Content detection ladder (fast path + local ML)
+              - generic [ref=e453]:
+                - img [ref=e454]
+                - text: "Graduated verdicts: allow / review / redact / block"
+              - generic [ref=e456]:
+                - img [ref=e457]
+                - text: Tamper-evident, hash-chained audit log
+              - generic [ref=e459]:
+                - img [ref=e460]
+                - text: Datadog export
+              - generic [ref=e462]:
+                - img [ref=e463]
+                - text: SOC 2, HIPAA, PCI DSS control mapping
+              - generic [ref=e465]:
+                - img [ref=e466]
+                - text: OpenAI-compatible drop-in
+              - generic [ref=e468]:
+                - img [ref=e469]
+                - text: Docker / Kubernetes self-hosted
+              - generic [ref=e471]:
+                - img [ref=e472]
+                - text: Reversible masking
+              - generic [ref=e474]:
+                - img [ref=e475]
+                - text: Access-plane scope-gating
+              - generic [ref=e477]:
+                - img [ref=e478]
+                - text: Air-gapped reference architecture
+              - generic [ref=e480]:
+                - img [ref=e481]
+                - text: Vendor/agent governance
+          - link "Book a pilot" [ref=e484] [cursor=pointer]:
+            - /url: /pilot
+        - generic [ref=e485]:
+          - generic [ref=e486]: Most common starting point
+          - generic [ref=e487]:
+            - generic [ref=e488]: Governed
+            - generic [ref=e490]: Custom
+            - generic [ref=e491]: Includes Core +
+            - generic [ref=e492]: "Gate: reversible masking + access-plane scope-gating"
+            - paragraph [ref=e493]: Reversible masking and access-plane scope-gating. Work continues; data never leaves.
+            - generic [ref=e494]:
+              - generic [ref=e495]:
+                - img [ref=e496]
+                - text: Everything in Core
+              - generic [ref=e498]:
+                - img [ref=e499]
+                - text: Reversible masking — full round trip on API calls
+              - generic [ref=e501]:
+                - img [ref=e502]
+                - text: Browser/shadow-AI outbound masking (ChatGPT + claude.ai)
+              - generic [ref=e504]:
+                - img [ref=e505]
+                - text: API access scope-gating (Access plane — /gw/<app>)
+              - generic [ref=e507]:
+                - img [ref=e508]
+                - text: Multi-turn drip detection
+              - generic [ref=e510]:
+                - img [ref=e511]
+                - text: Document-upload hostile-content sweep
+              - generic [ref=e513]:
+                - img [ref=e514]
+                - text: DPDP / APRA control mapping
+              - generic [ref=e516]:
+                - img [ref=e517]
+                - text: Air-gapped reference architecture
+              - generic [ref=e519]:
+                - img [ref=e520]
+                - text: Vendor/agent governance
+          - link "Book a pilot" [ref=e523] [cursor=pointer]:
+            - /url: /pilot
+        - generic [ref=e524]:
+          - generic [ref=e525]:
+            - generic [ref=e526]: Sovereign
+            - generic [ref=e528]: Custom
+            - generic [ref=e529]: Includes Governed +
+            - generic [ref=e530]: "Gate: air-gapped reference architecture + vendor/agent governance"
+            - paragraph [ref=e531]: Air-gapped reference architecture and vendor/agent governance. For true sovereignty-constrained environments.
+            - generic [ref=e532]:
+              - generic [ref=e533]:
+                - img [ref=e534]
+                - text: Everything in Governed
+              - generic [ref=e536]:
+                - img [ref=e537]
+                - text: Air-gapped reference architecture (no internet egress required)
+              - generic [ref=e539]:
+                - img [ref=e540]
+                - text: Vendor & agent credential governance
+              - generic [ref=e542]:
+                - img [ref=e543]
+                - text: Dormant-credential wake alerts
+              - generic [ref=e545]:
+                - img [ref=e546]
+                - text: Self-improving detection (fine-tune on your reviewer labels)
+              - generic [ref=e548]:
+                - img [ref=e549]
+                - text: Dedicated deployment support
+          - link "Book a pilot" [ref=e552] [cursor=pointer]:
+            - /url: /pilot
+      - generic [ref=e553]:
+        - generic [ref=e554]: Design-partner programme
+        - 'heading "Paid 8–12-week pilots: $15k–$40k" [level=3] [ref=e555]'
+        - paragraph [ref=e556]: Charge-for-pilot = an accountable outcome. You get early access, influence the roadmap, and retain all findings. Clear conversion path to a full licence at the end.
+        - link "Request a pilot" [ref=e557] [cursor=pointer]:
+          - /url: /pilot
+  - contentinfo [ref=e381]:
+    - generic [ref=e382]:
+      - generic [ref=e383]:
+        - generic [ref=e384]:
+          - link "GovernVeil" [ref=e385] [cursor=pointer]:
+            - /url: /
+            - img [ref=e387]
+            - text: GovernVeil
+          - paragraph [ref=e389]: AI data-egress control & evidence.
+          - paragraph [ref=e390]: A Syntegreti platform. Hyderabad, India.
+          - paragraph [ref=e391]: Self-hosted. Your data never leaves your perimeter.
+        - generic [ref=e392]:
+          - generic [ref=e393]: Product
+          - list [ref=e394]:
+            - listitem [ref=e395]:
+              - link "Product" [ref=e396] [cursor=pointer]:
+                - /url: /product
+            - listitem [ref=e397]:
+              - link "Features" [ref=e398] [cursor=pointer]:
+                - /url: /features
+            - listitem [ref=e399]:
+              - link "Security" [ref=e400] [cursor=pointer]:
+                - /url: /security
+            - listitem [ref=e401]:
+              - link "Benchmark" [ref=e402] [cursor=pointer]:
+                - /url: /benchmark
+        - generic [ref=e403]:
+          - generic [ref=e404]: Evaluate
+          - list [ref=e405]:
+            - listitem [ref=e406]:
+              - link "Pricing" [ref=e407] [cursor=pointer]:
+                - /url: /pricing
+            - listitem [ref=e408]:
+              - link "Compare" [ref=e409] [cursor=pointer]:
+                - /url: /compare
+            - listitem [ref=e410]:
+              - link "Pilot" [ref=e411] [cursor=pointer]:
+                - /url: /pilot
+            - listitem [ref=e412]:
+              - link "Docs" [ref=e413] [cursor=pointer]:
+                - /url: /docs
+        - generic [ref=e414]:
+          - generic [ref=e415]: Legal
+          - list [ref=e416]:
+            - listitem [ref=e417]:
+              - link "Privacy" [ref=e418] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e419]:
+              - link "Terms" [ref=e420] [cursor=pointer]:
+                - /url: /terms
+      - generic [ref=e421]:
+        - generic [ref=e422]: © 2026 Syntegreti. GovernVeil is open-core; see the repo for licence details.
+        - generic [ref=e423]:
+          - link "GitHub" [ref=e424] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=e425] [cursor=pointer]:
+            - /url: "#"
+          - link "Security advisories" [ref=e426] [cursor=pointer]:
+            - /url: "#"

@@ -1,0 +1,414 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "GovernVeil" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e9]
+          - generic [ref=e11]: GovernVeil
+        - navigation [ref=e12]:
+          - link "Product" [ref=e13] [cursor=pointer]:
+            - /url: /product
+          - link "Features" [ref=e14] [cursor=pointer]:
+            - /url: /features
+          - link "Security" [ref=e15] [cursor=pointer]:
+            - /url: /security
+          - link "Benchmark" [ref=e16] [cursor=pointer]:
+            - /url: /benchmark
+          - link "Pricing" [ref=e17] [cursor=pointer]:
+            - /url: /pricing
+          - link "Compare" [ref=e18] [cursor=pointer]:
+            - /url: /compare
+      - generic [ref=e19]:
+        - link "Docs" [ref=e20] [cursor=pointer]:
+          - /url: /docs
+        - link "Book a pilot" [ref=e21] [cursor=pointer]:
+          - /url: /pilot
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: AI data-egress control & evidence · self-hosted
+        - heading "Let your teams use AI. Keep the data — and the proof — inside your perimeter." [level=1] [ref=e28]:
+          - text: Let your teams use AI.
+          - text: Keep the data — and the proof —
+          - text: inside your perimeter.
+        - paragraph [ref=e29]: GovernVeil governs every AI action — LLM API calls, enterprise-app access, and vendor/agent credentials — in your own environment. Sensitive values are replaced with realistic stand-ins before the prompt leaves; on your apps' API calls they're restored in the response — so work continues and nothing sensitive ever reaches the model provider.
+        - generic [ref=e30]:
+          - link "Book a design-partner pilot" [ref=e31] [cursor=pointer]:
+            - /url: /pilot
+            - text: Book a design-partner pilot
+            - img [ref=e32]
+          - link "See the architecture" [ref=e34] [cursor=pointer]:
+            - /url: /product
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - img [ref=e37]
+          - text: Runs in your VPC or on-prem
+        - generic [ref=e39]:
+          - img [ref=e40]
+          - text: All ML inference local
+        - generic [ref=e42]:
+          - img [ref=e43]
+          - text: No prompt content leaves your network
+        - generic [ref=e45]:
+          - img [ref=e46]
+          - text: OpenAI-compatible drop-in
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - generic [ref=e53]: GovernVeil · enforcement log · live
+          - generic [ref=e54]: processing
+        - table [ref=e57]:
+          - rowgroup [ref=e58]:
+            - row "source inbound payload (excerpt) verdict egress / note" [ref=e59]:
+              - columnheader "source" [ref=e60]
+              - columnheader "inbound payload (excerpt)" [ref=e61]
+              - columnheader "verdict" [ref=e62]
+              - columnheader "egress / note" [ref=e63]
+          - rowgroup [ref=e64]:
+            - row "LLM API call Account A123456(7) — balance £48,200 mask A563710(2) — £00,000 — reversed on response" [ref=e65]:
+              - cell "LLM API call" [ref=e66]
+              - cell "Account A123456(7) — balance £48,200" [ref=e67]
+              - cell "mask" [ref=e68]:
+                - generic [ref=e69]: mask
+              - cell "A563710(2) — £00,000 — reversed on response" [ref=e71]:
+                - text: A563710(2) — £00,000
+                - generic [ref=e72]: — reversed on response
+            - row "Browser / ChatGPT Patient MRN-00842 dob 1979-04-12 mask MRN-00000 dob ****-**-** — stand-in on screen" [ref=e73]:
+              - cell "Browser / ChatGPT" [ref=e74]
+              - cell "Patient MRN-00842 dob 1979-04-12" [ref=e75]
+              - cell "mask" [ref=e76]:
+                - generic [ref=e77]: mask
+              - cell "MRN-00000 dob ****-**-** — stand-in on screen" [ref=e79]:
+                - text: MRN-00000 dob ****-**-**
+                - generic [ref=e80]: — stand-in on screen
+            - 'row "Agent credential sk-prod-xxxxxxxx (scope: write:all) review queued for approval — over-scoped" [ref=e81]':
+              - cell "Agent credential" [ref=e82]
+              - 'cell "sk-prod-xxxxxxxx (scope: write:all)" [ref=e83]'
+              - cell "review" [ref=e84]:
+                - generic [ref=e85]: review
+              - cell "queued for approval — over-scoped" [ref=e87]:
+                - text: queued for approval
+                - generic [ref=e88]: — over-scoped
+            - row "Document upload contract.pdf (hidden PII in metadata) block upload rejected — macro detected" [ref=e89]:
+              - cell "Document upload" [ref=e90]
+              - cell "contract.pdf (hidden PII in metadata)" [ref=e91]
+              - cell "block" [ref=e92]:
+                - generic [ref=e93]: block
+              - cell "upload rejected — macro detected" [ref=e95]:
+                - text: upload rejected
+                - generic [ref=e96]: — macro detected
+            - row "Internal API call GET /customers?region=APAC allow forwarded unchanged — role in scope" [ref=e97]:
+              - cell "Internal API call" [ref=e98]
+              - cell "GET /customers?region=APAC" [ref=e99]
+              - cell "allow" [ref=e100]:
+                - generic [ref=e101]: allow
+              - cell "forwarded unchanged — role in scope" [ref=e103]:
+                - text: forwarded unchanged
+                - generic [ref=e104]: — role in scope
+    - generic [ref=e106]:
+      - generic [ref=e107]:
+        - paragraph [ref=e108]: The gap
+        - heading "Three things the current stack doesn't solve." [level=2] [ref=e109]
+      - generic [ref=e110]:
+        - generic [ref=e111]:
+          - generic [ref=e112]: "01"
+          - heading "The licence doesn't see everything." [level=3] [ref=e113]
+          - paragraph [ref=e114]: ChatGPT Enterprise and Copilot cover people in a browser. They don't cover your applications and agents calling model APIs directly, or the personal accounts staff still use.
+        - generic [ref=e115]:
+          - generic [ref=e116]: "02"
+          - heading "Blocking stops the work." [level=3] [ref=e117]
+          - paragraph [ref=e118]: Traditional DLP either lets a prompt through or walls the user off — so they switch to a personal device and you lose visibility entirely.
+        - generic [ref=e119]:
+          - generic [ref=e120]: "03"
+          - heading "You can't prove any of it." [level=3] [ref=e121]
+          - paragraph [ref=e122]: Only ~a third of organisations send AI logs anywhere an auditor would accept. The contract transfers liability; it doesn't produce evidence.
+    - generic [ref=e124]:
+      - generic [ref=e125]:
+        - paragraph [ref=e126]: Architecture
+        - heading "Two enforcement planes over one detection ladder." [level=2] [ref=e127]
+        - paragraph [ref=e128]:
+          - text: Every request ends in
+          - generic [ref=e129]: allow
+          - generic [ref=e131]: review
+          - generic [ref=e133]: mask
+          - generic [ref=e135]: block
+          - text: — and is audited with a tamper-evident hash-chained record.
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - img [ref=e140]
+            - generic [ref=e142]:
+              - generic [ref=e143]:
+                - generic [ref=e144]: Access plane
+                - code [ref=e145]: /gw/<app>
+              - paragraph [ref=e146]: Role → scope gating on any enterprise API before a request is ever forwarded. Vendor credentials scoped, monitored, and killable inline (~0.5ms).
+          - generic [ref=e147]:
+            - img [ref=e149]
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - generic [ref=e153]: Content plane
+                - code [ref=e154]: /v1/*
+              - paragraph [ref=e155]: "Fast keyword/regex path (sub-5ms) then local transformer detectors (~190ms p50 on GPU): prompt-injection, PII, toxicity, harmful-intent (3-way), safety guard. No data sent to any external inference endpoint."
+          - generic [ref=e156]:
+            - img [ref=e158]
+            - generic [ref=e160]:
+              - generic [ref=e162]: Reversible masking
+              - paragraph [ref=e163]: Sensitive values are swapped for realistic surrogates outbound and restored inbound — the provider sees A563710(2), your user sees A123456(7). Default action is mask, never block.
+        - link "Full request lifecycle →" [ref=e164] [cursor=pointer]:
+          - /url: /product
+      - generic [ref=e165]:
+        - generic [ref=e166]: request-flow · simplified
+        - generic [ref=e168]: Client (browser / agent / app)
+        - generic [ref=e170]: ↓ TLS
+        - generic [ref=e172]: GovernVeil gateway
+        - generic [ref=e174]: │ 1. Access plane — role/scope
+        - generic [ref=e176]: │ 2. Content plane — detect & verdict
+        - generic [ref=e178]: │ 3. Reversible masking (if mask)
+        - generic [ref=e180]: │ 4. Hash-chain audit record
+        - generic [ref=e182]: ↓ (allow / mask-outbound)
+        - generic [ref=e184]: Model provider or enterprise API
+        - generic [ref=e186]: "↑ response: mask restored inbound"
+    - generic [ref=e188]:
+      - generic [ref=e189]:
+        - paragraph [ref=e190]: Capabilities
+        - heading "What GovernVeil enforces." [level=2] [ref=e191]
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - generic [ref=e194]:
+            - heading "Reversible masking" [level=3] [ref=e195]
+            - generic [ref=e196]: mask
+          - paragraph [ref=e198]: "Full round trip on API calls: masked outbound, restored inbound. Browser/shadow-AI: outbound masking only (provider never sees real data). Default action is mask, never block."
+        - generic [ref=e199]:
+          - generic [ref=e200]:
+            - heading "Two enforcement planes" [level=3] [ref=e201]
+            - generic [ref=e202]: allow
+          - paragraph [ref=e204]: Content inspection and API access scope-gating run in sequence. No competitor profiled has the access plane.
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - heading "Shadow-AI coverage" [level=3] [ref=e207]
+            - generic [ref=e208]: block
+          - paragraph [ref=e210]: Browser extension for ChatGPT and claude.ai (mask outbound or block), plus a forward-proxy/ICAP variant for network-level coverage.
+        - generic [ref=e211]:
+          - generic [ref=e212]:
+            - heading "Document-upload sweep" [level=3] [ref=e213]
+            - generic [ref=e214]: block
+          - paragraph [ref=e216]: Catches hidden text, Office/OOXML tricks, macros, and PDF JavaScript before a file reaches an LLM or RAG pipeline.
+        - generic [ref=e217]:
+          - generic [ref=e218]:
+            - heading "Vendor & agent governance" [level=3] [ref=e219]
+            - generic [ref=e220]: review
+          - paragraph [ref=e222]: Every third-party AI credential scoped, monitored, and killable inline. Kill-switch enforced in ~0.5ms. Dormant-credential wake alerts.
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - heading "Audit-grade evidence" [level=3] [ref=e225]
+            - generic [ref=e226]: allow
+          - paragraph [ref=e228]: Tamper-evident, hash-chained logs mapped line-by-line to named controls. Export to Datadog or SIEM today.
+      - link "All features →" [ref=e230] [cursor=pointer]:
+        - /url: /features
+    - generic [ref=e232]:
+      - generic [ref=e233]:
+        - paragraph [ref=e234]: The one thing nobody else does
+        - heading "\"We blocked it\" → \"We let the work happen safely.\"" [level=2] [ref=e235]:
+          - text: "\"We blocked it\" →"
+          - text: "\"We let the work happen safely.\""
+        - paragraph [ref=e236]: On your apps' model-API calls, GovernVeil replaces a sensitive value with a reversible surrogate on the way out and restores it on the way back — a full round trip. For browser/shadow-AI use it masks outbound so nothing real leaves.
+        - list [ref=e237]:
+          - listitem [ref=e238]:
+            - img [ref=e239]
+            - text: Detect-and-block vendors can't do this — they have no response path.
+          - listitem [ref=e241]:
+            - img [ref=e242]
+            - text: The model providers have explicitly declined to implement it.
+          - listitem [ref=e244]:
+            - img [ref=e245]
+            - text: Runs entirely in your perimeter, so it works air-gapped.
+        - generic [ref=e247]:
+          - link "Book a design-partner pilot" [ref=e248] [cursor=pointer]:
+            - /url: /pilot
+          - link "Read the benchmark" [ref=e249] [cursor=pointer]:
+            - /url: /benchmark
+      - generic [ref=e250]:
+        - generic [ref=e251]: masking round-trip · LLM API call
+        - generic [ref=e252]:
+          - generic [ref=e253]: "// your application sends:"
+          - generic [ref=e254]: "\"Summarise account A123456(7), balance £48,200\""
+        - generic [ref=e257]:
+          - generic [ref=e258]: mask
+          - text: masks outbound
+        - generic [ref=e261]:
+          - generic [ref=e262]: "// model provider receives:"
+          - generic [ref=e263]: "\"Summarise account A563710(2), balance £00,000\""
+        - generic [ref=e264]:
+          - generic [ref=e265]: "// model returns:"
+          - generic [ref=e266]: "\"Account A563710(2) has balance £00,000…\""
+        - generic [ref=e269]:
+          - generic [ref=e270]: allow
+          - text: restores inbound
+        - generic [ref=e273]:
+          - generic [ref=e274]: "// your application receives:"
+          - generic [ref=e275]: "\"Account A123456(7) has balance £48,200…\""
+    - generic [ref=e277]:
+      - generic [ref=e278]:
+        - paragraph [ref=e279]: Reproducible benchmark
+        - heading "Numbers, not adjectives." [level=2] [ref=e280]
+        - paragraph [ref=e281]: Public, re-runnable harness in the repo. Ask any competitor for their published false-positive rate.
+        - generic [ref=e282]:
+          - generic [ref=e283]:
+            - generic [ref=e284]: 99.4%
+            - generic [ref=e285]:
+              - generic [ref=e286]: harmful-prompt block rate on AdvBench
+              - generic [ref=e287]: public, re-runnable harness in the repo
+          - generic [ref=e288]:
+            - generic [ref=e289]: "0"
+            - generic [ref=e290]:
+              - generic [ref=e291]: false positives on AdvBench
+              - generic [ref=e292]: ask any competitor for their published number
+          - generic [ref=e293]:
+            - generic [ref=e294]: 85→100%
+            - generic [ref=e295]:
+              - generic [ref=e296]: evasion closed by self-improving detection
+              - generic [ref=e297]: held-out data, 0 new FPs
+        - link "Full benchmark methodology →" [ref=e298] [cursor=pointer]:
+          - /url: /benchmark
+      - generic [ref=e299]:
+        - paragraph [ref=e300]: Honest latency
+        - paragraph [ref=e301]: We publish two numbers with methodology, not one marketing figure.
+        - generic [ref=e302]:
+          - generic [ref=e303]:
+            - generic [ref=e304]: sub-5ms
+            - generic [ref=e305]: fast path p50
+            - generic [ref=e306]: keyword / regex, commodity hardware
+          - generic [ref=e307]:
+            - generic [ref=e308]: ~190ms
+            - generic [ref=e309]: ML path p50
+            - generic [ref=e310]: GPU-accelerated, local inference
+          - generic [ref=e311]:
+            - generic [ref=e312]: ~0.5ms
+            - generic [ref=e313]: kill-switch enforcement
+            - generic [ref=e314]: inline, synchronous
+          - generic [ref=e315]:
+            - generic [ref=e316]: 100%
+            - generic [ref=e317]: audit coverage
+            - generic [ref=e318]: every request, hash-chained
+        - generic [ref=e319]:
+          - paragraph [ref=e320]: Security & residency
+          - generic [ref=e321]:
+            - generic [ref=e322]:
+              - img [ref=e323]
+              - text: Self-hosted (Docker / Kubernetes / AWS)
+            - generic [ref=e325]:
+              - img [ref=e326]
+              - text: All ML inference local — no prompt content leaves
+            - generic [ref=e328]:
+              - img [ref=e329]
+              - text: Encryption in transit (TLS 1.2+) and at rest (AES-256)
+            - generic [ref=e331]:
+              - img [ref=e332]
+              - text: Data residency by construction — no vendor cloud in verdict path
+            - generic [ref=e334]:
+              - img [ref=e335]
+              - text: Air-gap capable
+          - link "Security & compliance detail →" [ref=e337] [cursor=pointer]:
+            - /url: /security
+    - generic [ref=e339]:
+      - generic [ref=e340]:
+        - paragraph [ref=e341]: Who it's for
+        - heading "Built for regulated, sovereignty-constrained environments." [level=2] [ref=e342]
+      - generic [ref=e343]:
+        - generic [ref=e344]:
+          - generic [ref=e345]:
+            - generic [ref=e346]: India
+            - generic [ref=e347]: GCCs & global capability centres
+          - paragraph [ref=e348]: 200+ GCCs in Hyderabad, Bengaluru, Chennai running regulated workloads for BFSI, pharma, and insurance parents.
+        - generic [ref=e349]:
+          - generic [ref=e350]:
+            - generic [ref=e351]: Australia
+            - generic [ref=e352]: APRA-regulated financial institutions
+          - paragraph [ref=e353]: CPS 234 and CPS 230 require demonstrable AI-access controls and evidence for third-party tech risk.
+        - generic [ref=e354]:
+          - generic [ref=e355]:
+            - generic [ref=e356]: Global
+            - generic [ref=e357]: BFSI & healthcare / life-sciences
+          - paragraph [ref=e358]: PCI-DSS, HIPAA, and local privacy regimes treat AI egress as a data-transfer event — not a browser policy.
+        - generic [ref=e359]:
+          - generic [ref=e360]:
+            - generic [ref=e361]: Global
+            - generic [ref=e362]: Sovereignty & residency-constrained orgs
+          - paragraph [ref=e363]: Data-localisation mandates mean local inference is a legal requirement, not a preference.
+    - generic [ref=e365]:
+      - generic [ref=e366]:
+        - paragraph [ref=e367]: Pricing
+        - heading "Flat, self-hosted, predictable." [level=2] [ref=e368]
+        - paragraph [ref=e369]: Priced per governed-AI-user — not per token you run on your own hardware, and not a $100k+ floor. ~$96 / governed-AI-user / year, 500-seat floor. You also pay your own infra (reference pilot ≈ low-hundreds/month).
+      - link "See pricing tiers →" [ref=e370] [cursor=pointer]:
+        - /url: /pricing
+    - generic [ref=e372]:
+      - paragraph [ref=e373]: Design-partner programme
+      - heading "See it mask a real prompt in 90 seconds." [level=2] [ref=e374]
+      - paragraph [ref=e375]: "A paid 8–12-week pilot. Week one: point one app at the gateway and watch it mask a real prompt and restore the answer — full round trip, your environment, your data."
+      - link "Book a design-partner pilot" [ref=e376] [cursor=pointer]:
+        - /url: /pilot
+        - text: Book a design-partner pilot
+        - img [ref=e377]
+      - paragraph [ref=e379]:
+        - text: Or
+        - link "see the architecture first →" [ref=e380] [cursor=pointer]:
+          - /url: /product
+  - contentinfo [ref=e381]:
+    - generic [ref=e382]:
+      - generic [ref=e383]:
+        - generic [ref=e384]:
+          - link "GovernVeil" [ref=e385] [cursor=pointer]:
+            - /url: /
+            - img [ref=e387]
+            - text: GovernVeil
+          - paragraph [ref=e389]: AI data-egress control & evidence.
+          - paragraph [ref=e390]: A Syntegreti platform. Hyderabad, India.
+          - paragraph [ref=e391]: Self-hosted. Your data never leaves your perimeter.
+        - generic [ref=e392]:
+          - generic [ref=e393]: Product
+          - list [ref=e394]:
+            - listitem [ref=e395]:
+              - link "Product" [ref=e396] [cursor=pointer]:
+                - /url: /product
+            - listitem [ref=e397]:
+              - link "Features" [ref=e398] [cursor=pointer]:
+                - /url: /features
+            - listitem [ref=e399]:
+              - link "Security" [ref=e400] [cursor=pointer]:
+                - /url: /security
+            - listitem [ref=e401]:
+              - link "Benchmark" [ref=e402] [cursor=pointer]:
+                - /url: /benchmark
+        - generic [ref=e403]:
+          - generic [ref=e404]: Evaluate
+          - list [ref=e405]:
+            - listitem [ref=e406]:
+              - link "Pricing" [ref=e407] [cursor=pointer]:
+                - /url: /pricing
+            - listitem [ref=e408]:
+              - link "Compare" [ref=e409] [cursor=pointer]:
+                - /url: /compare
+            - listitem [ref=e410]:
+              - link "Pilot" [ref=e411] [cursor=pointer]:
+                - /url: /pilot
+            - listitem [ref=e412]:
+              - link "Docs" [ref=e413] [cursor=pointer]:
+                - /url: /docs
+        - generic [ref=e414]:
+          - generic [ref=e415]: Legal
+          - list [ref=e416]:
+            - listitem [ref=e417]:
+              - link "Privacy" [ref=e418] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e419]:
+              - link "Terms" [ref=e420] [cursor=pointer]:
+                - /url: /terms
+      - generic [ref=e421]:
+        - generic [ref=e422]: © 2026 Syntegreti. GovernVeil is open-core; see the repo for licence details.
+        - generic [ref=e423]:
+          - link "GitHub" [ref=e424] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=e425] [cursor=pointer]:
+            - /url: "#"
+          - link "Security advisories" [ref=e426] [cursor=pointer]:
+            - /url: "#"

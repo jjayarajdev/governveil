@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GovernVeil features</title>
+<meta name="description" content="Reversible masking, shadow-AI coverage, document sweeps, an inline kill-switch, and detection that learns in your walls. Shown the way we show them in a pilot.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<meta property="og:title" content="GovernVeil features">
+<meta property="og:description" content="Reversible masking, shadow-AI coverage, document sweeps, an inline kill-switch, and detection that learns in your walls. Shown the way we show them in a pilot.">
+<meta property="og:site_name" content="GovernVeil">
+<meta property="og:type" content="website">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="features.html" aria-current="page">Features</a>
+        <a href="security.html">Security</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="pilot.html">Book a pilot</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>The demo, <span class="grad-word">on a page</span></h1>
+    <p class="lede">Five signature capabilities, shown the way we show them in a pilot. Everything here ships today; the roadmap is labelled as roadmap.</p>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2>Masking that gives the answer back</h2>
+      <p>On your apps' API calls it is a full round trip: realistic, format-preserving surrogates go out, and the real values are restored in the answer. The provider works on stand-ins; your app never notices.</p>
+      <p><strong>Why it matters:</strong> detect-and-block tools stop the work, so users route around them. Masking keeps the work moving while the data stays home.</p>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <!-- Example values. -->
+      <div class="exchange" aria-label="A claims note is masked before reaching the provider: the policy number and phone number become surrogates.">
+        <span class="lbl">Your app asks</span>
+        <pre>"Summarise the dispute on policy <span class="s">HL-2209-8841</span>,
+ claimant phone <span class="s">+91 98481 20734</span>"</pre>
+        <span class="lbl">The provider receives</span>
+        <pre>"Summarise the dispute on policy <span class="flip m" data-real="HL-2209-8841" data-mask="KV-7731-0526">KV-7731-0526</span>,
+ claimant phone <span class="flip m" data-real="+91 98481 20734" data-mask="+91 90072 66418">+91 90072 66418</span>"</pre>
+        <span class="lbl">Your app gets back</span>
+        <pre>The summary, with the real policy and phone restored.</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap split rev">
+    <div class="reveal">
+      <div class="vignette" id="bwin" aria-label="Animated story of a browser session: an analyst types a member ID into claude.ai, the extension flags it locally and masks it before send, and Claude answers using the stand-in, which stays on screen. Nothing real leaves the tab.">
+        <div class="bwin-bar"><span class="bwin-url">claude.ai</span></div>
+        <div class="bwin-chat">
+          <!-- Example values. -->
+          <p class="bwin-msg bwin-user">Draft an appeal for member <span class="bwin-mask">KRW-55107</span>, cardiology claim.</p>
+          <p class="bwin-msg bwin-reply">Draft ready for member <span class="bwin-mask">KRW-55107</span>. The denial cites section 4.2; grounds for appeal are strong.</p>
+        </div>
+        <span class="bwin-note">GovernVeil: 1 value masked before send</span>
+        <p class="bw-caption">an analyst types into claude.ai</p>
+      </div>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <h2>The browser is covered too</h2>
+      <p>A managed extension governs ChatGPT and claude.ai in the page itself: mask outbound, block, or a review notice, before the message ever leaves the tab. People keep working with the stand-ins on screen; restoring another company's web UI isn't reliably achievable, so we don't claim it.</p>
+      <p><strong>And it remembers the conversation.</strong> A profile leaked one harmless field at a time across five turns still trips detection. Single-prompt filters never see that.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2>Files get searched before models read them</h2>
+      <p>Uploads are parsed and swept for the channels attackers actually use: white-on-white text, hidden sheets and comments, macro and script payloads. Hostile files are quarantined before any LLM or RAG pipeline sees them.</p>
+      <p><strong>The risk it closes:</strong> a prompt-uploaded file can carry instructions no human reviewer ever sees, and perimeter DLP doesn't look inside it. The sweep closes that door before a model opens the file.</p>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <div class="vignette docscan" aria-label="A document is scanned line by line; a hidden white-on-white line is found and the file is quarantined.">
+        <span class="scan-beam" aria-hidden="true"></span>
+        <div class="doc-line w1"></div>
+        <div class="doc-line w2"></div>
+        <div class="doc-hidden" aria-hidden="true"></div>
+        <div class="doc-line w3"></div>
+        <div class="doc-line w4"></div>
+        <span class="doc-flag">hidden text found: quarantined before upload</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap split rev">
+    <div class="reveal">
+      <!-- Example values. -->
+      <div class="vignette registry" aria-label="A vendor grant registry. One grant is revoked and its requests are refused in under a millisecond.">
+        <div class="reg-row">
+          <span class="reg-name">acturis-claims-bot</span>
+          <span class="reg-scope">read: claims</span>
+          <span class="reg-status"><span class="on-txt">active</span><span class="off-txt">revoked</span></span>
+        </div>
+        <div class="reg-row" data-kill-row>
+          <span class="reg-name">vend-analytics-agent</span>
+          <span class="reg-scope">write: reports</span>
+          <span class="reg-ms">contained in 0.5 ms</span>
+          <span class="reg-status"><span class="on-txt">active</span><span class="off-txt">revoked</span></span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">supportdesk-copilot</span>
+          <span class="reg-scope">read: tickets</span>
+          <span class="reg-status"><span class="on-txt">active</span><span class="off-txt">revoked</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <h2>An off-switch for vendor AI</h2>
+      <p>Every third-party AI credential lives in a registry: which vendor, which agent, what scope. When something looks wrong, revoke the grant and every request on that credential is refused inline, in under a millisecond.</p>
+      <p><strong>The failure it prevents:</strong> the classic breach is the forgotten grant that outlives the contract. An inventory can list it; only an inline control can shut it off.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2>Detection that learns on your data, in your walls</h2>
+      <p>Borderline prompts go to a human review queue. Confirmed labels retrain the classifier, and only a model that passes the evaluation gate is promoted. It happened for real: a rewording evasion went from caught 85% of the time to 100%.</p>
+      <p><strong>Why self-hosting matters here:</strong> detection can only learn from your data if your data never has to leave. Residency is not just a compliance checkbox; it is the compounding edge.</p>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <div class="vignette" aria-label="The self-learning loop: flagged prompts are reviewed, the model retrains on those labels, and held-out accuracy rises from 85 to 100 percent.">
+        <div class="loop-steps">
+          <span class="loop-step">flag</span><span class="loop-arrow">&rarr;</span>
+          <span class="loop-step">human review</span><span class="loop-arrow">&rarr;</span>
+          <span class="loop-step">retrain</span><span class="loop-arrow">&rarr;</span>
+          <span class="loop-step">promote</span>
+        </div>
+        <span class="count-big" data-count-from="85" data-count-to="100">100%</span>
+        <p class="count-cap">held-out catch rate after one loop on reviewer labels, with zero new false positives</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Also in the box</h2>
+    </div>
+    <div class="bento">
+      <div class="bento-cell c3 accent reveal">
+        <h3>Enterprise-API scope-gating</h3>
+        <p>Role-to-scope rules with content inspection on any internal API, not just LLM traffic. Govern the systems your AI touches, not only the prompts it sends.</p>
+      </div>
+      <div class="bento-cell c3 reveal" style="--rd: 0.06s">
+        <h3>Tamper-evident audit</h3>
+        <p>A hash-chained log you can verify independently, every decision attributable and exportable. Datadog today.<span class="roadmap-tag">Splunk / Sentinel: roadmap</span></p>
+      </div>
+      <div class="bento-cell c2 reveal">
+        <h3>Graduated verdicts</h3>
+        <p>Allow, review, redact, mask, block. Fewer false walls, and a review queue for the grey zone.</p>
+      </div>
+      <div class="bento-cell c2 tint reveal" style="--rd: 0.06s">
+        <h3>Layered detection</h3>
+        <p>A sub-5 ms fast path backed by local ML across injection, PII, toxicity, and business content.</p>
+      </div>
+      <div class="bento-cell c2 reveal" style="--rd: 0.12s">
+        <h3>Network-path variant</h3>
+        <p>A forward-proxy option covers unmanaged browsers where the extension can't reach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <div class="inner">
+        <div>
+          <h2>Every vignette above runs live in week one</h2>
+          <p>Your app, your people, your documents, your vendors. In your environment.</p>
+        </div>
+        <a class="btn btn-primary" href="pilot.html">Book a pilot</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

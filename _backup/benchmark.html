@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark | GovernVeil</title>
+<meta name="description" content="A 99.4% harmful-prompt block rate with zero false positives on AdvBench, published with a re-runnable harness. Plus honest latency figures and what we deliberately do not claim.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="compare.html">Compare</a>
+        <a href="benchmark.html" aria-current="page">Benchmark</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="pilot.html">Book a pilot</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>Numbers anyone can re-run</h1>
+    <p class="lede">No profiled competitor, including the hyperscalers, publishes a reproducible detection benchmark. Ours ships in the repo with the harness to verify it.</p>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><span class="num">99.4%</span><p>Harmful-prompt block rate across the 520-prompt AdvBench set, measured after we found and fixed a fail-open bug in our own safety guard.</p></div>
+      <div class="stat"><span class="num">0</span><p>False positives in the same run. A filter that blocks legitimate work just moves the work to a personal device.</p></div>
+      <div class="stat"><span class="num">85 &rarr; 100%</span><p>Held-out catch rate after one self-learning iteration closed a real evasion, with zero new false positives.</p></div>
+    </div>
+    <p class="measure">The harness, the prompt set, and the before-and-after results are in the repository. Re-run them on your own hardware and compare.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Latency, stated honestly</h2>
+      <p>Two numbers with methodology, not one marketing figure. Measured on the reference pilot hardware (AWS g5.2xlarge, A10G GPU).</p>
+    </div>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th>Path</th><th>What runs</th><th>Latency</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Fast path</strong></td><td>Keyword, regex, secrets, and injection-phrase checks</td><td class="mono">&lt;5 ms</td></tr>
+          <tr><td><strong>ML path</strong></td><td>Local transformer detectors: injection, PII, toxicity, business-critical, harmful intent</td><td class="mono">~190 ms p50 (GPU)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The self-learning loop, measured</h2>
+      <p class="measure">We found a real evasion: harmful intent reworded as "arguments in favour of" sailed through the classifier. One training-loop iteration on reviewer labels took the held-out catch rate from 85% to 100% with no new false positives, and the improved model deployed to the live pilot. The loop runs entirely in your environment; a shared SaaS model cannot train on your data without your data leaving.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="callout">
+      <p><strong>What we don't claim.</strong> We do not use FF3-1; masking uses FF1-class format preservation with a domain floor. Differential privacy and k-anonymity apply to our audit analytics, not to single prompts. And PII detection is not "99%" for anyone; that is exactly why our default action is mask, not block.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final">
+      <div class="inner">
+        <div>
+          <h2>Verify it yourself, then talk to us</h2>
+          <p>Re-run the harness, then bring the results to a pilot conversation.</p>
+        </div>
+        <a class="btn btn-primary" href="pilot.html">Book a pilot</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="compare.html">Compare</a>
+        <a href="benchmark.html">Benchmark</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

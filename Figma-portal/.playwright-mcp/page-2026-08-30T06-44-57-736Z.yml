@@ -1,0 +1,156 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - link "GovernVeil" [ref=f1e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=f1e9]
+          - generic [ref=f1e11]: GovernVeil
+        - navigation [ref=f1e12]:
+          - link "Product" [ref=f1e13] [cursor=pointer]:
+            - /url: /product
+          - link "Features" [ref=f1e14] [cursor=pointer]:
+            - /url: /features
+          - link "Security" [ref=f1e15] [cursor=pointer]:
+            - /url: /security
+          - link "Benchmark" [ref=f1e16] [cursor=pointer]:
+            - /url: /benchmark
+          - link "Pricing" [ref=f1e17] [cursor=pointer]:
+            - /url: /pricing
+          - link "Compare" [ref=f1e18] [cursor=pointer]:
+            - /url: /compare
+      - generic [ref=f1e19]:
+        - link "Docs" [ref=f1e20] [cursor=pointer]:
+          - /url: /docs
+        - link "Book a pilot" [ref=f1e21] [cursor=pointer]:
+          - /url: /pilot
+  - main [ref=f1e22]:
+    - generic [ref=f1e24]:
+      - paragraph [ref=f1e25]: Design-partner programme
+      - heading "Be in your environment producing a surprising result before you have to trust us." [level=1] [ref=f1e26]
+      - paragraph [ref=f1e27]: "A paid 8–12-week pilot. Week one: point one app at the gateway and watch it mask a real prompt and restore the answer — full round trip, your environment, your data."
+    - generic [ref=f1e29]:
+      - generic [ref=f1e30]:
+        - heading "What the pilot delivers" [level=2] [ref=f1e31]
+        - generic [ref=f1e32]:
+          - generic [ref=f1e33]:
+            - generic [ref=f1e34]: Week 1
+            - generic [ref=f1e35]:
+              - generic [ref=f1e36]: Full round trip live
+              - paragraph [ref=f1e37]: Point one app at the gateway. Watch it mask a real prompt and restore the answer. Or install the extension for a team — see it mask/block shadow-AI prompts and see the audit trail your auditor will accept.
+          - generic [ref=f1e38]:
+            - generic [ref=f1e39]: Weeks 2–4
+            - generic [ref=f1e40]:
+              - generic [ref=f1e41]: Coverage expansion
+              - paragraph [ref=f1e42]: Add more apps or users. Tune detection policies. Validate against your actual data patterns, not synthetic test sets.
+          - generic [ref=f1e43]:
+            - generic [ref=f1e44]: Weeks 5–12
+            - generic [ref=f1e45]:
+              - generic [ref=f1e46]: Evidence production
+              - paragraph [ref=f1e47]: Build the audit artefacts mapped to your named controls. Produce the evidence your compliance team needs. Finalise your deployment architecture.
+        - generic [ref=f1e48]:
+          - generic [ref=f1e49]: Pilot terms
+          - list [ref=f1e50]:
+            - listitem [ref=f1e51]:
+              - img [ref=f1e52]
+              - text: "Paid: $15k–$40k depending on scope"
+            - listitem [ref=f1e54]:
+              - img [ref=f1e55]
+              - text: 8–12 weeks with a clear conversion path
+            - listitem [ref=f1e57]:
+              - img [ref=f1e58]
+              - text: You retain all findings and IP
+            - listitem [ref=f1e60]:
+              - img [ref=f1e61]
+              - text: We retain no rights to your data
+            - listitem [ref=f1e63]:
+              - img [ref=f1e64]
+              - text: Dedicated deployment support throughout
+      - generic [ref=f1e67]:
+        - heading "Request a pilot" [level=3] [ref=f1e68]
+        - paragraph [ref=f1e69]: 3–5 slots per cohort. We respond within 2 business days.
+        - generic [ref=f1e70]:
+          - generic [ref=f1e71]:
+            - generic [ref=f1e72]:
+              - generic [ref=f1e73]: Name *
+              - textbox "Sarah Chen" [ref=f1e74]
+            - generic [ref=f1e75]:
+              - generic [ref=f1e76]: Work email *
+              - textbox "sarah@company.com" [ref=f1e77]
+          - generic [ref=f1e78]:
+            - generic [ref=f1e79]: Company *
+            - textbox "Acme Financial Services" [ref=f1e80]
+          - generic [ref=f1e81]:
+            - generic [ref=f1e82]: Region *
+            - combobox [ref=f1e83]:
+              - option "Select region" [selected]
+              - option "India (GCC / BFSI / Pharma)"
+              - option "Australia (APRA-regulated)"
+              - option "APAC — other"
+              - option "Europe"
+              - option "Middle East"
+              - option "Other"
+          - generic [ref=f1e84]:
+            - generic [ref=f1e85]: What AI traffic can't you see today? *
+            - textbox "e.g. Our app teams are calling GPT-4 APIs directly and we have no audit trail. Staff use personal ChatGPT accounts. We have no coverage of Claude." [ref=f1e86]
+          - button "Request a pilot" [ref=f1e87]
+          - paragraph [ref=f1e88]: We don't add you to a mailing list. We respond to pilot requests only.
+  - contentinfo [ref=f1e89]:
+    - generic [ref=f1e90]:
+      - generic [ref=f1e91]:
+        - generic [ref=f1e92]:
+          - link "GovernVeil" [ref=f1e93] [cursor=pointer]:
+            - /url: /
+            - img [ref=f1e95]
+            - text: GovernVeil
+          - paragraph [ref=f1e97]: AI data-egress control & evidence.
+          - paragraph [ref=f1e98]: A Syntegreti platform. Hyderabad, India.
+          - paragraph [ref=f1e99]: Self-hosted. Your data never leaves your perimeter.
+        - generic [ref=f1e100]:
+          - generic [ref=f1e101]: Product
+          - list [ref=f1e102]:
+            - listitem [ref=f1e103]:
+              - link "Product" [ref=f1e104] [cursor=pointer]:
+                - /url: /product
+            - listitem [ref=f1e105]:
+              - link "Features" [ref=f1e106] [cursor=pointer]:
+                - /url: /features
+            - listitem [ref=f1e107]:
+              - link "Security" [ref=f1e108] [cursor=pointer]:
+                - /url: /security
+            - listitem [ref=f1e109]:
+              - link "Benchmark" [ref=f1e110] [cursor=pointer]:
+                - /url: /benchmark
+        - generic [ref=f1e111]:
+          - generic [ref=f1e112]: Evaluate
+          - list [ref=f1e113]:
+            - listitem [ref=f1e114]:
+              - link "Pricing" [ref=f1e115] [cursor=pointer]:
+                - /url: /pricing
+            - listitem [ref=f1e116]:
+              - link "Compare" [ref=f1e117] [cursor=pointer]:
+                - /url: /compare
+            - listitem [ref=f1e118]:
+              - link "Pilot" [ref=f1e119] [cursor=pointer]:
+                - /url: /pilot
+            - listitem [ref=f1e120]:
+              - link "Docs" [ref=f1e121] [cursor=pointer]:
+                - /url: /docs
+        - generic [ref=f1e122]:
+          - generic [ref=f1e123]: Legal
+          - list [ref=f1e124]:
+            - listitem [ref=f1e125]:
+              - link "Privacy" [ref=f1e126] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=f1e127]:
+              - link "Terms" [ref=f1e128] [cursor=pointer]:
+                - /url: /terms
+      - generic [ref=f1e129]:
+        - generic [ref=f1e130]: © 2026 Syntegreti. GovernVeil is open-core; see the repo for licence details.
+        - generic [ref=f1e131]:
+          - link "GitHub" [ref=f1e132] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=f1e133] [cursor=pointer]:
+            - /url: "#"
+          - link "Security advisories" [ref=f1e134] [cursor=pointer]:
+            - /url: "#"

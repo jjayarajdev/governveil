@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security and compliance | GovernVeil</title>
+<meta name="description" content="Verdicts computed inside your perimeter, evidence that tells on tampering, and audit artifacts mapped to SOC 2, HIPAA, PCI DSS, DPDP, and APRA controls.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<meta property="og:title" content="Security and compliance | GovernVeil">
+<meta property="og:description" content="Verdicts computed inside your perimeter, evidence that tells on tampering, and audit artifacts mapped to SOC 2, HIPAA, PCI DSS, DPDP, and APRA controls.">
+<meta property="og:site_name" content="GovernVeil">
+<meta property="og:type" content="website">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <div class="nav-links">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html" aria-current="page">Security</a>
+        <cds-button class="nav-cta" size="md" href="pilot.html">Book a pilot</cds-button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>Governance you can prove, without your data <span class="grad-word">leaving</span></h1>
+    <p class="lede">Written for the reviewer who asks hard questions: where verdicts happen, what is encrypted, and which evidence survives an audit.</p>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2>Where does the prompt go for the verdict?</h2>
+      <p>It is the first question to ask any AI security tool. With cloud-evaluated DLP, every prompt travels to someone else's infrastructure to be judged. With GovernVeil, the models that judge it run beside it, inside your perimeter.</p>
+      <p><strong>Why it matters:</strong> residency stops being a contract clause and becomes physics. There is no outbound path on the verdict, which is why the same deployment works air-gapped.</p>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <div class="vignette vrace" aria-label="Two animated panels: with cloud-evaluated DLP a prompt leaves the perimeter to a vendor cloud for its verdict; with GovernVeil the prompt travels only to a verdict engine inside the same perimeter.">
+        <div>
+          <span class="vr-label">cloud-evaluated DLP</span>
+          <div class="vr-scene">
+            <div class="vr-perim"><span class="vr-chip">your app</span></div>
+            <span class="vr-cloud">their cloud</span>
+            <span class="vr-dot vr-dot-out" aria-hidden="true"></span>
+          </div>
+          <span class="vr-cap">the prompt leaves to be judged</span>
+        </div>
+        <div>
+          <span class="vr-label">GovernVeil</span>
+          <div class="vr-scene">
+            <div class="vr-perim whole"><span class="vr-chip">your app</span><span class="vr-chip">verdict</span></div>
+            <span class="vr-dot vr-dot-in" aria-hidden="true"></span>
+          </div>
+          <span class="vr-cap">judged in place. nothing leaves</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap split rev">
+    <div class="reveal">
+      <!-- Example values. -->
+      <div class="vignette" id="chain" aria-label="Animated audit chain: three log entries append, each carrying the fingerprint of the previous one. When one entry is edited, the fingerprints stop matching and verification fails.">
+        <div class="ch-rows">
+          <div class="ch-row"><span>0291 masked claims-app</span><span class="h">fp 9f3a</span></div>
+          <div class="ch-link">carries 9f3a</div>
+          <div class="ch-row"><span>0292 blocked vendor: acturis</span><span class="h">fp c1d8</span></div>
+          <div class="ch-link">carries c1d8</div>
+          <div class="ch-row"><span>0293 allowed claims-app</span><span class="h">fp 77e2</span></div>
+        </div>
+        <p class="bw-caption">entries append, each carrying the previous fingerprint</p>
+      </div>
+    </div>
+    <div class="reveal" style="--rd: 0.1s">
+      <h2>Evidence that tells on tampering</h2>
+      <p>Every decision is written to a hash-chained log: each entry carries the fingerprint of the one before it. Edit anything, anywhere, and verification fails on the spot.</p>
+      <p><strong>What your auditor gets:</strong> a trail that doesn't depend on trusting us, or you. The trail can be exported to your SIEM and verified independently.</p>
+    </div>
+  </div>
+</section>
+
+<div class="fact-strip">
+  <div class="wrap">
+    <div class="fact"><strong>TLS 1.2+</strong>In transit, everywhere, or behind your terminating proxy.</div>
+    <div class="fact"><strong>AES-256</strong>At rest. The masking vault stores ciphertext and HMAC only; no plaintext value is ever stored.</div>
+    <div class="fact"><strong>Fail closed</strong>If the policy engine is unavailable, the gateway blocks on detection findings. Never allow-all.</div>
+    <div class="fact"><strong>SSO + RBAC</strong>OIDC and SAML, enforced roles, per-app service tokens.</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Evidence mapped to named controls</h2>
+      <p>Audit artifacts your assessor can trace to the control language they already work from.</p>
+    </div>
+    <div class="bento">
+      <div class="bento-cell c2 reveal">
+        <h3>SOC 2</h3>
+        <p class="mono small">CC6 logical access, CC7 system operations, C1 confidentiality</p>
+      </div>
+      <div class="bento-cell c2 tint reveal" style="--rd: 0.06s">
+        <h3>HIPAA</h3>
+        <p class="mono small">&sect;164.312(b) audit controls, &sect;164.308(a)(1)(ii)(D) activity review</p>
+      </div>
+      <div class="bento-cell c2 reveal" style="--rd: 0.12s">
+        <h3>PCI DSS</h3>
+        <p class="mono small">12.5.1, 12.8 third-party management, 3.x data protection</p>
+      </div>
+      <div class="bento-cell c3 accent reveal">
+        <h3>DPDP (India)</h3>
+        <p class="mono small">Rules 6, 13, and 15: security safeguards, breach evidence, and residency posture by construction</p>
+      </div>
+      <div class="bento-cell c3 reveal" style="--rd: 0.06s">
+        <h3>APRA (Australia)</h3>
+        <p class="mono small">Continuous-monitoring evidence for CPS 234 expectations</p>
+      </div>
+    </div>
+    <p class="small muted reveal" style="margin-top: 18px">Multi-tenant isolation is on the roadmap and labelled as such; everything else on this page ships today.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="callout reveal">
+      <p><strong>What we satisfy, and what we don't.</strong> GovernVeil satisfies access-control, egress-control, and activity-review evidence. It supports, but does not satisfy, fairness, provenance, and explainability requirements. If a vendor tells you one tool covers all of that, ask harder questions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <div class="inner">
+        <div>
+          <h2>Show your auditor a live trail, not a promise</h2>
+          <p>Pilots run against your controls list from day one.</p>
+        </div>
+        <cds-button href="pilot.html">Book a pilot</cds-button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="brand-mark"><span></span></span>GovernVeil</a>
+        <p>AI data-egress control and evidence for regulated enterprises. Self-hosted, evidence-first, honest about what ships. Part of the <a href="https://syntegreti.com/">Syntegreti</a> AI spine: govern, build, operate.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="product.html">Product</a>
+        <a href="features.html">Features</a>
+        <a href="security.html">Security</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <p class="footer-line">A <a href="https://syntegreti.com/">Syntegreti</a> platform. Hyderabad, India. Self-hosted, so your data never leaves your perimeter.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/vendor/carbon/button.min.js"></script>
+<script type="module" src="assets/vendor/carbon/tag.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
