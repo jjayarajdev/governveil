@@ -334,6 +334,67 @@ function Proof() {
   )
 }
 
+/* ---------- responsible AI by design ---------- */
+
+const PILLARS = [
+  {
+    k: 'Sovereign',
+    body: 'Runs in your environment; every prompt is scored by local models. Where does the prompt go for a verdict? Nowhere.',
+  },
+  {
+    k: 'Private',
+    body: 'Sensitive values are redacted before the prompt leaves the perimeter. The reversible round trip — surrogates out, real values restored inbound — is in the works.',
+    roadmap: true,
+  },
+  {
+    k: 'Explainable',
+    body: 'Every verdict carries a reason, the detector that fired, and a confidence score — nothing is a black box you can’t defend to an auditor.',
+  },
+  {
+    k: 'Accountable',
+    body: 'A tamper-evident, hash-chained record of every AI interaction and decision, mapped line-by-line to named controls.',
+  },
+  {
+    k: 'Overseen',
+    body: 'Graduated verdicts — allow / review / redact / block — plus a review queue and a sub-millisecond kill-switch keep a human in control.',
+  },
+]
+
+function ResponsibleAI() {
+  return (
+    <section className="ed-section">
+      <div className="wrap ed-top">
+        <Kicker>Responsible AI by design</Kicker>
+        <Title level={2} className="ed-h2" style={{ maxWidth: 620 }}>
+          The language your risk and board teams use — delivered as mechanisms.
+        </Title>
+        <Paragraph className="ed-body" style={{ marginBottom: 36 }}>
+          Sovereignty, explainability, accountability, human oversight — not a
+          policy PDF, but controls you can demo.
+        </Paragraph>
+        <Row gutter={[56, 40]}>
+          {PILLARS.map((p, i) => (
+            <Col xs={24} md={8} key={p.k}>
+              <Reveal delay={(i % 3) * 0.05}>
+                <div className="cap-ed">
+                  <div className="cap-line">
+                    <Text className="cap-num">{String(i + 1).padStart(2, '0')}</Text>
+                    <Title level={4}>{p.k}</Title>
+                  </div>
+                  <Paragraph>
+                    {p.body}
+                    {p.roadmap && <Tag className="roadmap-inline">roadmap</Tag>}
+                  </Paragraph>
+                </div>
+              </Reveal>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </section>
+  )
+}
+
 /* ---------- security & residency | pricing ---------- */
 
 function SecurityPricing() {
@@ -399,6 +460,7 @@ export default function Home() {
       <Capabilities />
       <Differentiator />
       <Proof />
+      <ResponsibleAI />
       <SecurityPricing />
       <FinalCTA />
     </>
