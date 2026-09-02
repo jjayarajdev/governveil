@@ -9,7 +9,6 @@ const { Header, Content, Footer } = Layout
 const NAV_ITEMS = [
   { key: '/product', label: 'Product' },
   { key: '/features', label: 'Features' },
-  { key: '/learn', label: 'Learn' },
   { key: '/about', label: 'About' },
 ]
 
@@ -23,7 +22,7 @@ const FOOTER_COLS = [
   },
   {
     heading: 'Evaluate',
-    links: [['Learn', '/learn'], ['Pilot', '/pilot']],
+    links: [['Pilot', '/pilot']],
   },
   {
     heading: 'Company',
