@@ -10,7 +10,7 @@ function Kicker({ children }) {
 }
 
 /* An embedded, interactive Archify diagram (pan / zoom / present mode preserved). */
-function Diagram({ src, title, caption, height = 540 }) {
+function Diagram({ src, title, caption, height = 720 }) {
   return (
     <figure className="dgm-frame">
       <iframe src={`/diagrams/${src}`} title={title} loading="lazy" style={{ height }} />
@@ -294,8 +294,8 @@ export default function Learn() {
         lead="Third-party AI vendors and agents get credentials into your systems. The risk isn’t the day you issue one — it’s the 300 days after, when it’s forgotten, over-used, or quietly compromised. GovernVeil tracks every grant through its full lifecycle."
       >
         <Reveal>
-          <Diagram src="vendor-grant.html" title="Vendor grant lifecycle" height={560}
-            caption="Eleven states across four lanes — grant, idle-and-watch, incident response, and the terminal exits." />
+          <Diagram src="vendor-grant.html" title="Vendor grant lifecycle"
+            caption="Nine states across four lanes — the grant rail, idle-and-watch, incident response, and the terminal exits." />
         </Reveal>
         <Row gutter={[48, 28]} style={{ marginTop: 8 }}>
           <Col xs={24} md={8}><Reveal><Point n="→" title="The healthy path">
