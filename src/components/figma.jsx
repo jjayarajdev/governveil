@@ -40,6 +40,32 @@ export function FigPageHeader({ eyebrow, title, subtitle }) {
   )
 }
 
+const LEGEND = [
+  { v: 'allow', text: 'forwarded unchanged' },
+  { v: 'review', text: 'sent, logged for human review' },
+  { v: 'redact', text: 'PII masked one-way, rest forwarded' },
+  { v: 'mask', text: 'surrogate out; restore in the works' },
+  { v: 'block', text: 'send cancelled, logged' },
+]
+
+export function VerdictLegend() {
+  return (
+    <div className="legend-block">
+      <Text className="eyebrow-label">
+        Every request ends in one of five audited verdicts
+      </Text>
+      <div className="verdict-grid">
+        {LEGEND.map((l) => (
+          <div className="vg-cell" key={l.v}>
+            <Verdict v={l.v} />
+            <Paragraph>{l.text}</Paragraph>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function RoadmapNote({ children }) {
   return <Text className="fb-roadmap">[roadmap] {children}</Text>
 }

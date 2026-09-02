@@ -2374,3 +2374,9 @@ body {
 
 .example .hl-sub { background: rgba(22,119,255,0.12); color: #0958d9; padding: 0 3px; border-radius: 2px; }
 .example .hl-real { color: #c1272d; }
+
+
+/* hero verdict legend spacing (shared component with Features) */
+.hero-legend {
+  margin: 52px 0 48px;
+}

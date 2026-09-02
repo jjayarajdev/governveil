@@ -2,6 +2,7 @@ import { Button, Col, Row, Space, Statistic, Tag, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import Reveal from '../components/Reveal'
+import { VerdictLegend } from '../components/figma'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -35,13 +36,6 @@ function MaskTerminal() {
     </div>
   )
 }
-
-const ASSURANCES = [
-  'Runs in your VPC or on-prem',
-  'All ML inference local',
-  'No prompt content leaves your network',
-  'Compatible with frontier-model APIs',
-]
 
 function Hero() {
   return (
@@ -78,12 +72,8 @@ function Hero() {
             </Reveal>
           </Col>
         </Row>
-        <div className="check-strip">
-          {ASSURANCES.map((t) => (
-            <span key={t}>
-              <span className="sq" aria-hidden="true" /> {t}
-            </span>
-          ))}
+        <div className="hero-legend">
+          <VerdictLegend />
         </div>
       </div>
     </section>

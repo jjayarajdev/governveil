@@ -1,16 +1,8 @@
 import { Col, Collapse, Row, Typography } from 'antd'
 import Reveal from '../components/Reveal'
-import { Verdict, FigPageHeader, PilotBand, RoadmapNote } from '../components/figma'
+import { Verdict, FigPageHeader, PilotBand, RoadmapNote, VerdictLegend } from '../components/figma'
 
 const { Title, Paragraph, Text } = Typography
-
-const LEGEND = [
-  { v: 'allow', text: 'forwarded unchanged' },
-  { v: 'review', text: 'sent, logged for human review' },
-  { v: 'redact', text: 'PII masked one-way, rest forwarded' },
-  { v: 'mask', text: 'surrogate out; restore in the works' },
-  { v: 'block', text: 'send cancelled, logged' },
-]
 
 const GROUPS = [
   {
@@ -144,18 +136,8 @@ export default function Features() {
 
       <section className="ed-section">
         <div className="wrap ed-top" style={{ paddingBottom: 8 }}>
-          <Text className="eyebrow-label">
-            Every request ends in one of five audited verdicts
-          </Text>
           <Reveal>
-            <div className="verdict-grid">
-              {LEGEND.map((l) => (
-                <div className="vg-cell" key={l.v}>
-                  <Verdict v={l.v} />
-                  <Paragraph>{l.text}</Paragraph>
-                </div>
-              ))}
-            </div>
+            <VerdictLegend />
           </Reveal>
         </div>
       </section>
