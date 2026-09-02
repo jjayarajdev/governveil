@@ -142,15 +142,15 @@ export default function Learn() {
             The <b>access plane</b> gates <em>who</em> may call <em>which</em> enterprise API by role and scope, before a request is forwarded. The <b>content plane</b> inspects the <em>payload</em>. Both draw on the same detection ladder, so policy is consistent across them.
           </Point></Reveal></Col>
           <Col xs={24} md={8}><Reveal delay={0.05}><Point n="B" title="A Go reverse proxy">
-            The gateway is an OpenAI-compatible reverse proxy on <Text code>:8080</Text>. Your apps keep speaking the API they already use; you change a base URL, not your code. Agents, SDKs, and the browser guard all funnel through it.
+            The gateway is an API-compatible reverse proxy on <Text code>:8080</Text>. Your apps keep speaking the API they already use; you change a base URL, not your code. Agents, SDKs, and the browser guard all funnel through it.
           </Point></Reveal></Col>
           <Col xs={24} md={8}><Reveal delay={0.1}><Point n="C" title="Everything in your VPC">
             Fast-path filters, ML detectors, the policy engine, and the audit ledger all run inside your boundary. There is no vendor cloud in the path — which is what makes “where does the prompt go for a verdict?” answerable with <em>nowhere</em>.
           </Point></Reveal></Col>
         </Row>
         <Example title="One line routes a billing app through the gateway">
-          <p className="ex-mono ex-del">- OPENAI_BASE_URL = https://api.openai.com/v1</p>
-          <p className="ex-mono ex-add">+ OPENAI_BASE_URL = https://gv.yourco.internal/v1</p>
+          <p className="ex-mono ex-del">- LLM_BASE_URL = https://api.provider.example/v1</p>
+          <p className="ex-mono ex-add">+ LLM_BASE_URL = https://gv.yourco.internal/v1</p>
           <Paragraph style={{ marginBottom: 0 }}>
             Same SDK, same code. Every call the app makes is now inspected, decided on, and recorded — and nothing else in the app changes.
           </Paragraph>
@@ -167,8 +167,8 @@ export default function Learn() {
         lead="Follow a single prompt from an app to the model and back. The sequence matters: each step happens in a specific order because the order is what turns “we inspected it” into “we can prove it, and nothing sensitive ever left.”"
       >
         <Reveal>
-          <Diagram src="request-lifecycle.html" title="Enforcement request lifecycle" height={560}
-            caption="One prompt, end to end: scan → escalate → decide → sign → forward masked → restore." />
+          <Diagram src="request-lifecycle.html" title="Enforcement request lifecycle" height={860}
+            caption="One prompt, end to end: scan → escalate → decide → sign → forward masked → restore (roadmap)." />
         </Reveal>
         <Row gutter={[48, 28]} style={{ marginTop: 8 }}>
           <Col xs={24} md={12}><Reveal><Point n="1–3" title="Fast path first (a few ms)">
@@ -187,7 +187,7 @@ export default function Learn() {
             The gateway forwards to the provider with the sensitive span replaced by a surrogate. <b>The provider sees the stand-in, never the real value.</b> The completion comes back.
           </Point></Reveal></Col>
           <Col xs={24} md={12}><Reveal delay={0.05}><Point n="11" title="Restore on return">
-            On the way back to the authorised caller, surrogates are swapped for the real values — a full round trip — and the app gets a normal <Text code>200</Text>. The work completed; nothing sensitive left the perimeter.
+            Today the app gets a normal <Text code>200</Text> referencing the surrogate — the work completed and nothing sensitive left the perimeter. Swapping surrogates back to real values for the authorised caller — the full round trip — is on the roadmap, and we label it plainly. <Tag className="roadmap-inline">roadmap</Tag>
           </Point></Reveal></Col>
         </Row>
         <Example title="Tracing “Draft a dunning letter for Priya Sharma, PAN ABCDE1234F.”">
@@ -197,9 +197,9 @@ export default function Learn() {
             <li><b>ML ladder</b> — pii 0.99 · injection 0.02 · harm 0.01. Confirmed PII, no threat.</li>
             <li><b>Policy</b> — rule “mask Indian PII to external providers” → action <code>redact</code>.</li>
             <li><b>Ledger</b> — <code>{'{'} verdict: redact, detector: PAN, conf: 0.99, hash: 9f2c1b…, prev: 71a0e4… {'}'}</code> appended &amp; signed.</li>
-            <li><b>Forward to OpenAI</b> <code>“…PAN <span className="hl-sub">ABCDE3484F</span>.”</code> — a surrogate.</li>
-            <li><b>OpenAI</b> drafts a correct dunning letter, referencing <code>ABCDE3484F</code>.</li>
-            <li><b>Restore</b> — <code>ABCDE3484F → ABCDE1234F</code>; the app receives a finished letter with the real PAN.</li>
+            <li><b>Forward to the provider</b> <code>“…PAN <span className="hl-sub">ABCDE3484F</span>.”</code> — a surrogate.</li>
+            <li><b>The model</b> drafts a correct dunning letter, referencing <code>ABCDE3484F</code>.</li>
+            <li><b>Restore</b> <Tag className="roadmap-inline">roadmap</Tag> — when the round trip ships, <code>ABCDE3484F → ABCDE1234F</code> for the authorised caller. Today the finished letter references the surrogate.</li>
           </ol>
           <Paragraph style={{ marginBottom: 0 }}>
             The provider produced a usable result and <b>never saw a real PAN</b> — and there is a signed record that this is exactly what happened.
@@ -236,7 +236,7 @@ export default function Learn() {
         </Row>
         <Example title="The two records that one request leaves behind">
           <p className="ex-mono">audit_logs → {'{'} id: e06b3816, action: redact, detector: PAN, conf: 0.99,</p>
-          <p className="ex-mono ex-indent">model: shieldstral-1.0, ts: 2026-09-02T13:46:34Z,</p>
+          <p className="ex-mono ex-indent">model: policy-model-v1, ts: 2026-09-02T13:46:34Z,</p>
           <p className="ex-mono ex-indent">hash: <span className="hl-real">9f2c1b7e…</span>, prev_hash: <span className="hl-real">71a0e4c9…</span> {'}'}</p>
           <p className="ex-mono ex-alert">dlp_alerts → {'{'} category: PII_INDIA, severity: high, span: [41,51], ts: … {'}'}</p>
           <Paragraph style={{ marginBottom: 0 }}>
@@ -265,13 +265,13 @@ export default function Learn() {
             The surrogate → real mapping is written to a durable vault, <b>encrypted (AES-256-GCM), before anything is forwarded</b>. If that write fails, the system falls back to destructive redaction — so a value can never be masked-but-unrecoverable. Nothing masked leaves without its mapping safely stored.
           </Point></Reveal></Col>
           <Col xs={24} md={12}><Reveal delay={0.05}><Point n="4" title="Restore — and where it stops">
-            On your applications’ API calls, the response is rehydrated: surrogates swap back to real values for the authorised caller — a full round trip. For browser / shadow-AI use, masking is <b>outbound-only</b> (stand-ins stay on screen). We label which path restores, plainly. <Tag className="roadmap-inline">restore path: API today</Tag>
+            Restore — surrogates swapping back to real values for the authorised caller, the full round trip — is designed for the API path and is <b>on the roadmap</b>. Browser / shadow-AI masking is <b>outbound-only</b> (stand-ins stay on screen). We label which path restores, plainly. <Tag className="roadmap-inline">restore: roadmap</Tag>
           </Point></Reveal></Col>
         </Row>
         <Example title="What the model sees vs. what your user sees">
           <p className="ex-mono"><span className="ex-lead">original</span> Wire funds for Priya Sharma, PAN ABCDE1234F, email priya.sharma@acme.example, phone +91 98765 43210.</p>
           <p className="ex-mono ex-sub"><span className="ex-lead">to provider</span> Wire funds for <span className="hl-sub">Sharma James</span>, PAN <span className="hl-sub">ABCDE3484F</span>, email <span className="hl-sub">jhejc.lqwdsi@qtmg.fsdgzic</span>, phone <span className="hl-sub">+24 80944 91196</span>.</p>
-          <p className="ex-mono"><span className="ex-lead">restored</span> …identical to the original, for the authorised caller.</p>
+          <p className="ex-mono"><span className="ex-lead">restored · roadmap</span> …identical to the original, for the authorised caller — once the round trip ships.</p>
           <div className="ex-swaps">
             <Swap label="PAN" from="ABCDE1234F" to="ABCDE3484F" />
             <Swap label="email" from="priya.sharma@acme.example" to="jhejc.lqwdsi@qtmg.fsdgzic" />
@@ -366,7 +366,7 @@ export default function Learn() {
         <Row gutter={[48, 24]} style={{ marginTop: 8 }}>
           {[
             ['Sovereign', 'Local inference in your environment (Ch.1) — the prompt is scored nowhere but here.'],
-            ['Private', 'Reversible masking (Ch.4) — data protected before the model, restored for the authorised caller.'],
+            ['Private', 'Reversible masking (Ch.4) — data protected before the model; restore for the authorised caller is on the roadmap.'],
             ['Explainable', 'Every verdict carries a reason, the detector that fired, and a confidence (Ch.2–3).'],
             ['Accountable', 'The signed, hash-chained ledger (Ch.2–3) — a record you can defend.'],
             ['Overseen', 'Graduated verdicts, a review queue, the incident clock and kill-switch (Ch.5–6).'],
@@ -378,8 +378,8 @@ export default function Learn() {
           ))}
         </Row>
         <Example title="A board question you can actually answer">
-          <p className="ex-mono ex-q">“Prove no customer PII reached OpenAI last quarter.”</p>
-          <p className="ex-mono"><span className="ex-lead">query</span> ledger where provider = openai and pii_detected = true → every row shows action = redact / block, zero un-masked.</p>
+          <p className="ex-mono ex-q">“Prove no customer PII reached a model provider last quarter.”</p>
+          <p className="ex-mono"><span className="ex-lead">query</span> ledger where pii_detected = true → every row shows action = redact / block, zero un-masked.</p>
           <p className="ex-mono"><span className="ex-lead">export</span> the signed, hash-chained report.</p>
           <Paragraph style={{ marginBottom: 0 }}>
             The answer is <em>verifiable</em>, not asserted — the same record that governed each request is the one that proves it after the fact.
@@ -396,7 +396,7 @@ export default function Learn() {
             <Collapse bordered={false} expandIconPosition="end" className="learn-faq"
               style={{ marginTop: 16, background: 'transparent' }}
               items={[
-                { key: '1', label: <Text strong>Does this replace ChatGPT Enterprise or Copilot?</Text>,
+                { key: '1', label: <Text strong>Does this replace our enterprise AI licences?</Text>,
                   children: <Paragraph className="ed-body" style={{ marginBottom: 0 }}>No — it’s additive. Those cover people in a browser; GovernVeil covers your applications and agents calling model APIs directly, plus the personal accounts staff still use.</Paragraph> },
                 { key: '2', label: <Text strong>Will it break my users’ workflows?</Text>,
                   children: <Paragraph className="ed-body" style={{ marginBottom: 0 }}>That’s the design (Ch.4): it redacts the sensitive value and lets the work continue, rather than walling the user off.</Paragraph> },
@@ -405,7 +405,7 @@ export default function Learn() {
                 { key: '4', label: <Text strong>Glossary: the words behind the category</Text>,
                   children: (
                     <div className="ed-body">
-                      <p><b>Reversible masking</b> — swap a sensitive value for a realistic stand-in, then restore it for the authorised caller. <b>Shadow AI</b> — AI tools used outside IT’s visibility. <b>Sovereignty / residency</b> — prompts and the AI that inspects them stay inside your boundary. <b>Graduated verdicts</b> — allow / review / redact / block, not on/off. <b>Hash-chained ledger</b> — each audit entry cryptographically linked to the last, so records can’t be altered after the fact. <b>Dormancy / incident clock</b> — idle grants expire; open incidents must be resolved.</p>
+                      <p><b>Reversible masking</b> — swap a sensitive value for a realistic stand-in; restoring it for the authorised caller ships with the roadmap round trip. <b>Shadow AI</b> — AI tools used outside IT’s visibility. <b>Sovereignty / residency</b> — prompts and the AI that inspects them stay inside your boundary. <b>Graduated verdicts</b> — allow / review / redact / block, not on/off. <b>Hash-chained ledger</b> — each audit entry cryptographically linked to the last, so records can’t be altered after the fact. <b>Dormancy / incident clock</b> — idle grants expire; open incidents must be resolved.</p>
                     </div>
                   ) },
               ]} />
