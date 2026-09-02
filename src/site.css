@@ -2321,3 +2321,56 @@ body {
   display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase; color: #ff6b6b;
 }
+
+/* ---- worked examples ---- */
+.example {
+  margin: 28px 0 4px; border: 1px solid rgba(32,30,29,0.16);
+  border-left: 3px solid #c1272d; border-radius: 4px;
+  background: #fbfafa; max-width: 900px; overflow: hidden;
+}
+.ex-head {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  padding: 12px 20px; border-bottom: 1px solid rgba(32,30,29,0.1);
+  background: #fff;
+}
+.ex-tag {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #c1272d;
+}
+.ex-title { font-size: 14.5px; font-weight: 600; color: #201e1d; }
+.ex-body { padding: 18px 20px; }
+.ex-body .ant-typography { font-size: 14.5px; line-height: 1.6; color: #45413f; }
+
+.ex-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.75px; line-height: 1.7; color: #201e1d;
+  margin: 0 0 4px; white-space: pre-wrap; word-break: break-word;
+}
+.ex-indent { padding-left: 26px; }
+.ex-sub { color: #6b6764; }
+.ex-del { color: #a13b3b; }
+.ex-add { color: #1a7f4b; }
+.ex-alert { color: #a13b3b; }
+.ex-q, .ex-lead + *, .ex-q { }
+.ex-q { font-style: italic; color: #201e1d; }
+.ex-lead {
+  display: inline-block; min-width: 90px; margin-right: 10px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; color: #9a9693; vertical-align: 1px;
+}
+.ex-cap { margin: 0 0 12px 100px; font-size: 13px; color: #6b6764; }
+.ex-indent { }
+
+.ex-trace { margin: 0; padding-left: 20px; }
+.ex-trace li { font-size: 14px; line-height: 1.7; color: #45413f; margin-bottom: 3px; }
+.ex-trace code { font-size: 12.5px; }
+
+.ex-swaps { margin: 14px 0; padding: 12px 16px; background: #fff; border: 1px solid rgba(32,30,29,0.1); border-radius: 4px; }
+.ex-swap { display: flex; align-items: center; gap: 10px; font-size: 12.75px; padding: 3px 0; flex-wrap: wrap; }
+.ex-swap .ex-lbl { min-width: 54px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9a9693; }
+.ex-from { font-family: ui-monospace, Menlo, monospace; color: #6b6764; text-decoration: line-through; text-decoration-color: rgba(193,39,45,0.4); }
+.ex-arrow { color: #c1272d; }
+.ex-to { font-family: ui-monospace, Menlo, monospace; color: #1a7f4b; }
+
+.example .hl-sub { background: rgba(22,119,255,0.12); color: #0958d9; padding: 0 3px; border-radius: 2px; }
+.example .hl-real { color: #c1272d; }
