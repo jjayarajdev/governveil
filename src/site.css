@@ -2400,3 +2400,49 @@ body {
   line-height: 1.5;
   color: rgba(32, 30, 29, 0.75);
 }
+
+/* ---------- GTM explainer (Learn) ---------- */
+.syllabus-gtm { margin-top: 6px; border-top: 1px solid rgba(32,30,29,0.12); }
+.syllabus-gtm b { color: #1677ff; }
+.gtm-tabs { margin-top: 8px; }
+.gtm-tabs .ant-tabs-tab { font-weight: 600; }
+.gtm-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border: 1px solid rgba(32,30,29,0.16);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #0b0b0d;
+}
+.gtm-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.gtm-controls {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  margin-top: 12px;
+}
+.gtm-controls a { color: #1677ff; font-weight: 600; white-space: nowrap; }
+.gtm-controls .ant-typography { font-size: 13px; }
+
+.gtm-board { list-style: none; margin: 4px 0 0; padding: 0; }
+.gtm-scene {
+  padding: 16px 18px;
+  border: 1px solid rgba(32,30,29,0.12);
+  border-left: 3px solid #1677ff;
+  border-radius: 4px;
+  background: #fff;
+  margin-bottom: 12px;
+}
+.gtm-scene-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.gtm-time {
+  font-family: var(--mono, ui-monospace, Menlo, monospace);
+  font-size: 12.5px; color: #1677ff; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.gtm-scene-head .ant-typography { font-size: 15px; color: #201e1d; }
+.gtm-screen { font-size: 14px; color: #45413f; margin-bottom: 6px; line-height: 1.55; }
+.gtm-vo { font-size: 14.5px; color: #201e1d; line-height: 1.62; margin-bottom: 0 !important; }
+.gtm-lbl {
+  display: inline-block; min-width: 78px;
+  font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #8a8683; font-weight: 700; margin-right: 8px;
+}

@@ -1,4 +1,4 @@
-import { Button, Col, Collapse, Row, Space, Tag, Typography } from 'antd'
+import { Button, Col, Collapse, Row, Space, Tabs, Tag, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 import { ArrowRightOutlined, ExportOutlined } from '@ant-design/icons'
 import Reveal from '../components/Reveal'
@@ -49,6 +49,7 @@ function Intro() {
           <li><a href="#vendors"><b>05</b> Governing vendors &amp; agents — a credential’s whole life</a></li>
           <li><a href="#documents"><b>06</b> Files are prompts too — the upload runbook</a></li>
           <li><a href="#responsible"><b>07</b> Responsible AI — the principles, as mechanisms</a></li>
+          <li className="syllabus-gtm"><a href="#gtm"><b>▶</b> GTM — the 90-second explainer &amp; storyboard</a></li>
         </ol>
       </div>
     </section>
@@ -117,6 +118,101 @@ function Swap({ label, from, to, tone }) {
       <span className="ex-arrow">→</span>
       <code className={`ex-to ${tone || ''}`}>{to}</code>
     </div>
+  )
+}
+
+/* ---------- GTM explainer (video + storyboard) ---------- */
+
+const GTM_SCENES = [
+  { t: '0:00', scene: 'Hook', screen: '“Your teams are already using AI. Do you know what’s leaving?”',
+    vo: 'Your teams are already using AI. The question isn’t whether — it’s what’s leaving your perimeter when they do.' },
+  { t: '0:08', scene: 'The problem', screen: 'Licence gap · blocking backfires · no evidence',
+    vo: 'Enterprise AI licences cover people in a browser — not your applications and agents calling model APIs directly. Traditional DLP just blocks, so people switch to personal devices. And when the auditor asks, there’s no evidence either way.' },
+  { t: '0:20', scene: 'Brand reveal', screen: 'GovernVeil — AI data-egress control & evidence. Self-hosted.',
+    vo: 'GovernVeil is AI data-egress control and evidence — self-hosted, running entirely inside your own environment.' },
+  { t: '0:27', scene: 'How it works', screen: 'Apps / people → gateway (access check + detection ladder) → provider',
+    vo: 'Point your apps at one base URL. Every request passes an access check and a local detection ladder — one policy-adaptive model, every policy written as a plain-language question. Each request ends in a verdict — and every verdict is audited.' },
+  { t: '0:43', scene: 'Verdicts in action', screen: 'Clean → allow · SSN in prompt → redact · injection → block',
+    vo: 'A clean request is forwarded untouched in milliseconds. A prompt carrying a customer’s Social Security number goes out with the PII stripped — the real value never leaves. And a prompt-injection attempt is blocked cold, with a 403 that never crosses your perimeter.' },
+  { t: '0:58', scene: 'The audit log', screen: 'Who · route · policy · verdict · latency — each entry’s hash chains to the last',
+    vo: 'Every one of those verdicts lands in the audit log: who, what, which policy, the verdict, the latency. Each entry carries the previous entry’s hash — tamper with one line and the chain breaks. Export it straight to your SIEM.' },
+  { t: '1:11', scene: 'Proof', screen: '0 false positives · millisecond checks · control-mapped evidence',
+    vo: 'The benchmarks are in the repo — re-run them yourself. Zero false positives on a hard PII lookalike set — order IDs and license keys shaped like real identifiers. Millisecond-scale checks, with the methodology published. Evidence mapped to the controls your auditor actually names.' },
+  { t: '1:21', scene: 'Close', screen: '“See it govern a real prompt in 90 seconds.” · Book a pilot · governveil.com',
+    vo: 'See it govern a real prompt in ninety seconds. Book a pilot at governveil dot com.' },
+]
+
+function GTM() {
+  return (
+    <section className="ed-section chapter" id="gtm">
+      <div className="wrap ed-top">
+        <div className="ch-head">
+          <span className="ch-num">▶</span>
+          <div>
+            <Kicker>Go-to-market · the explainer</Kicker>
+            <Title level={2} className="ed-h2" style={{ marginTop: 4 }}>
+              The whole story, in ninety seconds.
+            </Title>
+          </div>
+        </div>
+        <Paragraph className="learn-lead">
+          Everything in the seven chapters above, distilled into a single explainer reel —
+          the problem, how GovernVeil sits in the request path, three live verdicts, the
+          tamper-evident audit log, and the proof. Watch it, or read the shot-by-shot
+          storyboard and voiceover.
+        </Paragraph>
+
+        <Tabs
+          className="gtm-tabs"
+          defaultActiveKey="watch"
+          items={[
+            {
+              key: 'watch',
+              label: 'Watch (90s)',
+              children: (
+                <>
+                  <div className="gtm-video">
+                    <iframe
+                      src="/gtm/explainer.html"
+                      title="GovernVeil GTM explainer"
+                      loading="lazy"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="gtm-controls">
+                    <a href="/gtm/explainer.html" target="_blank" rel="noreferrer">
+                      Open fullscreen <ExportOutlined />
+                    </a>
+                    <Text type="secondary">
+                      In the reel: <b>Play</b> to start · <b>Space</b> pause · <b>←/→</b> jump
+                      scenes · <b>R</b> restart · <b>H</b> hide controls.
+                    </Text>
+                  </div>
+                </>
+              ),
+            },
+            {
+              key: 'storyboard',
+              label: 'Storyboard & voiceover',
+              children: (
+                <ol className="gtm-board">
+                  {GTM_SCENES.map((s) => (
+                    <li key={s.t} className="gtm-scene">
+                      <div className="gtm-scene-head">
+                        <span className="gtm-time">{s.t}</span>
+                        <Text strong>{s.scene}</Text>
+                      </div>
+                      <div className="gtm-screen"><span className="gtm-lbl">On screen</span>{s.screen}</div>
+                      <Paragraph className="gtm-vo"><span className="gtm-lbl">Voiceover</span>{s.vo}</Paragraph>
+                    </li>
+                  ))}
+                </ol>
+              ),
+            },
+          ]}
+        />
+      </div>
+    </section>
   )
 }
 
@@ -416,6 +512,9 @@ export default function Learn() {
           </Reveal>
         </div>
       </section>
+
+      {/* GTM explainer ------------------------------------------- */}
+      <GTM />
 
       {/* CTA ------------------------------------------------------ */}
       <section className="band-red ed-cta">
