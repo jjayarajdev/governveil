@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Product from './pages/Product'
 import Features from './pages/Features'
 import Learn from './pages/Learn'
+import GTM from './pages/GTM'
 import Pilot from './pages/Pilot'
 import About from './pages/About'
 import { isLearnHost } from './hostMode'
@@ -14,6 +15,7 @@ const TITLES = {
   '/product': 'How GovernVeil works',
   '/features': 'GovernVeil features',
   '/learn': 'What is GovernVeil? AI governance, explained',
+  '/gtm': 'GovernVeil in 90 seconds — the explainer',
   '/pilot': 'Book a design-partner pilot | GovernVeil',
   '/about': 'About | GovernVeil',
 }
@@ -35,6 +37,7 @@ export default function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/features" element={<Features />} />
         <Route path="/learn" element={<Learn />} />
+        <Route path="/gtm" element={<GTM />} />
         <Route path="/pilot" element={<Pilot />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={learn ? <Learn /> : <Home />} />

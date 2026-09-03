@@ -12,6 +12,12 @@ const NAV_ITEMS = [
   { key: '/about', label: 'About' },
 ]
 
+// Learn-hub top tabs (learn.governveil.com)
+const LEARN_NAV = [
+  { key: '/', label: 'Learn' },
+  { key: '/gtm', label: 'GTM' },
+]
+
 const FOOTER_COLS = [
   {
     heading: 'Product',
@@ -58,6 +64,13 @@ export default function SiteLayout({ children }) {
           <Brand learn={learn} />
           {learn ? (
             <>
+              <Menu
+                className="header-menu"
+                mode="horizontal"
+                selectedKeys={[pathname]}
+                items={LEARN_NAV}
+                onClick={onNav}
+              />
               <a className="learn-mainlink" href={`${MAIN_SITE}/`}>
                 Main site ↗
               </a>
