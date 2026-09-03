@@ -135,7 +135,7 @@ export default function Learn() {
       >
         <Reveal>
           <Diagram src="gateway-architecture.html" title="Gateway architecture"
-            caption="The gateway topology — apps → gateway → fast-path / ML / policy / ledger → providers, all inside your VPC." />
+            caption="Two planes over one local ladder — the access plane (/gw, enterprise APIs incl. LLM-backed) and the content plane (/v1, model providers), all inside your environment." />
         </Reveal>
         <Row gutter={[48, 32]} style={{ marginTop: 8 }}>
           <Col xs={24} md={8}><Reveal><Point n="A" title="Two planes, one ladder">
@@ -155,6 +155,10 @@ export default function Learn() {
             Same SDK, same code. Every call the app makes is now inspected, decided on, and recorded — and nothing else in the app changes.
           </Paragraph>
         </Example>
+        <Reveal>
+          <Diagram src="llm-backed-api.html" title="LLM-backed enterprise API — combined verdict" height={800}
+            caption="When the enterprise API is itself LLM-backed, one call earns both verdicts: the access plane checks scope and grant, the content plane inspects the payload — and one signed record covers the pair." />
+        </Reveal>
         <Why>
           Placing detection <em>and</em> evidence inside the same boundary as the proxy is a deliberate choice: it makes data residency a property of the architecture, not a promise in a contract. Nothing is sent out to be scored, so the same deployment works air-gapped.
         </Why>
