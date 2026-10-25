@@ -3,3 +3,6 @@ dist/
 .DS_Store
 *.local
 .claude/
+
+# design source — large console capture masters, not served
+dist/

@@ -14,7 +14,7 @@ const TITLES = {
   '/': 'GovernVeil: self-hosted AI data-egress control and evidence',
   '/product': 'How GovernVeil works',
   '/features': 'GovernVeil features',
-  '/learn': 'What is GovernVeil? AI governance, explained',
+  '/learn': 'What is GovernVeil? AI data-egress control and evidence, explained',
   '/gtm': 'GovernVeil in 90 seconds — the explainer',
   '/pilot': 'Book a design-partner pilot | GovernVeil',
   '/about': 'About | GovernVeil',

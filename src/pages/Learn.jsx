@@ -35,7 +35,7 @@ function Intro() {
           How AI governance actually works — from one prompt to a court-ready record.
         </Title>
         <Paragraph className="fig-lede" style={{ maxWidth: 720 }}>
-          Not a brochure. Seven chapters that trace a real request through a real
+          Not a brochure. Eight chapters that trace a real request through a real
           system: what inspects it, how a decision is made, why the order of
           operations <em>is</em> the guarantee, and how every action becomes
           evidence. Each chapter is built around the same interactive diagrams our
@@ -49,6 +49,7 @@ function Intro() {
           <li><a href="#vendors"><b>05</b> Governing vendors &amp; agents — a credential’s whole life</a></li>
           <li><a href="#documents"><b>06</b> Files are prompts too — the upload runbook</a></li>
           <li><a href="#responsible"><b>07</b> Responsible AI — the principles, as mechanisms</a></li>
+          <li><a href="#governance"><b>08</b> The governance layer — you cannot govern what you cannot name</a></li>
         </ol>
       </div>
     </section>
@@ -131,7 +132,7 @@ export default function Learn() {
       <Chapter
         id="big-picture" num="01" kicker="Chapter 1 · Architecture"
         title="Where GovernVeil sits, and why"
-        lead="GovernVeil is a checkpoint every AI request passes through — running inside your own network. It is one gateway with two enforcement planes over a single detection ladder, and it never lets a prompt reach an outside model before a decision is made and recorded."
+        lead="GovernVeil is a checkpoint every AI request passes through — running inside your own network. It is one gateway with two enforcement planes and an MCP execution point for agent tool calls, over a single detection ladder — and it never lets a prompt reach an outside model before a decision is made and recorded."
       >
         <Reveal>
           <Diagram src="gateway-architecture.html" title="Gateway architecture"
@@ -172,7 +173,7 @@ export default function Learn() {
       >
         <Reveal>
           <Diagram src="request-lifecycle.html" title="Enforcement request lifecycle" height={860}
-            caption="One prompt, end to end: scan → escalate → decide → sign → forward masked → restore (roadmap)." />
+            caption="One prompt, end to end: scan → escalate → decide → sign → forward masked → response inspected → restore (vault on)." />
         </Reveal>
         <Row gutter={[48, 28]} style={{ marginTop: 8 }}>
           <Col xs={24} md={12}><Reveal><Point n="1–3" title="Fast path first (a few ms)">
@@ -191,7 +192,7 @@ export default function Learn() {
             The gateway forwards to the provider with the sensitive span replaced by a surrogate. <b>The provider sees the stand-in, never the real value.</b> The completion comes back.
           </Point></Reveal></Col>
           <Col xs={24} md={12}><Reveal delay={0.05}><Point n="11" title="Restore on return">
-            Today the app gets a normal <Text code>200</Text> referencing the surrogate — the work completed and nothing sensitive left the perimeter. Swapping surrogates back to real values for the authorised caller — the full round trip — is on the roadmap, and we label it plainly. <Tag className="roadmap-inline">roadmap</Tag>
+            The response is inspected on the way back — the same ladder, so leaked PII or injected output is caught too. With the vault on, surrogates swap back to real values for the authorised caller — the full round trip, on the API path. Off by default: without it the app gets a normal <Text code>200</Text> referencing the surrogate, and nothing sensitive ever left. <Tag className="roadmap-inline">restore: opt-in</Tag>
           </Point></Reveal></Col>
         </Row>
         <Example title="Tracing “Draft a dunning letter for Priya Sharma, PAN ABCDE1234F.”">
@@ -203,7 +204,7 @@ export default function Learn() {
             <li><b>Ledger</b> — <code>{'{'} verdict: redact, detector: PAN, conf: 0.99, hash: 9f2c1b…, prev: 71a0e4… {'}'}</code> appended &amp; signed.</li>
             <li><b>Forward to the provider</b> <code>“…PAN <span className="hl-sub">ABCDE3484F</span>.”</code> — a surrogate.</li>
             <li><b>The model</b> drafts a correct dunning letter, referencing <code>ABCDE3484F</code>.</li>
-            <li><b>Restore</b> <Tag className="roadmap-inline">roadmap</Tag> — when the round trip ships, <code>ABCDE3484F → ABCDE1234F</code> for the authorised caller. Today the finished letter references the surrogate.</li>
+            <li><b>Restore</b> <Tag className="roadmap-inline">opt-in</Tag> — with the vault on, <code>ABCDE3484F → ABCDE1234F</code> for the authorised caller. Vault off (the default): the finished letter references the surrogate.</li>
           </ol>
           <Paragraph style={{ marginBottom: 0 }}>
             The provider produced a usable result and <b>never saw a real PAN</b> — and there is a signed record that this is exactly what happened.
@@ -269,13 +270,16 @@ export default function Learn() {
             The surrogate → real mapping is written to a durable vault, <b>encrypted (AES-256-GCM), before anything is forwarded</b>. If that write fails, the system falls back to destructive redaction — so a value can never be masked-but-unrecoverable. Nothing masked leaves without its mapping safely stored.
           </Point></Reveal></Col>
           <Col xs={24} md={12}><Reveal delay={0.05}><Point n="4" title="Restore — and where it stops">
-            Restore — surrogates swapping back to real values for the authorised caller, the full round trip — is designed for the API path and is <b>on the roadmap</b>. Browser / shadow-AI masking is <b>outbound-only</b> (stand-ins stay on screen). We label which path restores, plainly. <Tag className="roadmap-inline">restore: roadmap</Tag>
+            Restore — surrogates swapping back to real values for the authorised caller, the full round trip — is <b>built for the API path and ships opt-in, off by default</b>; your pilot decides when to turn the vault on. Browser / shadow-AI masking is <b>outbound-only by design</b> (stand-ins stay on screen). We label which path restores, plainly. <Tag className="roadmap-inline">restore: opt-in</Tag>
+          </Point></Reveal></Col>
+          <Col xs={24} md={12}><Reveal><Point n="5" title="The vault is governed">
+            KEK-wrapped keys with online rotation, a 30-day retention sweep for idle mappings, tenant or conversation purge and one-value right-to-erasure — and every vault event is a row on the ledger. Custody of the key is yours, not ours.
           </Point></Reveal></Col>
         </Row>
         <Example title="What the model sees vs. what your user sees">
           <p className="ex-mono"><span className="ex-lead">original</span> Wire funds for Priya Sharma, PAN ABCDE1234F, email priya.sharma@acme.example, phone +91 98765 43210.</p>
           <p className="ex-mono ex-sub"><span className="ex-lead">to provider</span> Wire funds for <span className="hl-sub">Sharma James</span>, PAN <span className="hl-sub">ABCDE3484F</span>, email <span className="hl-sub">jhejc.lqwdsi@qtmg.fsdgzic</span>, phone <span className="hl-sub">+24 80944 91196</span>.</p>
-          <p className="ex-mono"><span className="ex-lead">restored · roadmap</span> …identical to the original, for the authorised caller — once the round trip ships.</p>
+          <p className="ex-mono"><span className="ex-lead">restored · vault on</span> …identical to the original, for the authorised caller — with the vault turned on.</p>
           <div className="ex-swaps">
             <Swap label="PAN" from="ABCDE1234F" to="ABCDE3484F" />
             <Swap label="email" from="priya.sharma@acme.example" to="jhejc.lqwdsi@qtmg.fsdgzic" />
@@ -310,6 +314,9 @@ export default function Learn() {
           </Point></Reveal></Col>
           <Col xs={24} md={8}><Reveal delay={0.1}><Point n="⚑" title="Incident response">
             Anomalous use opens an <b>Incident</b> with a <b>14-day clock</b> — a forcing function, so nothing lingers unresolved. The <b>kill-switch</b> moves it straight to <b>Revoked</b>, enforced inline in well under a millisecond.
+          </Point></Reveal></Col>
+          <Col xs={24}><Reveal><Point n="⚙" title="Agents are actors, not just credentials">
+            An agent&rsquo;s declared limits are enforced per request: tool allow-lists, hourly call and daily spend caps counted from the ledger, and gated actions <b>held</b> for the owner&rsquo;s approval. At the execution point, the MCP connector governs every tool call — arguments masked and inspected before the tool runs, results inspected and restored before the agent sees them, each phase a ledger row.
           </Point></Reveal></Col>
         </Row>
         <Example title="Two keys, two fates">
@@ -369,9 +376,9 @@ export default function Learn() {
         </Reveal>
         <Row gutter={[48, 24]} style={{ marginTop: 8 }}>
           {[
-            ['Sovereign', 'Local inference in your environment (Ch.1) — the prompt is scored nowhere but here.'],
-            ['Private', 'Reversible masking (Ch.4) — data protected before the model; restore for the authorised caller is on the roadmap.'],
-            ['Explainable', 'Every verdict carries a reason, the detector that fired, and a confidence (Ch.2–3).'],
+            ['Sovereign', 'Local inference in your environment (Ch.1) — the prompt is scored nowhere but here, and a signed attestation says so.'],
+            ['Private', 'Reversible masking (Ch.4) — data protected before the model; with the vault on, restored for the authorised caller.'],
+            ['Auditable', 'Every verdict carries a reason, the detector that fired, and a confidence (Ch.2–3).'],
             ['Accountable', 'The signed, hash-chained ledger (Ch.2–3) — a record you can defend.'],
             ['Overseen', 'Graduated verdicts, a review queue, the incident clock and kill-switch (Ch.5–6).'],
           ].map(([k, v], i) => (
@@ -391,6 +398,40 @@ export default function Learn() {
         </Example>
       </Chapter>
 
+      {/* 08 ------------------------------------------------------- */}
+      <Chapter
+        id="governance" num="08" kicker="Chapter 8 · The governance layer"
+        title="You cannot govern what you cannot name"
+        lead="Everything so far governs one request at a time. The governance layer governs the estate: every asset named and owned, every control's state computed from the same ledger the traffic writes — assets → controls → decisions → state, on one chain."
+      >
+        <Row gutter={[48, 28]}>
+          <Col xs={24} md={12}><Reveal><Point n="1" title="Detective before enforced">
+            A new control starts in <b>detective mode</b>: evaluated on every request, recording what it <em>would</em> have blocked, acting on nothing. You read a week of would-blocks, tune, then flip to enforce — it takes effect within seconds. Observe before you enforce is how you turn controls on without breaking the work.
+          </Point></Reveal></Col>
+          <Col xs={24} md={12}><Reveal delay={0.05}><Point n="2" title="Precedent — the tenth asset in minutes">
+            A new asset inherits the control set of the nearest approved asset of the same type; the reviewer sees only the delta, Keep or Drop, each a signed decision. Approval time falls with every asset you govern — without a change ever propagating silently.
+          </Point></Reveal></Col>
+          <Col xs={24} md={12}><Reveal><Point n="3" title="Your policy, as clauses">
+            Ingest your own AI acceptable-use policy as immutable numbered clauses; each clause maps to a control (suggestions from the local model, confirmation a decision on the chain). A changed clause flags its mappings for review. No written policy yet? Adopt the catalogue and edit from there.
+          </Point></Reveal></Col>
+          <Col xs={24} md={12}><Reveal delay={0.05}><Point n="4" title="Probes, coverage, drift">
+            The three numbers that make the control board honest: synthetic <b>probes</b> challenge every enforced control daily through the real data path; <b>coverage</b> is governed ÷ detected AI traffic from telemetry the gateway does not control; <b>drift</b> reports clauses never exercised and enforcement with no clause behind it.
+          </Point></Reveal></Col>
+        </Row>
+        <Example title="A new customer-service agent, approved by precedent">
+          <p className="ex-mono"><span className="ex-lead">register</span> agent cs-assist — profile: customer PII, external exposure, medium consequence.</p>
+          <p className="ex-mono"><span className="ex-lead">precedent</span> nearest approved asset: billing-agent → inherits its control set.</p>
+          <p className="ex-mono"><span className="ex-lead">review</span> reviewer drops the health-data control (none in profile), keeps the rest — two signed decisions.</p>
+          <p className="ex-mono"><span className="ex-lead">a month later</span> the drift report shows which clauses never fired.</p>
+          <Paragraph style={{ marginBottom: 0 }}>
+            Minutes to governed, because the ninth asset already did the hard thinking — and the ledger shows exactly who kept and dropped what.
+          </Paragraph>
+        </Example>
+        <Why>
+          Control state — holding, weak, breached, untested — is computed from the ledger over a window, never set by hand. Nothing on the board is &ldquo;green&rdquo; because someone said so; it is green because the evidence says so, and a probe challenged it recently enough to trust.
+        </Why>
+      </Chapter>
+
       {/* recap FAQ + glossary ------------------------------------- */}
       <section className="ed-section">
         <div className="wrap ed-top">
@@ -406,10 +447,12 @@ export default function Learn() {
                   children: <Paragraph className="ed-body" style={{ marginBottom: 0 }}>That’s the design (Ch.4): it redacts the sensitive value and lets the work continue, rather than walling the user off.</Paragraph> },
                 { key: '3', label: <Text strong>Can it run air-gapped?</Text>,
                   children: <Paragraph className="ed-body" style={{ marginBottom: 0 }}>Yes — detection and evidence both run inside your boundary (Ch.1), so there is no external dependency in the request path.</Paragraph> },
-                { key: '4', label: <Text strong>Glossary: the words behind the category</Text>,
+                { key: '4', label: <Text strong>What do you mean by “detective mode”?</Text>,
+                  children: <Paragraph className="ed-body" style={{ marginBottom: 0 }}>A control in detective mode is evaluated on every request but doesn’t act — the request is recorded as “would have blocked” and evaluation continues (Ch.8). You watch a week of would-blocks, tune, then flip to enforce; it takes effect within seconds.</Paragraph> },
+                { key: '5', label: <Text strong>Glossary: the words behind the category</Text>,
                   children: (
                     <div className="ed-body">
-                      <p><b>Reversible masking</b> — swap a sensitive value for a realistic stand-in; restoring it for the authorised caller ships with the roadmap round trip. <b>Shadow AI</b> — AI tools used outside IT’s visibility. <b>Sovereignty / residency</b> — prompts and the AI that inspects them stay inside your boundary. <b>Graduated verdicts</b> — allow / review / redact / block, not on/off. <b>Hash-chained ledger</b> — each audit entry cryptographically linked to the last, so records can’t be altered after the fact. <b>Dormancy / incident clock</b> — idle grants expire; open incidents must be resolved.</p>
+                      <p><b>Reversible masking</b> — swap a sensitive value for a realistic stand-in; with the vault on, the API path restores it for the authorised caller (off by default). <b>Shadow AI</b> — AI tools used outside IT’s visibility. <b>Sovereignty / residency</b> — prompts and the AI that inspects them stay inside your boundary. <b>Graduated verdicts</b> — allow / review / redact / mask / block, not on/off. <b>Hash-chained ledger</b> — each audit entry cryptographically linked to the last, so records can’t be altered after the fact. <b>Detective mode</b> — a control that records what it would have blocked before you enforce it. <b>Precedent</b> — a new asset inherits the nearest approved asset’s controls; the reviewer sees only the delta. <b>Dormancy / incident clock</b> — idle grants expire; open incidents must be resolved.</p>
                     </div>
                   ) },
               ]} />

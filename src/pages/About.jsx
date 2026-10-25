@@ -8,15 +8,15 @@ const { Title, Paragraph, Text } = Typography
 const CONVICTIONS = [
   {
     title: 'Evidence first',
-    body: 'Every claim on this site has a number, a mechanism, or a re-runnable harness behind it. Our detection benchmark is public and anyone can re-run it.',
+    body: 'Every claim on this site has a number, a mechanism, or a re-runnable harness behind it. Our detection benchmark is public and anyone can re-run it. We probe our own controls daily and publish the column.',
   },
   {
     title: 'Self-hosted by conviction',
-    body: 'The product runs where your data lives. No vendor cloud in the verdict path, which is why it works air-gapped and can learn from your data without your data moving.',
+    body: 'The product runs where your data lives. No vendor cloud in the verdict path — signed, not asserted — which is why it works air-gapped and can learn from your data without your data moving.',
   },
   {
     title: 'Honest about the roadmap',
-    body: 'Features are labelled shipped or roadmap, on the site and in the sales conversation. Multi-tenancy, additional SIEM emitters, the document-upload sweep, and dormant-credential wake alerts are roadmap today; everything else is running.',
+    body: 'Features are labelled shipped, opt-in or roadmap, on the site and in the sales conversation. Roadmap today: multi-tenancy, an external notification dispatcher for incidents, native SIEM-specific emitters. Opt-in today: reversible masking (built, off by default). Everything else on this site is running.',
   },
 ]
 

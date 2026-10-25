@@ -1698,7 +1698,7 @@ body {
 /* planes box */
 .planes-box {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border: 1px solid rgba(32, 30, 29, 0.55);
 }
 
@@ -1736,6 +1736,18 @@ body {
   font-weight: 600;
 }
 
+@media (max-width: 1100px) and (min-width: 769px) {
+  .planes-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .planes-box .plane-cell:nth-child(odd) {
+    border-left: none;
+  }
+  .planes-box .plane-cell:nth-child(n + 3) {
+    border-top: 1px solid rgba(32, 30, 29, 0.55);
+  }
+}
+
 @media (max-width: 768px) {
   .planes-box {
     grid-template-columns: 1fr;
@@ -1745,6 +1757,32 @@ body {
     border-top: 1px solid rgba(32, 30, 29, 0.55);
   }
   .plane-cell:first-child {
+    border-top: none;
+  }
+}
+
+/* bordered 2×2 variant (Product · governance objects) */
+.gov-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+.gov-grid .plane-cell:nth-child(odd) {
+  border-left: none;
+}
+.gov-grid .plane-cell:nth-child(even) {
+  border-left: 1px solid rgba(32, 30, 29, 0.55);
+}
+.gov-grid .plane-cell:nth-child(n + 3) {
+  border-top: 1px solid rgba(32, 30, 29, 0.55);
+}
+@media (max-width: 768px) {
+  .gov-grid {
+    grid-template-columns: 1fr;
+  }
+  .gov-grid .plane-cell {
+    border-left: none !important;
+    border-top: 1px solid rgba(32, 30, 29, 0.55);
+  }
+  .gov-grid .plane-cell:first-child {
     border-top: none;
   }
 }
@@ -2384,7 +2422,7 @@ body {
 
 /* hero assurances in the features-legend grid style */
 .assure-grid {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .assure-grid .vg-cell {
@@ -2446,3 +2484,69 @@ body {
   font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
   color: #8a8683; font-weight: 700; margin-right: 8px;
 }
+
+/* ---- benchmark rows inside a feature card ---- */
+.bench-rows {
+  display: block;
+  margin: 10px 0 12px;
+  border: 1px solid rgba(32, 30, 29, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bench-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(32, 30, 29, 0.07);
+  background: #fafaf9;
+}
+.bench-row:last-child { border-bottom: none; }
+.bench-row b {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 600;
+  color: #1677ff;
+  white-space: nowrap;
+}
+
+/* roadmap/opt-in tags on dark bands */
+.ed-dark .ant-tag.roadmap-inline {
+  color: #69a9ff;
+  border-color: #69a9ff;
+  margin-left: 0;
+}
+
+/* benchmark tables sit side by side when the card is wide */
+.feat-box .bench-rows {
+  display: inline-block;
+  vertical-align: top;
+  width: min(360px, 100%);
+  margin-right: 24px;
+}
+
+/* ---------- product captures ----------------------------------------- */
+/* Real screenshots of the running console. Framed, never full-bleed, so a
+   light UI screenshot reads as an artefact on the page rather than as the
+   page's own background. */
+.gv-shot {
+  margin: 34px 0 0;
+  border: 1px solid #e3e1dd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(32, 30, 29, 0.06), 0 10px 30px rgba(32, 30, 29, 0.07);
+}
+.gv-shot img { display: block; width: 100%; height: auto; border-bottom: 1px solid #e3e1dd; }
+.gv-shot figcaption {
+  padding: 14px 20px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #6b6763;
+  background: #fbfaf9;
+}
+.gv-shot figcaption b { color: #201e1d; font-weight: 600; }
+.gv-shot.on-dark { border-color: #35322f; box-shadow: none; }
+.gv-shot.on-dark figcaption { background: #201e1d; color: #a6a09b; border-top: 1px solid #35322f; }
+.gv-shot.on-dark figcaption b { color: #f2efec; }
+.gv-shot.on-dark img { border-bottom-color: #35322f; }

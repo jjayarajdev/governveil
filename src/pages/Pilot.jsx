@@ -10,17 +10,17 @@ const WEEKS = [
   {
     week: 'Week 1',
     title: 'First catch, live',
-    body: 'Point one app at the gateway and watch it redact a real prompt before it leaves. Or install the extension for a team — see it mask/block shadow-AI prompts in the page itself.',
+    body: 'Point one app at the gateway and watch it redact a real prompt before it leaves; pull the signed no-egress attestation. Or install the extension for a team — see it mask/block shadow-AI prompts in the page itself.',
   },
   {
     week: 'Weeks 2–4',
     title: 'Coverage expansion',
-    body: 'Add more apps or users. Tune detection policies. Validate against your actual data patterns, not synthetic test sets.',
+    body: 'Register your assets, models and agents with owners; run in detective mode and read what would have blocked; import a week of DNS or proxy telemetry and see real coverage. Tune policies against your data, not synthetic sets.',
   },
   {
     week: 'Weeks 5–12',
     title: 'Evidence production',
-    body: 'Build the audit artefacts mapped to your named controls. Produce the evidence your compliance team needs. Finalise your deployment architecture.',
+    body: 'Ingest your own AI policy; confirm clause → control mappings; flip controls to enforce; run the probes; produce the gap assessment, the first attestations and the drift report your compliance team needs. Finalise the deployment architecture.',
   },
 ]
 
