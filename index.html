@@ -6,6 +6,30 @@
 <title>GovernVeil: self-hosted AI data-egress control and evidence</title>
 <meta name="description" content="GovernVeil governs every AI action in your own environment: prompts, agents, tool calls, documents and model responses. Sensitive values are caught before they leave, every decision is signed to a tamper-evident ledger, and nothing leaves your perimeter for a verdict.">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<script>
+/* Pre-paint variant resolution for the nine marketing pages, so a stored or
+   forced choice does not flash the other skin. Mirrors src/gv/variant.js —
+   keep the two in step. The Learn and GTM routes are antd and must not get the
+   attribute at all. */
+(function () {
+  if (location.hostname.indexOf('learn.') === 0) return;
+  if (/[?&]learn\b/.test(location.search + location.hash)) return;
+  var h = location.hash.replace(/^#/, '') || '/';
+  var path = h.split('?')[0];
+  if (path === '/learn' || path === '/gtm') return;
+  var forced = /[?&]v=(dark|light)/.exec(location.search + location.hash);
+  if (forced) { document.documentElement.setAttribute('data-gv', forced[1]); return; }
+  try {
+    var v = localStorage.getItem('gv-variant');
+    document.documentElement.setAttribute('data-gv', v === 'dark' ? 'dark' : 'light');
+  } catch (e) {
+    document.documentElement.setAttribute('data-gv', 'light');
+  }
+})();
+</script>
 <meta property="og:title" content="GovernVeil: self-hosted AI data-egress control and evidence">
 <meta property="og:description" content="GovernVeil governs every AI action in your own environment: prompts, agents, tool calls, documents and model responses. Sensitive values are caught before they leave, every decision is signed to a tamper-evident ledger, and nothing leaves your perimeter for a verdict.">
 <meta property="og:site_name" content="GovernVeil">

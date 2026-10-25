@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import App from './App'
 import './site.css'
+import './gv.css'
 
 const theme = {
   token: {

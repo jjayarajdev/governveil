@@ -4,5 +4,8 @@ dist/
 *.local
 .claude/
 
-# design source — large console capture masters, not served
-dist/
+# Design source, not served and not built. The console capture masters in
+# design-assets/ ARE tracked on purpose (see 8b94fd8) — only the A/B review
+# board is excluded, because it is a 3.2 MB working file.
+# The three claude-design/*.html references stay tracked.
+claude-design/v2/

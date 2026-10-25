@@ -14,17 +14,32 @@ export function Verdict({ v }) {
 }
 
 /* A real product capture. WebP with a 2x source; every image on the site is a
-   screenshot of the running console, so the caption always says what page it is. */
-export function Shot({ src, alt, children, onDark }) {
+   screenshot of the running console, so the caption always says what page it is.
+
+   `className` lets the revamp pages render the same component into their own
+   `.shot` styling instead of the editorial `.gv-shot`. `x2` is off for captures
+   that have no 2x master — the acknowledge card is a crop of a 1x capture, and
+   claiming a 2x source it doesn't have would just make the browser 404. */
+export function Shot({
+  src,
+  alt,
+  children,
+  onDark,
+  className = 'gv-shot',
+  width = 1100,
+  height = 688,
+  x2 = true,
+}) {
+  const base = `/assets/img/product/web/${src}`
   return (
-    <figure className={`gv-shot ${onDark ? 'on-dark' : ''}`}>
+    <figure className={`${className} ${onDark ? 'on-dark' : ''}`.trim()}>
       <img
-        src={`/assets/img/product/web/${src}.webp`}
-        srcSet={`/assets/img/product/web/${src}.webp 1100w, /assets/img/product/web/${src}@2x.webp 2200w`}
-        sizes="(max-width: 980px) 100vw, 1100px"
+        src={`${base}.webp`}
+        srcSet={x2 ? `${base}.webp ${width}w, ${base}@2x.webp ${width * 2}w` : undefined}
+        sizes={x2 ? `(max-width: 980px) 100vw, ${width}px` : undefined}
         alt={alt}
-        width={1100}
-        height={688}
+        width={width}
+        height={height}
         loading="lazy"
         decoding="async"
       />
