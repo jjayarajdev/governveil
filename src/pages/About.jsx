@@ -112,8 +112,8 @@ export default function About() {
                   </a>
                 </Paragraph>
                 <Paragraph style={{ margin: 0 }}>
-                  <a className="red-link" href="mailto:hello@syntegreti.com">
-                    hello@syntegreti.com <ArrowRightOutlined />
+                  <a className="red-link" href="mailto:contact@syntegreti.com">
+                    contact@syntegreti.com <ArrowRightOutlined />
                   </a>
                 </Paragraph>
               </Reveal>

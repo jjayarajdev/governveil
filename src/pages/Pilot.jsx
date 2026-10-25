@@ -42,7 +42,7 @@ export default function Pilot() {
         `AI traffic we cannot see today:\n${values.gap || ''}`,
     )
     const subject = encodeURIComponent(`Design-partner pilot request: ${values.company}`)
-    window.location.href = `mailto:hello@syntegreti.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:contact@syntegreti.com?subject=${subject}&body=${body}`
     setSubmitted(true)
   }
 
