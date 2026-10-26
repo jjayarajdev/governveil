@@ -1,5 +1,9 @@
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, KV, Row, SectionHead } from '../bits'
+import { readRegion } from '../../region'
+import {
+  ASSURANCE_LOOP, ASSURANCE_ROADMAP, COMPLIANCE, LOOP_AUDIENCES,
+} from '../regions'
 
 const ARCHITECTURE = [
   ['Deployment',
@@ -48,7 +52,89 @@ const ASSURANCE = [
 const ATTESTATION = `{
   "inference_local": `
 
+/* The assurance loop — policy becomes controls, controls are tested against
+   real traffic, what that shows goes back into the policy. DOM order is 01-06;
+   CSS lays row two right-to-left so it reads as a cycle without the markup
+   having to lie to a screen reader. */
+function AssuranceLoop() {
+  return (
+    <Band>
+      <SectionHead
+        eyebrow="The assurance loop"
+        title={<>From policy to <em>proof</em>, in one loop.</>}
+      >
+        Most AI governance stops at the policy document. GovernVeil brings the whole
+        chain together in one loop: your policy becomes controls, every AI request is
+        checked against them in context, each control is tested to show whether it’s
+        actually working, and what you learn goes back into the policy. Effectiveness
+        you can show, not just claim.
+      </SectionHead>
+
+      <div className="loop">
+        {ASSURANCE_LOOP.map(([n, title, body]) => (
+          <div className="loop-step" key={n}>
+            <span className="numeral">{n}</span>
+            <h3 className="h-sub">{title}</h3>
+            <p>{body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="loop-rail">
+        <b>Any AI tool, app or agent in your environment</b>
+        <span>Every decision written to your signed ledger</span>
+      </div>
+
+      <div className="grid cols-3" style={{ marginTop: 40 }}>
+        {LOOP_AUDIENCES.map(([who, what]) => (
+          <div key={who}>
+            <h3 className="h-sub" style={{ fontSize: 17 }}>{who}</h3>
+            <p className="muted small">{what}</p>
+          </div>
+        ))}
+      </div>
+    </Band>
+  )
+}
+
+/* .au sorts the same facts by state rather than by whose fault they are. The
+   .com page keeps "What we haven't done" — see the honest-gaps band below. */
+function AssuranceRoadmap() {
+  return (
+    <Band sunken>
+      <SectionHead
+        eyebrow="Our assurance roadmap"
+        title={<>Open about where we are, and where we’re <em>going</em>.</>}
+      >
+        We’d rather you hear it from us in the first call than discover it in the
+        sixth. Design partners get our full assurance register and known-issues log
+        under NDA.
+      </SectionHead>
+      <div className="grid cols-3">
+        {ASSURANCE_ROADMAP.map(([stage, items]) => (
+          <div className="card card-num" key={stage}>
+            <span className="numeral">{stage}</span>
+            <ul className="plain">
+              {items.map((i) => <li key={i}>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p className="small dim" style={{ marginTop: 16 }}>
+        We’ll publish certification dates when we can commit to them.
+      </p>
+      <p className="note" style={{ marginTop: 32 }}>
+        Why buyers choose GovernVeil: the enforcement path is self-hosted, the
+        evidence belongs to you, and the benchmark is one you can run yourself,
+        <em> without us</em>.
+      </p>
+    </Band>
+  )
+}
+
 export default function Security() {
+  const region = readRegion()
+  const compliance = COMPLIANCE[region]
   return (
     <>
       <section className="hero">
@@ -192,17 +278,20 @@ export default function Security() {
         </div>
       </Band>
 
+      {region === 'au' && <AssuranceLoop />}
+
       {/* ───── assurance posture ───── */}
       <Band sunken>
-        <SectionHead
-          eyebrow="Assurance posture"
-          title="Assessed against a board’s questions, not a logo wall."
-        >
-          We ran the product and the company against sixteen board cyber-governance
-          domains drawn from Australian standards — PSPF, the ISM, APRA CPS 230 and CPS
-          234, SOCI and the AICD director guidance. The product meets most of them. The
-          company-side gaps are below, named rather than omitted.
+        <SectionHead eyebrow={compliance.eyebrow} title={compliance.title}>
+          {compliance.blurb}
         </SectionHead>
+        {compliance.badges && (
+          <div className="tag-row" style={{ marginBottom: 36 }}>
+            {compliance.badges.map((b) => (
+              <span className="tag t-ship" key={b}>{b}</span>
+            ))}
+          </div>
+        )}
         <div className="grid cols-3">
           {ASSURANCE.map(([h, p]) => (
             <div className="card" key={h}>
@@ -211,9 +300,15 @@ export default function Security() {
             </div>
           ))}
         </div>
+        {compliance.footnote && (
+          <p className="small dim" style={{ marginTop: 20 }}>{compliance.footnote}</p>
+        )}
       </Band>
 
-      {/* ───── honest gaps ───── */}
+      {region === 'au' && <AssuranceRoadmap />}
+
+      {/* ───── honest gaps · .com ───── */}
+      {region !== 'au' && (
       <Band narrow>
         <Eyebrow>Say it before it is found</Eyebrow>
         <h2 className="h-section">What we haven’t done.</h2>
@@ -266,6 +361,7 @@ export default function Security() {
           one you can run without us.
         </p>
       </Band>
+      )}
 
       <Cta />
     </>

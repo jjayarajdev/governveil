@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { readVariant, storeVariant } from './variant'
-
-const NAV = [
-  ['/product', 'Product'],
-  ['/features', 'Features'],
-  ['/benchmark', 'Benchmark'],
-  ['/about', 'About'],
-]
+import { readRegion } from '../region'
+import { REGION_CONTENT } from './regions'
 
 const FOOTER = [
   ['Product', [
@@ -77,6 +72,7 @@ function Themer({ variant, onChange }) {
 
 export default function GvLayout({ children }) {
   const [variant, setVariant] = useState(readVariant)
+  const { nav, ctaLabel, entity } = REGION_CONTENT[readRegion()]
 
   // The tokens live on <html data-gv>, so the page ground and any overscroll
   // match. The attribute is removed on unmount, which is what keeps the antd
@@ -101,13 +97,13 @@ export default function GvLayout({ children }) {
           <nav className="nav-links" aria-label="Primary">
             {/* NavLink sets aria-current="page" itself; the nav styling hangs
                 off that rather than off a class. */}
-            {NAV.map(([to, label]) => (
+            {nav.map(([to, label]) => (
               <NavLink key={to} to={to}>{label}</NavLink>
             ))}
           </nav>
           <div className="nav-end">
             <Themer variant={variant} onChange={choose} />
-            <Link className="btn btn-primary btn-sm" to="/pilot">Book a pilot</Link>
+            <Link className="btn btn-primary btn-sm" to="/pilot">{ctaLabel}</Link>
           </div>
         </div>
       </header>
@@ -139,14 +135,16 @@ export default function GvLayout({ children }) {
               <ul>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/pilot">Design-partner pilot</Link></li>
-                <li><a href="https://syntegreti.com/" rel="noopener">Syntegreti ↗</a></li>
-                <li><a href="mailto:contact@syntegreti.com">contact@syntegreti.com</a></li>
+                {entity.parent && (
+                  <li><a href={entity.parent[1]} rel="noopener">{entity.parent[0]}</a></li>
+                )}
+                <li><a href={`mailto:${entity.email}`}>{entity.email}</a></li>
               </ul>
             </div>
           </div>
           <div className="footer-base">
-            <span>© 2026 GovernVeil · from Syntegreti, Hyderabad</span>
-            <span>Self-hosted. Your data never leaves your perimeter.</span>
+            <span>{entity.copyright}</span>
+            <span>{entity.tagline}</span>
           </div>
         </div>
       </footer>

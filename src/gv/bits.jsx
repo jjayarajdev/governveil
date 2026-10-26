@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { readRegion } from '../region'
+import { REGION_CONTENT } from './regions'
 
 /* A verdict / status tag. `k` is the suffix of the .t-* class: allow, flag,
    mask, ack, block, ship, optin, road. */
@@ -90,24 +92,24 @@ export function HowItWorks({ children }) {
 }
 
 /* The closing band. Identical on all eight pages that carry it — Pilot is the
-   exception, since it is the page this points at. */
+   exception, since it is the page this points at. The pitch differs by market:
+   .com sells a paid 8-12 week pilot, .au a free 4-6 week one. */
 export function Cta() {
+  const { pilot } = REGION_CONTENT[readRegion()]
+  const [primaryLabel, primaryTo] = pilot.primaryCta
+  const [secondaryLabel, secondaryTo] = pilot.secondaryCta
   return (
     <section className="cta">
       <div className="wrap">
         <h2 className="h-section">See it catch a real prompt in 90&nbsp;seconds.</h2>
-        <p>
-          A paid 8–12-week design-partner pilot. Week one: a real prompt caught
-          before it leaves — your data, your environment — and a signed
-          attestation that nothing else left.
-        </p>
+        <p>{pilot.ctaBlurb}</p>
         <div className="btn-row">
-          <Link className="btn btn-primary" to="/pilot">Book a design-partner pilot →</Link>
-          <Link className="btn btn-ghost" to="/product">See the architecture</Link>
+          <Link className="btn btn-primary" to={primaryTo}>{primaryLabel}</Link>
+          <Link className="btn btn-ghost" to={secondaryTo}>{secondaryLabel}</Link>
         </div>
-        <p className="tiny dim" style={{ marginTop: 22 }}>
-          3–5 design-partner slots per cohort.
-        </p>
+        {!pilot.free && (
+          <p className="tiny dim" style={{ marginTop: 22 }}>{pilot.cohort}</p>
+        )}
       </div>
     </section>
   )

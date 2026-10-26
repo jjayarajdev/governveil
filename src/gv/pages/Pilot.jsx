@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
 import { Band, Eyebrow, KV, Row, SectionHead, Step } from '../bits'
+import { readRegion } from '../../region'
+import { REGION_CONTENT } from '../regions'
 
 const REGIONS = [
   'India', 'Asia-Pacific', 'Middle East', 'Europe',
@@ -9,6 +11,7 @@ const REGIONS = [
 export default function Pilot() {
   const form = useRef(null)
   const [sent, setSent] = useState(false)
+  const { pilot, entity } = REGION_CONTENT[readRegion()]
 
   // No backend: the form composes a mailto the visitor's own client opens.
   // A form `action="mailto:"` is unreliable across browsers, so build the URL
@@ -25,7 +28,7 @@ export default function Pilot() {
       `Region: ${f.get('region') || ''}\n\n` +
       `AI traffic we cannot see today:\n${f.get('problem') || ''}\n`,
     )
-    window.location.href = `mailto:contact@syntegreti.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:${entity.email}?subject=${subject}&body=${body}`
     setSent(true)
   }
 
@@ -44,7 +47,7 @@ export default function Pilot() {
             have to trust us.
           </h1>
           <p className="lede">
-            A paid 8–12-week pilot. Week one: point one application at the gateway and
+            {pilot.lengthPhrase} Week one: point one application at the gateway and
             watch it catch a real prompt before it leaves — your environment, your data,
             and an audit trail your auditor will accept. Then pull the signed attestation
             and check that nothing else left either.
@@ -101,16 +104,23 @@ export default function Pilot() {
             <h2 className="h-sub h-sub-lg">Plain terms, and a clear path to production.</h2>
             <div style={{ marginTop: 22 }}>
               <KV>
-                <Row k="Fee"><b>$15,000–$40,000</b>, depending on scope</Row>
-                <Row k="Length">8–12 weeks</Row>
+                {pilot.fee
+                  ? <Row k="Fee"><b>{pilot.fee}</b>, depending on scope</Row>
+                  : <Row k="Fee"><b>Free</b> for design partners in this cohort</Row>}
+                <Row k="Length">{pilot.length}</Row>
                 <Row k="Scope">
                   Up to 5 governed assets and 500 users; one application surface plus the
                   extension
                 </Row>
-                <Row k="Conversion">
-                  20&nbsp;% off year one, 50&nbsp;% of the fee credited, 10&nbsp;% off
-                  permanently from year two
-                </Row>
+                {pilot.free
+                  ? <Row k="Conversion">
+                      Design-partner pricing on year one, held for as long as you
+                      stay on the programme
+                    </Row>
+                  : <Row k="Conversion">
+                      20&nbsp;% off year one, 50&nbsp;% of the fee credited,
+                      10&nbsp;% off permanently from year two
+                    </Row>}
                 <Row k="Findings & IP">Yours. We retain no rights to your data.</Row>
                 <Row k="Support">Dedicated deployment support throughout</Row>
                 <Row k="Cohort">3–5 slots. We reply within two business days.</Row>
@@ -152,8 +162,8 @@ export default function Pilot() {
               <p className="muted" style={{ marginBottom: 0 }}>
                 Nothing was sent from this page — the request is a draft in your own
                 client, so check it and send. If it didn’t open, write to{' '}
-                <a className="link" href="mailto:contact@syntegreti.com">
-                  contact@syntegreti.com
+                <a className="link" href={`mailto:${entity.email}`}>
+                  {entity.email}
                 </a>{' '}
                 directly.
               </p>
@@ -189,8 +199,8 @@ export default function Pilot() {
               <p className="tiny dim" style={{ margin: 0 }}>
                 Opens a pre-filled email in your own client. No backend, no mailing list,
                 no tracking. We only reply to pilot requests. You can also just write to{' '}
-                <a className="link" href="mailto:contact@syntegreti.com">
-                  contact@syntegreti.com
+                <a className="link" href={`mailto:${entity.email}`}>
+                  {entity.email}
                 </a>.
               </p>
             </form>

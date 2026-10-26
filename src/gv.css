@@ -578,6 +578,56 @@ html[data-gv] body {
 }
 .gv .shot figcaption b { color: var(--text); font-weight: 600; }
 
+/* ---------- the assurance loop (.au) --------------------------------- */
+
+/* DOM order is 01-06 so a screen reader walks the cycle in order; grid
+   placement lays the second row right-to-left so the eye follows a loop
+   rather than two unrelated rows. */
+.gv .loop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.gv .loop-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px;
+}
+.gv .loop-step .numeral { margin-bottom: 10px; }
+.gv .loop-step h3 { font-size: 19px; margin-bottom: 6px; }
+.gv .loop-step p { font-size: 14px; color: var(--text-2); margin: 0; }
+
+.gv .loop > :nth-child(4) { grid-column: 3; grid-row: 2; }
+.gv .loop > :nth-child(5) { grid-column: 2; grid-row: 2; }
+.gv .loop > :nth-child(6) { grid-column: 1; grid-row: 2; }
+
+.gv .loop-rail {
+  margin-top: 20px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--r);
+  padding: 18px 24px;
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 8px 24px;
+  color: var(--panel-text);
+}
+.gv .loop-rail b { font-weight: 600; font-size: 15px; }
+.gv .loop-rail span {
+  font-family: var(--font-mono); font-size: 12px; color: var(--panel-text-2);
+}
+
+/* the roadmap columns */
+.gv ul.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.gv ul.plain li {
+  font-size: 14px; color: var(--text-2); line-height: 1.45;
+  padding-left: 16px; position: relative;
+}
+.gv ul.plain li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 5px; height: 5px; border-radius: 1px; background: var(--accent);
+}
+
 /* ---------- misc ----------------------------------------------------- */
 
 .gv .rule { height: 1px; background: var(--border); border: 0; margin: 0; }
@@ -696,6 +746,10 @@ html[data-gv] body {
   .gv .kv-row { grid-template-columns: 1fr; gap: 4px; }
   .gv .step { grid-template-columns: 1fr; gap: 10px; }
   .gv .gap-wide { gap: 32px; }
+  .gv .loop { grid-template-columns: 1fr; }
+  .gv .loop > :nth-child(4),
+  .gv .loop > :nth-child(5),
+  .gv .loop > :nth-child(6) { grid-column: auto; grid-row: auto; }
 }
 
 @media (max-width: 560px) {
