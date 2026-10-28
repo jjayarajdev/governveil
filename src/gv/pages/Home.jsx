@@ -1,14 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, SectionHead, Stat, Tag } from '../bits'
-
-const STRIP = [
-  ['Your VPC or on-prem', 'No vendor cloud in the path'],
-  ['All inference local', 'Prompts scored in your network'],
-  ['Signed no-egress attestation', 'Zero is the proof, not a promise'],
-  ['Works air-gapped', 'No outbound call to decide'],
-  ['One base-URL change', 'Drop-in for /v1 endpoints'],
-]
+import { readRegion } from '../../region'
+import { REGION_CONTENT } from '../regions'
 
 const PROBLEMS = [
   ['01', 'The licence only sees the browser.',
@@ -96,6 +90,8 @@ const PRINCIPLES = [
 ]
 
 export default function Home() {
+  const { home, pilot } = REGION_CONTENT[readRegion()]
+  const { panel, strip, pairRight } = home
   return (
     <>
       <section className="hero">
@@ -115,8 +111,12 @@ export default function Home() {
               than asserted.
             </p>
             <div className="btn-row">
-              <Link className="btn btn-primary" to="/pilot">Book a design-partner pilot →</Link>
-              <Link className="btn btn-ghost" to="/product">See the architecture</Link>
+              <Link className="btn btn-primary" to={pilot.primaryCta[1]}>
+                {pilot.primaryCta[0]}
+              </Link>
+              <Link className="btn btn-ghost" to={pilot.secondaryCta[1]}>
+                {pilot.secondaryCta[0]}
+              </Link>
             </div>
           </div>
 
@@ -125,20 +125,19 @@ export default function Home() {
               <span>POST /v1/chat/completions</span>
               <Tag k="mask">mask</Tag>
             </div>
-            {/* Two identifier formats from two jurisdictions in one prompt: the
-                fast path is deterministic on both, and the point of the panel is
-                that it does not matter which market the value came from. The SSN
-                is the value the policy simulator ships with. */}
+            {/* Two real values in one prompt, both caught deterministically on
+                the fast path. The pair is per-market — see regions.jsx, which
+                records why the AU example uses the detectors it does. */}
             <div className="panel-row">
               <div className="panel-label">01 · your app sends</div>
-              <pre>{'"Draft a letter to the customer, SSN '}
-                <span className="hit">123-45-6789</span>{', PAN '}
-                <span className="hit">ABCDE1234F</span>{'"'}</pre>
+              <pre>{panel.before}
+                <span className="hit">{panel.first}</span>{panel.between}
+                <span className="hit">{panel.second}</span>{'"'}</pre>
             </div>
             <div className="panel-row">
               <div className="panel-label">02 · the provider sees</div>
-              <pre>{'"Draft a letter to the customer, SSN '}
-                <span className="redacted" />{', PAN '}
+              <pre>{panel.before}
+                <span className="redacted" />{panel.between}
                 <span className="redacted" />{'"'}</pre>
             </div>
             <div className="panel-row">
@@ -146,7 +145,7 @@ export default function Home() {
               <pre>{'verdict  '}<code>mask</code>{`
 control  PI-02 · personal data masked before it leaves
 caught   fast filter `}<code>fast_pii_filter</code>{` · 2 spans · sub-ms
-types    `}<code>ssn</code>{', '}<code>pan</code>{`
+types    `}<code>{panel.types[0]}</code>{', '}<code>{panel.types[1]}</code>{`
 entry    #4187 · signed · prev 9f2c…e41a`}</pre>
             </div>
             <div className="panel-foot">
@@ -159,7 +158,7 @@ entry    #4187 · signed · prev 9f2c…e41a`}</pre>
 
       <div className="strip">
         <div className="strip-in">
-          {STRIP.map(([b, s]) => (
+          {strip.map(([b, s]) => (
             <div className="strip-item" key={b}><b>{b}</b><span>{s}</span></div>
           ))}
         </div>
@@ -425,14 +424,14 @@ entry    #4187 · signed · prev 9f2c…e41a`}</pre>
             <p><Link className="link" to="/security">Security &amp; compliance →</Link></p>
           </div>
           <div>
-            <Eyebrow>Pricing</Eyebrow>
-            <h2 className="h-sub h-sub-lg">Flat, self-hosted, predictable.</h2>
-            <p className="muted">
-              Priced per governed asset and governed user — not per token you run on
-              your own hardware, and not behind a six-figure floor. Three editions from
-              $38,000&nbsp;a&nbsp;year, published in full, with the per-user comparison
-              against the vendors you’re also evaluating.
-            </p>
+            <Eyebrow>{pairRight.eyebrow}</Eyebrow>
+            <h2 className="h-sub h-sub-lg">{pairRight.title}</h2>
+            <p className="muted">{pairRight.body}</p>
+            {pairRight.link && (
+              <p>
+                <Link className="link" to={pairRight.link[1]}>{pairRight.link[0]}</Link>
+              </p>
+            )}
           </div>
         </div>
       </section>

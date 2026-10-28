@@ -39,6 +39,62 @@ export const REGION_CONTENT = {
       primaryCta: ['Book a design-partner pilot →', '/pilot'],
       secondaryCta: ['See the architecture', '/product'],
     },
+
+    product: { deployRegion: null },
+
+    home: {
+      // the hero panel's worked example: a US SSN and an India PAN, both on the
+      // committed fast-path pattern set
+      panel: {
+        before: '"Draft a letter to the customer, SSN ',
+        first: '123-45-6789',
+        between: ', PAN ',
+        second: 'ABCDE1234F',
+        types: ['ssn', 'pan'],
+      },
+      strip: [
+        ['Your VPC or on-prem', 'No vendor cloud in the path'],
+        ['All inference local', 'Prompts scored in your network'],
+        ['Signed no-egress attestation', 'Zero is the proof, not a promise'],
+        ['Works air-gapped', 'No outbound call to decide'],
+        ['One base-URL change', 'Drop-in for /v1 endpoints'],
+      ],
+      // the right half of the closing two-column band
+      pairRight: {
+        eyebrow: 'Pricing',
+        title: 'Flat, self-hosted, predictable.',
+        body: `Priced per governed asset and governed user — not per token you run
+          on your own hardware, and not behind a six-figure floor. Three editions
+          from $38,000 a year, published in full, with the per-user comparison
+          against the vendors you’re also evaluating.`,
+        link: null,
+      },
+    },
+
+    about: {
+      lede: `GovernVeil is the AI-governance platform from Syntegreti, the AI
+        consulting and platform company in Hyderabad, India. We build AI
+        data-egress control and evidence for regulated enterprises — BFSI,
+        healthcare and life sciences, global capability centres, and any
+        organisation whose data cannot leave its perimeter for a verdict.`,
+      companyEyebrow: 'The company behind it',
+      companyTitle: 'One spine that governs how an enterprise adopts AI.',
+      companyParas: [
+        `Syntegreti ships flagship platforms for contracts and business operations,
+         and underneath them one spine that governs how an enterprise adopts AI.
+         GovernVeil is the govern layer of that spine.`,
+        `Delivery follows the same discipline as the rest of the portfolio: a
+         working result in your environment in weeks, not quarters. That is also
+         why the pilot is eight to twelve weeks rather than two quarters.`,
+      ],
+      gapsLink: 'The full list of what we haven’t done →',
+      asideEyebrow: 'The Syntegreti AI spine',
+      aside: [
+        ['operate', 'Round-the-clock operations on what ships'],
+        ['build', 'Platforms and AI-assisted delivery on the governed spine'],
+        ['govern', 'GovernVeil — policy, masking and evidence on every AI action'],
+      ],
+    },
   },
 
   au: {
@@ -70,6 +126,71 @@ export const REGION_CONTENT = {
         signed attestation that nothing else did. 3–5 places per cohort.`,
       primaryCta: ['Book a call to see the architecture', '/pilot'],
       secondaryCta: ['Become a design partner', '/pilot'],
+    },
+
+    product: { deployRegion: 'ap-southeast-2 (Sydney) for Australian deployments.' },
+
+    home: {
+      /* The AU worked example uses `email` and `bank_account`, which are the
+         only two fast-path detectors that are jurisdiction-neutral. There is
+         NO Australian pattern set in the gateway — no TFN, no ABN, no BSB, no
+         Australian Medicare (internal/dlp/patterns holds us_pii, india_pii and
+         email only). Do not put a TFN in this panel until a detector exists.
+         The account number is nine digits because the committed regex is
+         (?:account|acct)[:\s#]*(\d{9,12}) — a six-digit BSB would not match,
+         which is why no BSB appears here. */
+      panel: {
+        before: '"Draft a letter to the customer, email ',
+        first: 'j.nguyen@example.com.au',
+        between: ', account ',
+        second: '041562893',
+        types: ['email', 'bank_account'],
+      },
+      strip: [
+        ['Your VPC or on-prem', 'Sydney, Melbourne, or your own data centre'],
+        ['All inference local', 'Prompts scored in your network'],
+        ['Signed no-egress attestation', 'Zero is the proof, not a promise'],
+        ['Works air-gapped', 'No outbound call to decide'],
+        ['One base-URL change', 'Drop-in for /v1 endpoints'],
+      ],
+      pairRight: {
+        eyebrow: 'Design partners',
+        title: 'A free pilot, in your environment.',
+        body: `A free 4–6-week design-partner pilot, 3–5 places per cohort. Week
+          one: point one application at the gateway and watch it catch a real
+          prompt before it leaves — your environment, your data — then pull the
+          signed attestation and check that nothing else left either.`,
+        link: ['Become a design partner →', '/pilot'],
+      },
+    },
+
+    about: {
+      lede: `GovernVeil is built and owned in Australia. We build AI data-egress
+        control and evidence for regulated Australian organisations — banks and
+        insurers under APRA, government under the PSPF, health, superannuation —
+        and for any organisation whose data cannot leave its perimeter for a
+        verdict.`,
+      companyEyebrow: 'The company behind it',
+      companyTitle: 'Australian-owned, and built to stay that way.',
+      companyParas: [
+        `GovernVeil Pty Ltd is an Australian company and the intellectual
+         property is held in Australia. There is no vendor cloud in the verdict
+         path, so the enforcement path runs in your own Australian region and
+         your exposure to us as a company is bounded by your own environment.`,
+        `We work the way the pilot does: a working result in your environment in
+         weeks, not quarters. That is why the design-partner pilot is four to six
+         weeks rather than two quarters.`,
+      ],
+      // .au's security page carries the assurance roadmap, not "what we
+      // haven't done" — the link has to name what it actually reaches
+      gapsLink: 'Our assurance roadmap →',
+      asideEyebrow: 'The Australian entity',
+      aside: [
+        ['company', 'GovernVeil Pty Ltd'],
+        ['abn', '94 703 419 194'],
+        ['ip', 'Held in Australia'],
+        ['hosting', 'Your own Australian region — we operate no cloud in the verdict path'],
+      ],
     },
   },
 }

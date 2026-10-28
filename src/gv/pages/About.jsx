@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Band, Cta, Eyebrow, KV, Row, SectionHead } from '../bits'
+import { readRegion } from '../../region'
+import { REGION_CONTENT } from '../regions'
 
 const COMMITMENTS = [
   ['01', 'Evidence first',
@@ -23,6 +25,7 @@ const COMMITMENTS = [
 ]
 
 export default function About() {
+  const { about, entity } = REGION_CONTENT[readRegion()]
   return (
     <>
       <section className="hero">
@@ -31,13 +34,7 @@ export default function About() {
           <h1 className="h-display" style={{ maxWidth: '16ch' }}>
             Evidence-first, by <em>conviction</em>.
           </h1>
-          <p className="lede">
-            GovernVeil is the AI-governance platform from Syntegreti, the AI consulting
-            and platform company in Hyderabad, India. We build AI data-egress control and
-            evidence for regulated enterprises — BFSI, healthcare and life sciences,
-            global capability centres, and any organisation whose data cannot leave its
-            perimeter for a verdict.
-          </p>
+          <p className="lede">{about.lede}</p>
         </div>
       </section>
 
@@ -73,37 +70,24 @@ export default function About() {
       <section className="band band-sunken">
         <div className="wrap grid cols-2 gap-wide" style={{ alignItems: 'start' }}>
           <div>
-            <Eyebrow>The company behind it</Eyebrow>
-            <h2 className="h-sub h-sub-lg">
-              One spine that governs how an enterprise adopts AI.
-            </h2>
-            <p className="muted">
-              Syntegreti ships flagship platforms for contracts and business operations,
-              and underneath them one spine that governs how an enterprise adopts AI.
-              GovernVeil is the govern layer of that spine.
-            </p>
-            <p className="muted">
-              Delivery follows the same discipline as the rest of the portfolio: a
-              working result in your environment in weeks, not quarters. That is also why
-              the pilot is eight to twelve weeks rather than two quarters.
-            </p>
+            <Eyebrow>{about.companyEyebrow}</Eyebrow>
+            <h2 className="h-sub h-sub-lg">{about.companyTitle}</h2>
+            {about.companyParas.map((para) => (
+              <p className="muted" key={para.slice(0, 32)}>{para}</p>
+            ))}
             <div className="btn-row" style={{ marginTop: 22 }}>
-              <a className="link" href="https://syntegreti.com/" rel="noopener">
-                syntegreti.com ↗
-              </a>
-              <a className="link" href="mailto:contact@syntegreti.com">
-                contact@syntegreti.com
-              </a>
+              {entity.parent && (
+                <a className="link" href={entity.parent[1]} rel="noopener">
+                  {entity.parent[0]}
+                </a>
+              )}
+              <a className="link" href={`mailto:${entity.email}`}>{entity.email}</a>
             </div>
           </div>
           <div>
-            <Eyebrow>The Syntegreti AI spine</Eyebrow>
+            <Eyebrow>{about.asideEyebrow}</Eyebrow>
             <KV>
-              <Row k="operate">Round-the-clock operations on what ships</Row>
-              <Row k="build">Platforms and AI-assisted delivery on the governed spine</Row>
-              <Row k="govern">
-                <b>GovernVeil</b> — policy, masking and evidence on every AI action
-              </Row>
+              {about.aside.map(([k, v]) => <Row k={k} key={k}>{v}</Row>)}
             </KV>
           </div>
         </div>
@@ -127,9 +111,7 @@ export default function About() {
           without us being in the room.
         </p>
         <p style={{ marginTop: 22 }}>
-          <Link className="link" to="/security">
-            The full list of what we haven’t done →
-          </Link>
+          <Link className="link" to="/security">{about.gapsLink}</Link>
         </p>
       </Band>
 

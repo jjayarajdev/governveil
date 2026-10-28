@@ -1,5 +1,7 @@
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, KV, Row, SectionHead, Step, Table, Tag } from '../bits'
+import { readRegion } from '../../region'
+import { REGION_CONTENT } from '../regions'
 
 const LADDER = [
   ['Keyword, regex and secrets — SSN, card, PAN, GSTIN, IFSC, Aadhaar, credentials', 'fast path', 'local · sub-ms'],
@@ -67,6 +69,7 @@ const AUDIT_RECORD = `{
   "action":      `
 
 export default function Product() {
+  const { product } = REGION_CONTENT[readRegion()]
   return (
     <>
       <section className="hero">
@@ -371,7 +374,12 @@ export default function Product() {
           {DEPLOY.map(([h, p]) => (
             <div className="card" key={h}>
               <h3 className="h-sub">{h}</h3>
-              <p>{p}</p>
+              <p>
+                {p}
+                {h === 'Reference pilot box' && product.deployRegion && (
+                  <> {product.deployRegion}</>
+                )}
+              </p>
             </div>
           ))}
         </div>
