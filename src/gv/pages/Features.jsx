@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, HowItWorks, SectionHead, Table, Tag } from '../bits'
+import { readRegion } from '../../region'
+import { REGION_CONTENT } from '../regions'
+
+const { about: ABOUT } = REGION_CONTENT[readRegion()]
 
 /* Five capability groups. Each card: the verdict it produces, its shipping
    label, a one-line claim, the scope, and the mechanism behind a disclosure.
@@ -107,7 +111,7 @@ const GROUPS = [
           Tune detection by rewording the question — no per-client training, and no data
           leaving your perimeter to fine-tune a vendor’s model.`,
       how: <>A worked example:{' '}
-        <span className="mono">“Does this prompt contain a customer’s account number?”</span>{' '}
+        <span className="mono">“{ABOUT.workedPolicy}”</span>{' '}
         A review and labelling queue turns your own traffic into a ground-truth corpus
         you can score in-house, so the detector improves on your data without your data
         moving.</>,

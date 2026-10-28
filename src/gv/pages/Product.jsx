@@ -68,6 +68,31 @@ const AUDIT_RECORD = `{
   "path":        "/v1/chat/completions",
   "action":      `
 
+/* .au only. Says plainly that Australian formats are not on the pattern path,
+   then shows the mechanism that does cover them. */
+function Identifiers({ block }) {
+  return (
+    <Band sunken>
+      <SectionHead eyebrow={block.eyebrow} title={block.title}>
+        {block.lede}
+      </SectionHead>
+      <div className="panel" style={{ maxWidth: 760 }}>
+        <div className="panel-head">
+          <span>POLICIES YOU WRITE</span>
+          <span>answered in the model pass</span>
+        </div>
+        {block.policies.map(([id, question]) => (
+          <div className="panel-row" key={id}>
+            <div className="panel-label">{id}</div>
+            <pre><code>{`"${question}"`}</code></pre>
+          </div>
+        ))}
+      </div>
+      <p className="note" style={{ marginTop: 32 }}>{block.note}</p>
+    </Band>
+  )
+}
+
 export default function Product() {
   const { product } = REGION_CONTENT[readRegion()]
   return (
@@ -243,6 +268,8 @@ export default function Product() {
           model-server error under strict validation is a block, never a skip.
         </p>
       </Band>
+
+      {product.identifiers && <Identifiers block={product.identifiers} />}
 
       {/* ───── latency ───── */}
       <Band sunken>

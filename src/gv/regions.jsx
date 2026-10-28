@@ -40,7 +40,7 @@ export const REGION_CONTENT = {
       secondaryCta: ['See the architecture', '/product'],
     },
 
-    product: { deployRegion: null },
+    product: { deployRegion: null, identifiers: null },
 
     home: {
       // the hero panel's worked example: a US SSN and an India PAN, both on the
@@ -87,6 +87,7 @@ export const REGION_CONTENT = {
          working result in your environment in weeks, not quarters. That is also
          why the pilot is eight to twelve weeks rather than two quarters.`,
       ],
+      workedPolicy: 'Does this prompt contain a customer’s account number?',
       gapsLink: 'The full list of what we haven’t done →',
       asideEyebrow: 'The Syntegreti AI spine',
       aside: [
@@ -128,7 +129,37 @@ export const REGION_CONTENT = {
       secondaryCta: ['Become a design partner', '/pilot'],
     },
 
-    product: { deployRegion: 'ap-southeast-2 (Sydney) for Australian deployments.' },
+    product: {
+      deployRegion: 'ap-southeast-2 (Sydney) for Australian deployments.',
+      /* The honest AU answer on identifiers. The fast path ships US and India
+         formats only — there is no au_pii.go. Australian formats are covered
+         the way anything organisation-specific is covered: you write the policy
+         as a plain-language question and the local model answers it in the same
+         forward pass. That mechanism is documented (website.md: "you tune
+         detection by editing the question") and Features already ships a worked
+         example in this exact shape. Do NOT turn this into a claim that the
+         pattern path recognises a TFN. */
+      identifiers: {
+        eyebrow: 'Australian identifiers',
+        title: <>Covered by the question you write, not by a <em>release</em> you wait for.</>,
+        lede: `The sub-millisecond pattern path ships US and India formats today —
+          SSN, card, PAN, GSTIN, IFSC, Aadhaar. Australian formats are not in that
+          set. You cover them the same way you cover anything specific to your own
+          organisation: write the policy as a plain-language question, and the
+          local model answers it in the same forward pass as every other policy.`,
+        policies: [
+          ['au_tfn', 'Does this prompt contain an Australian Tax File Number?'],
+          ['au_medicare', 'Does this prompt contain a Medicare number?'],
+          ['au_abn', 'Does this prompt contain a customer’s ABN or ACN?'],
+          ['au_super', 'Does this prompt contain a member’s superannuation account number?'],
+        ],
+        note: `Editing the question is the whole change — no per-client training, and
+          no data leaving your perimeter to fine-tune anything. The trade is speed:
+          the pattern path answers in under a millisecond, the question path in the
+          model pass. A deterministic pattern set for Australian formats is not in
+          the product today, and this page will say so until it is.`,
+      },
+    },
 
     home: {
       /* The AU worked example uses `email` and `bank_account`, which are the
@@ -183,6 +214,7 @@ export const REGION_CONTENT = {
       ],
       // .au's security page carries the assurance roadmap, not "what we
       // haven't done" — the link has to name what it actually reaches
+      workedPolicy: 'Does this prompt contain an Australian Tax File Number?',
       gapsLink: 'Our assurance roadmap →',
       asideEyebrow: 'The Australian entity',
       aside: [
