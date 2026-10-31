@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import SiteLayout from './components/SiteLayout'
 import GvLayout from './gv/GvLayout'
 import Home from './gv/pages/Home'
+import HomeInterview from './gv/pages/HomeInterview'
 import Product from './gv/pages/Product'
 import Features from './gv/pages/Features'
 import Benchmark from './gv/pages/Benchmark'
@@ -23,6 +24,7 @@ const TITLES = {
   '/gtm': 'GovernVeil in 90 seconds — the explainer',
   '/pilot': 'Book a design-partner pilot | GovernVeil',
   '/about': 'About | GovernVeil',
+  '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
 }
 
 // Pricing and Compare are deliberately unrouted — see src/gv/pages/Pricing.jsx
@@ -70,6 +72,8 @@ export default function App() {
     <GvLayout>
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* branch-only: the Conversational-FAQ recomposition, for comparison */}
+        <Route path="/interview" element={<HomeInterview />} />
         <Route path="/product" element={<Product />} />
         <Route path="/features" element={<Features />} />
         <Route path="/benchmark" element={<Benchmark />} />

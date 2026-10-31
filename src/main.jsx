@@ -6,6 +6,7 @@ import App from './App'
 import './site.css'
 import './gv.css'
 import './gv-almanac.css'
+import './gv-interview.css'
 
 const theme = {
   token: {

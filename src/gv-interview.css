@@ -1,0 +1,113 @@
+/* Shape 06 · Conversational FAQ — the page as an interview.
+   Hairline between pairs, the question large and the answer directly under it,
+   one idea per screen. Works under any of the three skins: every value here is
+   a token the active design already declares. */
+
+.gv .qa { border-top: 1px solid var(--border); padding: 88px 0; }
+.gv .qa:first-child { border-top: 0; }
+.gv .qa:nth-child(even) { background: var(--bg-sunken); }
+
+/* question left, answer right — the question stays a held statement rather
+   than a heading the eye skips */
+.gv .qa-in {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.gv .qa-q {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(27px, 2.9vw, 40px);
+  line-height: 1.08;
+  letter-spacing: var(--display-track);
+  margin: 0;
+  text-wrap: balance;
+  position: sticky;
+  top: 108px;
+}
+.gv .qa-hero { padding: 104px 0 112px; min-height: calc(100vh - 66px); display: grid; align-items: center; }
+.gv .qa-hero .qa-in { width: 100%; }
+.gv .qa-q-lead { font-size: clamp(34px, 4.4vw, 56px); }
+
+.gv .qa-a { display: grid; gap: 18px; max-width: 62ch; }
+.gv .qa-a > p { margin: 0; font-size: 16.5px; line-height: 1.62; color: var(--text-2); }
+.gv .qa-a > p > b { color: var(--text); }
+
+/* the one-word answer carries the weight the question set up */
+.gv .qa-a > p.qa-answer {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1;
+  letter-spacing: var(--display-track);
+  color: var(--accent) !important;
+}
+
+.gv .qa-a > p.qa-aside {
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  font-size: 14.5px;
+}
+
+.gv .qa-panel { margin-top: 4px; }
+
+/* the mechanism, behind a disclosure, so the answer stays short */
+.gv .qa-more { border-top: 1px solid var(--border); padding-top: 12px; }
+.gv .qa-more summary {
+  cursor: pointer; list-style: none;
+  font-size: 14px; font-weight: 600; color: var(--accent);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.gv .qa-more summary::-webkit-details-marker { display: none; }
+.gv .qa-more summary::after { content: "+"; font-family: var(--font-mono); }
+.gv .qa-more[open] summary::after { content: "–"; }
+.gv .qa-more-body {
+  font-size: 14.5px; line-height: 1.6; color: var(--text-2); padding-top: 12px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .gv .qa-more-body { animation: qa-open var(--dur-long, 420ms) var(--ease-out, cubic-bezier(.16,1,.3,1)); }
+  @keyframes qa-open { from { opacity: 0; transform: translateY(-4px); } }
+}
+
+/* the five verdicts as a read-down list, not five cards */
+.gv .verdict-row { display: grid; gap: 0; }
+.gv .verdict-row-item {
+  display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 16px;
+  align-items: baseline;
+  padding: 11px 0; border-bottom: 1px solid var(--border);
+  font-size: 14.5px; color: var(--text-2);
+}
+.gv .verdict-row-item:last-child { border-bottom: 0; }
+
+.gv .route-row { display: grid; gap: 0; }
+.gv .route-row > div {
+  display: grid; grid-template-columns: 136px minmax(0, 1fr); gap: 16px;
+  align-items: baseline;
+  padding: 11px 0; border-bottom: 1px solid var(--border);
+  font-size: 14.5px; color: var(--text-2);
+}
+.gv .route-row > div:last-child { border-bottom: 0; }
+.gv .route-row .mono { color: var(--accent); }
+
+/* the four figures, two of them the ones we score badly on */
+.gv .figure-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.gv .figure-row > div { border-top: 2px solid var(--accent); padding-top: 12px; display: grid; gap: 4px; }
+.gv .figure-row .figure-low { border-top-color: var(--ack); }
+.gv .figure-row b {
+  font-family: var(--font-display); font-weight: var(--display-weight);
+  font-size: 26px; line-height: 1; letter-spacing: -0.02em; color: var(--text);
+}
+.gv .figure-row span { font-size: 13px; color: var(--text-3); line-height: 1.4; }
+
+@media (max-width: 980px) {
+  .gv .qa-in { grid-template-columns: 1fr; gap: 24px; }
+  .gv .qa-q { position: static; }
+  .gv .qa { padding: 64px 0; }
+  .gv .figure-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .gv .verdict-row-item,
+  .gv .route-row > div { grid-template-columns: 1fr; gap: 6px; }
+}
