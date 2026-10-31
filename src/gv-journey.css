@@ -1,0 +1,98 @@
+/* The request journey — a replay of a recorded run.
+   Two columns: the cases you can pick, and the request travelling. Every value
+   on screen comes from the fixture; nothing animates that did not happen. */
+
+.gv .jr { border-top: 1px solid var(--border); padding: 72px 0 88px; }
+.gv .jr-in {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.gv .jr-h {
+  font-family: var(--font-display); font-weight: var(--display-weight);
+  font-size: 17px; letter-spacing: var(--display-track);
+  margin: 0 0 14px; color: var(--text-3);
+}
+.gv .jr-list { display: grid; gap: 0; position: sticky; top: 96px; }
+
+.gv .jr-case {
+  display: grid; gap: 6px; text-align: left;
+  font: inherit; cursor: pointer;
+  background: none; border: 0;
+  border-top: 1px solid var(--border);
+  padding: 14px 12px 14px 0;
+  transition: background .15s var(--step), padding .15s var(--step);
+}
+.gv .jr-case:last-child { border-bottom: 1px solid var(--border); }
+.gv .jr-case:hover { background: var(--surface); padding-left: 10px; }
+.gv .jr-case.is-on {
+  background: var(--surface); padding-left: 10px;
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+.gv .jr-case-t {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-3);
+  letter-spacing: .04em;
+}
+.gv .jr-case-p {
+  font-size: 14px; line-height: 1.45; color: var(--text);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.gv .jr-case-m { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.gv .jr-case-m .mono { font-size: 11.5px; color: var(--text-3); }
+.gv .jr-wrong {
+  font-size: 11px; color: var(--block);
+  border: 1px solid color-mix(in srgb, var(--block) 35%, transparent);
+  border-radius: 2px; padding: 1px 6px;
+}
+
+/* the run */
+.gv .jr-run { display: grid; gap: 20px; min-width: 0; }
+.gv .jr-prompt pre { white-space: pre-wrap; word-break: break-word; }
+.gv .jr-prompt .panel-head .mono { font-size: 10.5px; }
+
+.gv .jr-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.gv .jr-step {
+  display: grid; grid-template-columns: 34px 190px minmax(0, 1fr); gap: 16px;
+  align-items: baseline;
+  padding: 11px 12px 11px 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0.32;
+  transition: opacity .22s var(--step), background .22s var(--step);
+}
+.gv .jr-step.is-on { opacity: 1; }
+.gv .jr-step.is-decider {
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 var(--accent);
+  padding-left: 10px;
+}
+.gv .jr-n { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+.gv .jr-t { font-size: 14.5px; font-weight: 600; color: var(--text); }
+.gv .jr-w { font-size: 13.5px; color: var(--text-2); line-height: 1.45; }
+.gv .jr-step.is-decider .jr-w { color: var(--text); font-weight: 600; }
+
+.gv .jr-out {
+  display: grid; gap: 14px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .3s var(--step), transform .3s var(--step);
+}
+.gv .jr-out.is-on { opacity: 1; transform: none; }
+.gv .jr-note {
+  border-left: 2px solid var(--block);
+  padding-left: 16px; font-size: 14px; color: var(--text-2); max-width: 70ch;
+}
+.gv .jr-note b { color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gv .jr-step, .gv .jr-out, .gv .jr-case { transition: none; }
+  .gv .jr-out { opacity: 1; transform: none; }
+}
+
+@media (max-width: 980px) {
+  .gv .jr-in { grid-template-columns: 1fr; gap: 28px; }
+  .gv .jr-list { position: static; }
+  .gv .jr-step { grid-template-columns: 30px minmax(0, 1fr); gap: 10px 12px; }
+  .gv .jr-w { grid-column: 2; }
+}

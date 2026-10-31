@@ -6,6 +6,7 @@ import Home from './gv/pages/Home'
 import HomeInterview from './gv/pages/HomeInterview'
 import SecurityInterview from './gv/pages/SecurityInterview'
 import ProductFlow from './gv/pages/ProductFlow'
+import Journey from './gv/pages/Journey'
 import Product from './gv/pages/Product'
 import Features from './gv/pages/Features'
 import Benchmark from './gv/pages/Benchmark'
@@ -29,6 +30,8 @@ const TITLES = {
   '/v2': 'GovernVeil: self-hosted AI data-egress control and evidence',
   '/v2/security': 'Security & residency | GovernVeil',
   '/v2/product': 'How GovernVeil works',
+  '/v2/journey': 'Watch one request travel the gateway | GovernVeil',
+  '/interview/journey': 'Watch one request travel the gateway | GovernVeil',
   '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
   '/interview/security': 'Security & residency | GovernVeil',
   '/interview/product': 'How GovernVeil works',
@@ -85,6 +88,8 @@ export default function App() {
         <Route path="/v2" element={<HomeInterview />} />
         <Route path="/v2/security" element={<SecurityInterview />} />
         <Route path="/v2/product" element={<ProductFlow />} />
+        <Route path="/v2/journey" element={<Journey />} />
+        <Route path="/interview/journey" element={<Journey />} />
         {/* the paths these were first shown at — a renamed preview URL that
             silently falls through to the old page is worse than no rename */}
         <Route path="/interview" element={<HomeInterview />} />
