@@ -200,10 +200,7 @@ entry    #4187 · signed · prev 9f2c…e41a`}</pre>
           ))}
         </div>
 
-        <div
-          className="card"
-          style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 28, alignItems: 'center' }}
-        >
+        <div className="card card-split">
           <Tag k="mask" style={{ fontSize: 12 }}>A123456(7) ⇄ A563710(2)</Tag>
           <p style={{ margin: 0 }}>
             <b>Reversible masking</b> <Tag k="optin">opt-in · off by default</Tag>
