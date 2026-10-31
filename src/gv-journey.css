@@ -96,3 +96,65 @@
   .gv .jr-step { grid-template-columns: 30px minmax(0, 1fr); gap: 10px 12px; }
   .gv .jr-w { grid-column: 2; }
 }
+
+/* ---- MCP: three points where an agent is judged ----------------------- */
+
+.gv .mcp { border-top: 1px solid var(--border); padding: 72px 0 88px; }
+
+.gv .mcp-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 2px solid var(--border-strong); }
+.gv .mcp-tab {
+  font: inherit; cursor: pointer; background: none; border: 0;
+  display: grid; gap: 3px; text-align: left;
+  padding: 12px 22px 14px 0; margin-right: 26px;
+  color: var(--text-3);
+  border-bottom: 2px solid transparent; margin-bottom: -2px;
+  transition: color .15s var(--step), border-color .15s var(--step);
+}
+.gv .mcp-tab .mono { font-size: 11.5px; }
+.gv .mcp-tab span:last-child { font-size: 16px; font-weight: 600; }
+.gv .mcp-tab:hover { color: var(--text-2); }
+.gv .mcp-tab.is-on { color: var(--text); border-bottom-color: var(--accent); }
+
+.gv .mcp-blurb {
+  margin: 22px 0 28px; max-width: 68ch;
+  font-size: 16px; line-height: 1.6; color: var(--text-2);
+}
+
+.gv .mcp-rows { display: grid; gap: 0; }
+.gv .mcp-row { border-top: 1px solid var(--border); padding: 20px 0 18px; }
+.gv .mcp-row:last-child { border-bottom: 1px solid var(--border); }
+
+.gv .mcp-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.gv .mcp-tool { font-size: 14px; font-weight: 500; color: var(--text); }
+.gv .mcp-row.is-bad .mcp-tool { color: var(--block); }
+.gv .mcp-cat { font-size: 13px; color: var(--text-3); margin-right: auto; }
+
+.gv .mcp-body { display: grid; gap: 8px; margin-bottom: 12px; max-width: 86ch; }
+.gv .mcp-k { font-size: 12.5px; color: var(--text-3); }
+.gv .mcp-quote {
+  margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--text-2);
+  border-left: 2px solid var(--border-strong); padding-left: 14px;
+}
+.gv .mcp-quote.is-bad { border-left-color: var(--block); color: var(--text); }
+.gv .mcp-pre {
+  margin: 0; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.55;
+  background: var(--panel-bg); color: var(--panel-text);
+  padding: 12px 14px; border-radius: var(--r-sm);
+  white-space: pre-wrap; word-break: break-word;
+}
+.gv .mcp-what { margin: 0; font-size: 13.5px; color: var(--text-3); }
+.gv .mcp-row.is-bad .mcp-what { color: var(--text-2); }
+
+.gv .mcp-more {
+  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+  background: none; border: 0; padding: 0; color: var(--accent);
+}
+.gv .mcp-rec { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 12px 0 0; }
+.gv .mcp-rec > div { display: flex; gap: 8px; align-items: baseline; }
+.gv .mcp-rec dt { font-size: 12px; color: var(--text-3); }
+.gv .mcp-rec dd { margin: 0; font-size: 12.5px; color: var(--text-2); }
+
+@media (max-width: 720px) {
+  .gv .mcp-tab { margin-right: 16px; padding-right: 10px; }
+  .gv .mcp-tab span:last-child { font-size: 14.5px; }
+}
