@@ -264,7 +264,11 @@ html[data-gv] body {
 .gv .dim { color: var(--text-3); }
 .gv .small { font-size: 14px; line-height: 1.55; }
 .gv .tiny { font-size: 12.5px; line-height: 1.5; }
-.gv .mono { font-family: var(--font-mono); }
+/* site.css carries an unscoped `.mono { font-size: 13px }` for the antd pages,
+   and it reaches in here — inline mono was pinned to 13px even inside a 42px
+   heading. Sizing relative to context both fixes that and is what inline mono
+   wants anyway. */
+.gv .mono { font-family: var(--font-mono); font-size: 0.92em; }
 .gv p { margin: 0 0 16px; }
 .gv p:last-child { margin-bottom: 0; }
 
