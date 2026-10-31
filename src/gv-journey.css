@@ -185,7 +185,10 @@
   gap: 40px; align-items: start;
 }
 
-.gv .dx-list { display: grid; gap: 0; max-height: 72vh; overflow-y: auto; }
+/* No inner scroll container. 92 rows is long, but a scroll box inside a
+   scrolling page fights the reader, and the filter chips are the right way to
+   shorten the list. The record card is sticky, so it stays in view. */
+.gv .dx-list { display: grid; gap: 0; }
 .gv .dx-item {
   font: inherit; text-align: left; cursor: pointer; background: none; border: 0;
   border-top: 1px solid var(--border);
@@ -242,6 +245,5 @@
 
 @media (max-width: 980px) {
   .gv .dx-in { grid-template-columns: 1fr; gap: 24px; }
-  .gv .dx-list { max-height: none; }
   .gv .dx-sticky { position: static; }
 }
