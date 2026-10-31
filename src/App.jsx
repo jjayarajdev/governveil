@@ -9,6 +9,7 @@ import ProductFlow from './gv/pages/ProductFlow'
 import Journey from './gv/pages/Journey'
 import Mcp from './gv/pages/Mcp'
 import Decisions from './gv/pages/Decisions'
+import Platform from './gv/pages/Platform'
 import Product from './gv/pages/Product'
 import Features from './gv/pages/Features'
 import Benchmark from './gv/pages/Benchmark'
@@ -38,6 +39,9 @@ const TITLES = {
   '/interview/mcp': 'Governing an agent’s tool calls | GovernVeil',
   '/v2/decisions': 'Why was this request refused? | GovernVeil',
   '/interview/decisions': 'Why was this request refused? | GovernVeil',
+  '/platform': 'GovernVeil — see it work',
+  '/interview/platform': 'GovernVeil — see it work',
+  '/v2/platform': 'GovernVeil — see it work',
   '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
   '/interview/security': 'Security & residency | GovernVeil',
   '/interview/product': 'How GovernVeil works',
@@ -100,6 +104,9 @@ export default function App() {
         <Route path="/interview/mcp" element={<Mcp />} />
         <Route path="/v2/decisions" element={<Decisions />} />
         <Route path="/interview/decisions" element={<Decisions />} />
+        <Route path="/platform" element={<Platform />} />
+        <Route path="/interview/platform" element={<Platform />} />
+        <Route path="/v2/platform" element={<Platform />} />
         {/* the paths these were first shown at — a renamed preview URL that
             silently falls through to the old page is worse than no rename */}
         <Route path="/interview" element={<HomeInterview />} />

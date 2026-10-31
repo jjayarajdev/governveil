@@ -75,20 +75,26 @@ export default function GvLayout({ children }) {
   const { nav, ctaLabel, entity } = REGION_CONTENT[readRegion()]
   const { pathname } = useLocation()
 
-  /* Branch-only. Inside the /v2 preview the nav must point at the recomposed
-     pages, or the first click drops you back onto the old site and the whole
-     thing looks like it vanished. Pages not recomposed yet keep their
-     original target and are marked, so it is obvious where the preview ends. */
+  /* Branch-only. Inside the preview the nav becomes the experience's own —
+     the demonstrations are the point, and routing a visitor back to the
+     marketing pages on the first click is how the recomposition looked like it
+     had vanished the last time. */
   const previewRoot = ['/v2', '/interview'].find(
     (r) => pathname === r || pathname.startsWith(`${r}/`),
   )
   const inPreview = Boolean(previewRoot)
-  const DONE = ['/product', '/security']
-  const target = (to) => {
-    if (!inPreview) return to
-    if (to === '/') return previewRoot
-    return DONE.includes(to) ? `${previewRoot}${to}` : to
-  }
+  const PREVIEW_NAV = [
+    ['/platform', 'Overview'],
+    ['/journey', 'The request'],
+    ['/mcp', 'Agents'],
+    ['/decisions', 'Decisions'],
+    ['/product', 'How it works'],
+    ['/security', 'Security'],
+    ['', 'The questions'],
+  ]
+  const navItems = inPreview
+    ? PREVIEW_NAV.map(([to, label]) => [`${previewRoot}${to}`, label])
+    : nav
 
   // The tokens live on <html data-gv>, so the page ground and any overscroll
   // match. The attribute is removed on unmount, which is what keeps the antd
@@ -117,19 +123,12 @@ export default function GvLayout({ children }) {
 
       <header className="nav">
         <div className="nav-in">
-          <Brand to={inPreview ? previewRoot : '/'} />
+          <Brand to={inPreview ? `${previewRoot}/platform` : '/'} />
           <nav className="nav-links" aria-label="Primary">
             {/* NavLink sets aria-current="page" itself; the nav styling hangs
                 off that rather than off a class. */}
-            {nav.map(([to, label]) => (
-              <NavLink
-                key={to}
-                to={target(to)}
-                className={inPreview && !DONE.includes(to) ? 'not-yet' : undefined}
-                title={inPreview && !DONE.includes(to) ? 'not recomposed yet' : undefined}
-              >
-                {label}
-              </NavLink>
+            {navItems.map(([to, label]) => (
+              <NavLink key={to} to={to} end>{label}</NavLink>
             ))}
           </nav>
           <div className="nav-end">

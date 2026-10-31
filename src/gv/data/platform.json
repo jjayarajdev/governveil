@@ -1,0 +1,58 @@
+{
+  "_provenance": "Every figure verified against the repository on 2026-10-31. Commands in the comments below each key.",
+  "engine": {
+    "goLoc": 46676,
+    "testLoc": 16072,
+    "testFiles": 115,
+    "packages": 35,
+    "routes": 157,
+    "tables": 58,
+    "migrations": 70,
+    "_how": "find services/gateway -name '*.go' | xargs wc -l; grep HandleFunc internal/api; CREATE TABLE in services/gateway/migrations"
+  },
+  "controls": 16,
+  "assistants": 8,
+  "_assistants": "apps/extension/manifest.json host_permissions: chatgpt, claude.ai, gemini, copilot, perplexity, deepseek, grok, mistral",
+  "demos": [
+    {
+      "to": "/interview/journey",
+      "kicker": "the runtime",
+      "title": "Watch one request travel the gateway",
+      "figure": "38 of 125",
+      "figureNote": "settled before any model ran",
+      "body": "A real prompt, the eight steps it passes through, and the signed row it leaves. The obvious cases are caught in under a millisecond; the ambiguous ones cost a model pass.",
+      "source": "tests/results/judge-off-a10g.json"
+    },
+    {
+      "to": "/interview/mcp",
+      "kicker": "the agents",
+      "title": "An agent is about to call a tool",
+      "figure": "14 of 14",
+      "figureNote": "across seven categories",
+      "body": "Judged three times: when the agent discovers what exists, when it fills in the arguments, and when the server answers back. A poisoned description never reaches the list.",
+      "source": "eval/mcp/corpus.json"
+    },
+    {
+      "to": "/interview/decisions",
+      "kicker": "the evidence",
+      "title": "Why was this request refused?",
+      "figure": "10 of 92",
+      "figureNote": "are wrong, and they are all listed",
+      "body": "Every decision with the detector that fired, the control it belongs to, the latency and the request id. The ten the gateway still gets wrong are in the default list.",
+      "source": "tests/data/results-prompts.csv"
+    }
+  ],
+  "surfaces": [
+    ["/v1/*", "Applications and agents calling model APIs — one base-URL change"],
+    ["/gw/<app>", "Enterprise APIs, gated role → scope → operation before content inspection"],
+    ["/mcp/v1/*", "Every agent tool call, judged before it runs and before the agent reads the result"],
+    ["browser", "Eight public assistants, checked before the prompt leaves the page"]
+  ],
+  "notBuilt": [
+    "Multi-tenancy is not in the schema — one deployment governs one organisation",
+    "Incident notifications are a clock, not a dispatcher",
+    "No native Splunk or Sentinel emitters",
+    "In-page restore in the browser is outbound-only by design, and not planned",
+    "Reversible masking is built, tested, and off by default"
+  ]
+}
