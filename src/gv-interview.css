@@ -141,11 +141,13 @@
    reads as a scope boundary rather than an attack */
 .gv .miss-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
 .gv .miss-list li {
-  display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 12px;
-  font-size: 14.5px; color: var(--text-2); line-height: 1.5;
+  position: relative; padding-left: 26px;
+  font-size: 14.5px; color: var(--text-2); line-height: 1.55;
 }
+.gv .miss-list li b { color: var(--text); }
 .gv .miss-list li::before {
-  content: "\00d7"; color: var(--block); font-family: var(--font-mono);
+  content: "\00d7"; position: absolute; left: 4px; top: 0;
+  color: var(--block); font-family: var(--font-mono);
 }
 
 @media (max-width: 980px) {

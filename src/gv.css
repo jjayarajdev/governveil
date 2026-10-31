@@ -687,11 +687,16 @@ html[data-gv] body {
 .gv .quote-flip .arrow { font-family: var(--font-mono); color: var(--text-3); font-size: 22px; }
 
 .gv .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+/* Not a grid: a list item with more than one child puts the third one in the
+   marker column, which sets one word per line. Position the marker instead. */
 .gv .checklist li {
-  display: grid; grid-template-columns: 18px 1fr; gap: 12px;
+  position: relative; padding-left: 30px;
   font-size: 14.5px; color: var(--text-2);
 }
-.gv .checklist li::before { content: "→"; font-family: var(--font-mono); color: var(--accent); }
+.gv .checklist li::before {
+  content: "→"; position: absolute; left: 0; top: 0;
+  font-family: var(--font-mono); color: var(--accent);
+}
 .gv .checklist.no li::before { content: "×"; color: var(--block); }
 
 .gv details.acc { border-bottom: 1px solid var(--border); }
