@@ -34,7 +34,7 @@ html[data-gv] {
   --panel-border: #272B32;
   --panel-text: #E6E9EC;
   --panel-text-2: #8C929B;
-  --panel-text-3: #636A74;
+  --panel-text-3: #7B828D;   /* 4.9:1 on the panel ground; #636A74 was 3.5:1 */
 }
 
 /* B — light editorial. The default: no attribute value, or an explicit light. */

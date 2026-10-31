@@ -1,0 +1,174 @@
+/* Hallmark · shape: kept · genre: editorial · theme: Almanac (deal 1/3, seed
+ * self-hosted-data-egress-control-evidence-6f9c·dbeb58e0·2026-10-31·r0) · redesign: restyle
+ * hero: kept · nav: kept · footer: kept · imagery: the product · signature: two rule weights and mono figures on a printed sheet
+ * axes: mid/grotesk-sans/chromatic-magenta · posture: restrained · contrast: pass · fold: kept · v2.0.0 */
+/* Hallmark · pre-emit critique: P2 H2 E1 S2 R1 V2 · weakest: E, the hero keeps its
+ * five blocks because the content is the user's and a restyle does not cut copy. */
+
+/* Scoped, not :root. Hallmark's own base.css sets html/body/h1/p bare, which
+   would restyle the antd Learn and GTM pages — the one thing gv.css exists to
+   prevent. Floor rule 1 allows "a declared theme block"; this is it.
+
+   The accent stays GovernVeil blue. redesign.md: a brand the project names in
+   its own tokens stays at every depth. Almanac's magenta is replaced at the
+   same weight — the theme's authority is its rules and numerals, not colour,
+   so a quiet accent is on-theme. */
+
+html[data-gv][data-design="almanac"] {
+  --color-paper:   oklch(84% 0.012 245);
+  --color-paper-2: oklch(81% 0.012 245);
+  --color-paper-3: oklch(77% 0.012 245);
+  --color-sheet:   oklch(93.5% 0.008 245);
+  --color-ink:     oklch(16% 0.020 245);
+  --color-ink-2:   oklch(24% 0.018 245);
+  --color-muted:   oklch(38% 0.016 245);
+  --color-rule:    oklch(73% 0.013 240);
+  --color-rule-2:  oklch(32% 0.018 240);
+
+  /* mapped onto the names the components already use */
+  --bg: var(--color-paper);
+  --bg-sunken: var(--color-paper-2);
+  --surface: var(--color-sheet);
+  --surface-2: var(--color-paper-2);
+  --border: var(--color-rule);
+  --border-strong: var(--color-rule-2);
+  --text: var(--color-ink);
+  --text-2: var(--color-ink-2);
+  --text-3: var(--color-muted);
+
+  --accent: oklch(42% 0.170 264);        /* GovernVeil blue, Almanac weight */
+  --accent-2: oklch(34% 0.150 264);
+  --accent-ink: oklch(97% 0.006 245);
+  --accent-soft: oklch(42% 0.170 264 / 0.08);
+  --accent-line: oklch(42% 0.170 264 / 0.35);
+  --hair: oklch(16% 0.020 245 / 0.10);
+
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Newsreader", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --display-weight: 600;
+  --display-track: -0.02em;
+  --display-leading: 1.05;
+  --em-style: italic;
+  --em-weight: 400;
+
+  /* square corners, no shadow: depth is a rule and a paper step */
+  --r: 0px;
+  --r-sm: 2px;
+  --shadow: none;
+  --rule-hair: 1px;
+  --rule-bar: 2px;
+}
+
+/* ---- type: grotesk sets structure, the serif reads ---------------------- */
+
+[data-design="almanac"] .gv { font-family: var(--font-body); line-height: 1.55; }
+[data-design="almanac"] .gv .h-display { line-height: 0.95; letter-spacing: -0.035em; }
+[data-design="almanac"] .gv .h-section,
+[data-design="almanac"] .gv .h-sub { line-height: 1.05; }
+[data-design="almanac"] .gv .btn,
+[data-design="almanac"] .gv .nav-links,
+[data-design="almanac"] .gv .brand,
+[data-design="almanac"] .gv .stat-l,
+[data-design="almanac"] .gv .strip-item b { font-family: var(--font-sans); }
+
+/* Labels, captions, table heads and meta: Newsreader a step smaller, sentence
+   case, never mono, never tracked. Covers Floor 9 and the theme at once. */
+[data-design="almanac"] .gv .eyebrow,
+[data-design="almanac"] .gv thead th,
+[data-design="almanac"] .gv .kv-row dt,
+[data-design="almanac"] .gv .footer h4,
+[data-design="almanac"] .gv .panel-label,
+[data-design="almanac"] .gv .panel-head,
+[data-design="almanac"] .gv .panel-foot {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-sm, 0.875rem);
+  letter-spacing: normal;
+  text-transform: none;
+}
+/* the panel keeps its dark ground in this theme too, so its labels take the
+   panel's own scale — --text-3 is a dark slate and vanished against it */
+[data-design="almanac"] .gv .panel-label { color: var(--panel-text-3); }
+[data-design="almanac"] .gv .panel-head,
+[data-design="almanac"] .gv .panel-foot { color: var(--panel-text-2); }
+[data-design="almanac"] .gv .eyebrow::before { display: none; }   /* no decorative dot */
+[data-design="almanac"] .gv .eyebrow { gap: 0; margin-bottom: 14px; }
+[data-design="almanac"] .gv .panel-label { font-size: 0.8125rem; }
+
+/* Figures in mono, lined to the decimal. Mono sets numerals and nothing else. */
+[data-design="almanac"] .gv .stat-n,
+[data-design="almanac"] .gv td.num,
+[data-design="almanac"] .gv th.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+/* ---- surfaces: rules and a paper step, never a boxed card -------------- */
+
+[data-design="almanac"] .gv .card {
+  background: none;
+  border: 0;
+  border-top: var(--rule-bar) solid var(--color-rule-2);
+  border-radius: 0;
+  padding: 18px 0 0;
+  box-shadow: none;
+}
+[data-design="almanac"] .gv .card-num { border-top: var(--rule-bar) solid var(--accent); }
+[data-design="almanac"] .gv .card-split { border-top: var(--rule-bar) solid var(--color-rule-2); }
+
+/* the sheet: the product's own pages and tables sit on a pale stock */
+[data-design="almanac"] .gv .tablewrap,
+[data-design="almanac"] .gv .shot {
+  background: var(--color-sheet);
+  border: 0;
+  border-top: var(--rule-bar) solid var(--color-rule-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-design="almanac"] .gv thead th { background: none; border-bottom: var(--rule-bar) solid var(--color-rule-2); }
+[data-design="almanac"] .gv tbody tr:nth-child(even) { background: oklch(84% 0.012 245 / 0.35); }
+[data-design="almanac"] .gv th,
+[data-design="almanac"] .gv td { border-bottom: var(--rule-hair) solid var(--color-rule); }
+
+/* one ink band, not a field of colour */
+[data-design="almanac"] .gv .band-sunken { background: var(--color-paper-2); }
+[data-design="almanac"] .gv .cta { background: var(--color-ink); color: var(--color-sheet); }
+[data-design="almanac"] .gv .cta p { color: oklch(93.5% 0.008 245 / 0.78); }
+[data-design="almanac"] .gv .cta .btn-ghost { color: var(--color-sheet); border-color: oklch(93.5% 0.008 245 / 0.4); }
+
+/* controls: 2px at most, no pill */
+[data-design="almanac"] .gv .btn { border-radius: 2px; font-weight: 600; }
+[data-design="almanac"] .gv .btn:hover { transform: none; }
+[data-design="almanac"] .gv .pill,
+[data-design="almanac"] .gv .tag,
+[data-design="almanac"] .gv .theme-toggle { border-radius: 2px; }
+[data-design="almanac"] .gv .tag {
+  font-family: var(--font-body); font-weight: 500;
+  text-transform: none; letter-spacing: normal; font-size: 0.8125rem;
+}
+[data-design="almanac"] .gv .pill {
+  font-family: var(--font-body); text-transform: none; letter-spacing: normal;
+}
+[data-design="almanac"] .gv .pill::before { display: none; }
+
+/* the dark artifact panel keeps its ground but takes the theme's corners */
+[data-design="almanac"] .gv .panel { border-radius: 0; box-shadow: none; border-top: var(--rule-bar) solid var(--color-rule-2); }
+
+/* the hero's dotted ground is ornament; Almanac's authority is its rules */
+[data-design="almanac"] .gv .hero::before { display: none; }
+
+/* The verdict palette is part of the product's vocabulary, so it stays a
+   five-colour system — but the light-variant inks were mixed for warm paper
+   (#F3EFE6) and sit at 2.7-3.7:1 on Almanac's slate. Restated at the same
+   hues, dark enough to pass on this stock. */
+html[data-gv][data-design="almanac"] {
+  --ok:    oklch(41% 0.120 150); --ok-bg:    oklch(41% 0.120 150 / 0.10);
+  --flag:  oklch(41% 0.150 300); --flag-bg:  oklch(41% 0.150 300 / 0.10);
+  --mask:  oklch(41% 0.120 250); --mask-bg:  oklch(41% 0.120 250 / 0.10);
+  --ack:   oklch(41% 0.100 70);  --ack-bg:   oklch(41% 0.100 70 / 0.12);
+  --block: oklch(42% 0.160 27);  --block-bg: oklch(42% 0.160 27 / 0.10);
+}

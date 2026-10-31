@@ -79,7 +79,15 @@ export default function GvLayout({ children }) {
   // Learn and GTM pages out of this stylesheet entirely.
   useEffect(() => {
     document.documentElement.setAttribute('data-gv', variant)
-    return () => document.documentElement.removeAttribute('data-gv')
+    // local A/B only: ?design=almanac flips to the Hallmark restyle so the two
+    // can be compared without a rebuild. Not a shipping feature.
+    const design = /[?&]design=([a-z-]+)/.exec(window.location.search + window.location.hash)
+    if (design) document.documentElement.setAttribute('data-design', design[1])
+    else document.documentElement.removeAttribute('data-design')
+    return () => {
+      document.documentElement.removeAttribute('data-gv')
+      document.documentElement.removeAttribute('data-design')
+    }
   }, [variant])
 
   const choose = (v) => {

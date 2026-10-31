@@ -5,6 +5,7 @@ import { ConfigProvider } from 'antd'
 import App from './App'
 import './site.css'
 import './gv.css'
+import './gv-almanac.css'
 
 const theme = {
   token: {
