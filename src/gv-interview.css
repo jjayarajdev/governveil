@@ -5,7 +5,7 @@
 
 .gv .qa { border-top: 1px solid var(--border); padding: 88px 0; }
 .gv .qa:first-child { border-top: 0; }
-.gv .qa:nth-child(even) { background: var(--bg-sunken); }
+.gv .act + .qa { background: var(--bg); }
 
 /* question left, answer right — the question stays a held statement rather
    than a heading the eye skips */
@@ -27,9 +27,9 @@
   position: sticky;
   top: 108px;
 }
-.gv .qa-hero { padding: 104px 0 112px; min-height: calc(100vh - 66px); display: grid; align-items: center; }
-.gv .qa-hero .qa-in { width: 100%; }
-.gv .qa-q-lead { font-size: clamp(34px, 4.4vw, 56px); }
+.gv .qa-hero { padding: 92px 0 100px; }
+.gv .qa-hero .qa-in { align-items: center; }
+.gv .qa-q-lead { font-size: clamp(40px, 5.6vw, 76px); line-height: 0.98; }
 
 .gv .qa-a { display: grid; gap: 18px; max-width: 62ch; }
 .gv .qa-a > p { margin: 0; font-size: 16.5px; line-height: 1.62; color: var(--text-2); }
@@ -110,4 +110,43 @@
 @media (max-width: 560px) {
   .gv .verdict-row-item,
   .gv .route-row > div { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* the acts: a chapter marker, so the interview reads as an arc rather than a
+   list. Not a section of its own — it belongs to the pair that follows. */
+.gv .act {
+  border-top: 2px solid var(--border-strong);
+  background: var(--bg-sunken);
+  padding: 96px 0 92px;
+}
+.gv .act + .qa { border-top: 0; }
+.gv .act-in {
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px; align-items: center;
+}
+.gv .act-n {
+  font-family: var(--font-display); font-weight: var(--display-weight);
+  font-size: clamp(56px, 7vw, 96px); line-height: 0.82;
+  letter-spacing: -0.04em; color: var(--accent);
+}
+.gv .act-t {
+  font-family: var(--font-display); font-weight: var(--display-weight);
+  font-size: clamp(28px, 3.2vw, 44px); line-height: 1.05;
+  letter-spacing: var(--display-track); margin: 0; text-wrap: balance;
+}
+
+/* what a product next to this one does not do — a list of absences, so it
+   reads as a scope boundary rather than an attack */
+.gv .miss-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.gv .miss-list li {
+  display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 12px;
+  font-size: 14.5px; color: var(--text-2); line-height: 1.5;
+}
+.gv .miss-list li::before {
+  content: "\00d7"; color: var(--block); font-family: var(--font-mono);
+}
+
+@media (max-width: 980px) {
+  .gv .act-in { grid-template-columns: 1fr; gap: 12px; }
+  .gv .act { padding: 64px 0 60px; }
 }
