@@ -136,9 +136,22 @@ html[data-gv] body {
 .gv a { color: inherit; text-decoration: none; }
 .gv ::selection { background: var(--accent); color: var(--accent-ink); }
 
+/* The ring was --accent, which is drawn over an --accent-filled button and
+   measured 2.13:1 against it. A ring has to clear 3:1 against whatever is
+   behind it, and a primary button is the hardest case — so the ring is ink
+   with a paper halo, which holds on a button, on paper and on the dark panel
+   alike. */
+/* The ring was --accent drawn over an --accent-filled button: 2.13:1 against
+   it. A ring must clear 3:1 against the surface it sits on, and this site has
+   three such surfaces — paper, the dark artifact panel, and (in the Almanac
+   skins) an ink CTA band. So the ring is a token each of them sets. */
+.gv { --ring: var(--text); --ring-halo: var(--bg); }
+.gv .panel { --ring: var(--panel-text); --ring-halo: var(--panel-bg); }
+
 .gv :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ring-halo);
   border-radius: 3px;
 }
 

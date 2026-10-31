@@ -4,6 +4,8 @@ import SiteLayout from './components/SiteLayout'
 import GvLayout from './gv/GvLayout'
 import Home from './gv/pages/Home'
 import HomeInterview from './gv/pages/HomeInterview'
+import SecurityInterview from './gv/pages/SecurityInterview'
+import ProductFlow from './gv/pages/ProductFlow'
 import Product from './gv/pages/Product'
 import Features from './gv/pages/Features'
 import Benchmark from './gv/pages/Benchmark'
@@ -24,7 +26,9 @@ const TITLES = {
   '/gtm': 'GovernVeil in 90 seconds — the explainer',
   '/pilot': 'Book a design-partner pilot | GovernVeil',
   '/about': 'About | GovernVeil',
-  '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
+  '/v2': 'GovernVeil: self-hosted AI data-egress control and evidence',
+  '/v2/security': 'Security & residency | GovernVeil',
+  '/v2/product': 'How GovernVeil works',
 }
 
 // Pricing and Compare are deliberately unrouted — see src/gv/pages/Pricing.jsx
@@ -73,7 +77,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* branch-only: the Conversational-FAQ recomposition, for comparison */}
-        <Route path="/interview" element={<HomeInterview />} />
+        {/* branch-only: the recomposition. Shapes differ by page on purpose —
+            Home and Security are interviews, Product is a narrative workflow. */}
+        <Route path="/v2" element={<HomeInterview />} />
+        <Route path="/v2/security" element={<SecurityInterview />} />
+        <Route path="/v2/product" element={<ProductFlow />} />
         <Route path="/product" element={<Product />} />
         <Route path="/features" element={<Features />} />
         <Route path="/benchmark" element={<Benchmark />} />

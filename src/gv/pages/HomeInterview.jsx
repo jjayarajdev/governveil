@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Shot } from '../../components/figma'
 import { Tag } from '../bits'
+import { Act, Pair } from '../interview'
 import { readRegion } from '../../region'
 import { REGION_CONTENT } from '../regions'
 
@@ -11,40 +12,6 @@ import { REGION_CONTENT } from '../regions'
    give it an arc: what you have, how it works, what you can check, what we
    have not done. The mechanism sits behind a disclosure so the answer stays
    short and the depth is still a click away. */
-
-function Act({ n, title, children }) {
-  return (
-    <>
-      <div className="act">
-        <div className="wrap act-in">
-          <span className="act-n">{n}</span>
-          <h2 className="act-t">{title}</h2>
-        </div>
-      </div>
-      {children}
-    </>
-  )
-}
-
-function Pair({ q, children, more, link }) {
-  return (
-    <section className="qa">
-      <div className="wrap qa-in">
-        <h3 className="qa-q">{q}</h3>
-        <div className="qa-a">
-          {children}
-          {more && (
-            <details className="qa-more">
-              <summary>The mechanism</summary>
-              <div className="qa-more-body">{more}</div>
-            </details>
-          )}
-          {link && <p><Link className="link" to={link[1]}>{link[0]}</Link></p>}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 export default function HomeInterview() {
   const { pilot, home } = REGION_CONTENT[readRegion()]
