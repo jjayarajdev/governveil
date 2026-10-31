@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { readVariant, storeVariant } from './variant'
 import { readRegion } from '../region'
 import { REGION_CONTENT } from './regions'
@@ -15,9 +15,9 @@ const FOOTER = [
   ]],
 ]
 
-export function Brand() {
+export function Brand({ to = '/' }) {
   return (
-    <Link className="brand" to="/">
+    <Link className="brand" to={to}>
       <span className="brand-mark"><span /></span>
       <span className="brand-name">Govern<i>Veil</i></span>
     </Link>
@@ -73,6 +73,22 @@ function Themer({ variant, onChange }) {
 export default function GvLayout({ children }) {
   const [variant, setVariant] = useState(readVariant)
   const { nav, ctaLabel, entity } = REGION_CONTENT[readRegion()]
+  const { pathname } = useLocation()
+
+  /* Branch-only. Inside the /v2 preview the nav must point at the recomposed
+     pages, or the first click drops you back onto the old site and the whole
+     thing looks like it vanished. Pages not recomposed yet keep their
+     original target and are marked, so it is obvious where the preview ends. */
+  const previewRoot = ['/v2', '/interview'].find(
+    (r) => pathname === r || pathname.startsWith(`${r}/`),
+  )
+  const inPreview = Boolean(previewRoot)
+  const DONE = ['/product', '/security']
+  const target = (to) => {
+    if (!inPreview) return to
+    if (to === '/') return previewRoot
+    return DONE.includes(to) ? `${previewRoot}${to}` : to
+  }
 
   // The tokens live on <html data-gv>, so the page ground and any overscroll
   // match. The attribute is removed on unmount, which is what keeps the antd
@@ -101,12 +117,19 @@ export default function GvLayout({ children }) {
 
       <header className="nav">
         <div className="nav-in">
-          <Brand />
+          <Brand to={inPreview ? previewRoot : '/'} />
           <nav className="nav-links" aria-label="Primary">
             {/* NavLink sets aria-current="page" itself; the nav styling hangs
                 off that rather than off a class. */}
             {nav.map(([to, label]) => (
-              <NavLink key={to} to={to}>{label}</NavLink>
+              <NavLink
+                key={to}
+                to={target(to)}
+                className={inPreview && !DONE.includes(to) ? 'not-yet' : undefined}
+                title={inPreview && !DONE.includes(to) ? 'not recomposed yet' : undefined}
+              >
+                {label}
+              </NavLink>
             ))}
           </nav>
           <div className="nav-end">

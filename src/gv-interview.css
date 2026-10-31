@@ -201,3 +201,7 @@
   .gv .flow-body { padding-bottom: 38px; }
   .gv .flow { padding: 64px 0; }
 }
+
+/* preview only: a nav item whose page has not been recomposed yet */
+.gv .nav-links a.not-yet { opacity: 0.45; }
+.gv .nav-links a.not-yet:hover { opacity: 0.8; }

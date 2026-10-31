@@ -29,6 +29,9 @@ const TITLES = {
   '/v2': 'GovernVeil: self-hosted AI data-egress control and evidence',
   '/v2/security': 'Security & residency | GovernVeil',
   '/v2/product': 'How GovernVeil works',
+  '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
+  '/interview/security': 'Security & residency | GovernVeil',
+  '/interview/product': 'How GovernVeil works',
 }
 
 // Pricing and Compare are deliberately unrouted — see src/gv/pages/Pricing.jsx
@@ -82,6 +85,11 @@ export default function App() {
         <Route path="/v2" element={<HomeInterview />} />
         <Route path="/v2/security" element={<SecurityInterview />} />
         <Route path="/v2/product" element={<ProductFlow />} />
+        {/* the paths these were first shown at — a renamed preview URL that
+            silently falls through to the old page is worse than no rename */}
+        <Route path="/interview" element={<HomeInterview />} />
+        <Route path="/interview/security" element={<SecurityInterview />} />
+        <Route path="/interview/product" element={<ProductFlow />} />
         <Route path="/product" element={<Product />} />
         <Route path="/features" element={<Features />} />
         <Route path="/benchmark" element={<Benchmark />} />
