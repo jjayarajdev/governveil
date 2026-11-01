@@ -36,6 +36,16 @@ const NAV = [
   ['/about', 'About'],
 ]
 
+/* Each design page sets its own .h1x, .h2x and .pair — the hero sizes differ
+   by page on purpose (96px on home, 72 on pilot, 120 on runtime). Those rules
+   are scoped to `.v3.p-<page>` in the stylesheet, so the root has to carry the
+   page's key or every page inherits whichever definition came last. */
+const PAGE_KEY = {
+  '/': 'home', '/platform': 'platform', '/product': 'product', '/mcp': 'mcp',
+  '/guard': 'guard', '/security': 'security', '/benchmark': 'benchmark',
+  '/pilot': 'pilot', '/about': 'about',
+}
+
 export default function Shell({ children }) {
   const [mega, setMega] = useState(false)
   const { pathname } = useLocation()
@@ -56,7 +66,7 @@ export default function Shell({ children }) {
   }, [mega])
 
   return (
-    <div className="v3">
+    <div className={`v3 p-${PAGE_KEY[pathname] || 'home'}`}>
       <a className="skip" href="#main">Skip to content</a>
 
       {/* The published miss. Real: DOC-ACCURACY-REPORT.md row of 2026-09-23 —
