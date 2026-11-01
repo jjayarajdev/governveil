@@ -35,21 +35,21 @@
     {
       "to": "/interview/decisions",
       "kicker": "the evidence",
-      "title": "Why was this request refused?",
-      "figure": "10 of 92",
-      "figureNote": "are wrong, and they are all listed",
-      "body": "Every decision with the detector that fired, the control it belongs to, the latency and the request id. The ten the gateway still gets wrong are in the default list.",
+      "title": "What happened, and can you prove it?",
+      "figure": "19 of 92",
+      "figureNote": "went back to a person instead of a flat block",
+      "body": "Every decision with the detector that fired, the control it serves and the request id an auditor would quote — each one read back from the ledger with the chain verified.",
       "source": "tests/data/results-prompts.csv"
     }
   ],
   "surfaces": [
     [
       "/v1/*",
-      "Applications and agents calling model APIs \u2014 one base-URL change"
+      "Applications and agents calling model APIs — one base-URL change"
     ],
     [
       "/gw/<app>",
-      "Enterprise APIs, gated role \u2192 scope \u2192 operation before content inspection"
+      "Enterprise APIs, gated role → scope → operation before content inspection"
     ],
     [
       "/mcp/v1/*",

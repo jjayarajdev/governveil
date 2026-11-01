@@ -203,7 +203,7 @@ request_id  ${c.requestId}`}</pre>
               traffic looks like — it is what the detector was asked to sort.
             </p>
             <p>
-              <Link className="link" to="/benchmark">The full benchmark, with the weak rows</Link>
+              <Link className="link" to="/benchmark">The full benchmark, policy by policy</Link>
             </p>
           </div>
         </div>
