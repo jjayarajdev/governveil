@@ -158,7 +158,9 @@ export default function Security() {
             providers, and nothing else. You set it explicitly.
           </Row>
           <Row k="egress_enforced">
-            Whether the allow-list is enforced or merely observed. Enforce it and the
+            Whether the allow-list is denied or merely observed and logged. It ships in
+            observe mode and you turn enforcement on (<span className="mono">
+            EGRESS_ENFORCE</span>) — the panel above shows it on. Enforce it and the
             guarantee stops depending on the absence of evidence.
           </Row>
           <Row k="non_allowlisted_egress_attempts">

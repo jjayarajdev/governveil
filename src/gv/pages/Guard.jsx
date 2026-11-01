@@ -21,9 +21,13 @@ import { REGION_CONTENT } from '../regions'
    the product does; they are not handed the evidence and asked to conclude.
 
    Every number here is already published elsewhere on this site and traces to
-   a committed run. The model-path latency is the measured A10G median (202 ms,
-   journey.json) — not the ~135-170 ms the older pages quote, which does not
-   match that run. */
+   a committed run.
+
+   On latency: 135-170 ms is a single request through the model with no queue
+   (docs/market/website.md, Shieldstral-1.0-3B on an A10G). The 202 ms on the
+   journey page is a different measurement — the median across the 125-case
+   judge-off run — and is labelled as such there. Do not swap one for the
+   other; they are not the same quantity. */
 
 const CAPABILITIES = [
   {
@@ -110,9 +114,10 @@ const FAQ = [
      them is on the data path.`],
   ['What does this cost in latency?',
     `Most requests never reach the model: the pattern path answers in under a
-     millisecond and a revoked credential is refused in about half of one. For the
-     requests that do escalate, the median is 202 ms on an A10G. The sizing model
-     puts 15–30 % of real traffic on that path.`],
+     millisecond and a revoked credential is refused in about half of one. A
+     request that does reach the model costs about 135–170 ms end to end on an
+     A10G, roughly 100 ms of which is the model itself. The sizing model puts
+     15–30 % of real traffic on that path.`],
   ['We already own Microsoft Purview. Why this as well?',
     `Keep it — it is a reasonable first line, and since November 2025 it blocks
      GenAI prompts inline. It covers Edge, Intune and Entra; it has no API path, so

@@ -70,7 +70,8 @@ export default function SecurityInterview() {
               providers, and nothing else
             </Row>
             <Row k="egress_enforced">
-              whether the allow-list is enforced or merely observed
+              denied, or merely observed and logged — it ships in observe mode and you
+              turn enforcement on
             </Row>
             <Row k="non_allowlisted_egress_attempts">
               the number that matters. Zero is the proof
