@@ -237,8 +237,9 @@ export default function SecurityInterview() {
           <>
             <Pair q="What hasn’t the company done?">
               <ul className="miss-list">
-                <li><b>Founder-led.</b> One person currently holds every role. There is
-                  no named security officer and no on-call rotation.</li>
+                <li><b>Founder-led.</b> Security is held by the founder today. A named
+                  security lead and an on-call rota are funded in the seed plan, and we
+                  will tell you where that stands in the first call.</li>
                 <li><b>SOC 2 Type II is not started</b> with an auditor. It is funded in
                   the seed plan. We will not give you a date we cannot hold.</li>
                 <li><b>No external penetration test</b> has been commissioned, and there
@@ -249,27 +250,34 @@ export default function SecurityInterview() {
             <Pair
               q="And in the engineering?"
               link={['What ships, and what doesn’t', '/features']}
+              more={
+                <>Everything on the data path is gated on every commit: build, vet, race
+                tests, the full suite, the admin-write harness against a real database,
+                the extension end-to-end scenarios and the console tests. The hygiene
+                around it — dependency and vulnerability scanning, static analysis —
+                runs but is not yet enforced on every push, and that is the next thing
+                in the gate.</>
+              }
             >
               <ul className="miss-list">
-                <li><b>Hygiene tooling is not yet in the commit gate.</b> Dependency,
-                  vulnerability and static analysis run but are not enforced on every
-                  push, and the Postgres image is not digest-pinned. Everything that
-                  protects the data path <em>is</em> gated.</li>
                 <li><b>Multi-tenancy is not in the schema.</b> No organisation column,
-                  no row-level security.</li>
-                <li><b>Cost attribution is wired but switched off</b> until the
-                  model-registry prices are connected.</li>
-                <li><b>On a laptop-class GPU the context and intent judge is off.</b> If
-                  you evaluate on a MacBook, you are evaluating a reduced ladder.</li>
+                  no row-level security. One deployment governs one organisation.</li>
                 <li><b>Incident notifications are a clock, not a dispatcher.</b></li>
-                <li><b>Known detection gaps are open and listed</b> in the repository’s
-                  open-issues register, including a French-language injection bypass.</li>
+                <li><b>Cost attribution is wired but switched off</b> until the
+                  model-registry prices are connected — a deliberate default, but the
+                  cost column reads zero until you turn it on.</li>
               </ul>
+              <p>
+                We keep an open register of every gap the tests have surfaced and not
+                yet closed, scored against sixteen engineering dimensions with the
+                command that produced each score. <b>Design partners get the full
+                register and the known-issues log under NDA</b> — itemised, dated, with
+                what closing each one takes.
+              </p>
               <p className="qa-aside">
-                The risks we would raise ourselves if we were on your side of the table:
-                a platform vendor bundling this into a licence you already own; the
-                model providers absorbing enforcement into their own APIs; and team
-                depth at our current size. They are all real.
+                Evaluate on the reference A10G build. On a laptop-class GPU the context
+                and intent judge is off, so a MacBook runs a reduced ladder and will
+                understate what the detector does.
               </p>
             </Pair>
           </>

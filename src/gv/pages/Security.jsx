@@ -318,39 +318,49 @@ export default function Security() {
           revision, and we would rather you raised it in the first call than the sixth.
         </p>
 
-        <h3 className="h-sub" style={{ marginTop: 36 }}>Company</h3>
+        <h3 className="h-sub" style={{ marginTop: 36 }}>The company</h3>
         <ul className="checklist no">
-          <li><span><b>Founder-led.</b> One person currently holds every role. There is
-            no named security officer and no on-call rotation.</span></li>
+          <li><span><b>Founder-led.</b> Security is held by the founder today. A named
+            security lead and an on-call rota are funded in the seed plan, and we will
+            tell you where that stands in the first call.</span></li>
           <li><span><b>SOC 2 Type II is not started</b> with an auditor. It is funded in
             the seed plan. We will not give you a date we cannot hold.</span></li>
           <li><span><b>No external penetration test</b> has been commissioned, and there
             is no IRAP assessment.</span></li>
         </ul>
 
-        <h3 className="h-sub" style={{ marginTop: 32 }}>Engineering</h3>
+        <h3 className="h-sub" style={{ marginTop: 32 }}>The product</h3>
         <ul className="checklist no">
-          <li><span><b>Hygiene tooling is not yet in the commit gate.</b> Dependency
-            scanning, vulnerability scanning and static analysis run, but are not
-            enforced on every push, and the Postgres image is not digest-pinned.
-            Everything that protects the data path <em>is</em> gated: build, vet, race
-            tests, the full suite, the admin-write harness against a real database, the
-            extension end-to-end scenarios and the console tests.</span></li>
           <li><span><b>Multi-tenancy is not in the schema.</b> No organisation column,
             no row-level security. One deployment governs one organisation.</span></li>
-          <li><span><b>Cost attribution is wired but switched off</b> until the
-            model-registry prices are connected. That is a deliberate default, not a
-            defect, but it means the cost column reads zero until you turn it on.</span></li>
-          <li><span><b>On a laptop-class GPU the context and intent judge is off.</b> It
-            is on with the reference A10G pilot build. If you evaluate on a MacBook, you
-            are evaluating a reduced ladder.</span></li>
           <li><span><b>Incident notifications are a clock, not a dispatcher.</b> Dormancy
             deadlines are tracked and raised in the API; there is no email, SMS or
             webhook sender yet.</span></li>
-          <li><span><b>Known detection gaps are open and listed</b> in the repository’s
-            open-issues register — including a French-language injection bypass. We
-            track them in public rather than closing them quietly.</span></li>
+          <li><span><b>Cost attribution is wired but switched off</b> until the
+            model-registry prices are connected. A deliberate default, not a defect —
+            but the cost column reads zero until you turn it on.</span></li>
         </ul>
+
+        <h3 className="h-sub" style={{ marginTop: 32 }}>The engineering, and the register</h3>
+        <p className="muted">
+          Everything on the data path is gated on every commit: build, vet, race tests,
+          the full suite, the admin-write harness against a real database, the extension
+          end-to-end scenarios and the console tests. The hygiene around it — dependency
+          and vulnerability scanning, static analysis — runs but is not yet enforced on
+          every push, and that is the next thing in the gate.
+        </p>
+        <p className="muted">
+          We keep an open register of every gap the tests have surfaced and not yet
+          closed, scored against sixteen engineering dimensions with the command that
+          produced each score. <b>Design partners get the full register and the
+          known-issues log under NDA</b> — itemised, dated, with what closing each one
+          takes. We would rather hand it to you than have you find it.
+        </p>
+        <p className="note" style={{ marginTop: 28 }}>
+          Evaluate on the reference A10G build. On a laptop-class GPU the context and
+          intent judge is off, so a MacBook runs a reduced ladder and will understate
+          what the detector does.
+        </p>
 
         <p className="note" style={{ marginTop: 34 }}>
           The risks we would raise ourselves if we were on your side of the table: a

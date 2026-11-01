@@ -88,7 +88,7 @@ export const REGION_CONTENT = {
          why the pilot is eight to twelve weeks rather than two quarters.`,
       ],
       workedPolicy: 'Does this prompt contain a customer’s account number?',
-      gapsLink: 'The full list of what we haven’t done →',
+      gapsLink: 'What we have not done, named →',
       asideEyebrow: 'The Syntegreti AI spine',
       aside: [
         ['operate', 'Round-the-clock operations on what ships'],
