@@ -83,11 +83,13 @@ export default function Journey() {
                   aria-label={`${x.typeLabel}, ${x.verdict}${x.correct ? '' : ', over-caught'}: ${x.prompt}`}
                 >
                   <span className="jr-chip-t">{x.typeLabel}</span>
-                  <Tag k={VERDICT_TONE[x.verdict]}>{x.verdict}</Tag>
-                  {/* Restored: the old vertical list flagged the one case the
-                      gateway got wrong. Dropping it hid the only disagreement
-                      in the set behind a click. */}
-                  {!x.correct && <span className="jr-ovc">over-caught</span>}
+                  <span className="jr-chip-v">
+                    <Tag k={VERDICT_TONE[x.verdict]}>{x.verdict}</Tag>
+                    {/* The old vertical list flagged the one case the gateway
+                        got wrong; dropping it hid the only disagreement in the
+                        set behind a click. */}
+                    {!x.correct && <span className="jr-ovc">over-caught</span>}
+                  </span>
                 </button>
               ))}
             </div>

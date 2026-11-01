@@ -13,17 +13,28 @@
   font-size: 17px; letter-spacing: var(--display-track);
   margin: 0 0 14px; color: var(--text-3);
 }
-.gv .jr-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+/* A uniform 4-across grid, not a wrapped flex row. Eight labels of very
+   different lengths wrapped into six-then-two with every chip a different
+   width, which read as a ragged pile rather than a set of choices. Equal
+   cells also line the verdict tags up into columns, so the shape of the set
+   — one allow, one mask, six block — is visible at a glance. */
+.gv .jr-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 
 .gv .jr-chip {
-  font: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 9px;
-  padding: 7px 11px; background: none; color: var(--text-2);
-  border: 1px solid var(--border); border-radius: 3px;
+  font: inherit; cursor: pointer; text-align: left;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 11px 13px 12px; background: none; color: var(--text-2);
+  border: 1px solid var(--border); border-radius: 3px; min-width: 0;
   transition: border-color .15s var(--step), color .15s var(--step);
 }
 .gv .jr-chip:hover { border-color: var(--border-strong); color: var(--text); }
 .gv .jr-chip.is-on { border-color: var(--accent); color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); }
-.gv .jr-chip-t { font-size: 13px; }
+.gv .jr-chip-t {
+  font-size: 12.5px; line-height: 1.3; color: var(--text-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%;
+}
+.gv .jr-chip.is-on .jr-chip-t { color: var(--text); }
+.gv .jr-chip-v { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
 .gv .jr-ovc {
   font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em;
   color: var(--block); border: 1px solid var(--block); border-radius: 2px;
@@ -54,7 +65,11 @@
 
 @media (max-width: 980px) {
   .gv .jr-in { grid-template-columns: 1fr; gap: 28px; }
-
+  .gv .jr-chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .gv .jr-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .gv .jr-chip { padding: 9px 11px 10px; }
 }
 
 /* ---- MCP: three points where an agent is judged ----------------------- */
@@ -117,113 +132,6 @@
 @media (max-width: 720px) {
   .gv .mcp-tab { margin-right: 16px; padding-right: 10px; }
   .gv .mcp-tab span:last-child { font-size: 14.5px; }
-}
-
-/* ---- the decision explorer -------------------------------------------- */
-
-.gv .dx { border-top: 1px solid var(--border); padding: 64px 0 88px; }
-
-.gv .dx-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-.gv .dx-f {
-  font: inherit; font-size: 13.5px; cursor: pointer;
-  background: none; color: var(--text-2);
-  border: 1px solid var(--border); border-radius: 2px;
-  padding: 7px 13px;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: border-color .15s var(--step), color .15s var(--step);
-}
-.gv .dx-f:hover { border-color: var(--border-strong); color: var(--text); }
-.gv .dx-f.is-on { border-color: var(--accent); color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); }
-.gv .dx-f-n {
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--block); border: 1px solid color-mix(in srgb, var(--block) 35%, transparent);
-  border-radius: 2px; padding: 0 5px;
-}
-
-.gv .dx-in {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
-  gap: 40px; align-items: start;
-}
-
-/* No inner scroll container. 92 rows is long, but a scroll box inside a
-   scrolling page fights the reader, and the filter chips are the right way to
-   shorten the list. The record card is sticky, so it stays in view. */
-.gv .dx-list { display: grid; gap: 0; }
-.gv .dx-item {
-  font: inherit; text-align: left; cursor: pointer; background: none; border: 0;
-  border-top: 1px solid var(--border);
-  display: grid; grid-template-columns: 184px minmax(0, 1fr) auto;
-  gap: 16px; align-items: center;
-  padding: 11px 10px 11px 0;
-  transition: background .15s var(--step), padding .15s var(--step);
-}
-.gv .dx-item:last-child { border-bottom: 1px solid var(--border); }
-.gv .dx-item:hover { background: var(--surface); padding-left: 8px; }
-.gv .dx-item.is-on { background: var(--surface); padding-left: 8px; box-shadow: inset 2px 0 0 var(--accent); }
-.gv .dx-subj {
-  display: flex; align-items: center; gap: 7px; font-size: 12px;
-  color: var(--text-3); letter-spacing: .01em;
-}
-.gv .dx-ev.is-near { color: var(--text-3); border-color: var(--border-strong); }
-.gv .dx-ev {
-  font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em;
-  color: var(--block); border: 1px solid var(--block); border-radius: 2px;
-  padding: 1px 5px; white-space: nowrap; flex: none;
-}
-.gv .dx-p {
-  font-size: 13.5px; line-height: 1.4; color: var(--text);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-
-.gv .dx-sticky { position: sticky; top: 96px; }
-.gv .dx-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-top: 2px solid var(--accent); border-radius: 0;
-  padding: 20px;
-}
-.gv .dx-card-f {
-  display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between;
-  margin-top: 18px; padding-top: 13px; border-top: 1px solid var(--border);
-  font-size: 12px; color: var(--text-3);
-}
-.gv .dx-card-h {
-  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-  font-size: 12px; color: var(--text-3); margin-bottom: 12px;
-}
-.gv .dx-prompt {
-  margin: 0 0 16px; font-size: 15px; line-height: 1.5; color: var(--text);
-}
-.gv .dx-kv { display: grid; gap: 0; margin: 0; }
-.gv .dx-kv > div {
-  display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 12px;
-  padding: 8px 0; border-top: 1px solid var(--border); align-items: baseline;
-}
-.gv .dx-kv dt { font-size: 12.5px; color: var(--text-3); }
-.gv .dx-kv dd { margin: 0; font-size: 13.5px; color: var(--text-2); }
-.gv .dx-kv .dim { color: var(--text-3); }
-.gv .dx-rid { font-size: 11.5px; word-break: break-all; }
-.gv .dx-det {
-  display: inline-block; font-size: 11.5px; color: var(--text);
-  background: var(--surface-2); border: 1px solid var(--border);
-  border-radius: 2px; padding: 1px 6px; margin: 0 5px 4px 0;
-}
-.gv .dx-note {
-  margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--text-2);
-  border-left: 2px solid var(--block); padding-left: 13px;
-}
-.gv .dx-note { border-left-color: var(--border-strong); color: var(--text-3); }
-
-@media (max-width: 980px) {
-  .gv .dx-in { grid-template-columns: 1fr; gap: 24px; }
-  .gv .dx-sticky { position: static; }
-  .gv .dx-item {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas: "subj verdict" "prompt prompt";
-    gap: 6px 12px; align-items: start;
-  }
-  .gv .dx-subj { grid-area: subj; }
-  .gv .dx-p { grid-area: prompt; white-space: normal; }
-  .gv .dx-item > .tag { grid-area: verdict; }
 }
 
 /* ---- the platform entry point ----------------------------------------- */
