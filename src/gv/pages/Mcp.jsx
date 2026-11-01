@@ -4,6 +4,7 @@ import { Tag } from '../bits'
 import { Opening } from '../interview'
 import { Track } from '../pipeline'
 import { Bars } from '../capture'
+import { ToolCallPath } from '../diagrams'
 import data from '../data/mcp.json'
 
 /* Agent tool calls, governed at three points.
@@ -65,6 +66,12 @@ export default function Mcp() {
 
       <section className="mcp">
         <div className="wrap">
+          {/* Full width, not inside the answer column: a 920-unit viewBox
+              scaled into a ~480px column renders its labels at about seven
+              pixels. The diagram sets up the three points; the track below
+              then lets you walk them. */}
+          <ToolCallPath />
+
           {/* The three points are a sequence, not a tab bar: same track the
               request pipeline uses, three stages instead of eight. */}
           <Track stages={PHASES} mode="pick" active={pi} onPick={pickPhase} />

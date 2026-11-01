@@ -1,5 +1,6 @@
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, KV, Row, SectionHead } from '../bits'
+import { HashChain } from '../diagrams'
 import { readRegion } from '../../region'
 import { ASSURANCE_LOOP, COMPLIANCE, LOOP_AUDIENCES } from '../regions'
 
@@ -212,6 +213,7 @@ export default function Security() {
       {/* ───── the ledger ───── */}
       <Band>
         <SectionHead eyebrow="The ledger" title="Append-only, and provably so." />
+        <div style={{ marginBottom: 40 }}><HashChain /></div>
         <div className="grid cols-2 gap-wide" style={{ alignItems: 'start' }}>
           <ul className="checklist">
             <li><span>Each row carries the SHA-256 hash of the row before it, with a

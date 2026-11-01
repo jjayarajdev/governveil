@@ -239,3 +239,27 @@
   .gv .arch-v-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .gv .arch-row { grid-template-columns: 1fr; gap: 3px; }
 }
+
+/* ── SVG diagrams ─────────────────────────────────────────────────────────
+   Type inside the SVG is set in the page's own faces and tokens, so a
+   diagram reads as part of the page rather than as pasted artwork. Sizes
+   are in user units (the viewBox scales them), which is why they look large
+   next to the CSS values elsewhere in this file. */
+.gv .dg { margin: 0; }
+.gv .dg-svg {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--border); border-radius: 4px;
+  background: var(--bg);
+}
+.gv .dg-svg line { stroke-width: 1.5; }
+.gv .dg-t { font-family: var(--font-display); font-size: 21px; fill: var(--text); }
+.gv .dg-s { font-size: 13px; fill: var(--text-3); }
+.gv .dg-c { font-family: var(--font-mono); font-size: 13px; fill: var(--text-2); }
+.gv .dg-m { font-size: 12.5px; fill: var(--text-3); font-style: italic; }
+.gv .dg-n { font-family: var(--font-mono); font-size: 13px; fill: var(--accent); font-weight: 600; }
+.gv .dg figcaption {
+  margin-top: 14px; font-size: 13.5px; line-height: 1.55; color: var(--text-3);
+}
+.gv .dg figcaption b { color: var(--text-2); font-weight: 600; }
+.gv .qa-a .dg { margin: 26px 0 8px; }
+.gv .mcp .dg { margin-bottom: 34px; }
