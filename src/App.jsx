@@ -3,6 +3,8 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import SiteLayout from './components/SiteLayout'
 import GvLayout from './gv/GvLayout'
 import HomeInterview from './gv/pages/HomeInterview'
+import HomeV3 from './gv/v3/Home'
+import ShellV3 from './gv/v3/Shell'
 import SecurityInterview from './gv/pages/SecurityInterview'
 import ProductFlow from './gv/pages/ProductFlow'
 import Journey from './gv/pages/Journey'
@@ -68,6 +70,17 @@ export default function App() {
           <Route path="*" element={<Learn />} />
         </Routes>
       </SiteLayout>
+    )
+  }
+
+  /* Iteration 3 renders its own shell and its own design system. It must
+     NOT go inside GvLayout: that brings the old nav and footer, the `.gv`
+     tokens, and the lattice pseudo-elements, which paint over it. */
+  if (pathname === '/v3' || pathname.startsWith('/v3/')) {
+    return (
+      <Routes>
+        <Route path="/v3" element={<ShellV3><HomeV3 /></ShellV3>} />
+      </Routes>
     )
   }
 

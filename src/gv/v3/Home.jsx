@@ -1,0 +1,203 @@
+import { Link } from 'react-router-dom'
+
+/* Home — iteration 3, ported from site/index.html of the design hand-off.
+
+   The markup is the design's, converted mechanically (class -> className,
+   style strings -> objects, internal .html hrefs -> <Link to>). Paths are
+   remapped to the routes already public: how-it-works.html -> /product,
+   agents.html -> /mcp, runtime.html -> /guard, trust.html -> /security.
+
+   The design-partner quote the README lists as [NAME · ROLE · COMPANY] is
+   NOT here. There are no design partners yet — that is what the pilot page
+   is for — and an invented testimonial is the one thing this site cannot
+   afford to carry. The section is dropped until there is a real one. */
+
+export default function HomeV3() {
+  return (
+    <>
+      <main id="main">
+      <section className="wrap" style={{"paddingTop": 96, "paddingBottom": 56, "textAlign": "center"}}>
+      <p className="eb" style={{"marginBottom": 24}}>Self-hosted AI data-egress control &amp; evidence</p>
+      <h1 className="h1x" style={{"fontSize": 108, "maxWidth": 1120, "margin": "0 auto"}}>The evidence layer for enterprise AI<span style={{"color": "var(--acc)"}}>.</span></h1>
+      <p className="lead" style={{"fontSize": 21, "maxWidth": 800, "margin": "32px auto 0"}}>GovernVeil governs every AI action in your own environment — prompts, agents, tool calls, documents and model responses. Sensitive values are caught before they leave, every decision is signed to a tamper-evident ledger, and nothing leaves your perimeter for a verdict.</p>
+      <form aria-label="Book a pilot" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "center", "gap": 10, "maxWidth": 560, "margin": "36px auto 0"}}>
+      <label htmlFor="h3-email" className="sr">Work email</label>
+      <input id="h3-email" type="email" placeholder="you@company.com" autocomplete="email" style={{"flex": "1 1 280px", "minHeight": 52}} />
+      <button type="button" className="btnp">Book a pilot</button>
+      </form>
+      <p className="mono" style={{"fontSize": 12, "color": "#4A534E", "margin": "14px 0 0"}}>Paid 8–12-week design-partner pilot · 3–5 slots per cohort</p>
+      </section>
+
+      <section className="wrap" style={{"paddingBottom": 64}}>
+      <figure aria-label="A prompt with real identifiers, what the provider receives, and the signed ledger entry" style={{"margin": "0", "background": "#0E1411", "color": "#E6ECE7", "borderRadius": 16, "overflow": "hidden"}}>
+      <div className="mono" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-between", "alignItems": "center", "gap": 12, "padding": "16px 24px", "borderBottom": "1px solid #2A332E", "fontSize": 13, "color": "#9DA8A1"}}><span>POST /v1/chat/completions · decided in your network</span><span className="v v-mask">MASK</span></div>
+      <div className="g2" style={{"gap": "0"}}>
+      <div style={{"padding": 32, "borderRight": "1px solid #2A332E"}}><div className="rl" style={{"color": "#9DA8A1", "marginBottom": 14}}>YOUR APP SENDS</div><div className="mono" style={{"fontSize": 18, "lineHeight": "1.7"}}>"Draft a letter to the customer, SSN <span style={{"background": "#4A1C17", "color": "#FFB4A8", "padding": "2px 5px", "borderRadius": 3}}>123-45-6789</span>, PAN <span style={{"background": "#4A1C17", "color": "#FFB4A8", "padding": "2px 5px", "borderRadius": 3}}>ABCDE1234F</span>"</div></div>
+      <div style={{"padding": 32}}><div className="rl" style={{"color": "#9DA8A1", "marginBottom": 14}}>THE PROVIDER SEES</div><div className="mono" style={{"fontSize": 18, "lineHeight": "1.7"}}>"Draft a letter to the customer, SSN <span style={{"background": "#2C3A5C", "color": "#BBD0FF", "padding": "2px 5px", "borderRadius": 3}}>[SSN_1]</span>, PAN <span style={{"background": "#2C3A5C", "color": "#BBD0FF", "padding": "2px 5px", "borderRadius": 3}}>[PAN_1]</span>"</div></div>
+      </div>
+      <figcaption className="mono" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-between", "gap": 12, "padding": "16px 24px", "borderTop": "1px solid #2A332E", "fontSize": 13, "color": "#9DA8A1"}}><span>entry #4187 · signed · prev 9f2c…e41a</span><span>The work still happens. Nothing real reaches the provider.</span><span style={{"color": "#7FD6A4"}}>✓ written before the reply</span></figcaption>
+      </figure>
+      </section>
+
+      <section className="wrap" style={{"paddingBottom": 80}}>
+      <div style={{"borderTop": "1px solid #D3D8D3", "borderBottom": "1px solid #D3D8D3", "padding": "22px 0", "display": "flex", "flexWrap": "wrap", "alignItems": "center", "justifyContent": "center", "gap": "12px 36px"}}>
+      <span className="rl">GOVERNS TRAFFIC FROM AND TO</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>Claude Code</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>Codex</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>Your own agents</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>MCP servers</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>OpenAI API</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>Anthropic API</span>
+      <span style={{"fontSize": 17, "fontWeight": "700", "color": "#2E3632"}}>8 public assistants</span>
+      </div>
+      </section>
+
+      <section className="wrap pair" style={{"paddingBottom": 104}}>
+      <div>
+      <p className="q">Q · Where can our data leave?</p>
+      <p className="eb" style={{"color": "#B83E0E", "marginBottom": 12}}>01 · Govern</p>
+      <h2 className="h2x">Catch it before it leaves.</h2>
+      <p className="lead" style={{"margin": "18px 0 36px", "maxWidth": 620}}>One policy chain on every path a prompt can take out of your organisation — decided by a model inside your network.</p>
+      <div className="g2" style={{"gap": "32px 40px"}}>
+      <div className="ft"><b>Apps and agents</b><p>Change one base URL. Sensitive spans are masked before the prompt reaches the provider, and the work still happens.</p></div>
+      <div className="ft"><b>Enterprise APIs</b><p>Role → scope → operation, checked at the reverse proxy before content inspection runs. Denials are ledgered.</p></div>
+      <div className="ft"><b>Agent tool calls</b><p>Judged at discovery, before the call runs and before the agent reads the result. Poisoned tools never reach the list.</p></div>
+      <div className="ft"><b>Public assistants</b><p>A browser extension covers eight assistants your people already use — mask, block or ask them to acknowledge. No MDM.</p></div>
+      </div>
+      </div>
+      <aside className="card" aria-label="Proof">
+      <div className="rl">RECEIPT · COMBINED-1000 CORPUS</div>
+      <div className="big" style={{"fontSize": 88}}>93.25 %</div>
+      <div className="cap">recall at 100 % precision — and 0 of 200 benign prompts wrongly caught.</div>
+      <div className="code" style={{"marginTop": 24}}>$ make benchmark <span style={{"color": "#9DA8A1"}}># no network required</span></div>
+      <div className="rf"><span>run 2026-09-02 · local stack</span><Link to="/benchmark" style={{"fontWeight": "600", "fontFamily": "'Schibsted Grotesk', sans-serif", "fontSize": 14}}>Re-run it →</Link></div>
+      </aside>
+      </section>
+
+      <section className="dk">
+      <div className="wrap sec">
+      <div className="pair" style={{"alignItems": "end"}}>
+      <div>
+      <p className="q">Q · So it blocks things. Doesn’t that just move the problem?</p>
+      <h2 className="h2x">Five verdicts, not two.</h2>
+      </div>
+      <p className="body" style={{"margin": "0"}}>It would, which is why blocking is one outcome of five. A person with a legitimate reason gets <b style={{"color": "#F4F5F2"}}>acknowledge</b>: here are the real values we found, untick what the assistant doesn’t need, say why the rest must go, and send. The name, the reason and the field types are signed to the ledger — the values are not.</p>
+      </div>
+      <div className="g5" style={{"marginTop": 48}}>
+      <div style={{"border": "1px solid #2A332E", "borderRadius": 10, "padding": 20}}><span className="v v-allow">ALLOW</span><div style={{"fontSize": 16, "color": "#F4F5F2", "fontWeight": "600", "marginTop": 16}}>Forwarded unchanged</div><div style={{"fontSize": 14, "color": "#9DA8A1", "marginTop": 6}}>Nothing sensitive found</div></div>
+      <div style={{"border": "1px solid #2A332E", "borderRadius": 10, "padding": 20}}><span className="v v-flag">FLAG</span><div style={{"fontSize": 16, "color": "#F4F5F2", "fontWeight": "600", "marginTop": 16}}>Sent, and raised</div><div style={{"fontSize": 14, "color": "#9DA8A1", "marginTop": 6}}>Goes to the review queue</div></div>
+      <div style={{"border": "2px solid var(--acc)", "borderRadius": 10, "padding": 19}}><span className="v v-mask">MASK</span><div style={{"fontSize": 16, "color": "#F4F5F2", "fontWeight": "600", "marginTop": 16}}>Spans replaced</div><div style={{"fontSize": 14, "color": "#9DA8A1", "marginTop": 6}}>The rest is forwarded — the work happens</div></div>
+      <div style={{"border": "1px solid #2A332E", "borderRadius": 10, "padding": 20}}><span className="v v-ack">ACKNOWLEDGE</span><div style={{"fontSize": 16, "color": "#F4F5F2", "fontWeight": "600", "marginTop": 16}}>Back to the person</div><div style={{"fontSize": 14, "color": "#9DA8A1", "marginTop": 6}}>They minimise, and say why</div></div>
+      <div style={{"border": "1px solid #2A332E", "borderRadius": 10, "padding": 20}}><span className="v v-block">BLOCK</span><div style={{"fontSize": 16, "color": "#F4F5F2", "fontWeight": "600", "marginTop": 16}}>Cancelled</div><div style={{"fontSize": 14, "color": "#9DA8A1", "marginTop": 6}}>And ledgered, with the reason</div></div>
+      </div>
+      <p className="mono" style={{"fontSize": 13, "color": "#9DA8A1", "margin": "24px 0 0"}}>Exactly one outcome per request · the most restrictive wins · where no person is at the keyboard, acknowledge degrades to mask</p>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec pair">
+      <div>
+      <p className="q">Q · What does my auditor actually get?</p>
+      <p className="eb" style={{"color": "#B83E0E", "marginBottom": 12}}>02 · Prove</p>
+      <h2 className="h2x">Prove it, without us in the room.</h2>
+      <p className="lead" style={{"margin": "18px 0 36px", "maxWidth": 620}}>Evidence your auditor can verify independently of the running gateway — computed from the record, never from a ticked box.</p>
+      <div className="g2" style={{"gap": "32px 40px"}}>
+      <div className="ft"><b>Signed ledger</b><p>Every decision hash-chained before the caller gets its reply. A standalone verifier walks the chain from the command line.</p></div>
+      <div className="ft"><b>No-egress attestation</b><p>A signed statement your security team pulls themselves, naming the local inference endpoint and the egress allow-list.</p></div>
+      <div className="ft"><b>Controls that are challenged</b><p>Sixteen controls, probed daily. Holding, weak, breached or untested — a column you can read.</p></div>
+      <div className="ft"><b>Changes on the chain</b><p>Who turned a control off, and when, is itself a signed row — with the before and the after.</p></div>
+      </div>
+      </div>
+      <aside className="dcard" aria-label="Proof">
+      <div className="rl" style={{"display": "flex", "justifyContent": "space-between", "gap": 12}}><span>RECEIPT · GET /api/v1/attestation</span><span>hmac-sha256</span></div>
+      <pre className="mono" style={{"margin": "22px 0 0", "fontSize": 14, "lineHeight": "1.9", "whiteSpace": "pre-wrap"}}>"inference_local":  <span style={{"color": "#7FD6A4"}}>true</span>{'\n'}"egress_enforced":  <span style={{"color": "#7FD6A4"}}>true</span>{'\n'}"non_allowlisted_egress_attempts":</pre>
+      <div style={{"fontSize": 128, "fontWeight": "800", "lineHeight": "0.9", "letterSpacing": "-0.05em", "color": "var(--acc)"}}>0</div>
+      <div className="rf"><span>zero is the proof</span><Link to="/security" style={{"fontWeight": "600", "fontFamily": "'Schibsted Grotesk', sans-serif", "fontSize": 14}}>Read the fields →</Link></div>
+      </aside>
+      </div>
+      </section>
+
+      <section className="dk">
+      <div className="wrap" style={{"paddingTop": 128, "paddingBottom": 128, "textAlign": "center"}}>
+      <p style={{"fontSize": 30, "lineHeight": "1.25", "fontWeight": "600", "color": "#C2CBC5", "margin": "0"}}>Where does the prompt go for a verdict?</p>
+      <p className="xl" style={{"fontSize": 176, "lineHeight": "0.9", "fontWeight": "800", "letterSpacing": "-0.06em", "margin": "18px 0 0", "color": "#F4F5F2"}}>Nowhere<span style={{"color": "var(--acc)"}}>.</span></p>
+      <p className="body" style={{"maxWidth": 760, "margin": "32px auto 0", "fontSize": 18}}>Ten of the thirteen products we verified send prompt content out to reach a verdict, several of them marketed as self-hosted. That difference is architectural, so we made it checkable.</p>
+      </div>
+      </section>
+
+      <section className="wrap sec pair" style={{"alignItems": "start"}}>
+      <div>
+      <p className="q">Q · We already own Microsoft Purview. Why this as well?</p>
+      <h2 className="h2x">Keep it. Then cover what it can’t.</h2>
+      <p className="lead" style={{"margin": "18px 0 0"}}>It is a reasonable first line. Since November 2025 it blocks GenAI prompts inline, and if your estate is entirely Edge, Intune and Entra it covers a real part of the problem.</p>
+      <p className="body" style={{"margin": "18px 0 0"}}>GovernVeil covers the paths it doesn’t: applications and agents on /v1 and /mcp, public assistants through the extension, uploaded documents swept before they reach a model — and mask instead of a hard stop.</p>
+      </div>
+      <div className="card" style={{"padding": "8px 28px"}}>
+      <div className="rl" style={{"padding": "18px 0 6px"}}>WHERE PURVIEW STOPS</div>
+      <div style={{"display": "flex", "gap": 18, "padding": "16px 0", "borderTop": "1px solid #D3D8D3", "fontSize": 16, "lineHeight": "1.5"}}><span className="mono" style={{"color": "#B83E0E", "flex": "none"}}>01</span><span>Edge, Intune and Entra only — other browsers and unmanaged devices are outside it</span></div>
+      <div style={{"display": "flex", "gap": 18, "padding": "16px 0", "borderTop": "1px solid #D3D8D3", "fontSize": 16, "lineHeight": "1.5"}}><span className="mono" style={{"color": "#B83E0E", "flex": "none"}}>02</span><span>No claude.ai coverage</span></div>
+      <div style={{"display": "flex", "gap": 18, "padding": "16px 0", "borderTop": "1px solid #D3D8D3", "fontSize": 16, "lineHeight": "1.5"}}><span className="mono" style={{"color": "#B83E0E", "flex": "none"}}>03</span><span>No redaction: the choice is allow or block, so the work stops</span></div>
+      <div style={{"display": "flex", "gap": 18, "padding": "16px 0", "borderTop": "1px solid #D3D8D3", "fontSize": 16, "lineHeight": "1.5"}}><span className="mono" style={{"color": "#B83E0E", "flex": "none"}}>04</span><span>No API path — your applications and agents are not in scope at all</span></div>
+      <div style={{"display": "flex", "gap": 18, "padding": "16px 0", "borderTop": "1px solid #D3D8D3", "fontSize": 16, "lineHeight": "1.5"}}><span className="mono" style={{"color": "#B83E0E", "flex": "none"}}>05</span><span>By its own documentation, it cannot scan files uploaded into prompts</span></div>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec">
+      <div style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-between", "alignItems": "end", "gap": 24, "marginBottom": 40}}>
+      <div><p className="q">Q · How do I know any of this is true?</p><h2 className="h2x" style={{"maxWidth": 760}}>Every number traces to something you can run.</h2></div>
+      <Link to="/benchmark" style={{"fontWeight": "600"}}>All the numbers →</Link>
+      </div>
+      <div className="g4">
+      <div className="card" style={{"padding": 24, "display": "flex", "flexDirection": "column", "gap": 10}}><span className="rl">DETECTION</span><span style={{"fontSize": 44, "fontWeight": "800", "letterSpacing": "-0.04em", "lineHeight": "1"}}>0 of 200</span><span className="cap" style={{"margin": "0"}}>benign prompts wrongly caught</span><span className="rf" style={{"marginTop": "auto"}}>make benchmark</span></div>
+      <div className="card" style={{"padding": 24, "display": "flex", "flexDirection": "column", "gap": 10}}><span className="rl">AGENTS</span><span style={{"fontSize": 44, "fontWeight": "800", "letterSpacing": "-0.04em", "lineHeight": "1"}}>14 of 14</span><span className="cap" style={{"margin": "0"}}>MCP cases across seven categories</span><span className="rf" style={{"marginTop": "auto"}}>make mcp-scorecard</span></div>
+      <div className="card" style={{"padding": 24, "display": "flex", "flexDirection": "column", "gap": 10}}><span className="rl">FAST PATH</span><span style={{"fontSize": 44, "fontWeight": "800", "letterSpacing": "-0.04em", "lineHeight": "1"}}>sub-ms</span><span className="cap" style={{"margin": "0"}}>identifiers, secrets, injection · kill switch ~0.5 ms</span><span className="rf" style={{"marginTop": "auto"}}>Go benchmark, per request</span></div>
+      <div className="card" style={{"padding": 24, "display": "flex", "flexDirection": "column", "gap": 10}}><span className="rl">MODEL PATH</span><span style={{"fontSize": 44, "fontWeight": "800", "letterSpacing": "-0.04em", "lineHeight": "1"}}>~135–170 ms</span><span className="cap" style={{"margin": "0"}}>single request, no queue · 15–30 % of traffic reaches it</span><span className="rf" style={{"marginTop": "auto"}}>A10G · g5.2xlarge</span></div>
+      </div>
+      </div>
+      </section>
+
+      <section className="wrap sec side">
+      <div><p className="eb">What’s new</p><p className="body" style={{"fontSize": 15, "color": "#4A534E", "margin": "12px 0 0"}}>The record of what we measured, changed and fixed.</p></div>
+      <div style={{"borderTop": "1px solid #0E1411"}}>
+      <Link to="/platform" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-10-31</span><span style={{"fontSize": 19, "fontWeight": "600"}}>Repository counted: 46,676 lines of Go, 157 API paths, 70 migrations</span><span aria-hidden="true">→</span></Link>
+      <Link to="/benchmark" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-09-03</span><span style={{"fontSize": 19, "fontWeight": "600"}}>Load test: ~7.4 req/s per GPU at 100 % escalation, no fail-open observed</span><span aria-hidden="true">→</span></Link>
+      <Link to="/benchmark" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-09-02</span><span style={{"fontSize": 19, "fontWeight": "600"}}>Combined-1000 benchmark run against a local stack</span><span aria-hidden="true">→</span></Link>
+      <Link to="/benchmark#miss" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-09-23</span><span style={{"fontSize": 19, "fontWeight": "600"}}>A miss we published: first-message-only inspection, fixed the same day</span><span aria-hidden="true">→</span></Link>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec side">
+      <p className="eb">Questions</p>
+      <div style={{"borderTop": "1px solid #0E1411"}}>
+      <details open={true}><summary>Who is GovernVeil for?</summary><p>Regulated enterprises — BFSI, healthcare and life sciences, global capability centres — and any organisation whose data cannot leave its perimeter for a verdict.</p></details>
+      <details><summary>How is this different from an AI gateway or DLP tool?</summary><p>The verdict is computed inside your network, there are five outcomes instead of two, and every decision is signed to a ledger your auditor can verify without us.</p></details>
+      <details><summary>What happens when something on the path breaks?</summary><p>It blocks, and says why. An unreachable policy engine, a model-server timeout or a document it cannot scan all end in a refusal with a reason on the record — never a silent allow.</p></details>
+      <details><summary>Does it need an internet connection?</summary><p>No. No outbound call is needed to reach a verdict, so the enforcement path runs air-gapped.</p></details>
+      </div>
+      </div>
+      </section>
+      </main>
+
+      <section id="pilot" className="dk">
+      <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
+      <div>
+      <span aria-hidden="true" style={{"width": 34, "height": 34, "border": "2px solid #F4F5F2", "borderRadius": 6, "boxSizing": "border-box", "display": "flex", "alignItems": "center", "justifyContent": "center"}}><span style={{"width": 12, "height": 12, "background": "var(--acc)"}}></span></span>
+      <p className="eb" style={{"marginTop": 28}}>See it in your environment</p>
+      <h2 className="h2x" style={{"marginTop": 14}}>See it catch a real prompt in week one.</h2>
+      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>A paid 8–12-week design-partner pilot — $15,000–$40,000 depending on scope. Your data, your environment, and a signed attestation that nothing else left.</p>
+      <Link to="/pilot" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": "600"}}>Pilot terms →</Link>
+      </div>
+      <form style={{"background": "#F4F5F2", "color": "#0E1411", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="hm-email">Work email</label><input id="hm-email" type="email" autocomplete="email" /></div><div><label htmlFor="hm-co">Company</label><input id="hm-co" type="text" autocomplete="organization" /></div></div>
+      <div><label htmlFor="hm-region">Region</label><select id="hm-region"><option>Select region</option><option>India</option><option>Asia-Pacific</option><option>Middle East</option><option>Europe</option><option>Australia / New Zealand</option><option>North America</option></select></div>
+      <div><label htmlFor="hm-q">What AI traffic can’t you see today?</label><textarea id="hm-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
+      <button type="button" className="btnp">Request a pilot</button>
+      <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Opens a pre-filled email. No backend, no mailing list, no tracking.</p>
+      </form>
+      </div>
+      </section>
+    </>
+  )
+}

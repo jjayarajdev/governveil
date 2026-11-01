@@ -1,0 +1,91 @@
+/* Iteration 3 — the design as supplied, ported verbatim.
+
+   Every rule below is from site/index.html of the design hand-off. Scoped
+   under `.v3` so it cannot reach the antd Learn/GTM pages, the old `.gv`
+   stylesheets, or anything else: this is a whole second design system living
+   beside the first while the port runs, not a patch on the old one.
+
+   Literal colours, not tokens, because the design is literal — it uses
+   alternating light/alt/dark bands rather than a palette swap, so there is no
+   second palette to resolve. --acc is the one knob: #FF5B1F.
+
+   Do not edit values here to "fix" a page. If something looks wrong, the port
+   of that page is wrong. */
+
+.v3 { --acc: #FF5B1F; }
+
+.v3{margin:0;background:#F4F5F2;color:#0E1411;font-family:'Schibsted Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.v3 a{color:#0E1411}
+.v3 a:hover{color:#B83E0E}
+.v3 .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.v3 .wrap{max-width:1280px;margin:0 auto;padding-left:40px;padding-right:40px;box-sizing:border-box}
+.v3 .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.v3 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.v3 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.v3 .g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.v3 .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
+.v3 .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
+.v3 .sec{padding-top:104px;padding-bottom:104px}
+.v3 .alt{background:#EBEDE8;border-top:1px solid #D3D8D3}
+.v3 .dk{background:#0E1411;color:#E6ECE7}
+.v3 .eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#4A534E;margin:0}
+.v3 .q{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;line-height:1.5;color:#B83E0E;margin:0 0 14px}
+.v3 .dk .q{color:#FF9A70}
+.v3 .dk .eb{color:#9DA8A1}
+.v3 .h1x{font-size:96px;line-height:.95;font-weight:800;letter-spacing:-.05em;margin:0}
+.v3 .h2x{font-size:50px;line-height:1.05;font-weight:700;letter-spacing:-.032em;margin:0}
+.v3 .h3x{font-size:24px;line-height:1.2;font-weight:700;margin:0}
+.v3 .lead{font-size:19px;line-height:1.55;color:#2E3632}
+.v3 .body{font-size:17px;line-height:1.6;color:#2E3632}
+.v3 .dk .h2x,.v3 .dk .h3x{color:#F4F5F2}
+.v3 .dk .lead,.v3 .dk .body{color:#C2CBC5}
+.v3 .btnp{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:6px;background:var(--acc);color:#0E1411;font:inherit;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer}
+.v3 .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box}
+.v3 .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:28px}
+.v3 .dcard{background:#0E1411;color:#E6ECE7;border-radius:12px;padding:28px}
+.v3 .rl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;color:#4A534E}
+.v3 .dcard .rl{color:#9DA8A1}
+.v3 .big{font-size:76px;font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
+.v3 .cap{font-size:15px;line-height:1.5;color:#2E3632;margin-top:8px}
+.v3 .dcard .cap{color:#C2CBC5}
+.v3 .rf{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#4A534E;border-top:1px solid #D3D8D3;margin-top:22px;padding-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.v3 .dcard .rf{color:#9DA8A1;border-top-color:#2A332E}
+.v3 .dcard .rf a{color:#F4F5F2}
+.v3 .ft{border-top:1px solid #0E1411;padding-top:16px}
+.v3 .ft b{display:block;font-size:19px}
+.v3 .ft p{font-size:16px;line-height:1.55;color:#2E3632;margin:8px 0 0}
+.v3 .code{font-family:'JetBrains Mono',ui-monospace,monospace;background:#0E1411;color:#E6ECE7;border-radius:6px;padding:12px 14px;font-size:13px}
+.v3 .v{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.06em;padding:5px 9px;border-radius:4px;display:inline-block}
+.v3 .v-allow{background:#DCEFE3;color:#145236}
+.v3 .v-flag{background:#FBEBC8;color:#6E4300}
+.v3 .v-mask{background:#DCE6FB;color:#1D3F8F}
+.v3 .v-ack{background:#EAE0F7;color:#4F2A86}
+.v3 .v-block{background:#FADAD5;color:#8E1B12}
+.v3 .skip{position:absolute;left:-9999px;top:8px}
+.v3 .skip:focus{left:16px;background:#FFFFFF;padding:10px 14px;z-index:30}
+.v3 .nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:22px;font-size:14px;font-weight:500}
+.v3 .nav-links a{text-decoration:none}
+.v3 .nav-links a[aria-current],.v3 .navbtn.on{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.v3 .navbtn{background:none;border:0;font:inherit;font-size:14px;font-weight:500;color:#0E1411;cursor:pointer;min-height:44px;padding:0;display:inline-flex;align-items:center;gap:6px}
+.v3 .mega a{display:block;text-decoration:none;padding:10px 0}
+.v3 .mega a b{font-weight:600}
+.v3 .mega a span{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#4A534E;margin-top:2px}
+.v3 .foot a{color:#E6ECE7;text-decoration:none}
+.v3 .badge{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;border:1px solid #2A332E;border-radius:4px;padding:4px 8px}
+.v3 input,.v3 select,.v3 textarea{width:100%;box-sizing:border-box;font:inherit;font-size:16px;color:#0E1411;background:#FFFFFF;border:1px solid #8A948E;border-radius:6px;padding:12px 14px;min-height:48px}
+.v3 label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.v3 details{border-bottom:1px solid #D3D8D3}
+.v3 summary{cursor:pointer;padding:22px 0;font-size:20px;font-weight:600}
+.v3 details p{font-size:17px;line-height:1.6;color:#2E3632;margin:0 0 24px;max-width:780px}
+.v3 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:960px){
+.v3 .g2,.v3 .g3,.v3 .pair,.v3 .side{grid-template-columns:minmax(0,1fr)}
+.v3 .g4,.v3 .g5{grid-template-columns:repeat(2,minmax(0,1fr))}
+.v3 .wrap{padding-left:16px;padding-right:16px}
+.v3 .h1x{font-size:52px}
+.v3 .h2x{font-size:32px}
+.v3 .big{font-size:56px}
+.v3 .xl{font-size:88px!important}
+.v3 .sec{padding-top:72px;padding-bottom:72px}
+}

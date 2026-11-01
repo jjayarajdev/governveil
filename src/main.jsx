@@ -11,6 +11,7 @@ import './gv-journey.css'
 import './gv-guard.css'
 import './gv-pipeline.css'
 import './gv-vis.css'
+import './gv-v3.css'
 
 const theme = {
   token: {
