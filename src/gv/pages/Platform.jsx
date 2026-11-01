@@ -27,8 +27,7 @@ export default function Platform() {
         </p>
         <p>
           GovernVeil sits in the path, decides in your own network, and signs what it
-          did. The three demonstrations below replay runs the product actually
-          produced, including the ones it got wrong.
+          did. The demonstrations below replay runs the product actually produced.
         </p>
       </Opening>
 
@@ -49,9 +48,9 @@ export default function Platform() {
           </div>
           <div className="wrap">
             <p className="qa-aside pf-note">
-              All three are replays of recorded runs, not live enforcement, and each
-              says so on its own page. The runs are committed to the repository; the
-              numbers on these cards are what they produced.
+              Both are replays of recorded runs, not live enforcement, and each says so
+              on its own page. The runs are committed to the repository; the numbers on
+              these cards are what they produced.
             </p>
           </div>
         </section>

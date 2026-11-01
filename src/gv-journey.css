@@ -192,17 +192,24 @@
 .gv .dx-item {
   font: inherit; text-align: left; cursor: pointer; background: none; border: 0;
   border-top: 1px solid var(--border);
-  display: grid; grid-template-columns: 52px minmax(0, 1fr) auto;
-  gap: 14px; align-items: center;
+  display: grid; grid-template-columns: 184px minmax(0, 1fr) auto;
+  gap: 16px; align-items: center;
   padding: 11px 10px 11px 0;
   transition: background .15s var(--step), padding .15s var(--step);
 }
 .gv .dx-item:last-child { border-bottom: 1px solid var(--border); }
 .gv .dx-item:hover { background: var(--surface); padding-left: 8px; }
 .gv .dx-item.is-on { background: var(--surface); padding-left: 8px; box-shadow: inset 2px 0 0 var(--accent); }
-.gv .dx-item.is-gap { box-shadow: inset 2px 0 0 var(--block); }
-.gv .dx-item.is-gap.is-on { box-shadow: inset 3px 0 0 var(--block); background: var(--surface); }
-.gv .dx-id { font-size: 11.5px; color: var(--text-3); }
+.gv .dx-subj {
+  display: flex; align-items: center; gap: 7px; font-size: 12px;
+  color: var(--text-3); letter-spacing: .01em;
+}
+.gv .dx-ev.is-near { color: var(--text-3); border-color: var(--border-strong); }
+.gv .dx-ev {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em;
+  color: var(--block); border: 1px solid var(--block); border-radius: 2px;
+  padding: 1px 5px; white-space: nowrap; flex: none;
+}
 .gv .dx-p {
   font-size: 13.5px; line-height: 1.4; color: var(--text);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -214,7 +221,11 @@
   border-top: 2px solid var(--accent); border-radius: 0;
   padding: 20px;
 }
-.gv .dx-card.is-gap { border-top-color: var(--block); }
+.gv .dx-card-f {
+  display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between;
+  margin-top: 18px; padding-top: 13px; border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-3);
+}
 .gv .dx-card-h {
   display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   font-size: 12px; color: var(--text-3); margin-bottom: 12px;
@@ -236,22 +247,32 @@
   background: var(--surface-2); border: 1px solid var(--border);
   border-radius: 2px; padding: 1px 6px; margin: 0 5px 4px 0;
 }
-.gv .dx-gap, .gv .dx-note {
+.gv .dx-note {
   margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--text-2);
   border-left: 2px solid var(--block); padding-left: 13px;
 }
 .gv .dx-note { border-left-color: var(--border-strong); color: var(--text-3); }
-.gv .dx-gap b { color: var(--text); }
 
 @media (max-width: 980px) {
   .gv .dx-in { grid-template-columns: 1fr; gap: 24px; }
   .gv .dx-sticky { position: static; }
+  .gv .dx-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "subj verdict" "prompt prompt";
+    gap: 6px 12px; align-items: start;
+  }
+  .gv .dx-subj { grid-area: subj; }
+  .gv .dx-p { grid-area: prompt; white-space: normal; }
+  .gv .dx-item > .tag { grid-area: verdict; }
 }
 
 /* ---- the platform entry point ----------------------------------------- */
 
 .gv .pf { padding: 0 0 8px; }
-.gv .pf-demos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.gv .pf-demos {
+  display: grid; gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+}
 
 .gv .pf-demo {
   display: grid; align-content: start; gap: 0;

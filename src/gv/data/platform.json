@@ -31,15 +31,6 @@
       "figureNote": "across seven categories",
       "body": "Judged three times: when the agent discovers what exists, when it fills in the arguments, and when the server answers back. A poisoned description never reaches the list.",
       "source": "eval/mcp/corpus.json"
-    },
-    {
-      "to": "/interview/decisions",
-      "kicker": "the evidence",
-      "title": "What happened, and can you prove it?",
-      "figure": "19 of 92",
-      "figureNote": "went back to a person instead of a flat block",
-      "body": "Every decision with the detector that fired, the control it serves and the request id an auditor would quote — each one read back from the ledger with the chain verified.",
-      "source": "tests/data/results-prompts.csv"
     }
   ],
   "surfaces": [
