@@ -44,7 +44,7 @@ export default function SecurityInterview() {
 }`}</pre>
           </div>
           <div className="panel-foot">
-            <span>$ make attest</span><span>zero is the proof</span>
+            <span>$ make attest · enforcement on</span><span>zero is the proof</span>
           </div>
         </div>
       </Opening>

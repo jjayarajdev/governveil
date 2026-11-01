@@ -42,7 +42,10 @@ export default function HomeInterview() {
 "non_allowlisted_egress_attempts": `}<code>0</code></pre>
               </div>
               <div className="panel-foot">
-                <span>$ make attest</span><span>zero is the proof</span>
+                {/* The allow-list ships in observe mode; enforcement is a setting
+                    you turn on, so the foot says this example has it on rather
+                    than letting `true` read as the out-of-the-box state. */}
+                <span>$ make attest · enforcement on</span><span>zero is the proof</span>
               </div>
             </div>
             <div className="btn-row">
