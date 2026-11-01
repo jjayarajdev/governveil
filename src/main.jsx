@@ -10,6 +10,7 @@ import './gv-interview.css'
 import './gv-journey.css'
 import './gv-guard.css'
 import './gv-pipeline.css'
+import './gv-vis.css'
 
 const theme = {
   token: {

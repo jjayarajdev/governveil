@@ -1,0 +1,118 @@
+/* The visual layer: texture, bordered grid, framed captures, data bars.
+
+   Scoped under `.gv`; tokens only, so both palettes and both design variants
+   follow. Do not add a bare element or `:root` selector here.
+
+   The pages this was built for were type and rules only. What was missing is
+   not decoration — it is (a) the product actually appearing on screen, and
+   (b) enough structure that a section reads as a built thing rather than a
+   column of text. Colour stays out of the page ground and lives inside the
+   data, which is where it carries meaning. */
+
+/* ── hatched page margins ─────────────────────────────────────────────────
+   A 4px diagonal hatch down both edges, outside the content column. Pure
+   CSS, no asset. It only draws where there is room for it, so narrow
+   viewports lose it rather than squeezing the content. */
+@media (min-width: 1360px) {
+  .gv .band-hatch, .gv .rg-hero, .gv .pf-hero {
+    position: relative;
+  }
+  .gv .band-hatch::before, .gv .band-hatch::after,
+  .gv .rg-hero::before, .gv .rg-hero::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 56px;
+    pointer-events: none; opacity: .5;
+    background-image: repeating-linear-gradient(
+      -45deg, var(--border) 0 1px, transparent 1px 7px);
+  }
+  .gv .band-hatch::before, .gv .rg-hero::before { left: 0; }
+  .gv .band-hatch::after,  .gv .rg-hero::after  { right: 0; }
+}
+
+/* ── framed product capture ───────────────────────────────────────────────
+   Every image on this site is a screenshot of the running console, so the
+   frame is a window chrome rather than a decorative border: it says "this is
+   an application", and the caption always names what page it is. */
+.gv .cap { margin: 0; min-width: 0; }
+.gv .cap-frame {
+  border: 1px solid var(--border-strong); border-radius: 6px; overflow: hidden;
+  background: var(--surface); box-shadow: 0 1px 2px rgb(0 0 0 / .04), 0 12px 32px rgb(0 0 0 / .07);
+}
+.gv .cap-bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 9px 12px; border-bottom: 1px solid var(--border); background: var(--bg);
+}
+.gv .cap-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); flex: none; }
+.gv .cap-where {
+  margin-left: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--text-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.gv .cap-win { position: relative; overflow: hidden; }
+.gv .cap-frame img { display: block; width: 100%; height: auto; }
+/* A cropped capture is drawn larger than its window and clipped, so the
+   console renders at a size a reader can actually read. */
+.gv .cap-crop .cap-win { display: block; }
+.gv .cap-crop .cap-frame img { position: absolute; top: 0; left: 0; }
+.gv .cap figcaption {
+  margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--text-3);
+}
+.gv .cap figcaption b { color: var(--text-2); font-weight: 600; }
+
+/* A capture that runs off the right edge of its column — there is more
+   application than fits, and saying so is the point. */
+.gv .cap-bleed .cap-frame { margin-right: calc(-1 * var(--gut)); border-right: 0; border-radius: 6px 0 0 6px; }
+
+/* ── alternating feature rows ─────────────────────────────────────────────
+   Prose one side, the product the other, alternating down the page. */
+.gv .fr { display: grid; gap: 52px; }
+.gv .fr-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 52px; align-items: center;
+  padding: 52px 0; border-top: 1px solid var(--border);
+}
+.gv .fr-row:last-child { border-bottom: 1px solid var(--border); }
+.gv .fr-row.is-flip > :first-child { order: 2; }
+.gv .fr-n {
+  display: inline-block; font-family: var(--font-mono); font-size: 11.5px;
+  letter-spacing: .08em; color: var(--text-3); margin-bottom: 14px;
+}
+.gv .fr-h {
+  font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.6vw, 31px);
+  line-height: 1.15; letter-spacing: -.01em; margin: 0 0 14px; color: var(--text);
+}
+.gv .fr-p { font-size: 15.5px; line-height: 1.62; color: var(--text-2); margin: 0 0 22px; max-width: 54ch; }
+
+/* ── data bars ────────────────────────────────────────────────────────────
+   Colour belongs to the measurement, not the page. Every value here comes
+   from a committed run; the bar is the number, drawn. */
+.gv .bars { display: grid; gap: 14px; }
+.gv .bar-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; align-items: baseline; }
+.gv .bar-k { font-size: 13.5px; color: var(--text-2); }
+.gv .bar-v { font-family: var(--font-mono); font-size: 13px; color: var(--text); }
+.gv .bar-t {
+  grid-column: 1 / -1; height: 6px; border-radius: 3px;
+  background: var(--border); overflow: hidden;
+}
+.gv .bar-f { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.gv .bar-row.is-low .bar-f { background: var(--flag, var(--accent)); opacity: .75; }
+
+/* ── a figure strip ───────────────────────────────────────────────────────
+   Three or four measured numbers in a bordered band. */
+.gv .figs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+}
+.gv .figs > div { padding: 22px 24px; border-right: 1px solid var(--border); }
+.gv .figs > div:last-child { border-right: 0; }
+.gv .figs b {
+  display: block; font-family: var(--font-display); font-weight: 400;
+  font-size: 32px; line-height: 1.05; letter-spacing: -.02em; color: var(--accent);
+}
+.gv .figs span { display: block; margin-top: 7px; font-size: 13px; line-height: 1.45; color: var(--text-3); }
+
+@media (max-width: 980px) {
+  .gv .fr-row { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+  .gv .fr-row.is-flip > :first-child { order: 0; }
+  .gv .cap-bleed .cap-frame { margin-right: 0; border-right: 1px solid var(--border-strong); border-radius: 6px; }
+  .gv .figs > div { border-right: 0; border-bottom: 1px solid var(--border); }
+  .gv .figs > div:last-child { border-bottom: 0; }
+}

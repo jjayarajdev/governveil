@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Tag } from '../bits'
+import { Bars, Capture } from '../capture'
 import { readRegion } from '../../region'
 import { REGION_CONTENT } from '../regions'
 
@@ -31,27 +32,49 @@ const CAPABILITIES = [
       sub-millisecond pattern path. Anything the patterns cannot settle goes to
       one local model that answers every policy as a plain-language question in
       a single pass.`,
-    fig: '93.25 %',
-    figNote: 'recall on the published corpus, at 100 % precision',
+    fig: '93.25 %', figNote: 'recall on the published corpus, at 100 % precision',
     to: ['See the benchmark', '/benchmark'],
+    shot: {
+      src: 'policies', where: 'govern / policies',
+      crop: { scale: 1.95, x: -19, y: -31, h: 300 },
+      alt: 'The GovernVeil policies page, each policy written as a plain-language question with its action and scope.',
+      cap: <><b>Each policy is a question.</b> You tune detection by editing the
+        question, not by retraining anything.</>,
+    },
   },
   {
     h: 'Judge every agent tool call, three times',
     p: `A tool is judged when the agent discovers it, again when the arguments
       are filled in, and again when the server answers back. A poisoned tool
       description never reaches the agent's list.`,
-    fig: '14 of 14',
-    figNote: 'across seven categories, including poisoned tools and exfiltration',
+    fig: '14 of 14', figNote: 'across seven categories, including poisoned tools and exfiltration',
     to: ['Watch an agent call a tool', '/interview/mcp'],
+    /* No console capture exists for the MCP path, so this block shows the
+       scorecard itself rather than borrowing an unrelated screenshot. */
+    bars: [
+      ['benign', '4 / 4', 100], ['personal data in the arguments', '3 / 3', 100],
+      ['a credential in the arguments', '1 / 1', 100],
+      ['exfiltration through the arguments', '1 / 1', 100],
+      ['injection in what the server returned', '2 / 2', 100],
+      ['personal data in what the server returned', '1 / 1', 100],
+      ['a poisoned tool description', '2 / 2', 100],
+    ],
+    barsNote: 'make mcp-scorecard · eval/mcp/corpus.json',
   },
   {
     h: 'Give the auditor something to act on',
     p: `Every decision is signed into a hash chain before the caller gets its
       reply, and a standalone verifier walks the chain from the command line.
       Control state is computed from that ledger rather than from a checklist.`,
-    fig: '16 controls',
-    figNote: 'each one holding, weak, breached or untested — computed, not asserted',
+    fig: '16 controls', figNote: 'each one holding, weak, breached or untested — computed, not asserted',
     to: ['How the ledger works', '/security'],
+    shot: {
+      src: 'ledger-changes', where: 'prove / evidence ledger / changes',
+      crop: { scale: 1.95, x: -19, y: -33, h: 300 },
+      alt: 'The GovernVeil changes ledger, each row naming who made a configuration change, what moved, and the hash-chain entry it was signed into.',
+      cap: <><b>Who turned a control off, and when.</b> The actor, the before and
+        after, and the chain entry it was signed into.</>,
+    },
   },
 ]
 
@@ -118,33 +141,70 @@ export default function Guard() {
 
   return (
     <div className="rg">
-      <section className="rg-hero">
-        <div className="wrap">
-          <span className="rg-eyebrow">Runtime security</span>
-          <h1 className="rg-h1">Catch it before it leaves.</h1>
-          <p className="rg-sub">
-            Inspect prompts, agent tool calls, model responses and credentials in your
-            own network — before anything reaches a provider.
-          </p>
-          <Link className="btn btn-primary" to={pilot.primaryCta[1]}>
-            {pilot.primaryCta[0]}
-          </Link>
+      <section className="rg-hero band-hatch">
+        <div className="wrap rg-hero-in">
+          <div>
+            <span className="rg-eyebrow">Runtime security</span>
+            <h1 className="rg-h1">Catch it before it leaves.</h1>
+            <p className="rg-sub">
+              Inspect prompts, agent tool calls, model responses and credentials in your
+              own network — before anything reaches a provider.
+            </p>
+            <Link className="btn btn-primary" to={pilot.primaryCta[1]}>
+              {pilot.primaryCta[0]}
+            </Link>
+          </div>
+          <Capture
+            src="policy-drift"
+            where="govern / assurance / policy drift"
+            bleed
+            /* past the nav sidebar, onto the question and its four counters */
+            crop={{ scale: 1.9, x: -17, y: -16, h: 360 }}
+            alt="The GovernVeil assurance page asking whether the policy says what the ledger did, computed over real ledger rows."
+          >
+            <b>Does the policy say what the ledger did?</b> Computed over 2,869 real
+            ledger rows, with 442 synthetic probe rows skipped.
+          </Capture>
         </div>
       </section>
 
       <section className="rg-caps">
-        <div className="wrap rg-caps-in">
-          {CAPABILITIES.map((c) => (
-            <div className="rg-cap" key={c.h}>
-              <h2 className="rg-cap-h">{c.h}</h2>
-              <p className="rg-cap-p">{c.p}</p>
-              <div className="rg-fig">
-                <b>{c.fig}</b>
-                <span>{c.figNote}</span>
+        <div className="wrap">
+          <div className="fr">
+            {CAPABILITIES.map((c, i) => (
+              <div className={`fr-row${i % 2 ? ' is-flip' : ''}`} key={c.h}>
+                <div>
+                  <span className="fr-n">{String(i + 1).padStart(2, '0')}</span>
+                  <h2 className="fr-h">{c.h}</h2>
+                  <p className="fr-p">{c.p}</p>
+                  <div className="rg-fig">
+                    <b>{c.fig}</b>
+                    <span>{c.figNote}</span>
+                  </div>
+                  <Link className="link rg-cap-l" to={c.to[1]}>{c.to[0]} →</Link>
+                </div>
+
+                <div className="fr-vis">
+                  {c.shot && (
+                    <Capture
+                      src={c.shot.src}
+                      where={c.shot.where}
+                      crop={c.shot.crop}
+                      alt={c.shot.alt}
+                    >
+                      {c.shot.cap}
+                    </Capture>
+                  )}
+                  {c.bars && (
+                    <div className="fr-bars">
+                      <Bars rows={c.bars} />
+                      <p className="fr-bars-n mono">{c.barsNote}</p>
+                    </div>
+                  )}
+                </div>
               </div>
-              <Link className="link rg-cap-l" to={c.to[1]}>{c.to[0]} →</Link>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

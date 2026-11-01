@@ -20,26 +20,31 @@
 }
 .gv .rg-sub {
   font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; color: var(--text-2);
-  max-width: 54ch; margin: 0 0 36px;
+  max-width: 50ch; margin: 0 0 36px;
+}
+/* The hero was text with an empty right half; the console goes there. */
+.gv .rg-hero-in {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 56px; align-items: center;
+}
+@media (max-width: 980px) {
+  .gv .rg-hero-in { grid-template-columns: 1fr; gap: 36px; }
 }
 
 /* ── capability row ───────────────────────────────────────────────────── */
-.gv .rg-caps { padding: 80px 0; border-bottom: 1px solid var(--border); }
-.gv .rg-caps-in {
-  display: grid; gap: 44px var(--rg-gap);
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+.gv .rg-caps { padding: 28px 0 80px; border-bottom: 1px solid var(--border); }
+.gv .fr-vis { min-width: 0; }
+.gv .fr-bars {
+  border: 1px solid var(--border); border-radius: 4px;
+  background: var(--surface); padding: 22px 24px;
 }
-.gv .rg-cap { display: flex; flex-direction: column; min-width: 0; }
-.gv .rg-cap-h {
-  font-family: var(--font-display); font-weight: 400; font-size: 25px;
-  line-height: 1.2; letter-spacing: -.01em; margin: 0 0 14px; color: var(--text);
+.gv .fr-bars-n {
+  margin: 20px 0 0; padding-top: 14px; border-top: 1px solid var(--border);
+  font-size: 11.5px; color: var(--text-3);
 }
-.gv .rg-cap-p { font-size: 15px; line-height: 1.6; color: var(--text-2); margin: 0 0 24px; }
 
 /* one figure per capability — the whole evidence budget for this page */
-.gv .rg-fig {
-  margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border);
-}
+.gv .rg-fig { padding-top: 20px; border-top: 1px solid var(--border); }
 .gv .rg-fig b {
   display: block; font-family: var(--font-display); font-weight: 400;
   font-size: 34px; line-height: 1.05; letter-spacing: -.02em; color: var(--accent);
