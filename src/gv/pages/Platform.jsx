@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Act, Opening, Row, Rows } from '../interview'
 import { Cta } from '../bits'
+import { Capture } from '../capture'
 import d from '../data/platform.json'
 
 /* The front door to the product experience.
@@ -32,7 +33,7 @@ export default function Platform() {
       </Opening>
 
       <Act n="I" title="Watch it work">
-        <section className="pf">
+        <section className="pf band-hatch">
           <div className="wrap pf-demos">
             {d.demos.map((x) => (
               <Link className="pf-demo" to={x.to} key={x.to}>
@@ -69,6 +70,15 @@ export default function Platform() {
               <Rows>
                 {d.surfaces.map(([k, v]) => <Row k={k} key={k}>{v}</Row>)}
               </Rows>
+              <Capture
+                src="egress"
+                where="configure / estate / egress"
+                crop={{ scale: 1.9, x: -18, y: -24, h: 300 }}
+                alt="The GovernVeil egress control page listing the governed destinations, each with its classification and inspect-and-redact profile."
+              >
+                <b>The allow-list, as the gateway holds it.</b> Every destination the
+                estate may reach — the same list the signed attestation names.
+              </Capture>
               <p>
                 <Link className="link" to="/interview/product">The eight steps a request passes through</Link>
               </p>
@@ -87,7 +97,7 @@ export default function Platform() {
                 product. It is worth knowing the shape of it before you decide how
                 much of this to believe.
               </p>
-              <div className="figure-row pf-figs">
+              <div className="figs">
                 <div><b>{n(d.engine.goLoc)}</b><span>lines of Go in the gateway, excluding tests</span></div>
                 <div><b>{n(d.engine.testLoc)}</b><span>lines of test across {d.engine.testFiles} files</span></div>
                 <div><b>{d.engine.routes}</b><span>registered API paths</span></div>

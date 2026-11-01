@@ -116,3 +116,8 @@
   .gv .figs > div { border-right: 0; border-bottom: 1px solid var(--border); }
   .gv .figs > div:last-child { border-bottom: 0; }
 }
+
+
+/* Inside the interview's answer column a capture needs the same vertical
+   rhythm as the prose blocks around it. */
+.gv .qa-a .cap { margin: 26px 0 8px; }
