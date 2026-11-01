@@ -1,0 +1,107 @@
+/* The reference shape — hero, capability row, scope, FAQ, CTA.
+
+   Scoped under `.gv .rg` so it cannot reach the interview pages, the nine
+   marketing pages, or the antd Learn/GTM pages. Tokens only; no literal
+   colours, so both palettes and both design variants follow automatically.
+   Do not add a bare element or `:root` selector here. */
+
+.gv .rg { --rg-gap: 56px; }
+
+/* ── hero ─────────────────────────────────────────────────────────────── */
+.gv .rg-hero { padding: 104px 0 88px; border-bottom: 1px solid var(--border); }
+.gv .rg-eyebrow {
+  display: inline-block; font-size: 12px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: 22px;
+}
+.gv .rg-h1 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(42px, 6.4vw, 78px); line-height: 1.02;
+  letter-spacing: -.02em; margin: 0 0 24px; max-width: 15ch; color: var(--text);
+}
+.gv .rg-sub {
+  font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; color: var(--text-2);
+  max-width: 54ch; margin: 0 0 36px;
+}
+
+/* ── capability row ───────────────────────────────────────────────────── */
+.gv .rg-caps { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.gv .rg-caps-in {
+  display: grid; gap: 44px var(--rg-gap);
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+.gv .rg-cap { display: flex; flex-direction: column; min-width: 0; }
+.gv .rg-cap-h {
+  font-family: var(--font-display); font-weight: 400; font-size: 25px;
+  line-height: 1.2; letter-spacing: -.01em; margin: 0 0 14px; color: var(--text);
+}
+.gv .rg-cap-p { font-size: 15px; line-height: 1.6; color: var(--text-2); margin: 0 0 24px; }
+
+/* one figure per capability — the whole evidence budget for this page */
+.gv .rg-fig {
+  margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border);
+}
+.gv .rg-fig b {
+  display: block; font-family: var(--font-display); font-weight: 400;
+  font-size: 34px; line-height: 1.05; letter-spacing: -.02em; color: var(--accent);
+}
+.gv .rg-fig span {
+  display: block; margin-top: 6px; font-size: 13px; line-height: 1.45;
+  color: var(--text-3);
+}
+.gv .rg-cap-l { margin-top: 18px; align-self: flex-start; font-size: 14px; }
+
+/* ── scope ────────────────────────────────────────────────────────────── */
+.gv .rg-scope { padding: 80px 0; background: var(--surface); border-bottom: 1px solid var(--border); }
+.gv .rg-h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -.02em;
+  margin: 0 0 36px; color: var(--text);
+}
+.gv .rg-scope-l { margin: 0; display: grid; gap: 0; }
+.gv .rg-scope-l > div {
+  display: grid; grid-template-columns: 184px minmax(0, 1fr); gap: 24px;
+  padding: 20px 0; border-top: 1px solid var(--border);
+}
+.gv .rg-scope-l > div:last-child { border-bottom: 1px solid var(--border); }
+.gv .rg-scope-l dt { font-size: 14px; color: var(--text-3); }
+.gv .rg-scope-l dd {
+  margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-2);
+}
+/* space BETWEEN tags only — a trailing margin pushes the sentence's
+   period away from the last tag. */
+.gv .rg-scope-l dd .tag + .tag { margin-left: 4px; }
+
+/* ── faq ──────────────────────────────────────────────────────────────── */
+.gv .rg-faq { padding: 80px 0; }
+.gv .rg-faq-l { max-width: 820px; }
+.gv .rg-q { border-top: 1px solid var(--border); }
+.gv .rg-q:last-child { border-bottom: 1px solid var(--border); }
+.gv .rg-q > summary {
+  cursor: pointer; list-style: none; padding: 20px 34px 20px 0; position: relative;
+  font-size: 17px; line-height: 1.4; color: var(--text);
+}
+.gv .rg-q > summary::-webkit-details-marker { display: none; }
+.gv .rg-q > summary::after {
+  content: "+"; position: absolute; right: 4px; top: 50%;
+  transform: translateY(-50%); font-size: 19px; color: var(--text-3);
+}
+.gv .rg-q[open] > summary::after { content: "–"; }
+.gv .rg-q > summary:hover { color: var(--accent); }
+.gv .rg-q > p {
+  margin: 0 0 24px; padding-right: 34px; max-width: 70ch;
+  font-size: 15px; line-height: 1.65; color: var(--text-2);
+}
+
+/* ── closing cta ──────────────────────────────────────────────────────── */
+.gv .rg-cta { padding: 80px 0 104px; border-top: 1px solid var(--border); background: var(--surface); }
+.gv .rg-cta p {
+  font-size: 16px; line-height: 1.6; color: var(--text-2);
+  max-width: 58ch; margin: 0 0 32px;
+}
+
+@media (max-width: 720px) {
+  .gv .rg-hero { padding: 72px 0 60px; }
+  .gv .rg-caps, .gv .rg-scope, .gv .rg-faq { padding: 56px 0; }
+  .gv .rg-cta { padding: 56px 0 72px; }
+  .gv .rg-scope-l > div { grid-template-columns: 1fr; gap: 8px; }
+}

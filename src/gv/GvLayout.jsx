@@ -87,6 +87,7 @@ export default function GvLayout({ children }) {
     ['/platform', 'Overview'],
     ['/journey', 'The request'],
     ['/mcp', 'Agents'],
+    ['/guard', 'Runtime security'],
     ['/product', 'How it works'],
     ['/security', 'Security'],
     ['', 'The questions'],

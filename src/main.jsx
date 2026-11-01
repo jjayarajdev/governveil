@@ -8,6 +8,7 @@ import './gv.css'
 import './gv-almanac.css'
 import './gv-interview.css'
 import './gv-journey.css'
+import './gv-guard.css'
 
 const theme = {
   token: {

@@ -9,6 +9,7 @@ import ProductFlow from './gv/pages/ProductFlow'
 import Journey from './gv/pages/Journey'
 import Mcp from './gv/pages/Mcp'
 import Platform from './gv/pages/Platform'
+import Guard from './gv/pages/Guard'
 import Product from './gv/pages/Product'
 import Features from './gv/pages/Features'
 import Benchmark from './gv/pages/Benchmark'
@@ -38,6 +39,8 @@ const TITLES = {
   '/interview/mcp': 'Governing an agent’s tool calls | GovernVeil',
   '/platform': 'GovernVeil — see it work',
   '/interview/platform': 'GovernVeil — see it work',
+  '/v2/guard': 'Runtime security | GovernVeil',
+  '/interview/guard': 'Runtime security | GovernVeil',
   '/v2/platform': 'GovernVeil — see it work',
   '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
   '/interview/security': 'Security & residency | GovernVeil',
@@ -101,6 +104,8 @@ export default function App() {
         <Route path="/interview/mcp" element={<Mcp />} />
         <Route path="/platform" element={<Platform />} />
         <Route path="/interview/platform" element={<Platform />} />
+        <Route path="/v2/guard" element={<Guard />} />
+        <Route path="/interview/guard" element={<Guard />} />
         <Route path="/v2/platform" element={<Platform />} />
         {/* the paths these were first shown at — a renamed preview URL that
             silently falls through to the old page is worse than no rename */}
