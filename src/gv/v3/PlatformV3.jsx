@@ -1,0 +1,117 @@
+import { Link } from 'react-router-dom'
+import { Mark } from './Logo'
+
+/* Platform — iteration 3, ported from site/platform.html.
+
+   Markup is the design's, converted mechanically: class -> className, style
+   strings -> objects, internal .html hrefs -> <Link to> on the routes already
+   public, <pre> newlines made explicit. */
+
+export default function PlatformV3() {
+  return (
+    <>
+      <main id="main">
+      <section className="wrap" style={{"paddingTop": 88, "paddingBottom": 56}}>
+      <p className="q">Q · Your people are already using AI. What can you prove about it?</p>
+      <div className="g2" style={{"alignItems": "end"}}>
+      <h1 className="h1x">Four surfaces. One engine. One ledger<span style={{"color": "var(--acc)"}}>.</span></h1>
+      <div>
+      <p className="lead" style={{"margin": "0"}}>Applications call model APIs. Agents call tools. People paste into assistants you do not run. GovernVeil sits in every one of those paths, decides in your own network, and signs what it did.</p>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#pilot" className="btnp">Book a pilot</a><Link to="/product" className="btns">The eight steps</Link></div>
+      </div>
+      </div>
+      </section>
+
+      <section className="wrap" style={{"paddingBottom": 104}}>
+      <figure aria-label="Architecture: work surfaces, the GovernVeil control plane, and the destinations it allows" style={{"margin": "0", "background": "#0E1411", "color": "#E6ECE7", "borderRadius": 16, "padding": 40}}>
+      <div className="tier">
+      <div style={{"display": "flex", "flexDirection": "column", "gap": 10}}>
+      <div className="rl" style={{"color": "#9DA8A1", "marginBottom": 6}}>WORK SURFACES</div>
+      <div className="box"><b>Applications</b><span>/v1/* · base-URL change</span></div>
+      <div className="box"><b>Agents</b><span>Claude Code · Codex · your harness</span></div>
+      <div className="box"><b>Enterprise apps</b><span>/gw/&lt;app&gt;</span></div>
+      <div className="box"><b>People</b><span>extension · 8 public assistants</span></div>
+      </div>
+      <div className="arrow" aria-hidden="true">→</div>
+      <div style={{"border": "2px solid var(--acc)", "borderRadius": 12, "padding": 20, "display": "flex", "flexDirection": "column", "gap": 8}}>
+      <div className="mono" style={{"display": "flex", "justifyContent": "space-between", "gap": 8, "fontSize": 11, "letterSpacing": "0.12em", "color": "var(--acc)", "marginBottom": 6}}><span>GOVERNVEIL · CONTROL PLANE</span><span>IN YOUR NETWORK</span></div>
+      <div className="g2" style={{"gap": 8}}>
+      <div className="step"><b>Identity &amp; grants</b><span>~0.5 ms kill switch</span></div>
+      <div className="step"><b>Pattern path</b><span>sub-ms identifiers &amp; secrets</span></div>
+      <div className="step"><b>Local model</b><span>every policy as a question</span></div>
+      <div className="step"><b>Document sweep</b><span>macros, hidden text, PDF JS</span></div>
+      <div className="step"><b>Policy engine</b><span>exactly one outcome</span></div>
+      <div className="step"><b>Acknowledge</b><span>the person minimises, says why</span></div>
+      </div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 6, "marginTop": 6}}><span className="v v-allow">ALLOW</span><span className="v v-flag">FLAG</span><span className="v v-mask">MASK</span><span className="v v-ack">ACKNOWLEDGE</span><span className="v v-block">BLOCK</span></div>
+      <div style={{"background": "var(--acc)", "color": "#0E1411", "borderRadius": 6, "padding": 12, "marginTop": 4, "display": "flex", "justifyContent": "space-between", "gap": 8, "flexWrap": "wrap"}}><b>Signed ledger</b><span className="mono" style={{"fontSize": 12}}>hash-chained before the reply</span></div>
+      </div>
+      <div className="arrow" aria-hidden="true">→</div>
+      <div style={{"display": "flex", "flexDirection": "column", "gap": 10}}>
+      <div className="rl" style={{"color": "#9DA8A1", "marginBottom": 6}}>WHAT MAY LEAVE</div>
+      <div className="box"><b>Approved models</b><span>on the egress allow-list</span></div>
+      <div className="box"><b>Registered MCP servers</b><span>your tools · third-party</span></div>
+      <div className="box"><b>Your own APIs</b><span>role-gated</span></div>
+      <div className="box" style={{"borderStyle": "dashed", "borderColor": "#4A534E"}}><b style={{"color": "#9DA8A1"}}>Nothing else</b><span>non_allowlisted_egress_attempts: 0</span></div>
+      </div>
+      </div>
+      <figcaption className="mono" style={{"fontSize": 13, "color": "#9DA8A1", "textAlign": "center", "marginTop": 28}}>Every path takes the same chain and lands on the same ledger. No prompt content leaves your network to reach a verdict.</figcaption>
+      </figure>
+      </section>
+
+      <section className="wrap" style={{"paddingBottom": 72}}>
+      <p className="eb" style={{"marginBottom": 8}}>Watch it work · replays of recorded runs</p>
+      <div className="pair" style={{"padding": "56px 0", "borderTop": "1px solid #D3D8D3"}}>
+      <div><p className="q">Q · What does this cost us in latency?</p><h2 className="h2x">Most requests never reach the model.</h2><p className="body" style={{"margin": "16px 0 20px"}}>The obvious cases are settled on a sub-millisecond pattern path; only the ambiguous ones cost a model pass. A revoked credential is refused before any inspection runs.</p><Link to="/product" style={{"fontWeight": "600"}}>Watch one request travel the gateway →</Link></div>
+      <aside className="card"><div className="rl">RECEIPT · RECORDED REPLAY</div><div className="big">38 <span style={{"fontWeight": "500", "color": "#4A534E"}}>of 125</span></div><div className="cap">settled before any model ran</div><div className="rf"><span>tests/results/judge-off-a10g.json</span></div></aside>
+      </div>
+      <div className="pair" style={{"padding": "56px 0", "borderTop": "1px solid #D3D8D3"}}>
+      <div><p className="q">Q · An agent is about to call a tool. What stops it?</p><h2 className="h2x">Judged three times, not once.</h2><p className="body" style={{"margin": "16px 0 20px"}}>When the agent discovers what exists, when it fills in the arguments, and when the server answers back. A poisoned description never reaches the list.</p><Link to="/mcp" style={{"fontWeight": "600"}}>Watch an agent call a tool →</Link></div>
+      <aside className="card"><div className="rl">RECEIPT · MCP SCORECARD</div><div className="big">14 <span style={{"fontWeight": "500", "color": "#4A534E"}}>of 14</span></div><div className="cap">across seven categories, poisoned tools included</div><div className="rf"><span>make mcp-scorecard · eval/mcp/corpus.json</span></div></aside>
+      </div>
+      <div className="pair" style={{"padding": "56px 0", "borderTop": "1px solid #D3D8D3"}}>
+      <div><p className="q">Q · Is this a product or a demo?</p><h2 className="h2x">A system, not a demonstration.</h2><p className="body" style={{"margin": "16px 0 20px"}}>The replays come out of the same repository that runs the product. 16 controls are seeded and enforced or attested, each with the evidence source it is judged from — not a catalogue of intentions.</p><Link to="/security" style={{"fontWeight": "600"}}>How controls are judged →</Link></div>
+      <aside className="dcard"><div className="rl">RECEIPT · REPOSITORY, 31 OCT 2026</div><div className="g2" style={{"gap": 20, "marginTop": 18}}>
+      <div><div style={{"fontSize": 34, "fontWeight": "800", "color": "#F4F5F2", "letterSpacing": "-0.03em"}}>46,676</div><div style={{"fontSize": 13, "color": "#9DA8A1"}}>lines of Go in the gateway</div></div>
+      <div><div style={{"fontSize": 34, "fontWeight": "800", "color": "#F4F5F2", "letterSpacing": "-0.03em"}}>16,072</div><div style={{"fontSize": 13, "color": "#9DA8A1"}}>lines of test, 115 files</div></div>
+      <div><div style={{"fontSize": 34, "fontWeight": "800", "color": "#F4F5F2", "letterSpacing": "-0.03em"}}>157</div><div style={{"fontSize": 13, "color": "#9DA8A1"}}>registered API paths</div></div>
+      <div><div style={{"fontSize": 34, "fontWeight": "800", "color": "#F4F5F2", "letterSpacing": "-0.03em"}}>70</div><div style={{"fontSize": 13, "color": "#9DA8A1"}}>migrations, 58 tables</div></div>
+      </div></aside>
+      </div>
+      <p className="mono" style={{"fontSize": 13, "color": "#4A534E", "margin": "8px 0 0"}}>Replays are recorded runs, not live enforcement. The runs are committed to the repository; the numbers are what they produced.</p>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec side">
+      <p className="eb">Questions</p>
+      <div style={{"borderTop": "1px solid #0E1411"}}>
+      <details open><summary>What do I have to change to start?</summary><p>Point an app at one base URL, install the extension for one team, or register your agents’ tool servers behind the connector.</p></details>
+      <details><summary>What does it run on?</summary><p>One Docker image for the gateway and the model server; Compose or Helm. The reference box is one g5.2xlarge with an A10G. CUDA, Apple Metal or CPU are auto-selected.</p></details>
+      <details><summary>Is it multi-tenant?</summary><p>No. One deployment governs one organisation, with its own database, its own keys and its own ledger.</p></details>
+      <details><summary>What does this cost in latency?</summary><p>Sub-millisecond on the pattern path; ~135–170 ms on the model path for a single request. 15–30 % of real traffic reaches the model.</p></details>
+      </div>
+      </div>
+      </section>
+      </main>
+
+      <section id="pilot" className="dk">
+      <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
+      <div>
+      <Mark size={34} tone="light" />
+      <p className="eb" style={{"marginTop": 28}}>See it in your environment</p>
+      <h2 className="h2x" style={{"marginTop": 14}}>See it catch a real prompt in week one.</h2>
+      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>A paid 8–12-week design-partner pilot — $15,000–$40,000 depending on scope. Your data, your environment, and a signed attestation that nothing else left.</p>
+      <Link to="/pilot" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": "600"}}>Pilot terms →</Link>
+      </div>
+      <form style={{"background": "#F4F5F2", "color": "#0E1411", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pt-email">Work email</label><input id="pt-email" type="email" autocomplete="email" /></div><div><label htmlFor="pt-co">Company</label><input id="pt-co" type="text" autocomplete="organization" /></div></div>
+      <div><label htmlFor="pt-region">Region</label><select id="pt-region"><option>Select region</option><option>India</option><option>Asia-Pacific</option><option>Middle East</option><option>Europe</option><option>Australia / New Zealand</option><option>North America</option></select></div>
+      <div><label htmlFor="pt-q">What AI traffic can’t you see today?</label><textarea id="pt-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
+      <button type="button" className="btnp">Request a pilot</button>
+      <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Opens a pre-filled email. No backend, no mailing list, no tracking.</p>
+      </form>
+      </div>
+      </section>
+    </>
+  )
+}

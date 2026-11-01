@@ -1,0 +1,152 @@
+import { Link } from 'react-router-dom'
+import { Mark } from './Logo'
+
+/* Trust — iteration 3, ported from site/trust.html.
+
+   Markup is the design's, converted mechanically: class -> className, style
+   strings -> objects, internal .html hrefs -> <Link to> on the routes already
+   public, <pre> newlines made explicit. */
+
+export default function TrustV3() {
+  return (
+    <>
+      <main id="main">
+      <section className="wrap" style={{"paddingTop": 88, "paddingBottom": 64}}>
+      <p className="q">Q · Your diagram says nothing leaves. Why should I believe it?</p>
+      <div className="pair">
+      <div>
+      <h1 className="h1x">Residency you can pull, not take on trust<span style={{"color": "var(--acc)"}}>.</span></h1>
+      <p className="lead" style={{"margin": "28px 0 0"}}>Residency is an architectural property, and architecture can be argued with. So the gateway signs a statement your security team can fetch — naming the local inference endpoint, the egress allow-list, and the count of outbound connections the verdict path made outside it.</p>
+      </div>
+      <figure style={{"margin": "0", "background": "#0E1411", "color": "#E6ECE7", "borderRadius": 12, "padding": 28}}>
+      <div className="rl" style={{"display": "flex", "justifyContent": "space-between", "gap": 12, "color": "#9DA8A1", "paddingBottom": 14, "borderBottom": "1px solid #2A332E"}}><span>RECEIPT · GET /api/v1/attestation</span><span>hmac-sha256</span></div>
+      <pre className="mono" style={{"margin": "18px 0", "fontSize": 14, "lineHeight": "1.8", "whiteSpace": "pre-wrap"}}>{'{'}{'\n'}"inference_local": <span style={{"color": "#7FD6A4"}}>true</span>,{'\n'}"ml_server":       <span style={{"color": "#BBD0FF"}}>"ml.internal:8091"</span>,{'\n'}"egress_allowlist":[ <span style={{"color": "#BBD0FF"}}>"api.anthropic.com"</span>, <span style={{"color": "#BBD0FF"}}>"api.openai.com"</span> ],{'\n'}"egress_enforced": <span style={{"color": "#7FD6A4"}}>true</span>,{'\n'}"non_allowlisted_egress_attempts": <span style={{"color": "var(--acc)", "fontWeight": "700"}}>0</span>,{'\n'}"signature":       "hmac-sha256:…"{'\n'}{'}'}</pre>
+      <figcaption className="mono" style={{"display": "flex", "justifyContent": "space-between", "gap": 12, "fontSize": 12, "color": "#9DA8A1", "paddingTop": 14, "borderTop": "1px solid #2A332E"}}><span>$ make attest · enforcement on</span><span style={{"color": "#E6ECE7"}}>zero is the proof</span></figcaption>
+      </figure>
+      </div>
+      <div className="g4" style={{"marginTop": 48}}>
+      <div className="prop"><span className="rl">RUNS</span><b>Your VPC or on-prem</b></div>
+      <div className="prop"><span className="rl">INFERENCE</span><b>All local · CUDA, Metal or CPU</b></div>
+      <div className="prop"><span className="rl">NETWORK</span><b>Works air-gapped</b></div>
+      <div className="prop"><span className="rl">TENANCY</span><b>One org, own keys &amp; ledger</b></div>
+      </div>
+      </section>
+
+      <section className="wrap sec side" style={{"borderTop": "1px solid #D3D8D3"}}>
+      <div className="sl">§ I<br />Reading the attestation</div>
+      <div>
+      <p className="q">Q · What is each field actually telling me?</p>
+      <h2 className="h2x" style={{"marginBottom": 28}}>Four fields. One number that matters.</h2>
+      <div style={{"borderTop": "1px solid #0E1411"}}>
+      <div className="kv"><b>inference_local</b><span>Verdicts are computed at this in-perimeter endpoint; nothing else scores the prompt.</span></div>
+      <div className="kv"><b>egress_allowlist</b><span>The only external hosts the gateway may reach — your configured model providers. The allow-list is also a page in the console, not a config file.</span></div>
+      <div className="kv"><b>egress_enforced</b><span>Denied, or merely observed and logged — it ships in observe mode and you turn enforcement on.</span></div>
+      <div className="kv" style={{"background": "#FFFFFF"}}><b style={{"color": "#B83E0E", "paddingLeft": 12}}>non_allowlisted_egress_attempts</b><span style={{"fontWeight": "600", "color": "#0E1411"}}>The number that matters. Zero is the proof.</span></div>
+      </div>
+      </div>
+      </section>
+
+      <section className="dk">
+      <div className="wrap sec side">
+      <div className="sl">§ II<br />What sits under the claim</div>
+      <div>
+      <p className="q">Q · What happens when something is unavailable — and who can sign in?</p>
+      <h2 className="h2x" style={{"maxWidth": 820}}>Fails closed. Encrypted at rest. Edits break the chain.</h2>
+      <div className="g3" style={{"gap": 32, "marginTop": 48}}>
+      <div className="ac"><b>When something is unavailable</b><p>It blocks, and the reason goes on the record. Every error path on the document guardrail is quarantine, never allow.</p></div>
+      <div className="ac"><b>Data at rest</b><p>Encrypted in transit and at rest. Raw sensitive spans are not persisted. Vault keys are KEK-wrapped, rotate online, and every vault event is a ledger row.</p></div>
+      <div className="ac"><b>Where it runs</b><p>The gateway talks to the model server over HTTP inside your network and to nothing else — no message queue, socket or shared-memory channel to audit.</p></div>
+      </div>
+      <div className="g4" style={{"gap": 16, "marginTop": 56, "borderTop": "1px solid #2A332E", "paddingTop": 28}}>
+      <div><div className="mono" style={{"fontSize": 13, "color": "#F4F5F2"}}>auth</div><div style={{"fontSize": 15, "color": "#9DA8A1", "marginTop": 4}}>OIDC or local, HS256 with key rotation</div></div>
+      <div><div className="mono" style={{"fontSize": 13, "color": "#F4F5F2"}}>roles</div><div style={{"fontSize": 15, "color": "#9DA8A1", "marginTop": 4}}>admin, security officer, read-only — enforced</div></div>
+      <div><div className="mono" style={{"fontSize": 13, "color": "#F4F5F2"}}>tokens</div><div style={{"fontSize": 15, "color": "#9DA8A1", "marginTop": 4}}>aigw_ service tokens tied to grants</div></div>
+      <div><div className="mono" style={{"fontSize": 13, "color": "#F4F5F2"}}>secrets</div><div style={{"fontSize": 15, "color": "#9DA8A1", "marginTop": 4}}>environment or a secrets manager</div></div>
+      </div>
+      </div>
+      </div>
+      </section>
+
+      <section className="wrap sec side">
+      <div className="sl">§ III<br />The record it leaves</div>
+      <div>
+      <p className="q">Q · What stops someone editing the ledger — and who turned a control off?</p>
+      <h2 className="h2x">Every decision and every change, on one chain.</h2>
+      <div className="g2" style={{"marginTop": 28}}>
+      <p className="body" style={{"margin": "0"}}>Each row carries the SHA-256 hash of the row before it, with a database-assigned sequence. Edit anything, anywhere, and verification fails at that row. No code path and no migration updates or deletes an audit row.</p>
+      <p className="body" style={{"margin": "0"}}>Policy and configuration changes are signed into the same chain as the traffic, with the before and the after — so “who turned it off, and when” has an answer rather than an opinion.</p>
+      </div>
+      <div className="card" style={{"padding": "0", "marginTop": 36, "overflow": "hidden"}}>
+      <div className="rl" style={{"padding": "16px 16px 0"}}>RECEIPT · EVIDENCE LEDGER · ILLUSTRATIVE ROWS</div>
+      <div style={{"overflowX": "auto"}}>
+      <table className="tbl">
+      <thead><tr><th scope="col">SEQ</th><th scope="col">ACTOR</th><th scope="col">EVENT</th><th scope="col">PREV HASH</th></tr></thead>
+      <tbody>
+      <tr><td>#4186</td><td>admin@company.com</td><td>policy change · action: block → mask</td><td style={{"color": "#4A534E"}}>9f2c…e41a</td></tr>
+      <tr><td>#4187</td><td>gateway</td><td>verdict: mask · /v1/chat/completions · 2 spans</td><td style={{"color": "#4A534E"}}>9f2c…e41a</td></tr>
+      <tr><td style={{"borderBottom": "0"}}>#4188</td><td style={{"borderBottom": "0"}}>probe</td><td style={{"borderBottom": "0"}}>control probe · synthetic · PI-02 holding</td><td style={{"borderBottom": "0", "color": "#4A534E"}}>9f2c…e41a</td></tr>
+      </tbody>
+      </table>
+      </div>
+      </div>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec">
+      <p className="q">Q · How do I check any of this for myself?</p>
+      <h2 className="h2x" style={{"maxWidth": 820, "marginBottom": 40}}>Three checks you can run without us in the room.</h2>
+      <div className="g3" style={{"gap": 16}}>
+      <div className="card chk"><i>01</i><b>Pull the attestation</b><p>Read one number: non_allowlisted_egress_attempts.</p><span className="code">$ make attest</span></div>
+      <div className="card chk"><i>02</i><b>Run the benchmark</b><p>On your own stack, with no cloud calls.</p><span className="code">$ make benchmark</span></div>
+      <div className="card chk"><i>03</i><b>Walk the ledger</b><p>With the standalone verifier, independently of the running gateway.</p><span className="code">$ make verify-chain</span></div>
+      </div>
+      </div>
+      </section>
+
+      <section className="wrap sec side">
+      <div className="sl">§ IV<br />Assessed against a board’s questions</div>
+      <div className="g2" style={{"alignItems": "center"}}>
+      <div>
+      <h2 className="h2x">A board’s questions, not a logo wall.</h2>
+      <p className="body" style={{"margin": "16px 0 0"}}>We ran the product and the company against sixteen board cyber-governance domains drawn from Australian standards. The product meets most of them.</p>
+      </div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 8}}>
+      <span className="std">PSPF</span><span className="std">ISM</span><span className="std">APRA CPS 230</span><span className="std">APRA CPS 234</span><span className="std">SOCI</span><span className="std">AICD director guidance</span>
+      </div>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec side">
+      <p className="eb">Questions</p>
+      <div style={{"borderTop": "1px solid #0E1411"}}>
+      <details open><summary>Does any prompt content leave our network?</summary><p>Not to reach a verdict. Only what policy allows is forwarded to your approved providers, with sensitive spans already replaced.</p></details>
+      <details><summary>Can we run it with no internet at all?</summary><p>Yes. In an air-gapped deployment the only thing missing is the forward to a public provider, which you were not making anyway.</p></details>
+      <details><summary>Are the raw values ever stored?</summary><p>No. DLP content is redacted at rest by migration. Where reversible masking is turned on, mappings live in a KEK-wrapped vault and every vault event is a ledger row.</p></details>
+      </div>
+      </div>
+      </section>
+      </main>
+
+      <section id="pilot" className="dk">
+      <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
+      <div>
+      <Mark size={34} tone="light" />
+      <p className="eb" style={{"marginTop": 28}}>See it in your environment</p>
+      <h2 className="h2x" style={{"marginTop": 14}}>Pull the attestation in week one.</h2>
+      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>A paid 8–12-week design-partner pilot — $15,000–$40,000 depending on scope. Your data, your environment, and a signed attestation that nothing else left.</p>
+      <Link to="/pilot" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": "600"}}>Pilot terms →</Link>
+      </div>
+      <form style={{"background": "#F4F5F2", "color": "#0E1411", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="tr3-email">Work email</label><input id="tr3-email" type="email" autocomplete="email" /></div><div><label htmlFor="tr3-co">Company</label><input id="tr3-co" type="text" autocomplete="organization" /></div></div>
+      <div><label htmlFor="tr3-region">Region</label><select id="tr3-region"><option>Select region</option><option>India</option><option>Asia-Pacific</option><option>Middle East</option><option>Europe</option><option>Australia / New Zealand</option><option>North America</option></select></div>
+      <div><label htmlFor="tr3-q">What AI traffic can’t you see today?</label><textarea id="tr3-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
+      <button type="button" className="btnp">Request a pilot</button>
+      <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Opens a pre-filled email. No backend, no mailing list, no tracking.</p>
+      </form>
+      </div>
+      </section>
+    </>
+  )
+}

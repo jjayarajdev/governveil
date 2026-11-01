@@ -1,0 +1,162 @@
+import { Link } from 'react-router-dom'
+import { Mark } from './Logo'
+
+/* Benchmark — iteration 3, ported from site/benchmark.html.
+
+   Markup is the design's, converted mechanically: class -> className, style
+   strings -> objects, internal .html hrefs -> <Link to> on the routes already
+   public, <pre> newlines made explicit. */
+
+export default function BenchmarkV3() {
+  return (
+    <>
+      <main id="main">
+      <section className="wrap" style={{"paddingTop": 88, "paddingBottom": 72}}>
+      <p className="q">Q · How good is the detection, and who measured it?</p>
+      <div className="pair">
+      <div>
+      <h1 className="h1x">Numbers you can reproduce, including the bad ones<span style={{"color": "var(--acc)"}}>.</span></h1>
+      <p className="lead" style={{"margin": "28px 0 0"}}>The corpora and the runner are committed to the repository. Same datasets, same policies, same model, same numbers — and no cloud calls, because the whole harness runs against your local stack.</p>
+      </div>
+      <figure style={{"margin": "0", "background": "#0E1411", "color": "#E6ECE7", "borderRadius": 12, "padding": 24}}>
+      <div className="rl" style={{"display": "flex", "justifyContent": "space-between", "color": "#9DA8A1", "paddingBottom": 14, "borderBottom": "1px solid #2A332E"}}><span>REPRODUCE</span><span>no network required</span></div>
+      <pre className="mono" style={{"margin": "16px 0 0", "fontSize": 14, "lineHeight": "2", "whiteSpace": "pre-wrap"}}>$ make benchmark      <span style={{"color": "#9DA8A1"}}># or python3 eval/suite.py</span>{'\n'}$ make eval-gate      <span style={{"color": "#9DA8A1"}}># the gate changes must pass</span>{'\n'}$ make mcp-scorecard  <span style={{"color": "#9DA8A1"}}># MCP tool-poisoning corpus</span></pre>
+      </figure>
+      </div>
+      </section>
+
+      <section className="dk">
+      <div className="wrap sec side">
+      <div className="sl">§ I<br />The headline</div>
+      <div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-between", "alignItems": "end", "gap": 16}}>
+      <div><h2 className="h2x">The combined-1000 corpus.</h2><p className="body" style={{"margin": "14px 0 0"}}>800 prompts that should be caught, 200 benign prompts that should not.</p></div>
+      <span className="mono" style={{"fontSize": 13, "color": "#9DA8A1"}}>run 2026-09-02 · local stack</span>
+      </div>
+      <div className="g4" style={{"marginTop": 44}}>
+      <div className="hm"><div className="n">93.25 %</div><b>Recall</b><span>746 of 800 should-catch prompts caught.</span></div>
+      <div className="hm"><div className="n">100 %</div><b>Precision</b><span>Every catch was one it should have made.</span></div>
+      <div className="hm"><div className="n">0 %</div><b>False-positive rate</b><span>0 of 200 benign prompts wrongly caught.</span></div>
+      <div className="hm"><div className="n">96.51</div><b>F1</b><span>For comparability with other harnesses.</span></div>
+      </div>
+      </div>
+      </div>
+      </section>
+
+      <section className="wrap sec side">
+      <div className="sl">§ II<br />By policy</div>
+      <div>
+      <div className="pair">
+      <div><p className="q">Q · Isn’t one number hiding the weak spots?</p><h2 className="h2x">Every policy, scored on its own.</h2><p className="body" style={{"margin": "16px 0 0"}}>Most vendors publish one number. The two lower rows are precisely why the FLAG tier and a review queue exist.</p></div>
+      <aside className="card"><div className="rl">CONFUSION MATRIX</div><div className="g2 cm" style={{"gap": 16, "marginTop": 14}}>
+      <div><div>746</div><span>true positives</span></div>
+      <div><div>0</div><span>false positives</span></div>
+      <div><div>200</div><span>true negatives</span></div>
+      <div><div style={{"color": "#B83E0E"}}>54</div><span>false negatives</span></div>
+      </div></aside>
+      </div>
+      <div style={{"overflowX": "auto", "marginTop": 40}}>
+      <table className="tbl">
+      <thead><tr><th scope="col">POLICY</th><th scope="col">CAUGHT / TOTAL</th><th scope="col" style={{"width": 200}}>CATCH RATE</th><th scope="col">READING</th></tr></thead>
+      <tbody>
+      <tr><td style={{"fontWeight": "600"}}>Harmful intent — AdvBench</td><td className="mono">494 / 500</td><td><div className="mono" style={{"fontWeight": "600"}}>98.8 %</div><div className="bar"><i style={{"width": "98.8%"}}></i></div></td><td style={{"color": "#2E3632"}}>Strong. The category most harnesses report.</td></tr>
+      <tr><td style={{"fontWeight": "600"}}>Toxicity</td><td className="mono">99 / 100</td><td><div className="mono" style={{"fontWeight": "600"}}>99.0 %</div><div className="bar"><i style={{"width": "99%"}}></i></div></td><td style={{"color": "#2E3632"}}>Strong.</td></tr>
+      <tr><td style={{"fontWeight": "600"}}>Prompt injection</td><td className="mono">23 / 25</td><td><div className="mono" style={{"fontWeight": "600"}}>92.0 %</div><div className="bar"><i style={{"width": "92%"}}></i></div></td><td style={{"color": "#2E3632"}}>Strong. 25 cases — the corpus to extend first with your own traffic.</td></tr>
+      <tr><td style={{"fontWeight": "600"}}>PII</td><td className="mono">80 / 100</td><td><div className="mono" style={{"fontWeight": "600", "color": "#B83E0E"}}>80.0 %</div><div className="bar"><i className="w" style={{"width": "80%"}}></i></div></td><td style={{"color": "#2E3632"}}>Deterministic on identifier formats; free-text personal data is harder. The flag tier covers the gap.</td></tr>
+      <tr><td style={{"fontWeight": "600"}}>Business-sensitive</td><td className="mono">50 / 75</td><td><div className="mono" style={{"fontWeight": "600", "color": "#B83E0E"}}>66.7 %</div><div className="bar"><i className="w" style={{"width": "66.7%"}}></i></div></td><td style={{"color": "#2E3632"}}>Means something different in every organisation — which is what your own labelled traffic resolves.</td></tr>
+      <tr><td style={{"fontWeight": "600"}}>Benign — must not be caught</td><td className="mono">0 / 200</td><td><div className="mono" style={{"fontWeight": "600", "color": "#145236"}}>0.0 %</div><div className="bar"></div></td><td style={{"color": "#2E3632"}}>No false alarms. The number that decides whether people route around you.</td></tr>
+      </tbody>
+      </table>
+      </div>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec side">
+      <div className="sl">§ III<br />Beyond the corpus</div>
+      <div>
+      <p className="q">Q · How would I know a control is still working six months from now?</p>
+      <h2 className="h2x" style={{"maxWidth": 820}}>A benchmark is a snapshot. Probes are a heartbeat.</h2>
+      <p className="body" style={{"maxWidth": 780, "margin": "18px 0 40px"}}>A corpus tells you how the detector scored one afternoon. Synthetic probes tell you whether the control you turned on in March is still holding in October.</p>
+      <div className="g3">
+      <div className="card pr"><i>01 · MUST ACT</i><b>Control probe</b><p>The canonical trigger. If it does not act, the control is not holding, whatever the dashboard said yesterday.</p></div>
+      <div className="card pr"><i>02 · MUST PASS</i><b>Override probe</b><p>A benign near-miss. A control that has quietly become over-broad shows up here before your users find it.</p></div>
+      <div className="card pr"><i>03 · MUST STOP</i><b>Bypass probe</b><p>A known evasion. The row that catches a regression a model upgrade introduced.</p></div>
+      </div>
+      <p className="mono" style={{"fontSize": 13, "lineHeight": "1.6", "color": "#4A534E", "margin": "28px 0 0"}}>Daily at a quiet hour and on demand · tagged synthetic on the ledger · judged from the evidence, not a response code · “last challenged” is a column on the control board</p>
+      </div>
+      </div>
+      </section>
+
+      <section className="dk">
+      <div className="wrap sec side">
+      <div className="sl">§ IV<br />Latency</div>
+      <div>
+      <p className="q">Q · What does this cost us in latency?</p>
+      <h2 className="h2x" style={{"marginBottom": 32}}>Measured, with the method attached.</h2>
+      <div style={{"overflowX": "auto"}}>
+      <table className="tbl dkt">
+      <thead><tr><th scope="col">PATH</th><th scope="col">NUMBER</th><th scope="col">METHOD</th></tr></thead>
+      <tbody>
+      <tr><td>Fast path — regex, secrets, injection phrases</td><td className="mono" style={{"fontWeight": "600"}}>sub-millisecond</td><td>Go benchmark, per request</td></tr>
+      <tr><td>Kill switch — revoked grant to 403</td><td className="mono" style={{"fontWeight": "600"}}>~0.5 ms</td><td>measured in-line, before any inspection</td></tr>
+      <tr><td>Model path, single request, no queue</td><td className="mono" style={{"fontWeight": "600"}}>~135–170 ms</td><td>A10G (g5.2xlarge), Shieldstral-1.0-3B bf16; ~100 ms is the model</td></tr>
+      <tr><td>Model path ceiling, per GPU</td><td className="mono" style={{"fontWeight": "600"}}>~7.4 req/s</td><td>load test 2026-09-03 at 100 % escalation; 2,399 rows, no fail-open</td></tr>
+      <tr><td>Share of real traffic reaching the model</td><td className="mono" style={{"fontWeight": "600"}}>15–30 %</td><td>sizing model, 10,000-FTE worked example</td></tr>
+      <tr><td>Classic five-model stack, same GPU</td><td className="mono" style={{"fontWeight": "600"}}>~190 ms</td><td>retained as a fallback path</td></tr>
+      </tbody>
+      </table>
+      </div>
+      </div>
+      </div>
+      </section>
+
+      <section id="miss" className="wrap sec side">
+      <div className="sl" style={{"color": "#B83E0E"}}>§ V<br />A miss we published</div>
+      <div className="g2" style={{"alignItems": "center", "gap": 56}}>
+      <div>
+      <h2 className="h2x">The bug that governing a desktop app found.</h2>
+      <p className="body" style={{"margin": "16px 0 0"}}>Bringing a real open-source desktop AI app under the gateway, we found it inspected only the first message of a chat request — personal data behind a system prompt was being forwarded. Fixed the same day, with tests, and recorded in the documentation accuracy report. Ask any vendor you are evaluating for their equivalent list.</p>
+      </div>
+      <aside className="card">
+      <div className="rl">RECEIPT · CORRECTION LOG</div>
+      <div style={{"display": "flex", "justifyContent": "space-between", "gap": 12, "padding": "14px 0", "borderBottom": "1px solid #D3D8D3", "marginTop": 10}}><span className="mono" style={{"fontSize": 13}}>found</span><span style={{"fontSize": 15}}>first-message-only inspection</span></div>
+      <div style={{"display": "flex", "justifyContent": "space-between", "gap": 12, "padding": "14px 0", "borderBottom": "1px solid #D3D8D3"}}><span className="mono" style={{"fontSize": 13}}>fixed</span><span style={{"fontSize": 15}}>same day, with tests</span></div>
+      <div style={{"display": "flex", "justifyContent": "space-between", "gap": 12, "padding": "14px 0"}}><span className="mono" style={{"fontSize": 13}}>recorded</span><span style={{"fontSize": 15}}>in the repository, not a drawer</span></div>
+      </aside>
+      </div>
+      </section>
+
+      <section className="alt">
+      <div className="wrap sec side">
+      <p className="eb">Questions</p>
+      <div style={{"borderTop": "1px solid #0E1411"}}>
+      <details open><summary>Who produced these numbers?</summary><p>We did, on a stack you can stand up yourself. No lab was engaged and no figure here was produced by one.</p></details>
+      <details><summary>Is it scored through the real policy chain?</summary><p>Yes — through the gateway’s own analyse endpoint in dry-run mode, so no ledger rows are written and the real chain is what gets measured.</p></details>
+      <details><summary>Can we score it on our own data?</summary><p>That is the point. The harness takes your corpus as well as ours, and the review queue turns your traffic into a labelled set you can score in-house.</p></details>
+      </div>
+      </div>
+      </section>
+      </main>
+
+      <section id="pilot" className="dk">
+      <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
+      <div>
+      <Mark size={34} tone="light" />
+      <p className="eb" style={{"marginTop": 28}}>See it in your environment</p>
+      <h2 className="h2x" style={{"marginTop": 14}}>Run the benchmark on your own traffic.</h2>
+      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>A paid 8–12-week design-partner pilot — $15,000–$40,000 depending on scope. Your data, your environment, and a signed attestation that nothing else left.</p>
+      <Link to="/pilot" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": "600"}}>Pilot terms →</Link>
+      </div>
+      <form style={{"background": "#F4F5F2", "color": "#0E1411", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="bm3-email">Work email</label><input id="bm3-email" type="email" autocomplete="email" /></div><div><label htmlFor="bm3-co">Company</label><input id="bm3-co" type="text" autocomplete="organization" /></div></div>
+      <div><label htmlFor="bm3-region">Region</label><select id="bm3-region"><option>Select region</option><option>India</option><option>Asia-Pacific</option><option>Middle East</option><option>Europe</option><option>Australia / New Zealand</option><option>North America</option></select></div>
+      <div><label htmlFor="bm3-q">What AI traffic can’t you see today?</label><textarea id="bm3-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
+      <button type="button" className="btnp">Request a pilot</button>
+      <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Opens a pre-filled email. No backend, no mailing list, no tracking.</p>
+      </form>
+      </div>
+      </section>
+    </>
+  )
+}

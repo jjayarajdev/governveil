@@ -5,6 +5,14 @@ import GvLayout from './gv/GvLayout'
 import HomeInterview from './gv/pages/HomeInterview'
 import HomeV3 from './gv/v3/Home'
 import ShellV3 from './gv/v3/Shell'
+import PlatformV3 from './gv/v3/PlatformV3'
+import HowItWorksV3 from './gv/v3/HowItWorksV3'
+import AgentsV3 from './gv/v3/AgentsV3'
+import RuntimeV3 from './gv/v3/RuntimeV3'
+import TrustV3 from './gv/v3/TrustV3'
+import BenchmarkV3 from './gv/v3/BenchmarkV3'
+import PilotV3 from './gv/v3/PilotV3'
+import AboutV3 from './gv/v3/AboutV3'
 import SecurityInterview from './gv/pages/SecurityInterview'
 import ProductFlow from './gv/pages/ProductFlow'
 import Journey from './gv/pages/Journey'
@@ -78,9 +86,20 @@ export default function App() {
      tokens, and the lattice pseudo-elements, which paint over it. */
   if (pathname === '/v3' || pathname.startsWith('/v3/')) {
     return (
-      <Routes>
-        <Route path="/v3" element={<ShellV3><HomeV3 /></ShellV3>} />
-      </Routes>
+      <ShellV3>
+        <Routes>
+          <Route path="/v3" element={<HomeV3 />} />
+          <Route path="/v3/platform" element={<PlatformV3 />} />
+          <Route path="/v3/product" element={<HowItWorksV3 />} />
+          <Route path="/v3/mcp" element={<AgentsV3 />} />
+          <Route path="/v3/guard" element={<RuntimeV3 />} />
+          <Route path="/v3/security" element={<TrustV3 />} />
+          <Route path="/v3/benchmark" element={<BenchmarkV3 />} />
+          <Route path="/v3/pilot" element={<PilotV3 />} />
+          <Route path="/v3/about" element={<AboutV3 />} />
+          <Route path="*" element={<HomeV3 />} />
+        </Routes>
+      </ShellV3>
     )
   }
 
