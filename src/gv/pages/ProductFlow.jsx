@@ -3,6 +3,7 @@ import { Shot } from '../../components/figma'
 import { Cta, Tag } from '../bits'
 import { Act, Opening, Row, Rows } from '../interview'
 import { STAGES, Track } from '../pipeline'
+import { Architecture } from '../arch'
 import { readRegion } from '../../region'
 import { REGION_CONTENT } from '../regions'
 
@@ -50,6 +51,12 @@ export default function ProductFlow() {
           </div>
         </div>
       </Opening>
+
+      {/* The shape before the sequence: four ways in, one chain, one outcome.
+          Ported from the page this replaces. */}
+      <section className="flow" style={{ paddingBottom: 0, borderTop: 0 }}>
+        <div className="wrap"><Architecture /></div>
+      </section>
 
       {/* the spine: one request, start to finish — one track, not eight blocks */}
       <section className="flow">

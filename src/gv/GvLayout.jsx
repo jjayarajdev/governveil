@@ -75,26 +75,11 @@ export default function GvLayout({ children }) {
   const { nav, ctaLabel, entity } = REGION_CONTENT[readRegion()]
   const { pathname } = useLocation()
 
-  /* Branch-only. Inside the preview the nav becomes the experience's own —
-     the demonstrations are the point, and routing a visitor back to the
-     marketing pages on the first click is how the recomposition looked like it
-     had vanished the last time. */
-  const previewRoot = ['/v2', '/interview'].find(
-    (r) => pathname === r || pathname.startsWith(`${r}/`),
-  )
-  const inPreview = Boolean(previewRoot)
-  const PREVIEW_NAV = [
-    ['/platform', 'Overview'],
-    ['/journey', 'The request'],
-    ['/mcp', 'Agents'],
-    ['/guard', 'Runtime security'],
-    ['/product', 'How it works'],
-    ['/security', 'Security'],
-    ['', 'The questions'],
-  ]
-  const navItems = inPreview
-    ? PREVIEW_NAV.map(([to, label]) => [`${previewRoot}${to}`, label])
-    : nav
+  /* The interview set is the site now, so there is no second nav to branch
+     to. The old preview paths still resolve (App.jsx keeps them as aliases),
+     but a visitor who lands on one should be navigated on the canonical
+     paths rather than kept inside a prefix that no longer means anything. */
+  const navItems = nav
 
   // The tokens live on <html data-gv>, so the page ground and any overscroll
   // match. The attribute is removed on unmount, which is what keeps the antd
@@ -123,7 +108,7 @@ export default function GvLayout({ children }) {
 
       <header className="nav">
         <div className="nav-in">
-          <Brand to={inPreview ? `${previewRoot}/platform` : '/'} />
+          <Brand to="/" />
           <nav className="nav-links" aria-label="Primary">
             {/* NavLink sets aria-current="page" itself; the nav styling hangs
                 off that rather than off a class. */}

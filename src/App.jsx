@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import SiteLayout from './components/SiteLayout'
 import GvLayout from './gv/GvLayout'
-import Home from './gv/pages/Home'
 import HomeInterview from './gv/pages/HomeInterview'
 import SecurityInterview from './gv/pages/SecurityInterview'
 import ProductFlow from './gv/pages/ProductFlow'
@@ -10,10 +9,8 @@ import Journey from './gv/pages/Journey'
 import Mcp from './gv/pages/Mcp'
 import Platform from './gv/pages/Platform'
 import Guard from './gv/pages/Guard'
-import Product from './gv/pages/Product'
 import Features from './gv/pages/Features'
 import Benchmark from './gv/pages/Benchmark'
-import Security from './gv/pages/Security'
 import Pilot from './gv/pages/Pilot'
 import About from './gv/pages/About'
 import Learn from './pages/Learn'
@@ -22,29 +19,26 @@ import { isLearnHost } from './hostMode'
 
 const TITLES = {
   '/': 'GovernVeil: self-hosted AI data-egress control and evidence',
+  '/platform': 'GovernVeil — see it work',
+  '/journey': 'Watch one request travel the gateway | GovernVeil',
+  '/mcp': 'Governing an agent\u2019s tool calls | GovernVeil',
+  '/guard': 'Runtime security | GovernVeil',
   '/product': 'How GovernVeil works',
+  '/security': 'Security & residency | GovernVeil',
   '/features': 'GovernVeil features',
   '/benchmark': 'The GovernVeil detection benchmark',
-  '/security': 'Security & residency | GovernVeil',
-  '/learn': 'What is GovernVeil? AI data-egress control and evidence, explained',
-  '/gtm': 'GovernVeil in 90 seconds — the explainer',
   '/pilot': 'Book a design-partner pilot | GovernVeil',
   '/about': 'About | GovernVeil',
-  '/v2': 'GovernVeil: self-hosted AI data-egress control and evidence',
-  '/v2/security': 'Security & residency | GovernVeil',
-  '/v2/product': 'How GovernVeil works',
-  '/v2/journey': 'Watch one request travel the gateway | GovernVeil',
-  '/interview/journey': 'Watch one request travel the gateway | GovernVeil',
-  '/v2/mcp': 'Governing an agent’s tool calls | GovernVeil',
-  '/interview/mcp': 'Governing an agent’s tool calls | GovernVeil',
-  '/platform': 'GovernVeil — see it work',
-  '/interview/platform': 'GovernVeil — see it work',
-  '/v2/guard': 'Runtime security | GovernVeil',
-  '/interview/guard': 'Runtime security | GovernVeil',
-  '/v2/platform': 'GovernVeil — see it work',
-  '/interview': 'GovernVeil: self-hosted AI data-egress control and evidence',
-  '/interview/security': 'Security & residency | GovernVeil',
-  '/interview/product': 'How GovernVeil works',
+  '/learn': 'What is GovernVeil? AI data-egress control and evidence, explained',
+  '/gtm': 'GovernVeil in 90 seconds — the explainer',
+}
+
+/* The old preview paths resolve to the same titles as their canonical ones. */
+for (const p of ['/interview', '/v2']) {
+  TITLES[p] = TITLES['/']
+  for (const r of ['platform', 'journey', 'mcp', 'guard', 'product', 'security']) {
+    TITLES[`${p}/${r}`] = TITLES[`/${r}`]
+  }
 }
 
 // Pricing and Compare are deliberately unrouted — see src/gv/pages/Pricing.jsx
@@ -91,34 +85,41 @@ export default function App() {
   return (
     <GvLayout>
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* branch-only: the Conversational-FAQ recomposition, for comparison */}
-        {/* branch-only: the recomposition. Shapes differ by page on purpose —
-            Home and Security are interviews, Product is a narrative workflow. */}
-        <Route path="/v2" element={<HomeInterview />} />
-        <Route path="/v2/security" element={<SecurityInterview />} />
-        <Route path="/v2/product" element={<ProductFlow />} />
-        <Route path="/v2/journey" element={<Journey />} />
-        <Route path="/interview/journey" element={<Journey />} />
-        <Route path="/v2/mcp" element={<Mcp />} />
-        <Route path="/interview/mcp" element={<Mcp />} />
+        {/* The interview set IS the site. These are the canonical paths. */}
+        <Route path="/" element={<HomeInterview />} />
         <Route path="/platform" element={<Platform />} />
-        <Route path="/interview/platform" element={<Platform />} />
-        <Route path="/v2/guard" element={<Guard />} />
-        <Route path="/interview/guard" element={<Guard />} />
-        <Route path="/v2/platform" element={<Platform />} />
-        {/* the paths these were first shown at — a renamed preview URL that
-            silently falls through to the old page is worse than no rename */}
-        <Route path="/interview" element={<HomeInterview />} />
-        <Route path="/interview/security" element={<SecurityInterview />} />
-        <Route path="/interview/product" element={<ProductFlow />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/journey" element={<Journey />} />
+        <Route path="/mcp" element={<Mcp />} />
+        <Route path="/guard" element={<Guard />} />
+        <Route path="/product" element={<ProductFlow />} />
+        <Route path="/security" element={<SecurityInterview />} />
+
+        {/* Carried over unchanged — the interview set has no equivalent. */}
         <Route path="/features" element={<Features />} />
         <Route path="/benchmark" element={<Benchmark />} />
-        <Route path="/security" element={<Security />} />
         <Route path="/pilot" element={<Pilot />} />
         <Route path="/about" element={<About />} />
-        <Route path="*" element={<Home />} />
+
+        {/* The preview paths these were shown at for weeks. Kept as aliases
+            rather than removed: links to them are already out in the world,
+            and a shared URL that 404s or silently lands somewhere else is
+            worse than a duplicate. */}
+        <Route path="/interview" element={<HomeInterview />} />
+        <Route path="/interview/platform" element={<Platform />} />
+        <Route path="/interview/journey" element={<Journey />} />
+        <Route path="/interview/mcp" element={<Mcp />} />
+        <Route path="/interview/guard" element={<Guard />} />
+        <Route path="/interview/product" element={<ProductFlow />} />
+        <Route path="/interview/security" element={<SecurityInterview />} />
+        <Route path="/v2" element={<HomeInterview />} />
+        <Route path="/v2/platform" element={<Platform />} />
+        <Route path="/v2/journey" element={<Journey />} />
+        <Route path="/v2/mcp" element={<Mcp />} />
+        <Route path="/v2/guard" element={<Guard />} />
+        <Route path="/v2/product" element={<ProductFlow />} />
+        <Route path="/v2/security" element={<SecurityInterview />} />
+
+        <Route path="*" element={<HomeInterview />} />
       </Routes>
     </GvLayout>
   )

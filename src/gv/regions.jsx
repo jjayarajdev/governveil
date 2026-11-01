@@ -11,9 +11,14 @@
 
 export const REGION_CONTENT = {
   com: {
+    /* The interview set is the site. "See it work" is the hub the two
+       replays hang off; Features and Pilot stay in the footer. */
     nav: [
-      ['/product', 'Product'],
-      ['/features', 'Features'],
+      ['/platform', 'See it work'],
+      ['/product', 'How it works'],
+      ['/mcp', 'Agents'],
+      ['/guard', 'Runtime security'],
+      ['/security', 'Security'],
       ['/benchmark', 'Benchmark'],
       ['/about', 'About'],
     ],
@@ -99,11 +104,12 @@ export const REGION_CONTENT = {
 
   au: {
     nav: [
-      ['/product', 'Product'],
-      ['/features', 'Features'],
-      ['/benchmark', 'Benchmark'],
+      ['/platform', 'See it work'],
+      ['/product', 'How it works'],
+      ['/mcp', 'Agents'],
+      ['/guard', 'Runtime security'],
       ['/security', 'Security'],
-      ['/about', 'About'],
+      ['/benchmark', 'Benchmark'],
       ['/pilot', 'Design partners'],
     ],
     ctaLabel: 'Book a call',

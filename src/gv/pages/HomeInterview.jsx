@@ -60,7 +60,6 @@ export default function HomeInterview() {
       <Act n="I" title="What you probably already have">
         <Pair
           q="We already own Microsoft Purview."
-          link={['The thirteen products, verified', '/compare']}
           more={
             <>We position additively, and we tell you where each product on the list is
             strong. The two questions we hand you — where the prompt goes, and

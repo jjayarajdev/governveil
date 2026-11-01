@@ -1,14 +1,60 @@
 import { Link } from 'react-router-dom'
 import { Shot } from '../../components/figma'
-import { Cta } from '../bits'
+import { Band, Cta, SectionHead } from '../bits'
 import { Act, Opening, Pair, Row, Rows } from '../interview'
 import { readRegion } from '../../region'
-import { COMPLIANCE } from '../regions'
+import { ASSURANCE_LOOP, COMPLIANCE, LOOP_AUDIENCES } from '../regions'
 
 /* Shape: 06 · Conversational FAQ, four acts.
    Security is the page a buyer arrives at already sceptical, so it is the page
    the shape fits best. The claim, then the architecture under it, then the
    record it leaves, then what an auditor gets and how to check it yourself. */
+
+/* The assurance loop — policy becomes controls, controls are tested against
+   real traffic, what that shows goes back into the policy. DOM order is 01-06;
+   CSS lays row two right-to-left so it reads as a cycle without the markup
+   having to lie to a screen reader. */
+function AssuranceLoop() {
+  return (
+    <Band>
+      <SectionHead
+        eyebrow="The assurance loop"
+        title={<>From policy to <em>proof</em>, in one loop.</>}
+      >
+        Most AI governance stops at the policy document. GovernVeil brings the whole
+        chain together in one loop: your policy becomes controls, every AI request is
+        checked against them in context, each control is tested to show whether it’s
+        actually working, and what you learn goes back into the policy. Effectiveness
+        you can show, not just claim.
+      </SectionHead>
+
+      <div className="loop">
+        {ASSURANCE_LOOP.map(([n, title, body]) => (
+          <div className="loop-step" key={n}>
+            <span className="numeral">{n}</span>
+            <h3 className="h-sub">{title}</h3>
+            <p>{body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="loop-rail">
+        <b>Any AI tool, app or agent in your environment</b>
+        <span>Every decision written to your signed ledger</span>
+      </div>
+
+      <div className="grid cols-3" style={{ marginTop: 40 }}>
+        {LOOP_AUDIENCES.map(([who, what]) => (
+          <div key={who}>
+            <h3 className="h-sub" style={{ fontSize: 17 }}>{who}</h3>
+            <p className="muted small">{what}</p>
+          </div>
+        ))}
+      </div>
+    </Band>
+  )
+}
+
 
 export default function SecurityInterview() {
   const region = readRegion()
@@ -52,7 +98,6 @@ export default function SecurityInterview() {
       <Act n="I" title="Reading the attestation">
         <Pair
           q="What is each field actually telling me?"
-          link={['Why that question sorts the field', '/compare']}
           more={
             <>The signature is HMAC-SHA256 over the statement, so the attestation
             cannot be quietly edited between being generated and being shown to you.
@@ -198,7 +243,6 @@ export default function SecurityInterview() {
       <Act n="IV" title="Assessed against a board's questions">
         <Pair
           q={typeof compliance.title === 'string' ? compliance.title : 'What standards is this assessed against?'}
-          link={['The two questions to ask every vendor', '/compare']}
         >
           <p>{compliance.blurb}</p>
           {compliance.badges && (
@@ -223,6 +267,11 @@ export default function SecurityInterview() {
           </p>
         </Pair>
       </Act>
+
+      {/* AU only, as on the page this replaces — the assurance loop is the one
+          piece of the AU mock-up with no .com equivalent, and swapping the
+          interview set in without it would have dropped it from the AU site. */}
+      {region === 'au' && <AssuranceLoop />}
 
       <Cta />
     </>
