@@ -24,6 +24,11 @@
 .gv .jr-chip:hover { border-color: var(--border-strong); color: var(--text); }
 .gv .jr-chip.is-on { border-color: var(--accent); color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); }
 .gv .jr-chip-t { font-size: 13px; }
+.gv .jr-ovc {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--block); border: 1px solid var(--block); border-radius: 2px;
+  padding: 1px 5px; white-space: nowrap;
+}
 
 /* the run */
 .gv .jr-run { display: grid; gap: 20px; min-width: 0; }

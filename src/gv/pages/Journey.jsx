@@ -76,9 +76,18 @@ export default function Journey() {
                   className={`jr-chip${x.id === caseId ? ' is-on' : ''}`}
                   onClick={() => run(x.id)}
                   aria-current={x.id === caseId}
+                  /* The prompt is what actually tells two cases apart — two of
+                     these are labelled "Benign" — and the chip has no room for
+                     it, so it is the accessible name and the hover title. */
+                  title={x.prompt}
+                  aria-label={`${x.typeLabel}, ${x.verdict}${x.correct ? '' : ', over-caught'}: ${x.prompt}`}
                 >
                   <span className="jr-chip-t">{x.typeLabel}</span>
                   <Tag k={VERDICT_TONE[x.verdict]}>{x.verdict}</Tag>
+                  {/* Restored: the old vertical list flagged the one case the
+                      gateway got wrong. Dropping it hid the only disagreement
+                      in the set behind a click. */}
+                  {!x.correct && <span className="jr-ovc">over-caught</span>}
                 </button>
               ))}
             </div>
