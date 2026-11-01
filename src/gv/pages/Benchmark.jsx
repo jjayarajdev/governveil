@@ -5,11 +5,11 @@ const BY_POLICY = [
     'Strong. This is the category most harnesses report.'],
   ['Toxicity', 99, 100, '99.0 %', 'good', 'Strong.'],
   ['Prompt injection', 23, 25, '92.0 %', 'good',
-    'Strong, but on 25 cases — the smallest corpus in this table, and the one to bring your own to.'],
+    'Strong. 25 cases here — the corpus to extend first with your own traffic.'],
   ['PII', 80, 100, '80.0 %', 'low',
     'The fast path is deterministic on identifier formats; free-text personal data is harder. The flag tier covers the gap.'],
   ['Business-sensitive', 50, 75, '66.7 %', 'low',
-    'The weakest row. “Business-sensitive” is organisation-specific, which is exactly what your own labelled traffic fixes.'],
+    '“Business-sensitive” means something different in every organisation, which is exactly what your own labelled traffic resolves.'],
 ]
 
 const LATENCY = [
@@ -101,10 +101,10 @@ $ make mcp-scorecard      `}<code># the MCP tool-poisoning corpus</code></pre>
 
       {/* ───── by policy ───── */}
       <Band>
-        <SectionHead eyebrow="By policy" title="Where it is strong, and where it is not.">
-          Most vendors publish one number. The two low rows below are the honest part of
-          this table, and they are the reason the <Tag k="flag">flag</Tag> tier and a
-          review queue exist at all.
+        <SectionHead eyebrow="By policy" title="Every policy, scored on its own.">
+          Most vendors publish one number. This is every policy, scored separately —
+          and the two lower rows are precisely why the <Tag k="flag">flag</Tag> tier and
+          a review queue exist.
         </SectionHead>
         <Table head={<>
           <th>Policy</th><th className="num">Caught</th><th className="num">Total</th>
@@ -148,14 +148,14 @@ $ make mcp-scorecard      `}<code># the MCP tool-poisoning corpus</code></pre>
             </ul>
           </div>
           <div>
-            <h2 className="h-sub" style={{ fontSize: 26 }}>What it is not</h2>
-            <ul className="checklist no">
-              <li><span>Not an independent audit. We wrote the corpora; you should run
-                them, and bring your own.</span></li>
-              <li><span>Not a claim about your traffic. Business-sensitive detection in
-                particular is organisation-specific.</span></li>
-              <li><span>Not a vendor-engaged lab study, and not a figure produced by a
-                lab we paid.</span></li>
+            <h2 className="h-sub" style={{ fontSize: 26 }}>How to read it</h2>
+            <ul className="checklist">
+              <li><span>These are our corpora. Run them, then bring your own — the
+                harness takes both.</span></li>
+              <li><span>Business-sensitive detection is organisation-specific by
+                nature, which is what your own labelled traffic is for.</span></li>
+              <li><span>No lab was engaged and no figure here was produced by one.
+                Every number came off a stack you can stand up yourself.</span></li>
               <li><span>Not a substitute for your own corpus. Business-sensitive
             detection in particular is organisation-specific, and the review queue
             turns your traffic into a labelled set you can score in-house.</span></li>

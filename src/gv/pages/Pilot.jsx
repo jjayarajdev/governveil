@@ -26,7 +26,7 @@ export default function Pilot() {
       `Work email: ${f.get('email') || ''}\n` +
       `Company: ${f.get('company') || ''}\n` +
       `Region: ${f.get('region') || ''}\n\n` +
-      `AI traffic we cannot see today:\n${f.get('problem') || ''}\n`,
+      `AI traffic to bring under governance:\n${f.get('problem') || ''}\n`,
     )
     window.location.href = `mailto:${entity.email}?subject=${subject}&body=${body}`
     setSent(true)

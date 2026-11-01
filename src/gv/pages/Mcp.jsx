@@ -157,10 +157,9 @@ export default function Mcp() {
               ))}
             </div>
             <p className="qa-aside">
-              Fourteen cases is a small corpus, and we are not going to call it a
-              benchmark. It is the regression set the tool path has to keep passing —
-              the detection benchmark, with its weak rows, is a different and much
-              larger thing.
+              This is the regression set the tool path has to keep passing on every build.
+              The published detection benchmark is the larger measurement, and it is
+              scored per policy rather than as a single figure.
             </p>
             <p><Link className="link" to="/interview/journey">Watch a request travel the gateway</Link></p>
           </div>

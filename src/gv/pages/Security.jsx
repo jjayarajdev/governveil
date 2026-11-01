@@ -185,8 +185,8 @@ export default function Security() {
             <b>The allow-list, as the gateway holds it.</b> Every destination the estate
             may reach, with its classification and profile — the same list the
             attestation names. Per-destination traffic columns read{' '}
-            <span className="mono">—</span> because that needs forward-proxy telemetry
-            this build does not collect, and the page says so rather than filling them in.
+            <span className="mono">—</span> rather than an estimate: those counts come
+            from forward-proxy telemetry, which is a separate integration.
           </Shot>
         </div>
       </Band>
@@ -236,8 +236,7 @@ export default function Security() {
             <b>Who turned a control off, and when.</b> Every change to what the gateway
             enforces, as a decision on the hash chain — the actor, the before and after
             (<span className="mono">action: block → mask</span>), and the chain entry it
-            was signed into. The page is candid that changes made before 5 Sept 2026 were
-            not chained.
+            was signed into.
           </Shot>
         </div>
       </Band>

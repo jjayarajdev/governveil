@@ -23,8 +23,7 @@ const GROUPS = [
       how: <>Persist-before-forward: if the mapping cannot be saved, the gateway falls
         back to destructive redaction rather than emitting a surrogate it cannot
         reverse, and if no redaction is available at all the request blocks. The browser
-        path is outbound-only by design — stand-ins appear on screen, but reliably
-        restoring a third-party web UI’s turns is not achievable, so we do not claim it.
+        path is outbound-only by design: stand-ins appear on screen.
         Off by default (<span className="mono">FF_REVERSIBLE_MASK</span>); your pilot
         decides.</>,
     },

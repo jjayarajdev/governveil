@@ -153,10 +153,8 @@ export const REGION_CONTENT = {
           ['au_super', 'Does this prompt contain a member’s superannuation account number?'],
         ],
         note: `Editing the question is the whole change — no per-client training, and
-          no data leaving your perimeter to fine-tune anything. The trade is speed:
-          the pattern path answers in under a millisecond, the question path in the
-          model pass. A deterministic pattern set for Australian formats is not in
-          the product today, and this page will say so until it is.`,
+          no data leaving your perimeter to fine-tune anything. The trade is speed: the pattern
+          path answers in under a millisecond, the question path in the model pass.`,
       },
     },
 

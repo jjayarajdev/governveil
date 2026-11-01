@@ -59,8 +59,8 @@ export default function HomeInterview() {
           q="We already own Microsoft Purview."
           link={['The thirteen products, verified', '/compare']}
           more={
-            <>We position additively, and we will not tell you a competitor&rsquo;s
-            product is bad. The two questions we hand you — where the prompt goes, and
+            <>We position additively, and we tell you where each product on the list is
+            strong. The two questions we hand you — where the prompt goes, and
             whether the product restores your data or only blocks it — are the ones
             that sort the field. If the answers favour someone else for your estate,
             that is a better outcome than a pilot that fails in week six.</>
@@ -217,14 +217,13 @@ export default function HomeInterview() {
 
       <Act n="III" title="What you can check yourself">
         <Pair
-          q="How good is the detection, honestly?"
+          q="How good is the detection, and who measured it?"
           link={['Read the benchmark', '/benchmark']}
           more={
             <>Scored through the gateway’s own analyse endpoint in dry-run mode, so no
             ledger rows are written and the real policy chain is what gets measured.
-            Entirely local — no prompt in the corpus is sent anywhere to be scored. It
-            is not an independent audit: we wrote the corpora, and you should bring
-            your own.</>
+            Entirely local — no prompt in the corpus is sent anywhere to be scored. These are our
+            corpora; the harness takes yours too.</>
           }
         >
           <p>
@@ -234,14 +233,14 @@ export default function HomeInterview() {
             without us in the room.
           </p>
           <p>
-            The two rows we are worst at are on the page too, because they are why the
-            flag tier and a review queue exist at all.
+            Every policy is scored separately rather than rolled into one figure, and the
+            two lower rows are precisely why the flag tier and a review queue exist.
           </p>
           <div className="figure-row">
             <div><b>93.25 %</b><span>recall, 800 should-catch prompts</span></div>
             <div><b>0 of 200</b><span>benign prompts wrongly caught</span></div>
-            <div className="figure-low"><b>80 %</b><span>PII — our weak row</span></div>
-            <div className="figure-low"><b>66.7 %</b><span>business-sensitive — our weakest</span></div>
+            <div className="figure-low"><b>80 %</b><span>PII — free-text, beyond the pattern path</span></div>
+            <div className="figure-low"><b>66.7 %</b><span>business-sensitive — organisation-specific</span></div>
           </div>
         </Pair>
 

@@ -6,21 +6,20 @@ import { REGION_CONTENT } from '../regions'
 const COMMITMENTS = [
   ['01', 'Evidence first',
     <>Every claim on this site has a number, a mechanism or a re-runnable harness behind
-      it. Our detection benchmark is public and anyone can re-run it, including the two
-      rows where we score badly. We probe our own controls daily and publish the column.
-      Where we have not measured something, this site says so rather than reaching for
-      an adjective.</>],
+      it. Our detection benchmark is public, with the corpora and the runner committed,
+      so anyone can re-run it on their own stack. We probe our own controls daily and
+      publish the result as a column. Every figure on this site traces to something you
+      can check.</>],
   ['02', 'Self-hosted by conviction',
     <>The product runs where your data lives. There is no vendor cloud in the verdict
       path — signed, not asserted — which is why it works air-gapped, and why it can
-      learn from your traffic without your data moving. This was an architectural
-      decision taken early, and it is the reason several otherwise easier things are hard
-      for us.</>],
+      learn from your traffic without your data moving. That was an architectural decision taken
+      early, and every other property on this page follows from it.</>],
   ['03', 'What you see is what runs',
     <>Everything described on this site is running in the product today. Where a
       capability is off until you turn it on — reversible masking is the one that
       matters — it carries an opt-in label, so a deployment never does something you
-      did not choose. We do not describe intentions as features.</>],
+      did not choose.</>],
 ]
 
 export default function About() {

@@ -290,10 +290,10 @@ export default function Compare() {
           should still weigh it.
         </p>
         <p className="note" style={{ marginTop: 30 }}>
-          We will not tell you a competitor’s product is bad. We will tell you where each
-          one is strong, and hand you the two questions. If the answers work out in
-          someone else’s favour for your estate, that is a better outcome than a pilot
-          that fails in week six.
+          We tell you where each product on this list is strong, and hand you the two
+          questions that sort the field. If the answers work out in someone else’s
+          favour for your estate, that is a better outcome than a pilot that fails in
+          week six.
         </p>
       </Band>
 

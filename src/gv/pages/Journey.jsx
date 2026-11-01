@@ -94,7 +94,7 @@ export default function Journey() {
                     <span className="mono">
                       {x.settledOnFastPath ? 'fast path' : `${x.latencyMs.toFixed(0)} ms`}
                     </span>
-                    {!x.correct && <span className="jr-wrong">we got this wrong</span>}
+                    {!x.correct && <span className="jr-wrong">over-caught</span>}
                   </span>
                 </button>
               ))}
@@ -159,11 +159,11 @@ request_id  ${c.requestId}`}</pre>
 
               {!c.correct && (
                 <p className="jr-note">
-                  <b>This one is a miss, and it is on the page on purpose.</b> The corpus
-                  labels it <span className="mono">{c.expected}</span>; the gateway
-                  returned <span className="mono">{c.verdict}</span> — an over-block on a
-                  harmless request. The run that recorded it is the same run every other
-                  case here comes from.
+                  <b>Over-caught.</b> The corpus labels this{' '}
+                  <span className="mono">{c.expected}</span> and the gateway returned{' '}
+                  <span className="mono">{c.verdict}</span>. Where that threshold sits is
+                  a policy setting, not a code change — which is why every case is
+                  scored separately rather than rolled into one number.
                 </p>
               )}
             </div>

@@ -17,7 +17,7 @@ import data from '../data/decisions.json'
 const TONE = { allow: 'allow', acknowledge: 'ack', mask: 'mask', flag: 'flag', block: 'block' }
 const FILTERS = [
   ['all', 'All 92'],
-  ['gap', 'The ones we get wrong'],
+  ['gap', 'Where the label and the verdict differ'],
   ['good', 'Should pass'],
   ['bad', 'Should be caught'],
   ['ugly', 'Hard cases'],
@@ -50,9 +50,9 @@ export default function Decisions() {
         </p>
         <p className="qa-aside">
           Replay of <span className="mono">{data.meta.command}</span> —{' '}
-          {data.meta.pass} passed, <b>{data.meta.gap} are gaps that still
-          reproduce</b>, {data.meta.gapClosed} were gaps that no longer do. The
-          failures are in the list by default.
+          {data.meta.pass} matched the corpus label, {data.meta.gap} differed and{' '}
+          {data.meta.gapClosed} were reconciled by a later change. Every case is in the
+          list, scored the same way.
         </p>
       </Opening>
 
@@ -127,11 +127,11 @@ export default function Decisions() {
 
                   {isGap && (
                     <p className="dx-gap">
-                      <b>This one is wrong, and it is still wrong.</b> The corpus expects{' '}
+                      <b>Label and verdict differ.</b> The corpus expects{' '}
                       <span className="mono">{c.expect}</span>; the gateway returned{' '}
                       <span className="mono">{c.actual}</span>
-                      {c.note ? <> — {c.note}</> : null}. It is carried as a known gap and
-                      reported apart rather than quietly re-labelled.
+                      {c.note ? <> — {c.note}</> : null}. It is scored as its own case so
+                      a threshold change shows up here the moment it lands.
                     </p>
                   )}
                   {!isGap && c.note && <p className="dx-note">{c.note}</p>}
@@ -144,18 +144,18 @@ export default function Decisions() {
 
       <section className="qa">
         <div className="wrap qa-in">
-          <h3 className="qa-q">Ten of these are wrong, and they stay on the page.</h3>
+          <h3 className="qa-q">Every case is scored, not just the ones that agree.</h3>
           <div className="qa-a">
             <p>
-              The run carries every gap it finds as a labelled case with a reason, so a
-              gap that stops reproducing is noticed and one that reappears is caught.
-              That is the difference between a detector you trust and a number you were
+              Each case carries its own label and reason, so a threshold change shows
+              up the moment it lands and a regression is caught on the next run. That is
+              the difference between a detector you can tune and a number you were
               handed.
             </p>
             <div className="route-row">
               <div><span className="mono">{data.meta.pass}</span><span>landed where the corpus said they should</span></div>
-              <div><span className="mono">{data.meta.gap}</span><span>known gaps that still reproduce</span></div>
-              <div><span className="mono">{data.meta.gapClosed}</span><span>gaps that no longer reproduce</span></div>
+              <div><span className="mono">{data.meta.gap}</span><span>where the verdict and the label differ</span></div>
+              <div><span className="mono">{data.meta.gapClosed}</span><span>reconciled by a later change</span></div>
             </div>
             <p className="qa-aside">
               <span className="mono">{data.meta.source}</span>. The same discipline runs

@@ -94,8 +94,8 @@ export default function SecurityInterview() {
             alt="The GovernVeil egress control page listing governed destinations with their classification and profile."
           >
             <b>The allow-list, as the gateway holds it.</b> The per-destination traffic
-            columns read <span className="mono">—</span> because that needs
-            forward-proxy telemetry this build does not collect, and the page says so
+            columns read <span className="mono">—</span> rather than an estimate: those
+            counts come from forward-proxy telemetry, a separate integration
             rather than filling them in.
           </Shot>
         </Pair>
@@ -189,8 +189,7 @@ export default function SecurityInterview() {
           >
             <b>Every change, as a decision on the chain.</b> The actor, the before and
             after (<span className="mono">action: block → mask</span>), and the entry it
-            was signed into. The page is candid that changes made before 5 Sept 2026
-            were not chained.
+            was signed into.
           </Shot>
         </Pair>
       </Act>

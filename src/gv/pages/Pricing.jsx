@@ -161,9 +161,9 @@ export default function Pricing() {
           ))}
         </Table>
         <p className="small dim" style={{ marginTop: 16 }}>
-          We are not the cheapest line item in every comparison and we don’t try to be.
-          We are the one where the prompt never leaves, and the only one on this table
-          that publishes a benchmark you can re-run.{' '}
+          We price for what the comparison does not show: the prompt never leaves your
+          perimeter, and we are the only product on this table that publishes a
+          benchmark you can re-run yourself.{' '}
           <Link className="link" to="/compare">The full comparison →</Link>
         </p>
       </Band>

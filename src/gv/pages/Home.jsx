@@ -275,10 +275,10 @@ entry    #4187 · signed · prev 9f2c…e41a`}</pre>
       <Band sunken>
         <SectionHead
           eyebrow="IV · Capabilities"
-          title="What ships today — and what doesn’t, labelled plainly."
+          title="What the gateway enforces, capability by capability."
         >
-          Everything below is running today. Where a capability is off by default it
-          carries an <Tag k="optin">opt-in</Tag> tag, so you can see what a deployment
+          Everything below is running today. A capability that is off by default carries
+          an <Tag k="optin">opt-in</Tag> tag, so you can see exactly what a deployment
           turns on before it turns it on.
         </SectionHead>
         <div className="grid cols-3">
