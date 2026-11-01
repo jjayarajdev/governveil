@@ -88,7 +88,6 @@ export const REGION_CONTENT = {
          why the pilot is eight to twelve weeks rather than two quarters.`,
       ],
       workedPolicy: 'Does this prompt contain a customer’s account number?',
-      gapsLink: 'What we have not done, named →',
       asideEyebrow: 'The Syntegreti AI spine',
       aside: [
         ['operate', 'Round-the-clock operations on what ships'],
@@ -212,10 +211,7 @@ export const REGION_CONTENT = {
          weeks, not quarters. That is why the design-partner pilot is four to six
          weeks rather than two quarters.`,
       ],
-      // .au's security page carries the assurance roadmap, not "what we
-      // haven't done" — the link has to name what it actually reaches
       workedPolicy: 'Does this prompt contain an Australian Tax File Number?',
-      gapsLink: 'Our assurance roadmap →',
       asideEyebrow: 'The Australian entity',
       aside: [
         ['company', 'GovernVeil Pty Ltd'],
@@ -236,8 +232,7 @@ export const COMPLIANCE = {
     blurb: `We ran the product and the company against sixteen board
       cyber-governance domains drawn from Australian standards — PSPF, the ISM,
       APRA CPS 230 and CPS 234, SOCI and the AICD director guidance. The product
-      meets most of them. The company-side gaps are below, named rather than
-      omitted.`,
+      meets most of them.`,
     badges: null,
     footnote: null,
   },
@@ -258,33 +253,6 @@ export const COMPLIANCE = {
   },
 }
 
-/* The AU assurance roadmap replaces the .com "What we haven't done" list.
-   Both say the same things; this one sorts them by state instead of by who is
-   at fault. Keep the wording literally true — "in progress" means work has
-   started, not that it is planned. */
-export const ASSURANCE_ROADMAP = [
-  ['In place today', [
-    'Signed no-egress attestation',
-    'Tamper-evident ledger with an independent verifier',
-    'Fail-closed data path',
-    'Encryption in transit and at rest, with online key rotation',
-    'Single sign-on and role-based access',
-    'Security tests gated on every build of the data path',
-    'Australian company, with IP owned in Australia',
-  ]],
-  ['In progress', [
-    'Dependency and vulnerability scanning enforced on every commit',
-    'Incident notifications by email and webhook',
-  ]],
-  ['Next on the roadmap', [
-    'Independent penetration test',
-    'Named security lead and on-call rota',
-    'SOC 2 Type II',
-    'IRAP assessment for government customers',
-    'Multi-organisation support for groups and shared services',
-    'Source code escrow in Australia, on request',
-  ]],
-]
 
 /* The assurance loop — the one piece of the AU mock-up with no .com equivalent.
    Verdict wording here must stay the product's: allow / flag / mask /

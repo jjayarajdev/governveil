@@ -156,8 +156,9 @@ $ make mcp-scorecard      `}<code># the MCP tool-poisoning corpus</code></pre>
                 particular is organisation-specific.</span></li>
               <li><span>Not a vendor-engaged lab study, and not a figure produced by a
                 lab we paid.</span></li>
-              <li><span>Not complete. Known detection gaps are tracked openly in the
-                repository’s open-issues register rather than quietly closed.</span></li>
+              <li><span>Not a substitute for your own corpus. Business-sensitive
+            detection in particular is organisation-specific, and the review queue
+            turns your traffic into a labelled set you can score in-house.</span></li>
             </ul>
           </div>
         </div>

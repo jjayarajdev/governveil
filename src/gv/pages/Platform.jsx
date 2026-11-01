@@ -104,30 +104,6 @@ export default function Platform() {
         </section>
       </Act>
 
-      <Act n="IV" title="What it has not done">
-        <section className="qa">
-          <div className="wrap qa-in">
-            <h3 className="qa-q">The part a diligence process reaches anyway.</h3>
-            <div className="qa-a">
-              <p>
-                You will find these in week six if we do not say them in week one, and
-                the second version costs far more than the first.
-              </p>
-              <ul className="miss-list">
-                {d.notBuilt.map((x) => <li key={x}>{x}</li>)}
-              </ul>
-              <p className="qa-aside">
-                The company-side gaps — founder-led, SOC 2 not started with an auditor,
-                no external penetration test — are on the security page, not buried in
-                a footer.
-              </p>
-              <p>
-                <Link className="link" to="/interview/security">What we haven’t done, in full</Link>
-              </p>
-            </div>
-          </div>
-        </section>
-      </Act>
 
       <Cta />
     </>

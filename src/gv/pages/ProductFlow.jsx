@@ -248,10 +248,9 @@ export default function ProductFlow() {
                 </Row>
               </Rows>
               <p className="qa-aside">
-                Multi-tenancy is not in the schema — no{' '}
-                <span className="mono">org_id</span>, no row-level security. One
-                deployment governs one organisation. That is a roadmap item, and we
-                would rather you heard it here.
+                One deployment governs one organisation, with its own database, its own
+                keys and its own ledger. Nothing is shared across tenants because there
+                are none.
               </p>
             </div>
           </div>

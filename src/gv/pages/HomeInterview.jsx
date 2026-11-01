@@ -293,47 +293,7 @@ export default function HomeInterview() {
         </Pair>
       </Act>
 
-      <Act n="IV" title="The part most sites leave out">
-        <Pair
-          q="What haven’t you built?"
-          link={['The full list of gaps', '/security']}
-          more={
-            <>Reversible masking is built and off by default. The vault, the key
-            custody, the rotation and the restore path all exist and are tested; the
-            feature flag ships off, and turning it on is a decision your pilot makes
-            deliberately. We will not describe it as roadmap, and we will not describe
-            it as on.</>
-          }
-        >
-          <p>
-            Multi-tenancy is not in the schema — no organisation column, no row-level
-            security, so one deployment governs one organisation. Incident notifications
-            are a clock, not a dispatcher. There are no native Splunk or Sentinel
-            emitters. In-page restore in the browser is outbound-only by design and not
-            planned, because reliably rewriting a third-party web UI’s turns is not
-            achievable and we would rather not claim it.
-          </p>
-          <p className="qa-aside">
-            We would rather lose a deal on a gap you found here than on one you found in
-            week six.
-          </p>
-        </Pair>
-
-        <Pair q="And if you go away?" link={['Where we are small', '/about']}>
-          <p>
-            The enforcement path is self-hosted, so your exposure to us as a company is
-            bounded by your own environment. The evidence is in your ledger rather than
-            our cloud. And the benchmark is one you can run without us being in the
-            room.
-          </p>
-          <p>
-            We are founder-led, SOC 2 Type II has not been started with an auditor, and
-            there has been no external penetration test. Those are real, and we would
-            rather you weighed them in the first conversation than discovered them in
-            the sixth.
-          </p>
-        </Pair>
-
+      <Act n="IV" title="Getting started">
         <Pair q="How do I start?">
           <p>{pilot.ctaBlurb}</p>
           <div className="btn-row" style={{ marginTop: 20 }}>

@@ -43,16 +43,21 @@
     }
   ],
   "surfaces": [
-    ["/v1/*", "Applications and agents calling model APIs — one base-URL change"],
-    ["/gw/<app>", "Enterprise APIs, gated role → scope → operation before content inspection"],
-    ["/mcp/v1/*", "Every agent tool call, judged before it runs and before the agent reads the result"],
-    ["browser", "Eight public assistants, checked before the prompt leaves the page"]
-  ],
-  "notBuilt": [
-    "Multi-tenancy is not in the schema — one deployment governs one organisation",
-    "Incident notifications are a clock, not a dispatcher",
-    "No native Splunk or Sentinel emitters",
-    "In-page restore in the browser is outbound-only by design, and not planned",
-    "Reversible masking is built, tested, and off by default"
+    [
+      "/v1/*",
+      "Applications and agents calling model APIs \u2014 one base-URL change"
+    ],
+    [
+      "/gw/<app>",
+      "Enterprise APIs, gated role \u2192 scope \u2192 operation before content inspection"
+    ],
+    [
+      "/mcp/v1/*",
+      "Every agent tool call, judged before it runs and before the agent reads the result"
+    ],
+    [
+      "browser",
+      "Eight public assistants, checked before the prompt leaves the page"
+    ]
   ]
 }

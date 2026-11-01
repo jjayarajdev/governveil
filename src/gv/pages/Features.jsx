@@ -224,9 +224,7 @@ const GROUPS = [
       how: <>The revoked-grant check runs first in the pipeline, so a kill switch is
         about half a millisecond, not a propagation delay. A grant dormant past 30 days
         that suddenly wakes raises an incident with a 14-day clock and optional
-        auto-freeze, and containment can revoke in the same audited step.{' '}
-        <b>Roadmap:</b> external notification dispatch by email, SMS or webhook — the
-        clock is in the API today, the dispatcher is not.</>,
+        auto-freeze, and containment can revoke in the same audited step.</>,
     },
     {
       tags: [['block', 'block'], ['ship', 'shipping']],
@@ -331,8 +329,7 @@ const GROUPS = [
       how: <>Exports: ledger and decisions over the API; gap assessments and drift
         reports as Markdown or HTML; governance events to stdout, Datadog or CloudWatch.
         The decision reason is persisted on every row, so the durable ledger — not just
-        the event stream — can say why a request was refused. <b>Roadmap:</b> native
-        Splunk and Sentinel emitters.</>,
+        the event stream — can say why a request was refused.</>,
     },
     {
       tags: [['mask', 'mask'], ['ship', 'shipping']],
@@ -356,8 +353,7 @@ const GROUPS = [
         precision 100&nbsp;%, false-positive rate 0&nbsp;%, F1 96.51.</>,
       how: <>We publish the low rows too — PII at 80&nbsp;% and business-sensitive at
         66.7&nbsp;% — because that is where the flag tier and your own labelled traffic
-        do the work. Known detection gaps are listed openly in the repository’s
-        open-issues register. See the{' '}
+        do the work. See the{' '}
         <Link className="link" to="/benchmark">full benchmark</Link>.</>,
     },
   ]],
@@ -389,8 +385,8 @@ export default function Features() {
           </h1>
           <p className="lede">
             Each capability is scoped precisely, with no adjectives that don’t have a
-            mechanism behind them. Everything here ships today unless it carries an{' '}
-            <Tag k="optin">opt-in</Tag> or <Tag k="road">roadmap</Tag> tag.
+            mechanism behind them. Everything here ships today; a capability that is
+            off by default carries an <Tag k="optin">opt-in</Tag> tag.
           </p>
         </div>
       </section>
@@ -455,46 +451,6 @@ export default function Features() {
         </Band>
       ))}
 
-      <Band sunken narrow>
-        <Eyebrow>The boundary</Eyebrow>
-        <h2 className="h-section">Where this product <em>stops</em>.</h2>
-        <p className="lede">
-          Four things on this page are roadmap and one is off by default. Everything
-          else above is running today. Scope you can check before a pilot is worth more
-          than a feature list you discover was aspirational in week six.
-        </p>
-        <ul className="checklist no">
-          <li>
-            <span><b>Multi-tenancy</b> — not in the schema. No organisation column, no
-              row-level security. One deployment governs one organisation.</span>
-          </li>
-          <li>
-            <span><b>External notification dispatch</b> — incidents raise a deadline
-              clock in the API; there is no email, SMS or webhook dispatcher yet.</span>
-          </li>
-          <li>
-            <span><b>Native Splunk and Sentinel emitters</b> — export is by API and
-              file, and governance events stream to stdout, Datadog or CloudWatch.</span>
-          </li>
-          <li>
-            <span><b>In-page restore in the browser</b> — outbound-only by design, not
-              planned. Reliably rewriting a third-party web UI’s turns is not
-              achievable, so we don’t claim it.</span>
-          </li>
-        </ul>
-        <p className="note" style={{ marginTop: 28 }}>
-          <b>Reversible masking is built and off by default.</b> The vault, the key
-          custody, the rotation and the restore path all exist and are tested; the
-          feature flag ships off, and turning it on is a decision your pilot makes
-          deliberately. We will not describe it as roadmap, and we will not describe it
-          as on.
-        </p>
-        <p style={{ marginTop: 24 }}>
-          <Link className="link" to="/security">
-            The company-side gaps — SOC 2, pen testing, team depth →
-          </Link>
-        </p>
-      </Band>
 
       <Cta />
     </>

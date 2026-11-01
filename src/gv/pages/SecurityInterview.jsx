@@ -3,13 +3,12 @@ import { Shot } from '../../components/figma'
 import { Cta } from '../bits'
 import { Act, Opening, Pair, Row, Rows } from '../interview'
 import { readRegion } from '../../region'
-import { ASSURANCE_ROADMAP, COMPLIANCE } from '../regions'
+import { COMPLIANCE } from '../regions'
 
 /* Shape: 06 · Conversational FAQ, four acts.
    Security is the page a buyer arrives at already sceptical, so it is the page
    the shape fits best. The claim, then the architecture under it, then the
-   record it leaves, then what we have not done — which on .au is the assurance
-   roadmap and on .com is the plain list. */
+   record it leaves, then what an auditor gets and how to check it yourself. */
 
 export default function SecurityInterview() {
   const region = readRegion()
@@ -196,8 +195,11 @@ export default function SecurityInterview() {
         </Pair>
       </Act>
 
-      <Act n="IV" title="Assessed, and not yet assessed">
-        <Pair q={typeof compliance.title === 'string' ? compliance.title : 'What standards is this assessed against?'}>
+      <Act n="IV" title="Assessed against a board's questions">
+        <Pair
+          q={typeof compliance.title === 'string' ? compliance.title : 'What standards is this assessed against?'}
+          link={['The two questions to ask every vendor', '/compare']}
+        >
           <p>{compliance.blurb}</p>
           {compliance.badges && (
             <div className="tag-row">
@@ -209,79 +211,17 @@ export default function SecurityInterview() {
           {compliance.footnote && <p className="qa-aside">{compliance.footnote}</p>}
         </Pair>
 
-        {region === 'au' ? (
-          <Pair
-            q="Where are you, and where are you going?"
-            link={['Become a design partner', '/pilot']}
-          >
-            <p>
-              We would rather you hear it from us in the first call than discover it in
-              the sixth. Design partners get the full assurance register and
-              known-issues log under NDA.
-            </p>
-            <div className="grid cols-3" style={{ marginTop: 4 }}>
-              {ASSURANCE_ROADMAP.map(([stage, items]) => (
-                <div className="card card-num" key={stage}>
-                  <span className="numeral">{stage}</span>
-                  <ul className="plain">
-                    {items.map((i) => <li key={i}>{i}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <p className="qa-aside">
-              We’ll publish certification dates when we can commit to them.
-            </p>
-          </Pair>
-        ) : (
-          <>
-            <Pair q="What hasn’t the company done?">
-              <ul className="miss-list">
-                <li><b>Founder-led.</b> Security is held by the founder today. A named
-                  security lead and an on-call rota are funded in the seed plan, and we
-                  will tell you where that stands in the first call.</li>
-                <li><b>SOC 2 Type II is not started</b> with an auditor. It is funded in
-                  the seed plan. We will not give you a date we cannot hold.</li>
-                <li><b>No external penetration test</b> has been commissioned, and there
-                  is no IRAP assessment.</li>
-              </ul>
-            </Pair>
-
-            <Pair
-              q="And in the engineering?"
-              link={['What ships, and what doesn’t', '/features']}
-              more={
-                <>Everything on the data path is gated on every commit: build, vet, race
-                tests, the full suite, the admin-write harness against a real database,
-                the extension end-to-end scenarios and the console tests. The hygiene
-                around it — dependency and vulnerability scanning, static analysis —
-                runs but is not yet enforced on every push, and that is the next thing
-                in the gate.</>
-              }
-            >
-              <ul className="miss-list">
-                <li><b>Multi-tenancy is not in the schema.</b> No organisation column,
-                  no row-level security. One deployment governs one organisation.</li>
-                <li><b>Incident notifications are a clock, not a dispatcher.</b></li>
-                <li><b>Cost attribution is wired but switched off</b> until the
-                  model-registry prices are connected — a deliberate default, but the
-                  cost column reads zero until you turn it on.</li>
-              </ul>
-              <p>
-                We keep an open register of every gap the tests have surfaced and not
-                yet closed, scored against sixteen engineering dimensions with the
-                command that produced each score. <b>Design partners get the full
-                register and the known-issues log under NDA</b> — itemised, dated, with
-                what closing each one takes.
-              </p>
-              <p className="qa-aside">
-                Evaluate on the reference A10G build. On a laptop-class GPU the context
-                and intent judge is off, so a MacBook runs a reduced ladder and will
-                understate what the detector does.
-              </p>
-            </Pair>
-          </>
-        )}
+        <Pair
+          q="How do I check any of this for myself?"
+          link={['Book a design-partner pilot', '/pilot']}
+        >
+          <p>
+            Pull the attestation and read the number. Run the benchmark on your own
+            stack with no cloud calls. Walk the ledger with the standalone verifier.
+            Every claim on this page is one you can test without us in the room, which
+            is the only kind worth making.
+          </p>
+        </Pair>
       </Act>
 
       <Cta />

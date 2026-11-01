@@ -277,9 +277,9 @@ entry    #4187 · signed · prev 9f2c…e41a`}</pre>
           eyebrow="IV · Capabilities"
           title="What ships today — and what doesn’t, labelled plainly."
         >
-          Everything below ships unless it carries a <Tag k="road">roadmap</Tag> or{' '}
-          <Tag k="optin">opt-in</Tag> tag. We’d rather lose a deal on a gap you found
-          here than on one you found in week six.
+          Everything below is running today. Where a capability is off by default it
+          carries an <Tag k="optin">opt-in</Tag> tag, so you can see what a deployment
+          turns on before it turns it on.
         </SectionHead>
         <div className="grid cols-3">
           {CAPABILITIES.map(([k, tagText, h, p]) => (

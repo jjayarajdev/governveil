@@ -16,12 +16,11 @@ const COMMITMENTS = [
       learn from your traffic without your data moving. This was an architectural
       decision taken early, and it is the reason several otherwise easier things are hard
       for us.</>],
-  ['03', 'Honest about the roadmap',
-    <>Features are labelled shipping, opt-in or roadmap — here, and in the sales
-      conversation. <b>Roadmap today:</b> multi-tenancy, an external notification
-      dispatcher, and native Splunk and Sentinel emitters. <b>Opt-in today:</b>{' '}
-      reversible masking, built and off by default. Everything else on this site is
-      running.</>],
+  ['03', 'What you see is what runs',
+    <>Everything described on this site is running in the product today. Where a
+      capability is off until you turn it on — reversible masking is the one that
+      matters — it carries an opt-in label, so a deployment never does something you
+      did not choose. We do not describe intentions as features.</>],
 ]
 
 export default function About() {
@@ -93,26 +92,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* ───── where we are small ───── */}
-      <Band narrow>
-        <Eyebrow>Before you ask</Eyebrow>
-        <h2 className="h-section">Where we are small.</h2>
-        <p className="muted">
-          We are founder-led and early. There are certifications we have not started and
-          assurances a larger vendor could hand you today — they are named in full on the
-          security page rather than left for you to find, and they are funded in the plan
-          rather than wished away.
-        </p>
-        <p className="muted">
-          What we would put against them: the enforcement path is self-hosted, so your
-          exposure to us as a company is bounded by your own environment; the evidence is
-          in your ledger rather than our cloud; and the benchmark is one you can run
-          without us being in the room.
-        </p>
-        <p style={{ marginTop: 22 }}>
-          <Link className="link" to="/security">{about.gapsLink}</Link>
-        </p>
-      </Band>
 
       <Cta />
     </>

@@ -1,9 +1,7 @@
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, KV, Row, SectionHead } from '../bits'
 import { readRegion } from '../../region'
-import {
-  ASSURANCE_LOOP, ASSURANCE_ROADMAP, COMPLIANCE, LOOP_AUDIENCES,
-} from '../regions'
+import { ASSURANCE_LOOP, COMPLIANCE, LOOP_AUDIENCES } from '../regions'
 
 const ARCHITECTURE = [
   ['Deployment',
@@ -97,40 +95,6 @@ function AssuranceLoop() {
   )
 }
 
-/* .au sorts the same facts by state rather than by whose fault they are. The
-   .com page keeps "What we haven't done" — see the honest-gaps band below. */
-function AssuranceRoadmap() {
-  return (
-    <Band sunken>
-      <SectionHead
-        eyebrow="Our assurance roadmap"
-        title={<>Open about where we are, and where we’re <em>going</em>.</>}
-      >
-        We’d rather you hear it from us in the first call than discover it in the
-        sixth. Design partners get our full assurance register and known-issues log
-        under NDA.
-      </SectionHead>
-      <div className="grid cols-3">
-        {ASSURANCE_ROADMAP.map(([stage, items]) => (
-          <div className="card card-num" key={stage}>
-            <span className="numeral">{stage}</span>
-            <ul className="plain">
-              {items.map((i) => <li key={i}>{i}</li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <p className="small dim" style={{ marginTop: 16 }}>
-        We’ll publish certification dates when we can commit to them.
-      </p>
-      <p className="note" style={{ marginTop: 32 }}>
-        Why buyers choose GovernVeil: the enforcement path is self-hosted, the
-        evidence belongs to you, and the benchmark is one you can run yourself,
-        <em> without us</em>.
-      </p>
-    </Band>
-  )
-}
 
 export default function Security() {
   const region = readRegion()
@@ -305,73 +269,6 @@ export default function Security() {
         )}
       </Band>
 
-      {region === 'au' && <AssuranceRoadmap />}
-
-      {/* ───── honest gaps · .com ───── */}
-      {region !== 'au' && (
-      <Band narrow>
-        <Eyebrow>Say it before it is found</Eyebrow>
-        <h2 className="h-section">What we haven’t done.</h2>
-        <p className="lede">
-          A reader who later discovers a gap we hid is lost for good. One who was told
-          up front can weigh it. Everything here is true as of this page’s last
-          revision, and we would rather you raised it in the first call than the sixth.
-        </p>
-
-        <h3 className="h-sub" style={{ marginTop: 36 }}>The company</h3>
-        <ul className="checklist no">
-          <li><span><b>Founder-led.</b> Security is held by the founder today. A named
-            security lead and an on-call rota are funded in the seed plan, and we will
-            tell you where that stands in the first call.</span></li>
-          <li><span><b>SOC 2 Type II is not started</b> with an auditor. It is funded in
-            the seed plan. We will not give you a date we cannot hold.</span></li>
-          <li><span><b>No external penetration test</b> has been commissioned, and there
-            is no IRAP assessment.</span></li>
-        </ul>
-
-        <h3 className="h-sub" style={{ marginTop: 32 }}>The product</h3>
-        <ul className="checklist no">
-          <li><span><b>Multi-tenancy is not in the schema.</b> No organisation column,
-            no row-level security. One deployment governs one organisation.</span></li>
-          <li><span><b>Incident notifications are a clock, not a dispatcher.</b> Dormancy
-            deadlines are tracked and raised in the API; there is no email, SMS or
-            webhook sender yet.</span></li>
-          <li><span><b>Cost attribution is wired but switched off</b> until the
-            model-registry prices are connected. A deliberate default, not a defect —
-            but the cost column reads zero until you turn it on.</span></li>
-        </ul>
-
-        <h3 className="h-sub" style={{ marginTop: 32 }}>The engineering, and the register</h3>
-        <p className="muted">
-          Everything on the data path is gated on every commit: build, vet, race tests,
-          the full suite, the admin-write harness against a real database, the extension
-          end-to-end scenarios and the console tests. The hygiene around it — dependency
-          and vulnerability scanning, static analysis — runs but is not yet enforced on
-          every push, and that is the next thing in the gate.
-        </p>
-        <p className="muted">
-          We keep an open register of every gap the tests have surfaced and not yet
-          closed, scored against sixteen engineering dimensions with the command that
-          produced each score. <b>Design partners get the full register and the
-          known-issues log under NDA</b> — itemised, dated, with what closing each one
-          takes. We would rather hand it to you than have you find it.
-        </p>
-        <p className="note" style={{ marginTop: 28 }}>
-          Evaluate on the reference A10G build. On a laptop-class GPU the context and
-          intent judge is off, so a MacBook runs a reduced ladder and will understate
-          what the detector does.
-        </p>
-
-        <p className="note" style={{ marginTop: 34 }}>
-          The risks we would raise ourselves if we were on your side of the table: a
-          platform vendor bundling this into a licence you already own; the model
-          providers absorbing enforcement into their own APIs; and team depth at our
-          current size. They are all real. What we would put against them is that the
-          enforcement path is self-hosted, the evidence is yours, and the benchmark is
-          one you can run without us.
-        </p>
-      </Band>
-      )}
 
       <Cta />
     </>
