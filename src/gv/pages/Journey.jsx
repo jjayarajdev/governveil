@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Tag } from '../bits'
 import { Opening } from '../interview'
 import { STAGES, Track } from '../pipeline'
+import { Bars } from '../capture'
 import data from '../data/journey.json'
 
 /* The request journey.
@@ -62,7 +63,7 @@ export default function Journey() {
         </p>
       </Opening>
 
-      <section className="jr">
+      <section className="jr band-hatch">
         <div className="wrap jr-in">
 
           <div className="jr-pick">
@@ -165,20 +166,34 @@ request_id  ${c.requestId}`}</pre>
               answered in under a millisecond. The ones that reached the model took a
               median of {data.meta.modelMedianMs} ms.
             </p>
-            <div className="route-row">
+            {/* The split is the point of the section, so draw it. Both
+                numbers are from meta; the model share is the remainder, not
+                a separate measurement. */}
+            <Bars rows={[
+              ['settled on the pattern path, under 1 ms',
+                `${data.meta.fastPathCases} of ${data.meta.totalCases}`,
+                (data.meta.fastPathCases / data.meta.totalCases) * 100],
+              ['reached the local model',
+                `${data.meta.totalCases - data.meta.fastPathCases} of ${data.meta.totalCases}`,
+                ((data.meta.totalCases - data.meta.fastPathCases) / data.meta.totalCases) * 100,
+                true],
+            ]} />
+
+            <div className="figs" style={{ marginTop: 28 }}>
               <div>
-                <span className="mono">{data.meta.fastPathCases} of {data.meta.totalCases}</span>
-                <span>settled on the pattern path, under 1 ms</span>
+                <b>&lt; 1 ms</b>
+                <span>the pattern path, with no model call</span>
               </div>
               <div>
-                <span className="mono">{data.meta.modelMedianMs} ms</span>
+                <b>{data.meta.modelMedianMs} ms</b>
                 <span>median for the cases that reached the local model</span>
               </div>
               <div>
-                <span className="mono">{data.meta.hardware}</span>
-                <span>the reference pilot box</span>
+                <b>A10G</b>
+                <span>{data.meta.hardware} — the reference pilot box</span>
               </div>
             </div>
+
             <p className="qa-aside">
               Recorded {data.meta.recorded} · run <span className="mono">{data.meta.runId}</span> ·{' '}
               <span className="mono">{data.meta.source}</span>. The corpus is a detection

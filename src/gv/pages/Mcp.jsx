@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Tag } from '../bits'
 import { Opening } from '../interview'
 import { Track } from '../pipeline'
+import { Bars } from '../capture'
 import data from '../data/mcp.json'
 
 /* Agent tool calls, governed at three points.
@@ -62,7 +63,7 @@ export default function Mcp() {
         </p>
       </Opening>
 
-      <section className="mcp">
+      <section className="mcp band-hatch">
         <div className="wrap">
           {/* The three points are a sequence, not a tab bar: same track the
               request pipeline uses, three stages instead of eight. */}
@@ -174,14 +175,28 @@ export default function Mcp() {
               <span className="mono">{data.meta.command}</span> against the gateway’s own
               verdict surface. All fourteen landed where the corpus said they should.
             </p>
-            <div className="route-row">
-              {Object.entries(data.meta.byCategory).map(([k, v]) => (
-                <div key={k}>
-                  <span className="mono">{v.pass}/{v.total}</span>
-                  <span>{k.replace(/_/g, ' ')}</span>
-                </div>
-              ))}
+            {/* Seven categories, every one of them full. Drawn rather than
+                listed, because "14 of 14" means nothing until you can see
+                what the fourteen were asked to sort. */}
+            <Bars rows={Object.entries(data.meta.byCategory).map(([k, v]) => [
+              k.replace(/_/g, ' '), `${v.pass} / ${v.total}`, (v.pass / v.total) * 100,
+            ])} />
+
+            <div className="figs" style={{ marginTop: 28 }}>
+              <div>
+                <b>{data.meta.passed} of {data.meta.total}</b>
+                <span>landed on an accepted verdict</span>
+              </div>
+              <div>
+                <b>3</b>
+                <span>points every tool call is judged at</span>
+              </div>
+              <div>
+                <b>7</b>
+                <span>categories, from benign to a poisoned tool description</span>
+              </div>
             </div>
+
             <p className="qa-aside">
               This is the regression set the tool path has to keep passing on every build.
               The published detection benchmark is the larger measurement, and it is

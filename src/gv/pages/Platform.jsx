@@ -97,7 +97,7 @@ export default function Platform() {
                 product. It is worth knowing the shape of it before you decide how
                 much of this to believe.
               </p>
-              <div className="figs">
+              <div className="figs" style={{ '--figs': 2 }}>
                 <div><b>{n(d.engine.goLoc)}</b><span>lines of Go in the gateway, excluding tests</span></div>
                 <div><b>{n(d.engine.testLoc)}</b><span>lines of test across {d.engine.testFiles} files</span></div>
                 <div><b>{d.engine.routes}</b><span>registered API paths</span></div>
