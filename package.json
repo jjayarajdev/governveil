@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && npx wrangler pages deploy dist --project-name governveil --branch main --commit-dirty=true"
+    "deploy": "vite build && npx wrangler pages deploy dist --project-name governveil --branch main --commit-dirty=true",
+    "dev:au": "vite --config vite.config.au.js",
+    "build:au": "vite build --config vite.config.au.js",
+    "preview:au": "vite preview --config vite.config.au.js --outDir dist-au",
+    "deploy:au": "vite build --config vite.config.au.js && npx wrangler pages deploy dist-au --project-name governveil-au --branch main --commit-dirty=true"
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",

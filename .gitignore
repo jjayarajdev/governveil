@@ -9,3 +9,4 @@ dist/
 # board is excluded, because it is a 3.2 MB working file.
 # The three claude-design/*.html references stay tracked.
 claude-design/v2/
+dist-au

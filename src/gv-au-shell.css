@@ -1,0 +1,80 @@
+/* The governveil.com.au shell: early-access bar, header, mega-menu, footer.
+
+   SEPARATE FILE on purpose, same as gv-v3-shell.css. gv-au.css is generated
+   from the design's <style> blocks and gets overwritten on every regeneration;
+   hand-written rules must not live there. The design repeats these as inline
+   styles on all nine pages — lifted into classes so ShellAU renders them once.
+   Values unchanged. */
+
+/* The design carries --acc as an inline style on each page's wrapper div.
+   The shell renders that wrapper once, so the token is declared here instead.
+   Without it every `var(--acc)` in the generated sheet resolves to nothing and
+   the primary buttons lose their fill. */
+.v3.au { --acc: #FF5B1F; min-height: 100vh; background: #F4F5F2; }
+
+/* ── early-access bar ─────────────────────────────────────────────────── */
+.v3.au .announce {
+  display: block; background: #0E1411; color: #E6ECE7; text-decoration: none;
+  font-size: 14px; text-align: center; padding: 11px 16px;
+}
+.v3.au .announce:hover { color: #FFFFFF; }
+.v3.au .announce-tag {
+  display: inline-block; font-size: 11px; letter-spacing: .1em;
+  background: var(--acc); color: #0E1411; padding: 3px 7px; border-radius: 3px;
+  margin-right: 10px;
+}
+
+/* ── header ───────────────────────────────────────────────────────────── */
+.v3.au .hd { border-bottom: 1px solid #D3D8D3; position: relative; background: #F4F5F2; }
+.v3.au .hd-in {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 16px; padding-top: 10px; padding-bottom: 10px;
+}
+.v3.au .hd-cta {
+  background: #0E1411; color: #F4F5F2; padding: 0 18px; min-height: 44px;
+  border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;
+  display: inline-flex; align-items: center; white-space: nowrap;
+}
+.v3.au .hd-cta:hover { color: #FFFFFF; }
+
+/* ── logo ─────────────────────────────────────────────────────────────── */
+.v3.au .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.v3.au .logo-mark { display: block; flex: none; }
+.v3.au .logo-w {
+  font-weight: 800; font-size: 21px; letter-spacing: -.03em; color: #0E1411;
+  white-space: nowrap;
+}
+.v3.au .logo-w i { font-style: normal; color: var(--acc); }
+.v3.au .foot .logo-w { color: #F4F5F2; }
+
+/* ── mega menu ────────────────────────────────────────────────────────── */
+.v3.au .mega-p {
+  position: absolute; left: 0; right: 0; top: 100%; background: #FFFFFF;
+  border-bottom: 1px solid #D3D8D3; box-shadow: 0 12px 32px rgba(14,20,17,.10); z-index: 10;
+}
+/* the design's third column is a card, not a list */
+.v3.au .mega-card {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+  background: #0E1411; color: #F4F5F2; border-radius: 10px; padding: 24px;
+  text-decoration: none;
+}
+.v3.au .mega-card:hover { color: #FFFFFF; }
+
+/* ── footer ───────────────────────────────────────────────────────────── */
+.v3.au .foot a { color: #C2CBC5; text-decoration: none; }
+.v3.au .foot a:hover { color: var(--acc); }
+.v3.au .foot-col { display: flex; flex-direction: column; gap: 10px; }
+.v3.au .foot-ack {
+  padding-top: 20px; padding-bottom: 20px; border-top: 1px solid #2A332E;
+  font-size: 13px; line-height: 1.6; color: #9DA8A1;
+}
+.v3.au .foot-legal {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  padding-top: 16px; padding-bottom: 28px; font-size: 12px; color: #9DA8A1;
+  border-top: 1px solid #2A332E;
+}
+
+@media (max-width: 760px) {
+  .v3.au .hd-in { gap: 10px; }
+  .v3.au .logo-w { font-size: 18px; }
+}
