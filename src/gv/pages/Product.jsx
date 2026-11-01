@@ -1,5 +1,6 @@
 import { Shot } from '../../components/figma'
 import { Band, Cta, Eyebrow, KV, Row, SectionHead, Step, Table, Tag } from '../bits'
+import { Architecture } from '../arch'
 import { readRegion } from '../../region'
 import { REGION_CONTENT } from '../regions'
 
@@ -124,6 +125,18 @@ export default function Product() {
           </div>
         </div>
       </section>
+
+      {/* ───── the shape of it ───── */}
+      <Band>
+        <SectionHead
+          eyebrow="The shape of it"
+          title={<>Four ways in. One chain. <em>Exactly one</em> outcome.</>}
+        >
+          Whichever path a prompt takes out of your organisation, it meets the same
+          policy chain inside your own network and lands on the same signed ledger.
+        </SectionHead>
+        <Architecture />
+      </Band>
 
       {/* ───── lifecycle ───── */}
       <Band sunken>

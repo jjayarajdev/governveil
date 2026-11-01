@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Act, Opening, Row, Rows } from '../interview'
+import { Act, Opening } from '../interview'
 import { Cta } from '../bits'
 import { Capture } from '../capture'
+import { Architecture } from '../arch'
 import d from '../data/platform.json'
 
 /* The front door to the product experience.
@@ -67,9 +68,9 @@ export default function Platform() {
                 organisation, and every verdict lands on the same hash chain. There is
                 no second system to reconcile.
               </p>
-              <Rows>
-                {d.surfaces.map(([k, v]) => <Row k={k} key={k}>{v}</Row>)}
-              </Rows>
+              {/* The diagram carries the surfaces now, so the list below it
+                  would just repeat itself. */}
+              <Architecture />
               <Capture
                 src="egress"
                 where="configure / estate / egress"
