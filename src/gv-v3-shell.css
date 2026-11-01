@@ -1,0 +1,63 @@
+/* The v3 shell: announcement bar, header, mega-menu, footer.
+
+   SEPARATE FILE on purpose. These rules were appended to gv-v3.css once and
+   silently lost the next time that file was regenerated from the design
+   source — which left the header completely unstyled. gv-v3.css is generated
+   and may be regenerated; this is hand-written and must not live there.
+
+   The design carries these as inline styles repeated on all nine pages;
+   lifted into classes so the React shell renders them once. Values unchanged. */
+
+.v3 { min-height: 100vh; background: #F4F5F2; }
+
+/* ── announcement bar ─────────────────────────────────────────────────── */
+.v3 .announce {
+  display: block; background: #0E1411; color: #E6ECE7; text-decoration: none;
+  font-size: 14px; text-align: center; padding: 11px 16px;
+}
+.v3 .announce:hover { color: #FFFFFF; }
+.v3 .announce-tag {
+  display: inline-block; font-size: 11px; letter-spacing: .1em;
+  background: var(--acc); color: #0E1411; padding: 3px 7px; border-radius: 3px;
+  margin-right: 10px;
+}
+
+/* ── header ───────────────────────────────────────────────────────────── */
+.v3 .hd { border-bottom: 1px solid #D3D8D3; position: relative; background: #F4F5F2; }
+.v3 .hd-in {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 16px; padding-top: 10px; padding-bottom: 10px;
+}
+.v3 .hd-cta {
+  background: #0E1411; color: #F4F5F2; padding: 0 18px; min-height: 44px;
+  border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;
+  display: inline-flex; align-items: center; white-space: nowrap;
+}
+.v3 .hd-cta:hover { color: #FFFFFF; }
+
+/* ── logo ─────────────────────────────────────────────────────────────── */
+.v3 .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.v3 .logo-mark { display: block; flex: none; }
+.v3 .logo-w {
+  font-weight: 800; font-size: 19px; letter-spacing: -.025em; color: #0E1411;
+  white-space: nowrap;
+}
+.v3 .logo-w i { font-style: normal; color: var(--acc); }
+.v3 .foot .logo-w { color: #F4F5F2; }
+
+/* ── mega menu ────────────────────────────────────────────────────────── */
+.v3 .mega-p {
+  position: absolute; left: 0; right: 0; top: 100%; background: #FFFFFF;
+  border-bottom: 1px solid #D3D8D3; box-shadow: 0 12px 32px rgba(14,20,17,.10); z-index: 10;
+}
+
+/* ── footer ───────────────────────────────────────────────────────────── */
+.v3 .foot { background: #0E1411; color: #E6ECE7; }
+.v3 .foot a { color: #E6ECE7; text-decoration: none; }
+.v3 .foot a:hover { color: var(--acc); }
+.v3 .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 15px; }
+
+@media (max-width: 760px) {
+  .v3 .hd-in { gap: 10px; }
+  .v3 .logo-w { font-size: 17px; }
+}

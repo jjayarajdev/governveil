@@ -12,6 +12,7 @@ import './gv-guard.css'
 import './gv-pipeline.css'
 import './gv-vis.css'
 import './gv-v3.css'
+import './gv-v3-shell.css'
 
 const theme = {
   token: {

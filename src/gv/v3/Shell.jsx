@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Mark, Wordmark } from './Logo'
 
 /* The iteration-3 shell: announcement bar, header with the Product mega-menu,
    footer. One component instead of the nine copies the static hand-off
@@ -70,9 +71,9 @@ export default function Shell({ children }) {
 
       <header className="hd" ref={wrap}>
         <div className="wrap hd-in">
-          <Link className="brand" to="/">
-            <span className="brand-m" aria-hidden="true"><i /></span>
-            <span className="brand-n">GovernVeil</span>
+          <Link className="logo" to="/" aria-label="GovernVeil — home">
+            <Mark size={30} />
+            <Wordmark />
           </Link>
 
           <nav aria-label="Primary" className="nav-links">
@@ -119,10 +120,9 @@ export default function Shell({ children }) {
         <div className="wrap" style={{ paddingTop: 56, paddingBottom: 40 }}>
           <div className="g4" style={{ gap: 32 }}>
             <div>
-              <div className="brand" style={{ color: '#E6ECE7' }}>
-                <span className="brand-m" aria-hidden="true"
-                  style={{ borderColor: '#E6ECE7' }}><i /></span>
-                <span className="brand-n">GovernVeil</span>
+              <div className="logo">
+                <Mark size={30} tone="light" />
+                <Wordmark />
               </div>
               <p className="mono" style={{ fontSize: 12, color: '#9DA8A1', marginTop: 14, lineHeight: 1.6 }}>
                 Self-hosted AI data-egress<br />control and evidence.
@@ -136,7 +136,7 @@ export default function Shell({ children }) {
             ].map(([heading, links]) => (
               <div key={heading}>
                 <p className="eb" style={{ color: '#9DA8A1', marginBottom: 14 }}>{heading}</p>
-                <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 10, fontSize: 15 }}>
+                <ul>
                   {links.map(([to, label]) => (
                     <li key={to}><Link to={to}>{label}</Link></li>
                   ))}

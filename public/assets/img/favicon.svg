@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#1677ff"/><rect x="22" y="22" width="20" height="20" rx="2" fill="none" stroke="#ffffff" stroke-width="6"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="GovernVeil">
+  <title>GovernVeil</title>
+  <!-- The mark, simplified for 16px: the perimeter, the stack, and one
+       redacted record. The hatching from the full lockup is dropped — at
+       favicon size it reads as noise, which is what the identity board's own
+       16px test shows. -->
+  <rect width="100" height="100" fill="#F4F5F2"/>
+  <rect x="6.5" y="6.5" width="87" height="87" fill="none" stroke="#0E1411" stroke-width="9"/>
+  <path d="M44 76 H76 V44" fill="none" stroke="#0E1411" stroke-width="9"/>
+  <path d="M36 66 H66 V36" fill="none" stroke="#0E1411" stroke-width="9"/>
+  <rect x="26" y="24" width="34" height="34" fill="#FF5B1F"/>
+  <rect x="32.5" y="37.5" width="21" height="7" fill="#FFFFFF"/>
+</svg>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Mark } from './Logo'
 
 /* Home — iteration 3, ported from site/index.html of the design hand-off.
 
@@ -183,7 +184,7 @@ export default function HomeV3() {
       <section id="pilot" className="dk">
       <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
       <div>
-      <span aria-hidden="true" style={{"width": 34, "height": 34, "border": "2px solid #F4F5F2", "borderRadius": 6, "boxSizing": "border-box", "display": "flex", "alignItems": "center", "justifyContent": "center"}}><span style={{"width": 12, "height": 12, "background": "var(--acc)"}}></span></span>
+      <Mark size={34} tone="light" />
       <p className="eb" style={{"marginTop": 28}}>See it in your environment</p>
       <h2 className="h2x" style={{"marginTop": 14}}>See it catch a real prompt in week one.</h2>
       <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>A paid 8–12-week design-partner pilot — $15,000–$40,000 depending on scope. Your data, your environment, and a signed attestation that nothing else left.</p>
