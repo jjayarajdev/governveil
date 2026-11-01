@@ -102,38 +102,46 @@ export const STAGES = [
                 all eight stages are equal and only the selected one is
                 emphasised, so a full accent rail does not read as progress
                 through something that is not progressing.
-   `reached`    replay only: how many stages are lit
+   `stages`     the stages to draw; defaults to the request pipeline
+   `reached`    replay only: how many stages are lit (default: all)
    `active`     pick only: index of the selected stage
    `decidedAt`  replay only: 1-based stage where this request resolved
    `onPick`     makes the stages buttons; omit for a read-only diagram */
 export function Track({
-  mode = 'replay', reached = STAGES.length, active = null, decidedAt = null, onPick = null,
+  stages = STAGES, mode = 'replay', reached = null, active = null,
+  decidedAt = null, onPick = null,
 }) {
+  const n = stages.length
+  const lit = reached == null ? n : reached
   const replay = mode === 'replay'
   const Item = onPick ? 'button' : 'div'
+  /* Column count and the rail inset are driven off the stage count, so the
+     same track draws the eight-stage request pipeline and the three-point
+     agent sequence. Inset is half a column: 50/n per cent. */
+  const vars = { '--pt-count': n, '--pt-inset': `${50 / n}%` }
   return (
-    <div className={`pt pt-${mode}`} role={onPick ? 'tablist' : 'img'}
+    <div className={`pt pt-${mode}${n > 4 ? ' pt-wide' : ''}`} role={onPick ? 'tablist' : 'img'}
       aria-label={onPick ? 'The eight stages' : 'The eight stages a request passes through'}>
       {/* `pt-in` is the positioning context AND the scrolled content. The rail
           must live inside it, not inside `pt`: `pt` is the overflow-x:auto
           container on narrow screens, and an absolutely-positioned child of a
           scroll container is laid out against the visible box, so the rail
           would stay put while the stages scrolled under it. */}
-      <div className="pt-in">
+      <div className="pt-in" style={vars}>
         <div className="pt-rail" aria-hidden="true">
         {/* The rail spans centre-of-01 to centre-of-08, so N lit stages fill
             (N-1)/7 of it — not N/8, which would overshoot. */}
           {replay && (
             <span
               className="pt-fill"
-              style={{ width: `${Math.max(0, reached - 1) / (STAGES.length - 1) * 100}%` }}
+              style={{ width: `${(Math.max(0, lit - 1) / (n - 1)) * 100}%` }}
             />
           )}
         </div>
         <ol className="pt-l">
-        {STAGES.map((s, i) => {
-          const lit = replay && i < reached
-          const isDecider = replay && decidedAt != null && i + 1 === decidedAt && lit
+        {stages.map((s, i) => {
+          const isLit = replay && i < lit
+          const isDecider = replay && decidedAt != null && i + 1 === decidedAt && isLit
           const isOn = active === i
           return (
             <li key={s.key}>
@@ -141,10 +149,11 @@ export function Track({
                 {...(onPick
                   ? { type: 'button', onClick: () => onPick(i), role: 'tab', 'aria-selected': isOn }
                   : {})}
-                className={`pt-s${lit ? ' is-lit' : ''}${isDecider ? ' is-decider' : ''}${isOn ? ' is-on' : ''}`}
+                className={`pt-s${isLit ? ' is-lit' : ''}${isDecider ? ' is-decider' : ''}${isOn ? ' is-on' : ''}`}
               >
                 <span className="pt-n">{s.n}</span>
                 <span className="pt-t">{s.short}</span>
+                {s.sub && <span className="pt-sub mono">{s.sub}</span>}
               </Item>
             </li>
           )

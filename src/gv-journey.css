@@ -13,33 +13,6 @@
   font-size: 17px; letter-spacing: var(--display-track);
   margin: 0 0 14px; color: var(--text-3);
 }
-/* A uniform 4-across grid, not a wrapped flex row. Eight labels of very
-   different lengths wrapped into six-then-two with every chip a different
-   width, which read as a ragged pile rather than a set of choices. Equal
-   cells also line the verdict tags up into columns, so the shape of the set
-   — one allow, one mask, six block — is visible at a glance. */
-.gv .jr-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-
-.gv .jr-chip {
-  font: inherit; cursor: pointer; text-align: left;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
-  padding: 11px 13px 12px; background: none; color: var(--text-2);
-  border: 1px solid var(--border); border-radius: 3px; min-width: 0;
-  transition: border-color .15s var(--step), color .15s var(--step);
-}
-.gv .jr-chip:hover { border-color: var(--border-strong); color: var(--text); }
-.gv .jr-chip.is-on { border-color: var(--accent); color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); }
-.gv .jr-chip-t {
-  font-size: 12.5px; line-height: 1.3; color: var(--text-3);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%;
-}
-.gv .jr-chip.is-on .jr-chip-t { color: var(--text); }
-.gv .jr-chip-v { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.gv .jr-ovc {
-  font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em;
-  color: var(--block); border: 1px solid var(--block); border-radius: 2px;
-  padding: 1px 5px; white-space: nowrap;
-}
 
 /* the run */
 .gv .jr-run { display: grid; gap: 20px; min-width: 0; }
@@ -65,46 +38,23 @@
 
 @media (max-width: 980px) {
   .gv .jr-in { grid-template-columns: 1fr; gap: 28px; }
-  .gv .jr-chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (max-width: 720px) {
-  .gv .jr-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .gv .jr-chip { padding: 9px 11px 10px; }
+
 }
 
 /* ---- MCP: three points where an agent is judged ----------------------- */
 
 .gv .mcp { border-top: 1px solid var(--border); padding: 72px 0 88px; }
 
-.gv .mcp-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 2px solid var(--border-strong); }
-.gv .mcp-tab {
-  font: inherit; cursor: pointer; background: none; border: 0;
-  display: grid; gap: 3px; text-align: left;
-  padding: 12px 22px 14px 0; margin-right: 26px;
-  color: var(--text-3);
-  border-bottom: 2px solid transparent; margin-bottom: -2px;
-  transition: color .15s var(--step), border-color .15s var(--step);
-}
-.gv .mcp-tab .mono { font-size: 11.5px; }
-.gv .mcp-tab span:last-child { font-size: 16px; font-weight: 600; }
-.gv .mcp-tab:hover { color: var(--text-2); }
-.gv .mcp-tab.is-on { color: var(--text); border-bottom-color: var(--accent); }
-
 .gv .mcp-blurb {
   margin: 22px 0 28px; max-width: 68ch;
   font-size: 16px; line-height: 1.6; color: var(--text-2);
 }
 
-.gv .mcp-rows { display: grid; gap: 0; }
-.gv .mcp-row { border-top: 1px solid var(--border); padding: 20px 0 18px; }
-.gv .mcp-row:last-child { border-bottom: 1px solid var(--border); }
-
 .gv .mcp-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
 .gv .mcp-tool { font-size: 14px; font-weight: 500; color: var(--text); }
-.gv .mcp-row.is-bad .mcp-tool { color: var(--block); }
+
 .gv .mcp-cat { font-size: 13px; color: var(--text-3); margin-right: auto; }
 
-.gv .mcp-body { display: grid; gap: 8px; margin-bottom: 12px; max-width: 86ch; }
 .gv .mcp-k { font-size: 12.5px; color: var(--text-3); }
 .gv .mcp-quote {
   margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--text-2);
@@ -118,21 +68,11 @@
   white-space: pre-wrap; word-break: break-word;
 }
 .gv .mcp-what { margin: 0; font-size: 13.5px; color: var(--text-3); }
-.gv .mcp-row.is-bad .mcp-what { color: var(--text-2); }
 
-.gv .mcp-more {
-  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
-  background: none; border: 0; padding: 0; color: var(--accent);
-}
 .gv .mcp-rec { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 12px 0 0; }
 .gv .mcp-rec > div { display: flex; gap: 8px; align-items: baseline; }
 .gv .mcp-rec dt { font-size: 12px; color: var(--text-3); }
 .gv .mcp-rec dd { margin: 0; font-size: 12.5px; color: var(--text-2); }
-
-@media (max-width: 720px) {
-  .gv .mcp-tab { margin-right: 16px; padding-right: 10px; }
-  .gv .mcp-tab span:last-child { font-size: 14.5px; }
-}
 
 /* ---- the platform entry point ----------------------------------------- */
 
@@ -180,3 +120,38 @@
   color: var(--text-2);
 }
 .gv .jr-decided b { color: var(--text); }
+
+
+/* ── one case, not a stack of them ───────────────────────────────────────
+   The `call` phase has seven cases; rendering all of them as full-width
+   articles was the long scroll. Pick one from the grid, read one panel. */
+.gv .mcp-pick { margin-bottom: 26px; }
+.gv .mcp-case {
+  border-top: 2px solid var(--accent); background: var(--surface);
+  padding: 22px 24px 24px;
+}
+.gv .mcp-case.is-bad { border-top-color: var(--block); }
+.gv .mcp-case-in {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 36px; align-items: start;
+}
+.gv .mcp-side { display: grid; gap: 8px; align-content: start; }
+.gv .mcp-side .mcp-what { margin: 0; }
+.gv .mcp-side .mcp-rec {
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
+  display: grid; gap: 0;
+}
+.gv .mcp-side .mcp-rec > div {
+  display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 10px;
+  padding: 5px 0; font-size: 12.5px;
+}
+.gv .mcp-side .mcp-rec dt { color: var(--text-3); }
+.gv .mcp-side .mcp-rec dd { margin: 0; color: var(--text-2); }
+.gv .mcp-case.is-bad .mcp-tool { color: var(--block); }
+
+@media (max-width: 980px) {
+  .gv .mcp-case-in { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 720px) {
+  .gv .mcp-case { padding: 18px 16px 20px; }
+}

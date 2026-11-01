@@ -67,13 +67,13 @@ export default function Journey() {
 
           <div className="jr-pick">
             <h3 className="jr-h">Pick a request</h3>
-            <div className="jr-chips" role="list">
+            <div className="pk" role="list">
               {data.cases.map((x) => (
                 <button
                   key={x.id}
                   type="button"
                   role="listitem"
-                  className={`jr-chip${x.id === caseId ? ' is-on' : ''}`}
+                  className={`pk-i${x.id === caseId ? ' is-on' : ''}`}
                   onClick={() => run(x.id)}
                   aria-current={x.id === caseId}
                   /* The prompt is what actually tells two cases apart — two of
@@ -82,13 +82,13 @@ export default function Journey() {
                   title={x.prompt}
                   aria-label={`${x.typeLabel}, ${x.verdict}${x.correct ? '' : ', over-caught'}: ${x.prompt}`}
                 >
-                  <span className="jr-chip-t">{x.typeLabel}</span>
-                  <span className="jr-chip-v">
+                  <span className="pk-t">{x.typeLabel}</span>
+                  <span className="pk-m">
                     <Tag k={VERDICT_TONE[x.verdict]}>{x.verdict}</Tag>
                     {/* The old vertical list flagged the one case the gateway
                         got wrong; dropping it hid the only disagreement in the
                         set behind a click. */}
-                    {!x.correct && <span className="jr-ovc">over-caught</span>}
+                    {!x.correct && <span className="pk-flag">over-caught</span>}
                   </span>
                 </button>
               ))}
