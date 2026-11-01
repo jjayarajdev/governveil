@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import SiteLayout from './components/SiteLayout'
-import GvLayout from './gv/GvLayout'
-import HomeInterview from './gv/pages/HomeInterview'
 import HomeV3 from './gv/v3/Home'
 import ShellV3 from './gv/v3/Shell'
 import PlatformV3 from './gv/v3/PlatformV3'
@@ -13,30 +11,36 @@ import TrustV3 from './gv/v3/TrustV3'
 import BenchmarkV3 from './gv/v3/BenchmarkV3'
 import PilotV3 from './gv/v3/PilotV3'
 import AboutV3 from './gv/v3/AboutV3'
-import SecurityInterview from './gv/pages/SecurityInterview'
-import ProductFlow from './gv/pages/ProductFlow'
-import Journey from './gv/pages/Journey'
-import Mcp from './gv/pages/Mcp'
-import Platform from './gv/pages/Platform'
-import Guard from './gv/pages/Guard'
-import Features from './gv/pages/Features'
-import Benchmark from './gv/pages/Benchmark'
-import Pilot from './gv/pages/Pilot'
-import About from './gv/pages/About'
 import Learn from './pages/Learn'
 import GTM from './pages/GTM'
 import { isLearnHost } from './hostMode'
 
+
+/* Paths that were public before iteration 3 became the site. Kept as
+   redirects, not as duplicate routes: a link shared in the last few weeks
+   should land where it meant to. */
+const LEGACY = {
+  '/v3': '/', '/interview': '/', '/v2': '/',
+  ...Object.fromEntries(['platform', 'product', 'mcp', 'guard', 'security',
+    'benchmark', 'pilot', 'about'].flatMap((r) => [
+      [`/v3/${r}`, `/${r}`], [`/interview/${r}`, `/${r}`], [`/v2/${r}`, `/${r}`],
+    ])),
+  // no iteration-3 equivalent; nearest page that covers the ground
+  '/features': '/product',
+  '/journey': '/product',
+  '/interview/journey': '/product',
+  '/v2/journey': '/product',
+  '/compare': '/benchmark',
+}
+
 const TITLES = {
-  '/': 'GovernVeil: self-hosted AI data-egress control and evidence',
-  '/platform': 'GovernVeil — see it work',
-  '/journey': 'Watch one request travel the gateway | GovernVeil',
-  '/mcp': 'Governing an agent\u2019s tool calls | GovernVeil',
+  '/': 'GovernVeil — the evidence layer for enterprise AI',
+  '/platform': 'Platform | GovernVeil',
+  '/product': 'How it works | GovernVeil',
+  '/mcp': 'Agents | GovernVeil',
   '/guard': 'Runtime security | GovernVeil',
-  '/product': 'How GovernVeil works',
-  '/security': 'Security & residency | GovernVeil',
-  '/features': 'GovernVeil features',
-  '/benchmark': 'The GovernVeil detection benchmark',
+  '/security': 'Trust & residency | GovernVeil',
+  '/benchmark': 'Benchmark | GovernVeil',
   '/pilot': 'Book a design-partner pilot | GovernVeil',
   '/about': 'About | GovernVeil',
   '/learn': 'What is GovernVeil? AI data-egress control and evidence, explained',
@@ -84,25 +88,6 @@ export default function App() {
   /* Iteration 3 renders its own shell and its own design system. It must
      NOT go inside GvLayout: that brings the old nav and footer, the `.gv`
      tokens, and the lattice pseudo-elements, which paint over it. */
-  if (pathname === '/v3' || pathname.startsWith('/v3/')) {
-    return (
-      <ShellV3>
-        <Routes>
-          <Route path="/v3" element={<HomeV3 />} />
-          <Route path="/v3/platform" element={<PlatformV3 />} />
-          <Route path="/v3/product" element={<HowItWorksV3 />} />
-          <Route path="/v3/mcp" element={<AgentsV3 />} />
-          <Route path="/v3/guard" element={<RuntimeV3 />} />
-          <Route path="/v3/security" element={<TrustV3 />} />
-          <Route path="/v3/benchmark" element={<BenchmarkV3 />} />
-          <Route path="/v3/pilot" element={<PilotV3 />} />
-          <Route path="/v3/about" element={<AboutV3 />} />
-          <Route path="*" element={<HomeV3 />} />
-        </Routes>
-      </ShellV3>
-    )
-  }
-
   if (ANTD_ROUTES.includes(pathname)) {
     return (
       <SiteLayout>
@@ -114,45 +99,31 @@ export default function App() {
     )
   }
 
+  /* The iteration-3 design IS the site. Everything renders in its own shell;
+     GvLayout and the `.gv` stylesheets are no longer on any route. */
   return (
-    <GvLayout>
+    <ShellV3>
       <Routes>
-        {/* The interview set IS the site. These are the canonical paths. */}
-        <Route path="/" element={<HomeInterview />} />
-        <Route path="/platform" element={<Platform />} />
-        <Route path="/journey" element={<Journey />} />
-        <Route path="/mcp" element={<Mcp />} />
-        <Route path="/guard" element={<Guard />} />
-        <Route path="/product" element={<ProductFlow />} />
-        <Route path="/security" element={<SecurityInterview />} />
+        <Route path="/" element={<HomeV3 />} />
+        <Route path="/platform" element={<PlatformV3 />} />
+        <Route path="/product" element={<HowItWorksV3 />} />
+        <Route path="/mcp" element={<AgentsV3 />} />
+        <Route path="/guard" element={<RuntimeV3 />} />
+        <Route path="/security" element={<TrustV3 />} />
+        <Route path="/benchmark" element={<BenchmarkV3 />} />
+        <Route path="/pilot" element={<PilotV3 />} />
+        <Route path="/about" element={<AboutV3 />} />
 
-        {/* Carried over unchanged — the interview set has no equivalent. */}
-        <Route path="/features" element={<Features />} />
-        <Route path="/benchmark" element={<Benchmark />} />
-        <Route path="/pilot" element={<Pilot />} />
-        <Route path="/about" element={<About />} />
+        {/* Paths that were public before the swap. A shared link should land
+            where it meant to, not on the home page, so these redirect rather
+            than fall through to the catch-all. /features and /journey have no
+            iteration-3 equivalent and go to the nearest page that does. */}
+        {Object.entries(LEGACY).map(([from, to]) => (
+          <Route key={from} path={from} element={<Navigate to={to} replace />} />
+        ))}
 
-        {/* The preview paths these were shown at for weeks. Kept as aliases
-            rather than removed: links to them are already out in the world,
-            and a shared URL that 404s or silently lands somewhere else is
-            worse than a duplicate. */}
-        <Route path="/interview" element={<HomeInterview />} />
-        <Route path="/interview/platform" element={<Platform />} />
-        <Route path="/interview/journey" element={<Journey />} />
-        <Route path="/interview/mcp" element={<Mcp />} />
-        <Route path="/interview/guard" element={<Guard />} />
-        <Route path="/interview/product" element={<ProductFlow />} />
-        <Route path="/interview/security" element={<SecurityInterview />} />
-        <Route path="/v2" element={<HomeInterview />} />
-        <Route path="/v2/platform" element={<Platform />} />
-        <Route path="/v2/journey" element={<Journey />} />
-        <Route path="/v2/mcp" element={<Mcp />} />
-        <Route path="/v2/guard" element={<Guard />} />
-        <Route path="/v2/product" element={<ProductFlow />} />
-        <Route path="/v2/security" element={<SecurityInterview />} />
-
-        <Route path="*" element={<HomeInterview />} />
+        <Route path="*" element={<HomeV3 />} />
       </Routes>
-    </GvLayout>
+    </ShellV3>
   )
 }

@@ -4,13 +4,9 @@ import { HashRouter } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import App from './App'
 import './site.css'
-import './gv.css'
-import './gv-almanac.css'
-import './gv-interview.css'
-import './gv-journey.css'
-import './gv-guard.css'
-import './gv-pipeline.css'
-import './gv-vis.css'
+/* The old design system is archived with the pages that used it — its
+   stylesheets are no longer imported, so none of it ships. The files stay on
+   disk and in git history. */
 import './gv-v3.css'
 import './gv-v3-shell.css'
 
