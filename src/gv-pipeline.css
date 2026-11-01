@@ -1,0 +1,130 @@
+/* The horizontal eight-stage track, shared by the workflow and replay pages.
+
+   Scoped under `.gv`; tokens only, so both palettes and both design variants
+   follow. Do not add a bare element or `:root` selector here. */
+
+.gv .pt { padding: 8px 0 0; }
+.gv .pt-in { position: relative; }
+
+/* The rail runs through the marker centres — so it is inset by half a column
+   at each end (1/8 of the width per column, half of that = 6.25%) rather than
+   overshooting past stage 01 and stage 08. */
+.gv .pt-rail {
+  position: absolute; left: 6.25%; right: 6.25%; top: calc(8px + 17px);
+  height: 2px; background: var(--border); border-radius: 2px; overflow: hidden;
+}
+.gv .pt-fill {
+  display: block; height: 100%; background: var(--accent);
+  transition: width .22s var(--step);
+}
+
+.gv .pt-l {
+  list-style: none; margin: 0; padding: 0; position: relative;
+  display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px;
+}
+.gv .pt-l > li { min-width: 0; }
+
+.gv .pt-s {
+  font: inherit; background: none; border: 0; padding: 0; width: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 9px;
+  text-align: center; color: var(--text-3);
+}
+.gv button.pt-s { cursor: pointer; }
+
+/* the marker sits on the rail, so it needs the page ground behind it */
+.gv .pt-n {
+  width: 34px; height: 34px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0;
+  background: var(--bg); border: 2px solid var(--border); color: var(--text-3);
+  transition: background .18s var(--step), border-color .18s var(--step),
+              color .18s var(--step);
+}
+.gv .pt-t { font-size: 12.5px; line-height: 1.25; color: var(--text-3); }
+
+.gv .pt-s.is-lit .pt-n { border-color: var(--accent); color: var(--text); }
+.gv .pt-s.is-lit .pt-t { color: var(--text-2); }
+
+/* where this particular request actually resolved */
+.gv .pt-s.is-decider .pt-n { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.gv .pt-s.is-decider .pt-t { color: var(--text); font-weight: 600; }
+
+/* Pick mode: all eight stages are equal, only the selection is emphasised.
+   Nothing "fills", because nothing is progressing. */
+.gv .pt-pick .pt-n { border-color: var(--border-strong); color: var(--text-2); }
+.gv .pt-pick .pt-t { color: var(--text-2); }
+
+/* the stage the reader has selected (workflow page) */
+.gv .pt-s.is-on .pt-n { background: var(--text); border-color: var(--text); color: var(--bg); }
+.gv .pt-s.is-on .pt-t { color: var(--text); font-weight: 600; }
+.gv button.pt-s:hover .pt-n { border-color: var(--text-2); }
+.gv button.pt-s:hover .pt-t { color: var(--text); }
+
+/* A track inside a sunken band sits on --surface, not --bg. */
+.gv .band-sunken .pt-n, .gv .pt-on-surface .pt-n { background: var(--surface); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gv .pt-fill, .gv .pt-n { transition: none; }
+}
+
+/* Below ~880px eight columns stop being legible. Scroll the track sideways
+   rather than wrapping it: a pipeline that wraps to a second row stops
+   reading as one path, which is the only thing the diagram is for. */
+@media (max-width: 880px) {
+  .gv .pt { overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; }
+  .gv .pt-in { width: max-content; }
+  .gv .pt-l { grid-template-columns: repeat(8, 104px); gap: 2px; }
+  /* Fixed columns here, so the inset is a real length. Column pitch is
+     104 + 2 = 106px: centre of stage 01 is 52px, centre of stage 08 is
+     52 + 7*106, so the rail spans 7 pitches from 52px. */
+  .gv .pt-rail { left: 52px; right: auto; width: calc(7 * 106px); }
+  .gv .pt-t { font-size: 11.5px; }
+}
+
+/* ── the stage panel (workflow page) ──────────────────────────────────── */
+.gv .pt-panel {
+  margin-top: 40px; border-top: 2px solid var(--accent);
+  background: var(--surface); padding: 28px 30px 30px;
+}
+.gv .pt-panel-h {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.gv .pt-panel-n { font-family: var(--font-mono); font-size: 12px; color: var(--text-3); }
+.gv .pt-panel-t {
+  font-family: var(--font-display); font-weight: 400; font-size: 27px;
+  line-height: 1.15; letter-spacing: -.01em; margin: 0; color: var(--text);
+}
+.gv .pt-panel-b {
+  margin: 0 0 18px; font-size: 15.5px; line-height: 1.6; color: var(--text-2);
+  max-width: 68ch;
+}
+.gv .pt-panel .tag-row { margin-bottom: 4px; }
+.gv .pt-fig { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+.gv .pt-fig b {
+  font-family: var(--font-mono); font-size: 26px; color: var(--accent); margin-right: 12px;
+}
+.gv .pt-fig span { font-size: 13px; color: var(--text-3); }
+.gv .pt-detail { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+/* the trailing note sits straight under the last detail row otherwise */
+.gv .pt-detail .qa-aside { margin-top: 18px; }
+
+.gv .pt-panel-in {
+  display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 40px;
+  align-items: start;
+}
+.gv .pt-panel-in .pt-panel-b { margin-bottom: 0; max-width: none; }
+.gv .pt-side { display: grid; gap: 10px; align-content: start; }
+.gv .pt-side-h {
+  margin: 0; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-3); font-weight: 400;
+}
+.gv .pt-side .tag-row { margin: 0 0 8px; }
+.gv .pt-side .pt-fig { margin-top: 6px; }
+
+@media (max-width: 980px) {
+  .gv .pt-panel-in { grid-template-columns: 1fr; gap: 22px; }
+}
+@media (max-width: 720px) {
+  .gv .pt-panel { padding: 22px 20px 24px; margin-top: 28px; }
+  .gv .pt-panel-t { font-size: 22px; }
+}

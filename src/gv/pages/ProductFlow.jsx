@@ -1,73 +1,27 @@
+import { useState } from 'react'
 import { Shot } from '../../components/figma'
 import { Cta, Tag } from '../bits'
 import { Act, Opening, Row, Rows } from '../interview'
+import { STAGES, Track } from '../pipeline'
 import { readRegion } from '../../region'
 import { REGION_CONTENT } from '../regions'
 
 /* Shape: 14 · Narrative Workflow.
-   Product is a sequence, not an interrogation — making it a second interview
-   would be the monotony the whole exercise is trying to avoid. The eight-step
-   lifecycle was buried in the middle of the old page between card grids; here
-   it IS the page. A request arrives at the top and leaves signed at the
-   bottom, and the detail that used to be its own band hangs off the step it
-   belongs to. */
 
-const STEPS = [
-  ['01', 'Ingress', <>An app calls <span className="mono">/v1/*</span> — a base-URL
-    change — an enterprise API is called through <span className="mono">{'/gw/<app>'}</span>,
-    an agent calls a tool through the MCP connector, or a person types into a public
-    assistant and the extension relays the prompt before it leaves the browser.</>,
-    ['/v1/*', '/gw/<app>', '/mcp/v1/*', 'browser extension'], null],
+   The eight-step lifecycle IS the page. It used to be eight stacked text
+   blocks — about 1,400px of vertical spine with the right half of the page
+   empty the whole way down, which is a pipeline drawn as a bulleted list.
+   Now it is one horizontal track: pick a stage, read that stage. The stage
+   content itself is unchanged, and it lives in ../pipeline.jsx so this page
+   and the replay cannot drift apart. */
 
-  ['02', 'Grant check', <>Is this credential still authorised? A revoked grant is an
-    instant 403, refused before any inspection runs. A long-dormant grant that
-    suddenly wakes raises an incident with a 14-day clock and optional
-    auto-freeze.</>, null,
-    { label: 'kill switch', value: '~0.5 ms', note: 'measured in-line, before inspection' }],
-
-  ['03', 'Access plane', <>For enterprise apps, role → scope → operation is checked
-    before anything is forwarded. A viewer may read and not delete; the denial never
-    leaves the perimeter and is still ledgered.</>,
-    ['role → scope', '403 on deny'], null],
-
-  ['04', 'Document guardrail', <>Embedded or uploaded documents are parsed into a
-    normalised segment list with provenance, then swept. Unscannable or corrupt
-    payloads fail closed — every error path is quarantine, never allow.</>,
-    ['control DS-05'], null],
-
-  ['05', 'Detection ladder', <>A sub-millisecond pattern path first — US and India
-    PII, credentials, injection phrasing — then one local policy-adaptive model
-    answers every policy as a plain-language question in a single forward pass, with
-    a companion model extracting PII spans for replacement.</>,
-    ['fast path → local model'], null],
-
-  ['06', 'Agent limits & model registry', <>For agents: tools outside the allow-list
-    refuse, hourly call and daily spend caps are counted from the ledger, and gated
-    actions are held for the owner. For every request: the model must be approved, in
-    the caller’s permitted list, and permitted for the data classes still present{' '}
-    <em>after</em> masking.</>,
-    ['AG-11 · AG-12', 'MD-01'], null],
-
-  ['07', 'Verdict → forward', <>The policy chain resolves exactly one outcome; when
-    several policies match, the most restrictive wins. Controls in detective mode
-    record “would have blocked” and let evaluation continue. A masked value never
-    leaves until its vault mapping is persisted — and if it cannot be persisted, the
-    gateway falls back to destructive redaction rather than forwarding something it
-    cannot reverse.</>, null, null],
-
-  ['08', 'Response inspection → restore → sign → reply', <>The model’s output is a
-    prompt too. Every response — JSON or stream, tool-call arguments included — runs
-    the same ladder and the same chain. With the vault on, surrogates are restored for
-    the authorised caller. Then the signed row is appended to the hash chain{' '}
-    <em>before the caller gets its reply</em>.</>,
-    ['control RO-01', 'signed before reply'], null],
-]
-
-const VERDICTS = [['allow', 'ok'], ['flag', 'flag'], ['mask', 'mask'],
+const VERDICTS = [['allow', 'allow'], ['flag', 'flag'], ['mask', 'mask'],
   ['acknowledge', 'ack'], ['block', 'block']]
 
 export default function ProductFlow() {
   const { product } = REGION_CONTENT[readRegion()]
+  const [i, setI] = useState(0)
+  const stage = STAGES[i]
 
   return (
     <>
@@ -97,60 +51,59 @@ export default function ProductFlow() {
         </div>
       </Opening>
 
-      {/* the spine: one request, start to finish */}
+      {/* the spine: one request, start to finish — one track, not eight blocks */}
       <section className="flow">
         <div className="wrap">
-          {STEPS.map(([n, title, body, tags, figure]) => (
-            <div className="flow-step" key={n}>
-              <div className="flow-rail"><span className="flow-n">{n}</span></div>
-              <div className="flow-body">
-                <h3 className="flow-t">{title}</h3>
-                <p>{body}</p>
-                {tags && (
-                  <div className="tag-row">
-                    {tags.map((t) => <Tag k="ship" key={t}>{t}</Tag>)}
-                  </div>
-                )}
-                {figure && (
-                  <div className="flow-figure">
-                    <b>{figure.value}</b>
-                    <span>{figure.label} — {figure.note}</span>
-                  </div>
-                )}
-                {n === '05' && (
-                  <div className="flow-detail">
+          <Track mode="pick" active={i} onPick={setI} />
+
+          <div className="pt-panel">
+            <div className="pt-panel-h">
+              <span className="pt-panel-n">{stage.n}</span>
+              <h3 className="pt-panel-t">{stage.short}</h3>
+            </div>
+
+            {/* Prose left, the structured bits right — otherwise the panel
+                leaves the right half of the page empty, which is the problem
+                the whole track was meant to solve. */}
+            <div className="pt-panel-in">
+              <div>
+                <p className="pt-panel-b">{stage.body}</p>
+                {stage.detail && (
+                  <div className="pt-detail">
                     <Rows>
-                      <Row k="fast path">
-                        keyword, regex and secrets — SSN, card, PAN, GSTIN, IFSC,
-                        Aadhaar, credentials — plus injection phrasing · sub-ms
-                      </Row>
-                      <Row k="policy question">
-                        injection · PII · toxicity · business-critical · harmful intent
-                        · safety guard, in one forward pass
-                      </Row>
-                      <Row k="NER">PII spans for replacement</Row>
-                      <Row k="parser + sweep">
-                        macros, PDF JavaScript, hidden and white text, hidden sheets,
-                        formulas
-                      </Row>
+                      {stage.detail.map(([k, v]) => <Row k={k} key={k}>{v}</Row>)}
                     </Rows>
-                    <p className="qa-aside">
-                      A model-server error under strict validation is a block, never a
-                      skip. The classic multi-model stack stays available as a fallback
-                      by unsetting one environment variable.
-                    </p>
-                  </div>
-                )}
-                {n === '07' && (
-                  <div className="tag-row" style={{ marginTop: 12 }}>
-                    {VERDICTS.map(([v, tone]) => (
-                      <Tag k={tone === 'ok' ? 'allow' : tone} key={v}>{v}</Tag>
-                    ))}
+                    {stage.note && <p className="qa-aside">{stage.note}</p>}
                   </div>
                 )}
               </div>
+
+              <aside className="pt-side">
+                {stage.tags && (
+                  <>
+                    <h4 className="pt-side-h">What applies here</h4>
+                    <div className="tag-row">
+                      {stage.tags.map((t) => <Tag k="ship" key={t}>{t}</Tag>)}
+                    </div>
+                  </>
+                )}
+                {stage.verdicts && (
+                  <>
+                    <h4 className="pt-side-h">The five outcomes</h4>
+                    <div className="tag-row">
+                      {VERDICTS.map(([v, tone]) => <Tag k={tone} key={v}>{v}</Tag>)}
+                    </div>
+                  </>
+                )}
+                {stage.figure && (
+                  <div className="pt-fig">
+                    <b>{stage.figure.value}</b>
+                    <span>{stage.figure.label} — {stage.figure.note}</span>
+                  </div>
+                )}
+              </aside>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Tag } from '../bits'
 import { Opening } from '../interview'
+import { STAGES, Track } from '../pipeline'
 import data from '../data/journey.json'
 
 /* The request journey.
@@ -16,22 +17,11 @@ import data from '../data/journey.json'
 
    It is a replay, not live enforcement, and it says so. */
 
-const STEPS = [
-  ['01', 'Ingress', 'the prompt arrives on /v1'],
-  ['02', 'Grant check', 'is this credential still authorised?'],
-  ['03', 'Access plane', 'role → scope → operation'],
-  ['04', 'Document guardrail', 'embedded files parsed and swept'],
-  ['05', 'Detection ladder', 'pattern path, then the local model'],
-  ['06', 'Agent limits & model registry', 'tools, caps, permitted models'],
-  ['07', 'Verdict', 'the chain resolves exactly one outcome'],
-  ['08', 'Sign → reply', 'the row is chained before the caller is answered'],
-]
-
 const VERDICT_TONE = { allow: 'allow', mask: 'mask', flag: 'flag', acknowledge: 'ack', block: 'block' }
 
 export default function Journey() {
   const [caseId, setCaseId] = useState(data.cases[0].id)
-  const [step, setStep] = useState(STEPS.length)          // settled by default
+  const [step, setStep] = useState(STAGES.length)          // settled by default
   const timers = useRef([])
 
   const c = data.cases.find((x) => x.id === caseId)
@@ -44,13 +34,13 @@ export default function Journey() {
     setCaseId(id)
     setStep(0)
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    if (reduce) { setStep(STEPS.length); return }
-    STEPS.forEach((_, i) => {
+    if (reduce) { setStep(STAGES.length); return }
+    STAGES.forEach((_, i) => {
       timers.current.push(setTimeout(() => setStep(i + 1), 160 * (i + 1)))
     })
   }
 
-  const settled = step >= STEPS.length
+  const settled = step >= STAGES.length
   // the ladder is where a pattern-path case ends; everything else runs the chain
   const decidedAt = c.settledOnFastPath ? 5 : 7
 
@@ -75,31 +65,24 @@ export default function Journey() {
       <section className="jr">
         <div className="wrap jr-in">
 
-          <aside className="jr-pick">
+          <div className="jr-pick">
             <h3 className="jr-h">Pick a request</h3>
-            <div className="jr-list" role="list">
+            <div className="jr-chips" role="list">
               {data.cases.map((x) => (
                 <button
                   key={x.id}
                   type="button"
                   role="listitem"
-                  className={`jr-case${x.id === caseId ? ' is-on' : ''}`}
+                  className={`jr-chip${x.id === caseId ? ' is-on' : ''}`}
                   onClick={() => run(x.id)}
                   aria-current={x.id === caseId}
                 >
-                  <span className="jr-case-t">{x.typeLabel}</span>
-                  <span className="jr-case-p">{x.prompt}</span>
-                  <span className="jr-case-m">
-                    <Tag k={VERDICT_TONE[x.verdict]}>{x.verdict}</Tag>
-                    <span className="mono">
-                      {x.settledOnFastPath ? 'fast path' : `${x.latencyMs.toFixed(0)} ms`}
-                    </span>
-                    {!x.correct && <span className="jr-wrong">over-caught</span>}
-                  </span>
+                  <span className="jr-chip-t">{x.typeLabel}</span>
+                  <Tag k={VERDICT_TONE[x.verdict]}>{x.verdict}</Tag>
                 </button>
               ))}
             </div>
-          </aside>
+          </div>
 
           <div className="jr-run">
             <div className="panel jr-prompt">
@@ -110,32 +93,21 @@ export default function Journey() {
               <div className="panel-row"><pre>{`"${c.prompt}"`}</pre></div>
             </div>
 
-            <ol className="jr-steps">
-              {STEPS.map(([n, title, what], i) => {
-                /* No step is marked skipped. A 0 ms latency proves no model
-                   ran, so the pattern path produced the verdict — that much is
-                   inferable. Which of the other steps were short-circuited is
-                   not in the run, so the page does not guess. */
-                const reached = step > i
-                const isDecider = reached && settled && i + 1 === decidedAt
-                return (
-                  <li
-                    key={n}
-                    className={`jr-step${reached ? ' is-on' : ''}${isDecider ? ' is-decider' : ''}`}
-                  >
-                    <span className="jr-n">{n}</span>
-                    <span className="jr-t">{title}</span>
-                    <span className="jr-w">
-                      {isDecider && c.settledOnFastPath
-                        ? 'the pattern path settled it here — under a millisecond, no model call'
-                        : isDecider
-                          ? 'the chain resolved here, after the local model'
-                          : what}
-                    </span>
-                  </li>
-                )
-              })}
-            </ol>
+            {/* The pipeline reads left to right, because that is what it
+                does. `reached` animates as the replay runs; `decidedAt` marks
+                where this particular request actually resolved. No stage is
+                marked skipped — a 0 ms latency proves no model ran, but which
+                other stages were short-circuited is not in the run. */}
+            <div className="jr-track">
+              <Track reached={step} decidedAt={settled ? decidedAt : null} />
+              <p className="jr-decided" aria-live="polite">
+                {settled && (c.settledOnFastPath
+                  ? <>Settled at <b>{STAGES[decidedAt - 1].short}</b> — the pattern path
+                    answered in under a millisecond, with no model call.</>
+                  : <>Resolved at <b>{STAGES[decidedAt - 1].short}</b>, after the local
+                    model — {c.latencyMs.toFixed(0)} ms end to end.</>)}
+              </p>
+            </div>
 
             <div className={`jr-out${settled ? ' is-on' : ''}`} aria-live="polite">
               <div className="panel">

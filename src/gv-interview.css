@@ -45,14 +45,6 @@
   color: var(--accent) !important;
 }
 
-.gv .qa-a > p.qa-aside,
-.gv .flow-body .qa-aside {
-  border-left: 2px solid var(--accent);
-  padding-left: 16px;
-  font-size: 14.5px;
-  max-width: 66ch;
-}
-
 .gv .qa-panel { margin-top: 4px; }
 
 /* the mechanism, behind a disclosure, so the answer stays short */
@@ -161,46 +153,9 @@
    unrelated blocks. */
 
 .gv .flow { border-top: 1px solid var(--border); padding: 88px 0; }
-.gv .flow-step { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 40px; }
-.gv .flow-rail { position: relative; }
-.gv .flow-rail::before {
-  content: ""; position: absolute; left: 15px; top: 0; bottom: -0px;
-  width: 1px; background: var(--border);
-}
-.gv .flow-step:last-child .flow-rail::before { bottom: auto; height: 34px; }
-.gv .flow-n {
-  position: relative; z-index: 1; display: grid; place-items: center;
-  width: 32px; height: 32px; border-radius: 99px;
-  background: var(--accent); color: var(--accent-ink);
-  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-}
-.gv .flow-body { padding-bottom: 52px; max-width: 62ch; }
-.gv .flow-step:last-child .flow-body { padding-bottom: 0; }
-.gv .flow-t {
-  font-family: var(--font-display); font-weight: var(--display-weight);
-  font-size: 23px; line-height: 1.15; letter-spacing: var(--display-track);
-  margin: 4px 0 8px;
-}
-.gv .flow-body > p { margin: 0 0 12px; font-size: 15.5px; line-height: 1.6; color: var(--text-2); }
-
-.gv .flow-figure {
-  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
-  border-top: 2px solid var(--accent); padding-top: 10px; margin-top: 14px;
-}
-.gv .flow-figure b {
-  font-family: var(--font-mono); font-size: 22px; letter-spacing: -0.02em; color: var(--text);
-}
-.gv .flow-figure span { font-size: 13px; color: var(--text-3); }
-
-.gv .flow-detail {
-  margin-top: 16px; padding: 18px 0 0; border-top: 1px solid var(--border);
-  display: grid; gap: 14px;
-}
 
 @media (max-width: 880px) {
-  .gv .flow-step { grid-template-columns: 44px minmax(0, 1fr); gap: 18px; }
-  .gv .flow-rail::before { left: 15px; }
-  .gv .flow-body { padding-bottom: 38px; }
+
   .gv .flow { padding: 64px 0; }
 }
 
