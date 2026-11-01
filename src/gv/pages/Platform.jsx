@@ -33,7 +33,7 @@ export default function Platform() {
       </Opening>
 
       <Act n="I" title="Watch it work">
-        <section className="pf band-hatch">
+        <section className="pf">
           <div className="wrap pf-demos">
             {d.demos.map((x) => (
               <Link className="pf-demo" to={x.to} key={x.to}>

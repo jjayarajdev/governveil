@@ -9,24 +9,45 @@
    column of text. Colour stays out of the page ground and lives inside the
    data, which is where it carries meaning. */
 
-/* ── hatched page margins ─────────────────────────────────────────────────
-   A 4px diagonal hatch down both edges, outside the content column. Pure
-   CSS, no asset. It only draws where there is room for it, so narrow
-   viewports lose it rather than squeezing the content. */
-@media (min-width: 1360px) {
-  .gv .band-hatch, .gv .rg-hero, .gv .pf-hero {
-    position: relative;
-  }
-  .gv .band-hatch::before, .gv .band-hatch::after,
-  .gv .rg-hero::before, .gv .rg-hero::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 56px;
-    pointer-events: none; opacity: .5;
-    background-image: repeating-linear-gradient(
-      -45deg, var(--border) 0 1px, transparent 1px 7px);
-  }
-  .gv .band-hatch::before, .gv .rg-hero::before { left: 0; }
-  .gv .band-hatch::after,  .gv .rg-hero::after  { right: 0; }
+/* ── the lattice ──────────────────────────────────────────────────────────
+   The reference pages read as engineered rather than written because they
+   are built on a visible grid: two rules run the full height of the page at
+   the content-column edges, the margins outside them are hatched, and every
+   section is a cell in that frame.
+
+   Both sides are one pseudo-element each on #main — the margin fill and the
+   frame rule are the same element, so the rules cannot drift out of step
+   with the hatch, and they are continuous down the page by construction
+   rather than by stacking a border on every section.
+
+   z-index keeps them above the sunken bands, which paint their own ground;
+   Runlayer's rules cross its tinted sections the same way. */
+.gv #main { position: relative; }
+.gv #main::before, .gv #main::after {
+  content: ""; position: absolute; top: 0; bottom: 0; z-index: 2;
+  width: max(0px, calc(50% - var(--max) / 2));
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    -45deg, var(--border) 0 1px, transparent 1px 8px);
+  opacity: .55;
 }
+.gv #main::before { left: 0; border-right: 1px solid var(--border); }
+.gv #main::after { right: 0; border-left: 1px solid var(--border); }
+
+/* The hatch is noise below about 1360px — the margin is too narrow to read
+   as texture. The frame rules stay, because they are structure. */
+@media (max-width: 1360px) {
+  .gv #main::before, .gv #main::after { background-image: none; opacity: 1; }
+}
+/* At or below the content width there is no margin left to frame, and the
+   rules collapse onto the viewport edges as two stray hairlines. */
+@media (max-width: 1200px) {
+  .gv #main::before, .gv #main::after { display: none; }
+}
+
+/* A split row is two cells, so it gets the rule between them. */
+.gv .fr-row > :first-child { padding-right: 52px; border-right: 1px solid var(--border); }
+.gv .fr-row.is-flip > :first-child { padding-right: 0; padding-left: 52px; border-right: 0; border-left: 1px solid var(--border); }
 
 /* ── framed product capture ───────────────────────────────────────────────
    Every image on this site is a screenshot of the running console, so the
@@ -64,10 +85,14 @@
 /* ── alternating feature rows ─────────────────────────────────────────────
    Prose one side, the product the other, alternating down the page. */
 .gv .fr { display: grid; gap: 52px; }
+/* The row rule has to reach the frame, or the lattice reads as a box drawn
+   around a column of text rather than as cells. The row bleeds out to the
+   gutter and takes its inset back as padding. */
 .gv .fr-row {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: 52px; align-items: center;
-  padding: 52px 0; border-top: 1px solid var(--border);
+  gap: 0 52px; align-items: center;
+  margin: 0 calc(-1 * var(--gut));
+  padding: 52px var(--gut); border-top: 1px solid var(--border);
 }
 .gv .fr-row:last-child { border-bottom: 1px solid var(--border); }
 .gv .fr-row.is-flip > :first-child { order: 2; }
@@ -114,8 +139,12 @@
 .gv .figs span { display: block; margin-top: 7px; font-size: 13px; line-height: 1.45; color: var(--text-3); }
 
 @media (max-width: 980px) {
-  .gv .fr-row { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+  .gv .fr-row { grid-template-columns: 1fr; gap: 28px; padding: 40px var(--gut); }
   .gv .fr-row.is-flip > :first-child { order: 0; }
+  .gv .fr-row > :first-child,
+  .gv .fr-row.is-flip > :first-child {
+    padding: 0; border-right: 0; border-left: 0;
+  }
   .gv .cap-bleed .cap-frame { margin-right: 0; border-right: 1px solid var(--border-strong); border-radius: 6px; }
   .gv .figs { grid-template-columns: 1fr; }
   .gv .figs > div { border-right: 0; border-bottom: 1px solid var(--border); }
@@ -126,3 +155,14 @@
 /* Inside the interview's answer column a capture needs the same vertical
    rhythm as the prose blocks around it. */
 .gv .qa-a .cap { margin: 26px 0 8px; }
+
+
+/* ── cell rules ───────────────────────────────────────────────────────────
+   A horizontal rule that meets the frame on both sides. Sections already
+   carrying a border-top get it widened rather than a second line added. */
+.gv .cell-top { position: relative; }
+.gv .cell-top::before {
+  content: ""; position: absolute; left: 50%; top: 0; z-index: 1;
+  width: 100vw; max-width: var(--max); transform: translateX(-50%);
+  border-top: 1px solid var(--border); pointer-events: none;
+}

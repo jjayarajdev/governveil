@@ -63,7 +63,7 @@ export default function Mcp() {
         </p>
       </Opening>
 
-      <section className="mcp band-hatch">
+      <section className="mcp">
         <div className="wrap">
           {/* The three points are a sequence, not a tab bar: same track the
               request pipeline uses, three stages instead of eight. */}

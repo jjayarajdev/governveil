@@ -141,7 +141,7 @@ export default function Guard() {
 
   return (
     <div className="rg">
-      <section className="rg-hero band-hatch">
+      <section className="rg-hero">
         <div className="wrap rg-hero-in">
           <div>
             <span className="rg-eyebrow">Runtime security</span>

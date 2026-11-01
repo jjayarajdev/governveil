@@ -63,7 +63,7 @@ export default function Journey() {
         </p>
       </Opening>
 
-      <section className="jr band-hatch">
+      <section className="jr">
         <div className="wrap jr-in">
 
           <div className="jr-pick">
