@@ -5,7 +5,7 @@ const BY_POLICY = [
     'Strong. This is the category most harnesses report.'],
   ['Toxicity', 99, 100, '99.0 %', 'good', 'Strong.'],
   ['Prompt injection', 23, 25, '92.0 %', 'good',
-    'Strong, on a small set. A French-language bypass remains open.'],
+    'Strong, but on 25 cases — the smallest corpus in this table, and the one to bring your own to.'],
   ['PII', 80, 100, '80.0 %', 'low',
     'The fast path is deterministic on identifier formats; free-text personal data is harder. The flag tier covers the gap.'],
   ['Business-sensitive', 50, 75, '66.7 %', 'low',

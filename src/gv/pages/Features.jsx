@@ -452,11 +452,12 @@ export default function Features() {
       ))}
 
       <Band sunken narrow>
-        <Eyebrow>The honest list</Eyebrow>
-        <h2 className="h-section">What is <em>not</em> built.</h2>
+        <Eyebrow>The boundary</Eyebrow>
+        <h2 className="h-section">Where this product <em>stops</em>.</h2>
         <p className="lede">
-          Three things on this site are roadmap, and one is off by default. Nothing else
-          here is aspirational.
+          Four things on this page are roadmap and one is off by default. Everything
+          else above is running today. Scope you can check before a pilot is worth more
+          than a feature list you discover was aspirational in week six.
         </p>
         <ul className="checklist no">
           <li>

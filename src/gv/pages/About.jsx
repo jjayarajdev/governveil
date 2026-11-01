@@ -114,11 +114,10 @@ export default function About() {
         <Eyebrow>Before you ask</Eyebrow>
         <h2 className="h-section">Where we are small.</h2>
         <p className="muted">
-          We are founder-led. One person currently holds every role, SOC 2 Type II has
-          not been started with an auditor, and there has been no external penetration
-          test. Those are real, they are funded in the plan rather than wished away, and
-          we would rather you weighed them in the first conversation than discovered them
-          in the sixth.
+          We are founder-led and early. There are certifications we have not started and
+          assurances a larger vendor could hand you today — they are named in full on the
+          security page rather than left for you to find, and they are funded in the plan
+          rather than wished away.
         </p>
         <p className="muted">
           What we would put against them: the enforcement path is self-hosted, so your
@@ -128,7 +127,7 @@ export default function About() {
         </p>
         <p style={{ marginTop: 22 }}>
           <Link className="link" to="/security">
-            The full list of what we haven’t done →
+            What we have not done, named →
           </Link>
         </p>
       </Band>
