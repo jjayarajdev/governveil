@@ -15,7 +15,7 @@ export default function RuntimeAU() {
       <p className="eb" style={{"marginBottom": 24}}>Runtime security</p>
       <h1 className="h1x" style={{"maxWidth": 1100, "margin": "0 auto"}}>Catch it before it leaves<span style={{"color": "var(--acc)"}}>.</span></h1>
       <p className="lead" style={{"fontSize": 21, "maxWidth": 760, "margin": "32px auto 0"}}>Inspect prompts, agent tool calls, model responses and credentials inside your own Australian environment — before anything reaches an AI provider.</p>
-      <div style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "center", "gap": 12, "marginTop": 32}}><a href="#apply" className="btnp">Become a design partner</a><a href="#au-ids" className="btns">Australian identifiers</a></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "center", "gap": 12, "marginTop": 32}}><a href="#apply" className="btnp">Apply for a pilot</a><a href="#au-ids" className="btns">Australian identifiers</a></div>
       </section>
 
       <section className="wrap" style={{"paddingBottom": 104}}>
@@ -84,16 +84,16 @@ export default function RuntimeAU() {
       <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
       <div>
       <span style={{"display": "flex"}}><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><defs><pattern id="gvh-c" width="1.4" height="1.4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="0.6" height="1.4" fill="#8A948E" /></pattern></defs><rect x="2" y="10.9" width="20" height="4.6" fill="url(#gvh-c)" /><rect x="1" y="1" width="22" height="22" fill="none" stroke="#F4F5F2" strokeWidth="2" /><rect x="9.4" y="9.2" width="9.2" height="9.6" fill="#F4F5F2" /><rect x="7.25" y="7.1" width="8.85" height="9.1" fill="#F4F5F2" stroke="#0E1411" strokeWidth="0.9" /><rect x="5" y="5" width="8.6" height="8.6" fill="#FF5B1F" stroke="#0E1411" strokeWidth="0.9" /><rect x="6.4" y="8.2" width="5.8" height="1.5" fill="#FFFFFF" /></svg></span>
-      <p className="eb" style={{"marginTop": 28}}>Design-partner window · now open</p>
+      <p className="eb" style={{"marginTop": 28}}>Three free pilot places · now open</p>
       <h2 className="h2x" style={{"marginTop": 14}}>Help shape sovereign AI governance for Australia.</h2>
-      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>Free, 4 to 6 weeks, in your environment with your data. 3 to 5 places for regulated Australian organisations.</p>
-      <Link to="/partners" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": 600}}>How the design partnership works →</Link>
+      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>Five weeks in your environment, with your data. Free for the first three regulated Australian organisations — paid after that.</p>
+      <Link to="/pilot" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": 600}}>How the pilot works →</Link>
       </div>
       <form style={{"background": "#F4F5F2", "color": "#0E1411", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="rau-name">Name</label><input id="rau-name" type="text" autoComplete="name" /></div><div><label htmlFor="rau-email">Work email</label><input id="rau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="rau-org">Organisation</label><input id="rau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="rau-q">What AI use can’t you see today?</label><textarea id="rau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply to be a design partner</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

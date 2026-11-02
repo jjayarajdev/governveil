@@ -16,11 +16,93 @@ PAGES = [
     ('runtime',      '/runtime',      'RuntimeAU',     'runtime'),
     ('security',     '/security',     'SecurityAU',    'security'),
     ('benchmark',    '/benchmark',    'BenchmarkAU',   'benchmark'),
-    ('partners',     '/partners',     'PartnersAU',    'partners'),
+    ('partners',     '/pilot',        'PilotAU',       'pilot'),
     ('about',        '/about',        'AboutAU',       'about'),
 ]
 ROUTE = {f: r for f, r, _, _ in PAGES}
 route_of = lambda stem: ROUTE.get(stem, '/' + stem)
+
+# ── rename: design partner -> pilot ───────────────────────────────────────
+# Applied to every page before the per-page CORRECTIONS. Jay's call, 2 Nov:
+# "design partner" has no procurement category in an Australian bank or super
+# fund, where "pilot" does. What the old word carried for free — why a serious
+# vendor gives five weeks away — is replaced by stating the commercial terms
+# outright: free for the first three, paid after that. That is a better answer
+# than the word was.
+#
+# Whole PHRASES, not the bare word: a blind substitution produces "Become a
+# pilot", which is a job in aviation.
+RENAMES = [
+    # calls to action
+    ('Apply to be a design partner',        'Apply for a pilot'),
+    ('Become a design partner',             'Apply for a pilot'),
+    ('How the design partnership works \u2192', 'How the pilot works \u2192'),
+    ('The design-partner window \u2192',    'The pilot programme \u2192'),
+
+    # eyebrows and headings
+    ('Design-partner window \u00b7 now open', 'Three free pilot places \u00b7 now open'),
+    ('Q \u00b7 Why a design-partner window?', 'Q \u00b7 Why is the pilot free?'),
+    ('Design-partner pilot \u00b7 early access', 'Pilot \u00b7 early access'),
+    ('STEP 2 \u00b7 OPENS AFTER OUR FIRST DESIGN PARTNERS',
+     'STEP 2 \u00b7 OPENS AFTER THE FIRST THREE PILOTS'),
+    ('Design partnership',                  'The pilot'),
+
+    # the terms line, repeated on every page's apply band
+    ('Free, 4 to 6 weeks, in your environment with your data. 3 to 5 places '
+     'for regulated Australian organisations.',
+     'Five weeks in your environment, with your data. Free for the first '
+     'three regulated Australian organisations \u2014 paid after that.'),
+
+    # the agents page carries the same sentence with a trailing clause, so the
+    # generic form above cannot match it
+    ('Free, 4 to 6 weeks, in your environment with your data. 3 to 5 places '
+     'for regulated Australian organisations \u2014 and for AI vendors who want '
+     'independent evidence that what they ship is governed.',
+     'Five weeks in your environment, with your data. Free for the first '
+     'three regulated Australian organisations \u2014 and for AI vendors who want '
+     'independent evidence that what they ship is governed. Paid after that.'),
+
+    ('Free, 4 to 6 weeks, 3 to 5 organisations. We prove GovernVeil in your '
+     'environment and build what you tell us is missing.',
+     'Five weeks, free for the first three organisations. We prove GovernVeil '
+     'in your environment and build what you tell us is missing.'),
+
+    # prose
+    ('our design-partner window is open to prove it in regulated Australian '
+     'environments.',
+     'the first three pilots are open to prove it in regulated Australian '
+     'environments.'),
+    ('Design partners help build an Australian test set',
+     'Pilot organisations help build an Australian test set'),
+    ('on terms shaped by what design partners teach us. Design partners who go '
+     'ahead get it at a discount.',
+     'on terms shaped by what the first pilots teach us. Organisations that go '
+     'ahead get it at a discount.'),
+    ('The design partnership is free.', 'The first three pilots are free.'),
+    ('Design partners get our full assurance register',
+     'Pilot organisations get our full assurance register'),
+    ('Join our free 4 to 6 week design-partner pilot.',
+     'Join our free five-week pilot.'),
+    ('3 to 5 places per cohort.', 'Three free places, then paid.'),
+
+    # leftovers of the old "design-partner window" framing
+    ('That\u2019s what this window is for.', 'That\u2019s what the pilot is for.'),
+    ('Q \u00b7 What happens after the window?', 'Q \u00b7 What happens after the five weeks?'),
+]
+
+
+# ── injections ────────────────────────────────────────────────────────────
+# Hand-written components spliced into a generated page after a known anchor.
+# The hand-off has no five-week timeline to port — Jay set that structure on
+# 2 Nov — so it lives in its own component and is placed here rather than
+# pasted into generated output a regeneration would overwrite.
+INJECTS = [
+    ('partners',
+     "from './PilotWeeks'",
+     '</section>\n\n      <section className="alt">',
+     '</section>\n\n      <PilotWeeks />\n\n      <section className="alt">'),
+]
+
 
 # ── corrections ───────────────────────────────────────────────────────────
 # Applied after conversion, so a regeneration keeps them. Each one is a claim
@@ -56,6 +138,40 @@ CORRECTIONS = [
         ' <span className="tbc">[Scheduled delivery: Jay to confirm]</span>',
         '',
     ),
+    (
+        # The hero lead and the terms strip, rewritten for the model Jay set on
+        # 2 Nov: five weeks (1 setup / 3 run / 1 analysis), free for the first
+        # three organisations, paid for everyone after. Stating "paid after
+        # that" on the page is deliberate — a free trial that silently converts
+        # is the fastest way to lose a regulated buyer's trust, and saying it
+        # up front also pre-qualifies who applies.
+        'partners',
+        'We\u2019re opening a design-partner window for three to five regulated '
+        'Australian organisations. It\u2019s free. For 4 to 6 weeks GovernVeil runs '
+        'in your environment, against your real AI use, so together we can test '
+        'every claim on this site, find what isn\u2019t right yet, and shape what we '
+        'build next.',
+        'Five weeks, in your environment, against your real AI use \u2014 one week '
+        'to set up, three to run, one to turn what happened into something you '
+        'can put in front of your board. The first three organisations go free. '
+        'After the five weeks, and for everyone after the first three, it is '
+        'paid.',
+    ),
+    (
+        'partners',
+        '<div className="card fact"><span className="rl">LENGTH</span><b>4 to 6 weeks</b></div>',
+        '<div className="card fact"><span className="rl">LENGTH</span><b>Five weeks</b></div>',
+    ),
+    (
+        'partners',
+        '<div className="card fact"><span className="rl">PLACES</span><b>3 to 5 organisations</b></div>',
+        '<div className="card fact"><span className="rl">PLACES</span><b>Three, then paid</b></div>',
+    ),
+    (
+        'partners',
+        '<div className="card fact"><span className="rl">COST</span><b>Free</b></div>',
+        '<div className="card fact"><span className="rl">COST</span><b>Free for the first three</b></div>',
+    ),
 ]
 
 
@@ -88,6 +204,18 @@ for stem, route, comp, key in PAGES:
     # collapse the blank runs the source carries between sections
     jsx = re.sub(r'\n{3,}', '\n\n', jsx).strip()
     jsx = '\n'.join('      ' + l.strip() if l.strip() else '' for l in jsx.split('\n'))
+    for before, after in RENAMES:
+        jsx = jsx.replace(before, after)
+    inject_imports = []
+    for page, imp, anchor, repl in INJECTS:
+        if page != stem:
+            continue
+        if jsx.count(anchor) < 1:
+            raise SystemExit(f'injection anchor for {stem} not found')
+        jsx = jsx.replace(anchor, repl, 1)
+        inject_imports.append(imp)
+        print(f'  injected into {stem}: {imp}')
+
     for page, before, after in CORRECTIONS:
         if page != stem:
             continue
@@ -99,6 +227,8 @@ for stem, route, comp, key in PAGES:
     head = []
     if needs_link:
         head.append("import { Link } from 'react-router-dom'")
+    for imp in inject_imports:
+        head.append(f"import PilotWeeks {imp}")
     src = (('\n'.join(head) + '\n\n') if head else '') + f'''/* {comp} — governveil.com.au, ported from site-au/{stem}.html.
 
    GENERATED by tools/auport.py. The design's markup, converted

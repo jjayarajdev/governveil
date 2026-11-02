@@ -127,7 +127,7 @@ export default function SecurityAU() {
       <p className="q">Q · Where are you today, honestly?</p>
       <div className="pair">
       <h2 className="h2x">Open about where we are, and where we’re going.</h2>
-      <p className="body" style={{"margin": "0"}}>We’d rather you hear it from us in the first call than discover it in the sixth. Design partners get our full assurance register and known-issues log under NDA.</p>
+      <p className="body" style={{"margin": "0"}}>We’d rather you hear it from us in the first call than discover it in the sixth. Pilot organisations get our full assurance register and known-issues log under NDA.</p>
       </div>
       <div className="g3" style={{"marginTop": 40, "alignItems": "start"}}>
       <div className="rm" style={{"background": "#0E1411", "color": "#E6ECE7"}}><span className="rl" style={{"color": "#7FD6A4"}}>IN PLACE TODAY</span><ul className="lst" style={{"borderTop": "1px solid #2A332E"}}>
@@ -159,16 +159,16 @@ export default function SecurityAU() {
       <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
       <div>
       <span style={{"display": "flex"}}><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><defs><pattern id="gvh-c" width="1.4" height="1.4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="0.6" height="1.4" fill="#8A948E" /></pattern></defs><rect x="2" y="10.9" width="20" height="4.6" fill="url(#gvh-c)" /><rect x="1" y="1" width="22" height="22" fill="none" stroke="#F4F5F2" strokeWidth="2" /><rect x="9.4" y="9.2" width="9.2" height="9.6" fill="#F4F5F2" /><rect x="7.25" y="7.1" width="8.85" height="9.1" fill="#F4F5F2" stroke="#0E1411" strokeWidth="0.9" /><rect x="5" y="5" width="8.6" height="8.6" fill="#FF5B1F" stroke="#0E1411" strokeWidth="0.9" /><rect x="6.4" y="8.2" width="5.8" height="1.5" fill="#FFFFFF" /></svg></span>
-      <p className="eb" style={{"marginTop": 28}}>Design-partner pilot · early access</p>
+      <p className="eb" style={{"marginTop": 28}}>Pilot · early access</p>
       <h2 className="h2x" style={{"marginTop": 14}}>See it catch a real prompt in 90 seconds.</h2>
-      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>Join our free 4 to 6 week design-partner pilot. See a real prompt caught before it leaves, in your environment with your data, and a signed attestation that nothing else did. 3 to 5 places per cohort.</p>
-      <Link to="/partners" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": 600}}>How the design partnership works →</Link>
+      <p className="body" style={{"fontSize": 18, "margin": "20px 0 0"}}>Join our free five-week pilot. See a real prompt caught before it leaves, in your environment with your data, and a signed attestation that nothing else did. Three free places, then paid.</p>
+      <Link to="/pilot" style={{"display": "inline-block", "marginTop": 20, "color": "#F4F5F2", "fontWeight": 600}}>How the pilot works →</Link>
       </div>
       <form style={{"background": "#F4F5F2", "color": "#0E1411", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="sau-name">Name</label><input id="sau-name" type="text" autoComplete="name" /></div><div><label htmlFor="sau-email">Work email</label><input id="sau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="sau-org">Organisation</label><input id="sau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="sau-q">What AI use can’t you see today?</label><textarea id="sau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply to be a design partner</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

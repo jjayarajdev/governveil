@@ -8,7 +8,7 @@ import AgentsAU from './gv/au/AgentsAU'
 import RuntimeAU from './gv/au/RuntimeAU'
 import SecurityAU from './gv/au/SecurityAU'
 import BenchmarkAU from './gv/au/BenchmarkAU'
-import PartnersAU from './gv/au/PartnersAU'
+import PilotAU from './gv/au/PilotAU'
 import AboutAU from './gv/au/AboutAU'
 
 /* governveil.com.au. A separate entry from the .com app rather than a
@@ -25,11 +25,13 @@ const LEGACY = {
   '/index.html': '/', '/platform.html': '/platform',
   '/how-it-works.html': '/how-it-works', '/agents.html': '/agents',
   '/runtime.html': '/runtime', '/security.html': '/security',
-  '/benchmark.html': '/benchmark', '/partners.html': '/partners',
+  '/benchmark.html': '/benchmark', '/partners.html': '/pilot',
   '/about.html': '/about',
   /* the .com names, for anyone arriving from the other site */
   '/product': '/how-it-works', '/mcp': '/agents', '/guard': '/runtime',
-  '/trust': '/security', '/pilot': '/partners',
+  '/trust': '/security',
+  /* /partners was the live path for a day before the rename */
+  '/partners': '/pilot',
 }
 
 function ScrollToTop() {
@@ -56,7 +58,7 @@ export default function AppAU() {
         <Route path="/runtime" element={<RuntimeAU />} />
         <Route path="/security" element={<SecurityAU />} />
         <Route path="/benchmark" element={<BenchmarkAU />} />
-        <Route path="/partners" element={<PartnersAU />} />
+        <Route path="/pilot" element={<PilotAU />} />
         <Route path="/about" element={<AboutAU />} />
         {Object.entries(LEGACY).map(([from, to]) => (
           <Route key={from} path={from} element={<Navigate to={to} replace />} />

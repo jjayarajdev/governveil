@@ -23,7 +23,7 @@ const MEGA = [
   ['Prove · to your board and APRA', [
     ['/security', 'Security & residency', 'signed attestation · assurance roadmap'],
     ['/benchmark', 'Benchmark & probes', 're-run it yourself · challenged daily'],
-    ['/partners', 'Design partners', 'free · 4–6 weeks · 3–5 places'],
+    ['/pilot', 'Pilot', 'five weeks · first three free'],
   ]],
 ]
 
@@ -32,7 +32,7 @@ const NAV = [
   ['/benchmark', 'Benchmark'],
   ['/security', 'Security'],
   ['/about', 'About'],
-  ['/partners', 'Design partners'],
+  ['/pilot', 'Pilot'],
 ]
 
 /* Each design page sets its own .h1x, .h2x and .pair — 54px on home, 72 on
@@ -41,7 +41,7 @@ const NAV = [
 const PAGE_KEY = {
   '/': 'home', '/platform': 'platform', '/how-it-works': 'howitworks',
   '/agents': 'agents', '/runtime': 'runtime', '/security': 'security',
-  '/benchmark': 'benchmark', '/partners': 'partners', '/about': 'about',
+  '/benchmark': 'benchmark', '/pilot': 'pilot', '/about': 'about',
 }
 
 export default function ShellAU({ children }) {
@@ -72,10 +72,10 @@ export default function ShellAU({ children }) {
     <div className={`v3 au p-${PAGE_KEY[pathname] || 'home'}`} ref={page}>
       <a className="skip" href="#main">Skip to content</a>
 
-      <Link className="announce" to="/partners">
+      <Link className="announce" to="/pilot">
         <span className="mono announce-tag">EARLY ACCESS</span>
-        Design-partner window now open: 3 to 5 places for regulated Australian
-        organisations. <span style={{ textDecoration: 'underline' }}>Apply →</span>
+        Three free pilot places, for regulated Australian organisations.{' '}
+        <span style={{ textDecoration: 'underline' }}>Apply →</span>
       </Link>
 
       <header className="hd" ref={wrap}>
@@ -155,7 +155,7 @@ export default function ShellAU({ children }) {
             ['Govern', [['/how-it-works', 'How it works'], ['/agents', 'Agent tool calls'],
               ['/runtime', 'Runtime security'], ['/platform', 'Platform overview']]],
             ['Prove', [['/security', 'Security & residency'], ['/benchmark', 'Benchmark'],
-              ['/partners', 'Design partners'], ['/about', 'About']]],
+              ['/pilot', 'Pilot'], ['/about', 'About']]],
           ].map(([heading, links]) => (
             <div key={heading} className="foot-col">
               <span className="eb" style={{ fontSize: 11 }}>{heading}</span>
@@ -167,10 +167,6 @@ export default function ShellAU({ children }) {
             <span className="eb" style={{ fontSize: 11 }}>Contact</span>
             <a href="mailto:contact@governveil.com.au">contact@governveil.com.au</a>
             <a href="#privacy">Privacy policy</a>
-            <a href="https://claude.ai/new?q=Summarise%20what%20governveil.com.au%20does">
-              Summarise with Claude ↗
-            </a>
-            <a href="https://governveil.com/">Outside Australia? governveil.com ↗</a>
           </div>
         </div>
 

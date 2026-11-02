@@ -78,3 +78,30 @@
   .v3.au .hd-in { gap: 10px; }
   .v3.au .logo-w { font-size: 18px; }
 }
+
+/* ── the five-week band on /pilot ─────────────────────────────────────── */
+/* Hand-written with PilotWeeks.jsx: the hand-off has no timeline to port. */
+.v3.au .pw {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
+}
+.v3.au .pw-step {
+  display: flex; flex-direction: column; gap: 10px;
+  background: #FFFFFF; border: 1px solid #D3D8D3; border-radius: 12px;
+  padding: 24px; border-top: 3px solid var(--acc);
+}
+.v3.au .pw-span { color: #6E4300; }
+.v3.au .pw-title { font-size: 22px; letter-spacing: -.02em; }
+.v3.au .pw-body { margin: 0; font-size: 15px; line-height: 1.6; color: #2E3632; }
+.v3.au .pw-out {
+  margin: auto 0 0; padding-top: 14px; border-top: 1px solid #EBEDE8;
+  font-size: 14px; font-weight: 600; color: #0E1411;
+}
+.v3.au .pw-after {
+  margin: 28px 0 0; padding: 18px 20px; border-radius: 10px;
+  background: #EBEDE8; border: 1px solid #D3D8D3;
+  font-size: 15px; line-height: 1.6; max-width: 820px;
+}
+@media (max-width: 960px) {
+  .v3.au .pw { grid-template-columns: 1fr; }
+}

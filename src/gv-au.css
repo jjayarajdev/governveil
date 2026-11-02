@@ -185,19 +185,19 @@
 .v3.p-agents .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .v3.p-security .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .v3.p-benchmark .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.v3.p-partners .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.v3.p-pilot .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .v3.p-home .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .v3.p-platform .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .v3.p-howitworks .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .v3.p-runtime .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .v3.p-security .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .v3.p-benchmark .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.v3.p-partners .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.v3.p-pilot .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .v3.p-about .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .v3.p-home .g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
 .v3.p-howitworks .g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
 .v3.p-security .g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
-.v3.p-partners .g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
+.v3.p-pilot .g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
 .v3.p-home .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
 .v3.p-platform .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
 .v3.p-howitworks .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
@@ -205,7 +205,7 @@
 .v3.p-runtime .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
 .v3.p-security .pair{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:56px;align-items:end}
 .v3.p-benchmark .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
-.v3.p-partners .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
+.v3.p-pilot .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
 .v3.p-about .pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
 .v3.p-home .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
 .v3.p-platform .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
@@ -213,7 +213,7 @@
 .v3.p-runtime .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
 .v3.p-security .side{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
 .v3.p-benchmark .side{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
-.v3.p-partners .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
+.v3.p-pilot .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
 .v3.p-home .h1x{font-size:54px;line-height:1.04;font-weight:800;letter-spacing:-.035em;margin:0}
 .v3.p-platform .h1x{font-size:60px;line-height:1.02;font-weight:800;letter-spacing:-.04em;margin:0}
 .v3.p-howitworks .h1x{font-size:56px;line-height:1.02;font-weight:800;letter-spacing:-.035em;margin:0}
@@ -221,7 +221,7 @@
 .v3.p-runtime .h1x{font-size:72px;line-height:1;font-weight:800;letter-spacing:-.045em;margin:0}
 .v3.p-security .h1x{font-size:54px;line-height:1.04;font-weight:800;letter-spacing:-.035em;margin:0}
 .v3.p-benchmark .h1x{font-size:56px;line-height:1.02;font-weight:800;letter-spacing:-.035em;margin:0}
-.v3.p-partners .h1x{font-size:54px;line-height:1.04;font-weight:800;letter-spacing:-.035em;margin:0}
+.v3.p-pilot .h1x{font-size:54px;line-height:1.04;font-weight:800;letter-spacing:-.035em;margin:0}
 .v3.p-about .h1x{font-size:60px;line-height:1.02;font-weight:800;letter-spacing:-.035em;margin:0}
 .v3.p-home .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box}
 .v3.p-platform .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
@@ -230,19 +230,19 @@
 .v3.p-runtime .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
 .v3.p-security .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
 .v3.p-benchmark .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
-.v3.p-partners .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
+.v3.p-pilot .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
 .v3.p-about .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;background:transparent;font-family:inherit;cursor:pointer}
 .v3.p-home .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:24px}
 .v3.p-agents .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:28px}
 .v3.p-security .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:24px}
 .v3.p-benchmark .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:24px}
-.v3.p-partners .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:24px}
+.v3.p-pilot .card{background:#FFFFFF;border:1px solid #D3D8D3;border-radius:12px;padding:24px}
 .v3.p-home .lp{padding:18px 16px 18px 0;border-right:1px solid #D3D8D3}
 .v3.p-security .lp{padding:18px 14px 18px 0;border-right:1px solid #D3D8D3}
-.v3.p-partners .lp{padding:18px 14px 18px 0;border-right:1px solid #D3D8D3}
+.v3.p-pilot .lp{padding:18px 14px 18px 0;border-right:1px solid #D3D8D3}
 .v3.p-home .lp b{display:block;font-size:20px;margin-top:6px}
 .v3.p-security .lp b{display:block;font-size:19px;margin-top:6px}
-.v3.p-partners .lp b{display:block;font-size:20px;margin-top:6px}
+.v3.p-pilot .lp b{display:block;font-size:20px;margin-top:6px}
 .v3.p-home .vc{border:1px solid #2A332E;border-radius:10px;padding:20px}
 .v3.p-runtime .vc{border:1px solid #D3D8D3;background:#FFFFFF;border-radius:10px;padding:20px}
 .v3.p-home .vc b{display:block;font-size:16px;color:#F4F5F2;font-weight:600;margin-top:14px;line-height:1.4}
@@ -256,7 +256,7 @@
 .v3.p-howitworks .sc p{font-size:14px;line-height:1.55;color:#C2CBC5;margin:0}
 .v3.p-runtime .sc p{font-size:16px;line-height:1.6;color:#2E3632;margin:8px 0 0}
 .v3.p-security .kv{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;padding:16px 0;border-bottom:1px solid #D3D8D3}
-.v3.p-partners .kv{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:16px 0;border-bottom:1px solid #2A332E}
+.v3.p-pilot .kv{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:16px 0;border-bottom:1px solid #2A332E}
 
 @media (max-width:960px){
   .v3 .g2, .v3 .pair, .v3 .side{grid-template-columns:minmax(0,1fr)}
@@ -286,6 +286,6 @@
   .v3.p-runtime .h1x{font-size:56px}
   .v3.p-security .h1x{font-size:44px}
   .v3.p-benchmark .h1x{font-size:46px}
-  .v3.p-partners .h1x{font-size:44px}
+  .v3.p-pilot .h1x{font-size:44px}
   .v3.p-about .h1x{font-size:48px}
 }

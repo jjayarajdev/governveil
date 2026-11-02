@@ -81,8 +81,8 @@ export default function AboutAU() {
       <div>
       <p className="eb" style={{"color": "#B83E0E"}}>Where we are today</p>
       <h2 className="h2x" style={{"marginTop": 14}}>Built and running. Now proving it with you.</h2>
-      <p className="body" style={{"margin": "18px 0 0"}}>GovernVeil is in early access. It’s demonstrated to risk, security and operations leaders across insurance, banking and health, and our design-partner window is open to prove it in regulated Australian environments.</p>
-      <div style={{"display": "flex", "flexDirection": "column", "gap": 10, "marginTop": 20, "fontWeight": 600}}><Link to="/security#roadmap">Our assurance roadmap →</Link><Link to="/partners">The design-partner window →</Link></div>
+      <p className="body" style={{"margin": "18px 0 0"}}>GovernVeil is in early access. It’s demonstrated to risk, security and operations leaders across insurance, banking and health, and the first three pilots are open to prove it in regulated Australian environments.</p>
+      <div style={{"display": "flex", "flexDirection": "column", "gap": 10, "marginTop": 20, "fontWeight": 600}}><Link to="/security#roadmap">Our assurance roadmap →</Link><Link to="/pilot">The pilot programme →</Link></div>
       </div>
       </div>
       </section>
@@ -100,7 +100,7 @@ export default function AboutAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="aau-name">Name</label><input id="aau-name" type="text" autoComplete="name" /></div><div><label htmlFor="aau-email">Work email</label><input id="aau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="aau-org">Organisation</label><input id="aau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="aau-q">What AI use can’t you see today?</label><textarea id="aau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Book a call to see the architecture</button><button type="button" className="btns">Become a design partner</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Book a call to see the architecture</button><button type="button" className="btns">Apply for a pilot</button></div>
       </form>
       </div>
       </section>

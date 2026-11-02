@@ -11,7 +11,7 @@ import re, pathlib, collections, sys
 SRC = pathlib.Path('/Users/jjayaraj/Downloads/GovernVeil-website-AU/site-au')
 PAGES = [('index','home'),('platform','platform'),('how-it-works','howitworks'),
          ('agents','agents'),('runtime','runtime'),('security','security'),
-         ('benchmark','benchmark'),('partners','partners'),('about','about')]
+         ('benchmark','benchmark'),('partners','pilot'),('about','about')]
 
 def blocks(html):
     return re.findall(r'<style[^>]*>(.*?)</style>', html, re.S)
