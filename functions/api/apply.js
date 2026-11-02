@@ -4,15 +4,19 @@
  * ./functions relative to the working directory, and both `npm run deploy`
  * and `npm run deploy:au` run from the repo root.
  *
- * Deliberately has no database binding. Pages bindings are per-project and
- * configured in the dashboard, which would mean two of everything and a
- * silent difference between the sites when one drifts. Instead the handler
- * forwards to whatever channel is configured as a secret, and — this is the
- * point — FAILS LOUDLY when none is. A form that accepts a submission and
- * drops it is worse than the inert button it replaced, because nobody knows
- * to follow up.
+ * Capture is D1, notification is optional on top. That order matters: the
+ * submission is durable the moment it is written, so a webhook that is
+ * misconfigured, rate-limited or retired later costs a notification, never
+ * the lead. Both Pages projects bind the SAME database as `DB`, so one query
+ * answers "who applied this week" across both sites.
  *
- * Configure per project (values are prompted for, never committed):
+ * If D1 is unreachable the handler still tries the notification channels, and
+ * only returns success if SOMETHING durable or delivered happened. It FAILS
+ * LOUDLY otherwise: a form that accepts a submission and drops it is worse
+ * than the inert button it replaced, because nobody knows to follow up.
+ *
+ * Notification is optional. Configure per project if wanted (values are
+ * prompted for, never committed):
  *   npx wrangler pages secret put NOTIFY_WEBHOOK --project-name governveil
  *   npx wrangler pages secret put NOTIFY_WEBHOOK --project-name governveil-au
  *
@@ -75,6 +79,28 @@ export async function onRequestPost({ request, env }) {
   const sent = []
   const failed = []
 
+  /* Durable first. */
+  let stored = false
+  if (env.DB) {
+    try {
+      await env.DB.prepare(
+        `INSERT INTO enquiries
+           (at, site, page, intent, name, email, org, role, size, region, sector, question, country)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
+      )
+        .bind(
+          meta.at, meta.site, meta.page || null, meta.intent || null,
+          data.name || null, data.email, data.org || null, data.role || null,
+          data.size || null, data.region || null, data.sector || null,
+          data.question || null, meta.country || null
+        )
+        .run()
+      stored = true
+    } catch (e) {
+      failed.push(`d1 ${e.message}`)
+    }
+  }
+
   if (env.NOTIFY_WEBHOOK) {
     try {
       // `text` suits Slack and Teams incoming webhooks; the full object is
@@ -112,14 +138,14 @@ export async function onRequestPost({ request, env }) {
     }
   }
 
-  if (sent.length) {
-    if (failed.length) console.warn('apply: partial delivery', failed.join('; '))
+  if (stored || sent.length) {
+    if (failed.length) console.warn('apply: partial', failed.join('; '))
     return json(200, { ok: true })
   }
 
-  // Nothing was configured, or every channel failed. Say so — the form must
-  // not claim success it cannot back up.
-  console.error('apply: undelivered', failed.length ? failed.join('; ') : 'no channel configured', text)
+  // Nothing stored and nothing delivered. Say so — the form must not claim a
+  // success it cannot back up.
+  console.error('apply: LOST', failed.length ? failed.join('; ') : 'no store and no channel', text)
   return json(503, {
     ok: false,
     error: 'We could not record that just now. Please email us directly and we will pick it up.',
