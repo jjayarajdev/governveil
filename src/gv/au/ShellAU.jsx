@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Mark, Wordmark } from '../v3/Logo'
+import { wireForms } from '../../formWire'
 
 /* The governveil.com.au shell: early-access bar, header with the Product
    mega-menu, footer. One component instead of the nine copies the static
@@ -47,8 +48,14 @@ export default function ShellAU({ children }) {
   const [mega, setMega] = useState(false)
   const { pathname } = useLocation()
   const wrap = useRef(null)
+  const page = useRef(null)
 
   useEffect(() => setMega(false), [pathname])
+
+  /* The design's forms are inert markup; this is what makes them submit.
+     Delegated from the root so it covers every form on every route without
+     the generated page files having to know about it. */
+  useEffect(() => wireForms(page.current), [])
   useEffect(() => {
     if (!mega) return undefined
     const onKey = (e) => { if (e.key === 'Escape') setMega(false) }
@@ -62,7 +69,7 @@ export default function ShellAU({ children }) {
   }, [mega])
 
   return (
-    <div className={`v3 au p-${PAGE_KEY[pathname] || 'home'}`}>
+    <div className={`v3 au p-${PAGE_KEY[pathname] || 'home'}`} ref={page}>
       <a className="skip" href="#main">Skip to content</a>
 
       <Link className="announce" to="/partners">

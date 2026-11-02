@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Mark, Wordmark } from './Logo'
+import { wireForms } from '../../formWire'
 
 /* The iteration-3 shell: announcement bar, header with the Product mega-menu,
    footer. One component instead of the nine copies the static hand-off
@@ -50,9 +51,15 @@ export default function Shell({ children }) {
   const [mega, setMega] = useState(false)
   const { pathname } = useLocation()
   const wrap = useRef(null)
+  const page = useRef(null)
 
   // the menu closes on navigation, on Escape, and on a click outside it
   useEffect(() => setMega(false), [pathname])
+
+  /* The design's forms are inert markup; this is what makes them submit.
+     Delegated from the root so it covers every form on every route without
+     the generated page files having to know about it. */
+  useEffect(() => wireForms(page.current), [])
   useEffect(() => {
     if (!mega) return undefined
     const onKey = (e) => { if (e.key === 'Escape') setMega(false) }
@@ -66,7 +73,7 @@ export default function Shell({ children }) {
   }, [mega])
 
   return (
-    <div className={`v3 p-${PAGE_KEY[pathname] || 'home'}`}>
+    <div className={`v3 p-${PAGE_KEY[pathname] || 'home'}`} ref={page}>
       <a className="skip" href="#main">Skip to content</a>
 
       {/* The published miss. Real: DOC-ACCURACY-REPORT.md row of 2026-09-23 —
