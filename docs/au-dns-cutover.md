@@ -15,11 +15,31 @@ Cloudflare scans the existing zone when you add it and usually imports all of
 this. **Usually is not good enough for mail.** Check every row below against
 what Cloudflare imported before you change the nameservers.
 
-## 0 · Export the zone first
+## 0 · Export the zone first  — done, zone already added
 
 GoDaddy → Domains → governveil.com.au → DNS → **Export zone file**. Keep it.
 If anything goes wrong this is what you restore from, and it takes ten
 seconds now versus an afternoon later.
+
+## STATUS — verified 2 Nov 2026
+
+The zone exists on Cloudflare (`hassan.ns.cloudflare.com`,
+`pearl.ns.cloudflare.com`) in **pending** state. Querying those nameservers
+directly, before delegation, shows the import caught **all seven mail records
+correctly, all DNS-only**. Nothing in §1 needs entering by hand.
+
+Note the assigned pair is *not* `george`/`virginia`, which is what
+governveil.com uses. Use `hassan`/`pearl`.
+
+DNSSEC is **off** at the registry (no DS record), so the swap is safe.
+
+What is left:
+
+- [ ] **GoDaddy: unlock the domain and swap the nameservers** — the only
+      remaining step, and it needs the GoDaddy login.
+- [ ] delete the leftover `CNAME _domainconnect` (GoDaddy-only, harmless)
+- [ ] the leftover `CNAME www -> governveil.com.au` is replaced automatically
+      when the Pages custom domain is added; leave it alone until then
 
 ## 1 · The records that must exist in Cloudflare
 
