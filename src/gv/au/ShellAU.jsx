@@ -35,12 +35,14 @@ const NAV = [
   ['/pilot', 'Pilot'],
 ]
 
-/* Each design page sets its own .h1x, .h2x and .pair — 54px on home, 72 on
-   runtime. Those rules are scoped to `.v3.p-<page>` in gv-au.css, so the root
-   has to carry the page's key or every page inherits whichever came last. */
+/* The key stamped on the root selects the page's type scale out of
+   gv-v3.css, which both sites share. The AU ROUTES keep their own names
+   (/how-it-works, not /product) because they are live and read better, so
+   the route and the key differ — that mapping is the whole point of this
+   table. */
 const PAGE_KEY = {
-  '/': 'home', '/platform': 'platform', '/how-it-works': 'howitworks',
-  '/agents': 'agents', '/runtime': 'runtime', '/security': 'security',
+  '/': 'home', '/platform': 'platform', '/how-it-works': 'product',
+  '/agents': 'mcp', '/runtime': 'guard', '/security': 'security',
   '/benchmark': 'benchmark', '/pilot': 'pilot', '/about': 'about',
 }
 
