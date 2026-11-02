@@ -128,12 +128,7 @@ BOOKCALL = [
 # The hand-off has no five-week timeline to port — Jay set that structure on
 # 2 Nov — so it lives in its own component and is placed here rather than
 # pasted into generated output a regeneration would overwrite.
-INJECTS = [
-    ('partners',
-     "from './PilotWeeks'",
-     '</section>\n\n      <section className="alt">',
-     '</section>\n\n      <PilotWeeks />\n\n      <section className="alt">'),
-]
+INJECTS = []
 
 
 # ── corrections ───────────────────────────────────────────────────────────
@@ -203,6 +198,28 @@ CORRECTIONS = [
         'partners',
         '<div className="card fact"><span className="rl">COST</span><b>Free</b></div>',
         '<div className="card fact"><span className="rl">COST</span><b>Free for the first three</b></div>',
+    ),
+    (
+        # The hand-off already carries a timeline — WEEK 0 Set up through
+        # WEEK 6 Report — which I missed when adding a five-week band of my
+        # own, leaving /pilot with two that disagreed. This is the one
+        # timeline, in the design's own .lp cells, carrying Jay's structure:
+        # one week to set up, three to run, one for the analysis.
+        'partners',
+        '<div className="g6" style={{"marginTop": 40, "borderTop": "2px solid #0E1411"}}>\n      <div className="lp"><i>WEEK 0</i><b>Set up</b><span>Agree three success criteria and the scope.</span></div>\n      <div className="lp" style={{"paddingLeft": 14, "background": "var(--acc)"}}><i style={{"color": "#0E1411"}}>WEEK 1</i><b>Deploy</b><span style={{"color": "#0E1411"}}>Installed in your environment, first prompt caught.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEKS 1–2</i><b>Observe</b><span>Monitor only: see what would have been stopped.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEKS 3–4</i><b>Protect</b><span>Turn on the controls you choose.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEK 5</i><b>Tune</b><span>Adjust policies against your own data.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEK 6</i><b>Report</b><span>Control-effectiveness report and a go or no-go.</span></div>\n      </div>',
+        '<div className="g5 pilot-weeks" style={{"marginTop": 40, "borderTop": "2px solid #0E1411"}}>\n      <div className="lp"><i>WEEK 1</i><b>Set up</b><span>Into your environment. Your AI policy becomes controls. Nothing leaves your perimeter.</span></div>\n      <div className="lp" style={{"paddingLeft": 14, "background": "var(--acc)"}}><i style={{"color": "#0E1411"}}>WEEK 2</i><b>Run</b><span style={{"color": "#0E1411"}}>Real traffic, real people, your own data. Every decision signed to the ledger.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEK 3</i><b>Run</b><span>Probes challenge every control daily. Policies tuned against what you actually see.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEK 4</i><b>Run</b><span>Protection on for the controls you choose, with the ledger behind every call.</span></div>\n      <div className="lp" style={{"paddingLeft": 14}}><i>WEEK 5</i><b>Analysis</b><span>A written assessment and a walkthrough: what your people sent, which controls fired, where the gaps are.</span></div>\n      </div>',
+    ),
+    (
+        'partners',
+        'Six weeks, start to report. Observe first. Protect when you\u2019re ready.',
+        'Five weeks, start to report. One to set up, three to run, one to turn '
+        'it into something your board can read.',
+    ),
+    (
+        # design-partner framing that outlived the rename
+        'partners',
+        'A partnership, not a trial.',
+        'A pilot you can put in front of your board.',
     ),
 ]
 
