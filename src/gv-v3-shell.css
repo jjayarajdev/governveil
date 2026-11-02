@@ -8,7 +8,12 @@
    The design carries these as inline styles repeated on all nine pages;
    lifted into classes so the React shell renders them once. Values unchanged. */
 
-.v3 { min-height: 100vh; background: #F4F5F2; }
+/* The accent token. It lived in gv-v3.css as a hand-added line until a
+   regeneration wiped it and every var(--acc) on the site resolved to nothing
+   — the primary buttons lost their fill and the signed-ledger bar on
+   /platform disappeared. Generated files cannot hold hand-written rules;
+   that is the whole reason this file exists. */
+.v3 { --acc: #FF5B1F; min-height: 100vh; background: #F4F5F2; }
 
 /* ── announcement bar ─────────────────────────────────────────────────── */
 .v3 .announce {

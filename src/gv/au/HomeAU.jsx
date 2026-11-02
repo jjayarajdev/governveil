@@ -17,7 +17,7 @@ export default function HomeAU() {
       <h1 className="h1x">Let your teams use AI. Keep the data — and the proof — inside your perimeter<span style={{"color": "var(--acc)"}}>.</span></h1>
       <div>
       <p className="lead" style={{"margin": "0"}}>Governance should never be the reason you hold back on AI. GovernVeil turns your AI policy into controls, checks every AI request inside your own environment, and gives your board proof that the controls are working.</p>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a><a href="#apply" className="btns">Book a call to see the architecture</a></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a></div>
       </div>
       </div>
       </section>
@@ -190,7 +190,7 @@ export default function HomeAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="hau-name">Name</label><input id="hau-name" type="text" autoComplete="name" /></div><div><label htmlFor="hau-email">Work email</label><input id="hau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="hau-org">Organisation</label><input id="hau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="hau-q">What AI use can’t you see today?</label><textarea id="hau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns" style={{"background": "transparent", "font": "inherit", "fontWeight": 600, "cursor": "pointer"}}>Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

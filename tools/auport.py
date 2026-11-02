@@ -91,6 +91,38 @@ RENAMES = [
 ]
 
 
+# ── removal: "Book a call to see the architecture" ────────────────────────
+# Jay's call, 2 Nov. Phrase-only on the AU site (.com never used it).
+#
+# NOT a blind delete. The phrase sits in three different roles, and in two of
+# them it is the ONLY call to action in its block:
+#
+#   secondary next to "Apply for a pilot"  -> delete outright (9 places)
+#   the PRIMARY in the About form          -> delete, and promote the
+#                                             surviving button to primary
+#   the PRIMARY hero CTA on three pages    -> retitle to "Apply for a pilot";
+#                                             deleting would leave those heroes
+#                                             with only a nav link and nothing
+#                                             to convert on
+BOOKCALL = [
+    # the plain secondary — in forms and in two hero pairs
+    ('<button type="button" className="btns">Book a call to see the architecture</button>', ''),
+    ('<a href="#apply" className="btns">Book a call to see the architecture</a>', ''),
+    ('<button type="button" className="btns" style={{"background": "transparent", '
+     '"font": "inherit", "fontWeight": 600, "cursor": "pointer"}}>'
+     'Book a call to see the architecture</button>', ''),
+
+    # About's form: the phrase WAS the primary, so promote the other button
+    ('<button type="button" className="btnp">Book a call to see the architecture</button>'
+     '<button type="button" className="btns">Apply for a pilot</button>',
+     '<button type="button" className="btnp">Apply for a pilot</button>'),
+
+    # three hero primaries: retitle, keep the #apply target
+    ('<a href="#apply" className="btnp">Book a call to see the architecture</a>',
+     '<a href="#apply" className="btnp">Apply for a pilot</a>'),
+]
+
+
 # ── injections ────────────────────────────────────────────────────────────
 # Hand-written components spliced into a generated page after a known anchor.
 # The hand-off has no five-week timeline to port — Jay set that structure on
@@ -205,6 +237,8 @@ for stem, route, comp, key in PAGES:
     jsx = re.sub(r'\n{3,}', '\n\n', jsx).strip()
     jsx = '\n'.join('      ' + l.strip() if l.strip() else '' for l in jsx.split('\n'))
     for before, after in RENAMES:
+        jsx = jsx.replace(before, after)
+    for before, after in BOOKCALL:
         jsx = jsx.replace(before, after)
     inject_imports = []
     for page, imp, anchor, repl in INJECTS:

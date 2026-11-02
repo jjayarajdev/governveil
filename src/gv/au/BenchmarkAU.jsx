@@ -138,7 +138,7 @@ export default function BenchmarkAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="bmau-name">Name</label><input id="bmau-name" type="text" autoComplete="name" /></div><div><label htmlFor="bmau-email">Work email</label><input id="bmau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="bmau-org">Organisation</label><input id="bmau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="bmau-q">What AI use can’t you see today?</label><textarea id="bmau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

@@ -17,7 +17,7 @@ export default function PilotAU() {
       <h1 className="h1x">Help shape sovereign AI governance for Australia<span style={{"color": "var(--acc)"}}>.</span></h1>
       <div>
       <p className="lead" style={{"margin": "0"}}>Five weeks, in your environment, against your real AI use — one week to set up, three to run, one to turn what happened into something you can put in front of your board. The first three organisations go free. After the five weeks, and for everyone after the first three, it is paid.</p>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a><a href="#apply" className="btns">Book a call to see the architecture</a></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a></div>
       </div>
       </div>
       <div className="g4" style={{"marginTop": 48}}>
@@ -159,7 +159,7 @@ export default function PilotAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="pau-name">Name</label><input id="pau-name" type="text" autoComplete="name" /></div><div><label htmlFor="pau-email">Work email</label><input id="pau-email" type="email" autoComplete="email" /></div></div>
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="pau-org">Organisation</label><input id="pau-org" type="text" autoComplete="organization" /></div><div><label htmlFor="pau-sector">Sector</label><select id="pau-sector"><option>Select sector</option><option>Banking</option><option>Insurance / underwriting</option><option>Broking</option><option>Health insurance</option><option>Superannuation</option><option>Government</option><option>AI / technology vendor</option><option>Other</option></select></div></div>
       <div><label htmlFor="pau-q">What AI use can’t you see today?</label><textarea id="pau-q" rows="5" style={{"minHeight": 140, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       </form>
       </div>
       </section>

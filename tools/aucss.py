@@ -6,6 +6,11 @@ appears on becomes one global `.v3 ...` rule; a selector that differs by page
 is emitted once per page under `.v3.p-<key>`. Flattening the differing ones is
 the bug that made every .com hero render at runtime's 120px.
 """
+# NOTHING hand-written may be added to the output of this script. The accent
+# token --acc was added to gv-v3.css by hand and silently lost here twice;
+# shell rules were lost the same way. Both now live in the *-shell.css files,
+# which are hand-written and must not live there.
+
 import re, pathlib, collections, sys
 
 SRC = pathlib.Path('/Users/jjayaraj/Downloads/GovernVeil-website-AU/site-au')
@@ -73,17 +78,27 @@ for fname, key in PAGES:
         else:
             top.setdefault(prelude, collections.OrderedDict())[key] = re.sub(r'\s+',' ',body).strip().strip(';')
 
-def emit(table):
+def emit(table, npages):
+    """A selector goes global ONLY if every page defines it and they agree.
+
+    An earlier version globalised any selector with a single distinct body,
+    including ones defined on just one page. That is unsafe: `.kv span:last-child`
+    exists only on the pilot page, where .kv sits on a dark band and the last
+    cell is #F4F5F2. Emitted globally it outranked security's `.kv span`
+    (#2E3632) and rendered that table as white text on a white background.
+
+    A selector present on a subset of pages is scoped to that subset, so it can
+    never reach a page whose own rules it was never written beside."""
     shared, perpage = [], []
     for sel, bodies in table.items():
-        if len(set(bodies.values())) == 1:
+        if len(bodies) == npages and len(set(bodies.values())) == 1:
             shared.append(f'{scope(sel)}{{{next(iter(bodies.values()))}}}')
         else:
             for page, body in bodies.items():
                 perpage.append(f'{scope(sel, page)}{{{body}}}')
     return shared, perpage
 
-s_top, p_top = emit(top)
+s_top, p_top = emit(top, len(PAGES))
 
 out = ["""/* Iteration 4 — governveil.com.au, ported from the design's site-au/.
 
@@ -106,7 +121,7 @@ for cond, table in media.items():
         for prelude, bodies in table.items():
             out += ['', f'{prelude}{{{next(iter(bodies.values()))}}}']
         continue
-    s_m, p_m = emit(table)
+    s_m, p_m = emit(table, len(PAGES))
     if s_m or p_m:
         out += ['', f'{cond}{{'] + ['  '+r for r in s_m+p_m] + ['}']
 

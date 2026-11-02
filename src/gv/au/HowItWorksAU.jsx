@@ -17,7 +17,7 @@ export default function HowItWorksAU() {
       <h1 className="h1x">From policy to proof, in one loop<span style={{"color": "var(--acc)"}}>.</span></h1>
       <div>
       <p className="lead" style={{"margin": "0"}}>Most AI governance stops at the policy document. GovernVeil brings the whole chain together in one loop: your policy becomes controls, every AI request is checked against them in context, each control is tested to show whether it’s working, and what you learn goes back into the policy.</p>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Book a call to see the architecture</a><a href="#steps" className="btns">The eight request steps</a></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a><a href="#steps" className="btns">The eight request steps</a></div>
       </div>
       </div>
       </section>
@@ -92,7 +92,7 @@ export default function HowItWorksAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="hwau-name">Name</label><input id="hwau-name" type="text" autoComplete="name" /></div><div><label htmlFor="hwau-email">Work email</label><input id="hwau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="hwau-org">Organisation</label><input id="hwau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="hwau-q">What AI use can’t you see today?</label><textarea id="hwau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

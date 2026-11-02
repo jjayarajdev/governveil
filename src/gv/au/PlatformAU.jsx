@@ -17,7 +17,7 @@ export default function PlatformAU() {
       <h1 className="h1x">Four surfaces. One engine. One ledger<span style={{"color": "var(--acc)"}}>.</span></h1>
       <div>
       <p className="lead" style={{"margin": "0"}}>Applications call model APIs. Agents call tools. People paste into assistants you do not run. GovernVeil sits in every one of those paths, decides inside your own Australian environment, and signs what it did.</p>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Book a call to see the architecture</a><Link to="/how-it-works" className="btns">The policy-to-proof loop</Link></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a><Link to="/how-it-works" className="btns">The policy-to-proof loop</Link></div>
       </div>
       </div>
       </section>
@@ -96,7 +96,7 @@ export default function PlatformAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="plau-name">Name</label><input id="plau-name" type="text" autoComplete="name" /></div><div><label htmlFor="plau-email">Work email</label><input id="plau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="plau-org">Organisation</label><input id="plau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="plau-q">What AI use can’t you see today?</label><textarea id="plau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

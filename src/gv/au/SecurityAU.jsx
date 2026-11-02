@@ -17,7 +17,7 @@ export default function SecurityAU() {
       <div>
       <h1 className="h1x">Data residency by construction, not by contract<span style={{"color": "var(--acc)"}}>.</span></h1>
       <p className="lead" style={{"margin": "28px 0 0"}}>No prompt content leaves your network to get a verdict. You don’t have to take our word for it: GovernVeil gives your security team a signed attestation that proves it, with the one number that matters in it.</p>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Book a call to see the architecture</a><a href="#roadmap" className="btns">See our assurance roadmap</a></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 12, "marginTop": 28}}><a href="#apply" className="btnp">Apply for a pilot</a><a href="#roadmap" className="btns">See our assurance roadmap</a></div>
       </div>
       <figure style={{"margin": "0", "background": "#0E1411", "color": "#E6ECE7", "borderRadius": 12, "padding": 28}}>
       <div className="rl" style={{"display": "flex", "justifyContent": "space-between", "gap": 12, "color": "#9DA8A1", "paddingBottom": 14, "borderBottom": "1px solid #2A332E"}}><span>GET /attestation</span><span>signed</span></div>
@@ -168,7 +168,7 @@ export default function SecurityAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="sau-name">Name</label><input id="sau-name" type="text" autoComplete="name" /></div><div><label htmlFor="sau-email">Work email</label><input id="sau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="sau-org">Organisation</label><input id="sau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="sau-q">What AI use can’t you see today?</label><textarea id="sau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button><button type="button" className="btns">Book a call to see the architecture</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       <p style={{"fontSize": 13, "color": "#4A534E", "margin": "0"}}>Or write to contact@governveil.com.au</p>
       </form>
       </div>

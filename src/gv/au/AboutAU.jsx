@@ -100,7 +100,7 @@ export default function AboutAU() {
       <div className="g2" style={{"gap": 16}}><div><label htmlFor="aau-name">Name</label><input id="aau-name" type="text" autoComplete="name" /></div><div><label htmlFor="aau-email">Work email</label><input id="aau-email" type="email" autoComplete="email" /></div></div>
       <div><label htmlFor="aau-org">Organisation</label><input id="aau-org" type="text" autoComplete="organization" /></div>
       <div><label htmlFor="aau-q">What AI use can’t you see today?</label><textarea id="aau-q" rows="4" style={{"minHeight": 120, "resize": "vertical"}}></textarea></div>
-      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Book a call to see the architecture</button><button type="button" className="btns">Apply for a pilot</button></div>
+      <div style={{"display": "flex", "flexWrap": "wrap", "gap": 10}}><button type="button" className="btnp">Apply for a pilot</button></div>
       </form>
       </div>
       </section>
