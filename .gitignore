@@ -10,3 +10,4 @@ dist/
 # The three claude-design/*.html references stay tracked.
 claude-design/v2/
 dist-au
+.wrangler/
