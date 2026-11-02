@@ -37,6 +37,25 @@ CORRECTIONS = [
         'Denied, or merely observed and logged \u2014 it ships in observe mode '
         'and you turn enforcement on.',
     ),
+    (
+        # Jay confirmed 2 Nov: cut the amber "[... Jay to confirm]" notes. They
+        # were working notes left in the hand-off, not missing answers — each
+        # of the three FAQ answers is complete and accurate without one, so
+        # only the note goes.
+        'partners',
+        ' <span className="tbc">[Mobile coverage: Jay to confirm]</span>',
+        '',
+    ),
+    (
+        'partners',
+        ' <span className="tbc">[Timing: Jay to confirm]</span>',
+        '',
+    ),
+    (
+        'partners',
+        ' <span className="tbc">[Scheduled delivery: Jay to confirm]</span>',
+        '',
+    ),
 ]
 
 

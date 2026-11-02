@@ -135,9 +135,9 @@ export default function PartnersAU() {
       <details><summary>How long does setup take?</summary><p>You see a real prompt caught in week one, in your environment.</p></details>
       <details><summary>What if GovernVeil goes down?</summary><p>It fails safe. AI requests are held and the reason recorded, rather than passing through unchecked.</p></details>
       <details><summary>What if your company isn’t around?</summary><p>It runs in your environment and your evidence stays with you. Source code can be held in escrow in Australia.</p></details>
-      <details><summary>Does it work on phones?</summary><p>Your own apps that use AI are covered on any device. Staff using public AI tools are covered in desktop browsers today. <span className="tbc">[Mobile coverage: Jay to confirm]</span></p></details>
-      <details><summary>Will we get alerts?</summary><p>Yes, in the security tools you already use. Email and webhook alerts are on our roadmap. <span className="tbc">[Timing: Jay to confirm]</span></p></details>
-      <details><summary>Do we get reports automatically?</summary><p>Control status is live in the console, and gap assessments, drift reports and test evidence export for your risk committee. <span className="tbc">[Scheduled delivery: Jay to confirm]</span></p></details>
+      <details><summary>Does it work on phones?</summary><p>Your own apps that use AI are covered on any device. Staff using public AI tools are covered in desktop browsers today.</p></details>
+      <details><summary>Will we get alerts?</summary><p>Yes, in the security tools you already use. Email and webhook alerts are on our roadmap.</p></details>
+      <details><summary>Do we get reports automatically?</summary><p>Control status is live in the console, and gap assessments, drift reports and test evidence export for your risk committee.</p></details>
       </div>
       </section>
       </main>
