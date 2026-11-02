@@ -139,3 +139,105 @@ Separate from DNS, and tracked with the site rather than here:
 Verified and not in doubt: ABN 94 703 419 194 is GOVERNVEIL PTY LTD,
 Australian Private Company, active from 20 Oct 2026, NSW 2200 (ABR lookup,
 and the same ABN is the auDA-validated registrant ID on the domain).
+
+---
+
+# The GoDaddy steps, exactly
+
+Account: the one holding `governveil.com.au` (registrant/tech contact Bijal
+Sejpal). Australian account, so links are under `godaddy.com/en-au`.
+
+## Before you start
+
+**Do not delete anything in GoDaddy's DNS panel.** The records there become
+irrelevant the moment the nameservers change, but leaving them intact is the
+rollback path if something goes wrong. Changing nameservers is enough.
+
+## 1 · Open the domain
+
+Sign in, then go straight to:
+
+```
+https://dcc.godaddy.com/control/portfolio/governveil.com.au/settings
+```
+
+If that redirects, navigate: **My Products → Domains → governveil.com.au →
+Domain Settings** (some accounts label the button **Manage** or **DNS**).
+
+## 2 · Try the nameserver change first
+
+Counter-intuitive, but do this before touching the lock. GoDaddy manages the
+registry status itself and usually permits a nameserver change through its own
+UI while the domain is locked. If it goes through, you never have to unlock,
+and the domain keeps its transfer protection.
+
+Under **Nameservers**, click **Change Nameservers** (or **Change**).
+
+Choose **I'll use my own nameservers** — the option may read **Custom** or
+**Enter my own nameservers**. Do *not* pick "GoDaddy nameservers" or
+"Default".
+
+Replace both entries:
+
+| Remove | Add |
+|---|---|
+| `ns69.domaincontrol.com` | `hassan.ns.cloudflare.com` |
+| `ns70.domaincontrol.com` | `pearl.ns.cloudflare.com` |
+
+Two nameservers total. No third, no trailing dots.
+
+**Save.**
+
+## 3 · The warning you will see
+
+GoDaddy shows something like *"Changing nameservers will disable your GoDaddy
+DNS settings, including email"*, often with a checkbox to acknowledge.
+
+**This warning does not apply here, and it is safe to continue.** It assumes
+your DNS is leaving with nowhere to land. In this case Cloudflare already
+holds all seven Microsoft 365 records — MX, SPF, the `MS=` ownership TXT,
+DMARC, both DKIM selectors and autodiscover — verified against the Cloudflare
+nameservers on 2 Nov. Mail keeps working.
+
+Tick the box, continue.
+
+## 4 · Only if step 2 is refused
+
+If GoDaddy blocks the change and cites the lock:
+
+**Domain Settings → Domain lock → toggle off** (may be under **Additional
+Settings**, and may be called **Transfer lock**). Confirm, then repeat step 2.
+
+Turn the lock **back on** once the nameservers have changed.
+
+## 5 · Confirm it took
+
+GoDaddy's own page should now show **Nameservers: Custom** with the two
+Cloudflare entries. That is GoDaddy's record of it, not the internet's —
+delegation at the registry follows separately.
+
+## 6 · Then wait
+
+`.au` registry NS records carry a long TTL. Cloudflare says 1–2 hours,
+typically; up to 24. Nothing to do in the meantime.
+
+```sh
+dig +short NS governveil.com.au      # flips to hassan/pearl when live
+dig +short MX governveil.com.au      # must stay ...mail.protection.outlook.com
+```
+
+Cloudflare emails when the zone goes **active**.
+
+## 7 · After it is active
+
+Send a test message to `contact@governveil.com.au` from an outside address,
+**and** send one out from it. Inbound working does not prove outbound is
+signing with DKIM.
+
+Then the site goes live — see §7 of the first half of this document.
+
+## If something looks wrong
+
+Put `ns69.domaincontrol.com` / `ns70.domaincontrol.com` back in the same
+screen. GoDaddy's DNS records were never deleted, so this restores the prior
+state. Then say what happened before trying again.
