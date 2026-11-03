@@ -1,0 +1,25 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-11-03T02:00:00Z" },
+  "lists": "css",
+  "title": "GovernVeil — the evidence layer for enterprise AI",
+  "order": ["cover","problem","whynow","shape","verdicts","scenario","benchmark","miss","residency","standards","pilot","close"],
+  "cover": "cover",
+  "sections": {
+    "s1": { "description": "The question Australian boards are now being asked, and why a policy is no longer an answer.", "start": "problem" },
+    "s2": { "description": "What GovernVeil is, where it sits, and the five outcomes it can reach.", "start": "shape" },
+    "s3": { "description": "The evidence — a re-runnable benchmark, and a miss we published.", "start": "benchmark" },
+    "s4": { "description": "Residency, the standards it is built against, and how a pilot starts.", "start": "residency" }
+  },
+  "faces": {
+    "schibsted-grotesk": {
+      "family": "Schibsted Grotesk",
+      "href": "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+    }
+  },
+  "designSystems": []
+}
