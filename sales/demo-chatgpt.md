@@ -93,3 +93,54 @@ ChatGPT is not.
 3. **An agent, not a person** — `tools/call` judged three times. This is the
    one that answers the question every MCP explainer leaves hanging: once the
    server does the work, who checked what left?
+
+---
+
+# Demo 2 — the enterprise API (`/gw/claims`)
+
+Same length, same system, deliberately a different story. Demo 1 is a person
+and a browser; this one is a machine calling your Claims system, and the
+mechanics genuinely differ.
+
+Explainer: `sales/demo/explainer-api.html`
+
+## What makes this surface different
+
+Three things demo 1 cannot show, all from the gateway's own config model
+(`apigateway.App`: `Prefix`, `UpstreamURL`, `DefaultDeny`, `RoleSource`,
+`RoleScopes`):
+
+1. **Role, then scope, then operation — resolved before any content is
+   read.** The cheapest possible refusal, and the request body is never
+   opened. In demo 1 the content *is* the question; here the caller's
+   entitlement is settled first.
+2. **The default is deny.** An application nobody registered gets nothing.
+3. **The refusal is a ledger row.** A denial nobody can see is not a control.
+
+And one thing worth saying out loud to an architect: **the Claims system does
+not change.** No SDK, no code change — it serves a normal caller on its own
+network.
+
+## The run
+
+| Beat | Shows |
+|---|---|
+| 1 | Your claims system already has an API. Other applications already call it. |
+| 2 | A partner's reporting tool asks for a bulk export. |
+| 3 | Role → scope → operation, resolved before any content is read. |
+| 4 | It may read one claim, not export a thousand. **403, body never opened.** |
+| 5 | The refusal is the evidence, and it never left your perimeter. |
+| 6 | The same tool asks for the one claim it is entitled to. That passes. |
+| 7 | A reply leaks as easily as a request — the response runs the same ladder. |
+| 8 | Two values masked on the way out. |
+| 9 | Both decisions on the same chain as every prompt, probe and policy change. |
+| 10 | Four surfaces. One engine. One ledger. |
+
+## Recording it for real
+
+Same rules as demo 1 — synthetic identifiers only, nothing in frame that
+shows a token or a real tenant. For this surface you additionally need a
+registered app in the config bundle (`id`, `prefix`, `upstreamURL`,
+`roleScopes`) and two service tokens: one whose role lacks the export scope,
+one that may read a single claim. Record the 403 first; it is the beat people
+remember.

@@ -1,0 +1,350 @@
+<title>An API Call, Governed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* GovernVeil's own system — tokens lifted from the live sites, not invented.
+   Deliberately single-theme: this page exists to be screen-recorded, so it
+   must look identical on any host ground. Every colour is painted. */
+:root{
+  --ink:#0E1411; --ground:#F4F5F2; --alt:#EBEDE8; --panel:#18201C;
+  --line:#D3D8D3; --line-dk:#2A332E;
+  --acc:#FF5B1F; --acc-deep:#B83E0E;
+  --muted:#4A534E; --dim:#9DA8A1; --pale:#C2CBC5;
+  --risk:#FFB4A8; --risk-bg:#4A1C17;
+  --safe:#BBD0FF; --safe-bg:#2C3A5C;
+  --ok:#7FD6A4;
+  --sans:'Schibsted Grotesk',Arial,sans-serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);font-family:var(--sans);color:var(--ground);
+     display:grid;place-items:center;min-height:100vh;overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* ── the stage: fixed 1920×1080, scaled to the window ─────────────────── */
+#fit{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+#stage{width:1920px;height:1080px;flex:none;position:relative;background:var(--ground);
+       color:var(--ink);overflow:hidden;transform-origin:center}
+
+/* ── chrome ───────────────────────────────────────────────────────────── */
+.top{position:absolute;inset:0 0 auto 0;height:104px;padding:0 72px;
+     display:flex;align-items:center;justify-content:space-between;
+     border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:28px;letter-spacing:-.03em}
+.brand i{font-style:normal;color:var(--acc)}
+.surface{font-family:var(--mono);font-size:19px;letter-spacing:.1em;color:var(--muted)}
+.surface b{color:var(--ink);font-weight:600}
+.note{margin:5px 0 0;font-family:var(--mono);font-size:15px;color:var(--dim)}
+
+/* ── the spine ────────────────────────────────────────────────────────── */
+.spine{position:absolute;left:72px;right:72px;top:138px;
+       display:grid;grid-template-columns:1fr 92px 1fr 92px 1fr;align-items:stretch;gap:0}
+.node{border:1px solid var(--line);border-radius:18px;background:#FFFFFF;padding:34px 36px;
+      display:flex;flex-direction:column;gap:14px;min-height:208px;
+      transition:border-color .45s ease,box-shadow .45s ease,background .45s ease}
+.node .eb{font-family:var(--mono);font-size:17px;letter-spacing:.12em;color:var(--muted);margin:0}
+.node h2{margin:0;font-size:34px;font-weight:700;letter-spacing:-.02em}
+.node p{margin:0;font-size:21px;line-height:1.5;color:var(--muted)}
+.node.gate{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.node.gate .eb{color:var(--acc)}
+.node.gate p{color:var(--pale)}
+.node.live{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,91,31,.16)}
+.arrow{display:grid;place-items:center;font-size:40px;color:var(--line);transition:color .4s ease}
+.arrow.hot{color:var(--acc)}
+
+/* the engine's four checks, inside the gate */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.chk{background:#222B26;border-radius:9px;padding:12px 14px;font-family:var(--mono);
+     font-size:16px;color:var(--pale);opacity:.35;transition:opacity .3s ease,background .3s ease}
+.chk.on{opacity:1;background:#2E3A33;color:#FFFFFF}
+
+/* ── the payload ──────────────────────────────────────────────────────── */
+.payload{position:absolute;left:72px;right:72px;top:418px;
+         background:var(--panel);border:1px solid var(--line-dk);border-radius:18px;padding:26px 40px;
+         display:flex;flex-direction:column;gap:18px}
+.payload .hd{display:flex;justify-content:space-between;align-items:center;
+             font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--dim)}
+.wire{font-family:var(--mono);font-size:27px;line-height:1.75;color:#E6ECE7;
+      min-height:96px;position:relative}
+.wire .v{padding:3px 8px;border-radius:5px;transition:background .5s ease,color .5s ease}
+.wire .real{background:var(--risk-bg);color:var(--risk)}
+.wire .surr{background:var(--safe-bg);color:var(--safe)}
+.verdict{font-family:var(--mono);font-size:19px;letter-spacing:.12em;padding:9px 18px;border-radius:7px;
+         background:#2E3A33;color:var(--pale);transition:background .4s ease,color .4s ease}
+.verdict.mask{background:var(--safe);color:#0E1411}
+.verdict.held{background:var(--acc);color:#0E1411}
+
+/* ── the swap region: one panel per beat, same slot ───────────────────── */
+.panel{position:absolute;left:72px;right:72px;top:612px;height:320px;display:none;
+       border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden;
+       flex-direction:column}
+.panel.show{display:flex}
+.phd{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;flex:none;
+     border-bottom:1px solid var(--line);font-family:var(--mono);font-size:16px;
+     letter-spacing:.1em;color:var(--muted)}
+.pfoot{margin:auto 0 0;padding:12px 32px;border-top:1px solid var(--alt);background:var(--alt);
+       font-size:18px;line-height:1.45;color:var(--muted);flex:none}
+.pfoot b{color:var(--ink)}
+.th{font-family:var(--mono);font-size:15px;letter-spacing:.1em;color:var(--dim)}
+
+/* policy */
+.ptable{display:grid;grid-template-columns:190px 1fr 140px 210px;align-items:center;
+        font-size:19px;color:var(--ink)}
+.ptable>div{padding:10px 32px;border-bottom:1px solid var(--alt)}
+.pid{font-family:var(--mono);color:var(--acc-deep)}
+.act{font-family:var(--mono);font-size:16px;padding:4px 11px;border-radius:5px}
+.act.mask{background:var(--safe);color:#0E1411}
+.act.block{background:var(--acc);color:#0E1411}
+
+/* chain */
+.formula{margin:0;padding:16px 32px;font-family:var(--mono);font-size:23px;color:var(--ink)}
+.formula .hl{background:#FFE8DC;color:var(--acc-deep);padding:2px 7px;border-radius:4px}
+.chain{display:flex;align-items:center;gap:14px;padding:0 32px 10px}
+.blk{border:1px solid var(--line);border-radius:10px;padding:10px 18px;font-family:var(--mono)}
+.blk span{display:block;font-size:14px;color:var(--dim)}
+.blk b{font-size:20px;color:var(--muted)}
+.blk.on{border-color:var(--acc);background:#FFF4EF}
+.blk.on b{color:var(--acc-deep)}
+.lnk{color:var(--line);font-size:26px}
+.verify{margin:0;padding:0 32px 14px;font-family:var(--mono);font-size:20px;color:var(--ink)}
+.verify .ok{color:#1F6F43}
+
+/* attestation */
+.p-attest{background:var(--ink);border-color:var(--ink);flex-direction:row;align-items:center;
+          justify-content:space-between;padding:18px 40px;gap:26px}
+.p-attest pre{margin:0;font-family:var(--mono);font-size:21px;line-height:1.55;color:#E6ECE7}
+.p-attest .dim{color:var(--dim)} .p-attest .g{color:var(--ok)} .p-attest .b{color:var(--safe)}
+.rows{display:grid;grid-template-columns:140px 1fr 260px 160px 230px;
+      font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
+.rows>div{padding:12px 32px;border-bottom:1px solid var(--alt);color:var(--muted);white-space:nowrap;
+          overflow:hidden;text-overflow:ellipsis}
+.rows .r{opacity:0;transform:translateY(7px);transition:opacity .5s ease,transform .5s ease}
+.rows .r.in{opacity:1;transform:none}
+.rows .now{color:var(--ink);font-weight:600}
+.rows .hash{color:var(--acc-deep)}
+
+.zero{text-align:right;flex:none}
+.zero b{display:block;font-size:84px;font-weight:800;color:var(--acc);line-height:1}
+.zero span{font-family:var(--mono);font-size:17px;color:var(--dim);letter-spacing:.08em}
+
+/* ── caption lower-third ──────────────────────────────────────────────── */
+.cap{position:absolute;left:0;right:0;bottom:0;min-height:132px;background:var(--ink);
+     display:flex;align-items:center;padding:0 72px;gap:28px}
+.cap .n{font-family:var(--mono);font-size:19px;color:var(--acc);letter-spacing:.1em;flex:none}
+.cap p{margin:0;font-size:40px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
+       color:var(--ground);text-wrap:balance}
+.bar{position:absolute;left:0;bottom:0;height:5px;background:var(--acc);width:0}
+
+/* ── per-beat state ───────────────────────────────────────────────────── */
+.payload{transition:opacity .5s ease}
+#stage[data-beat="0"] .payload{opacity:.3}
+
+/* ── controls ─────────────────────────────────────────────────────────── */
+#ui{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:10px;
+    align-items:center;background:rgba(14,20,17,.92);border:1px solid #2A332E;border-radius:999px;
+    padding:9px 16px;font-family:var(--mono);font-size:13px;color:var(--pale);z-index:9}
+#ui.hide{display:none}
+#ui button{font:inherit;color:var(--ground);background:#222B26;border:1px solid #38423B;
+           border-radius:999px;padding:7px 15px;cursor:pointer}
+#ui button:hover{background:#2E3A33}
+#ui button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+#ui .t{color:var(--dim);font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
+
+/* ── this deck's extras: an HTTP exchange, scopes, a denial ───────────── */
+.ex{font-family:var(--mono);font-size:23px;line-height:1.7;color:#E6ECE7;min-height:72px}
+.ex .m{color:var(--acc);font-weight:600}
+.ex .p{color:#FFFFFF}
+.ex .cm{color:var(--dim)}
+.ex .v{padding:3px 8px;border-radius:5px;transition:background .5s ease,color .5s ease}
+.ex .real{background:var(--risk-bg);color:var(--risk)}
+.ex .surr{background:var(--safe-bg);color:var(--safe)}
+.verdict.deny{background:var(--acc);color:#0E1411}
+.verdict.pass{background:var(--ok);color:#0E1411}
+.stable{display:grid;grid-template-columns:200px 1fr 150px;align-items:center;font-size:19px}
+.stable>div{padding:10px 32px;border-bottom:1px solid var(--alt)}
+.scope{font-family:var(--mono);color:var(--muted);font-size:18px}
+.yes,.no{font-family:var(--mono);font-size:16px;padding:4px 11px;border-radius:5px}
+.yes{background:#D8F0E2;color:#1F6F43}
+.no{background:#FFE0D8;color:var(--acc-deep)}
+.rows .deny{color:var(--acc-deep);font-weight:600}
+</style>
+<div id="fit"><div id="stage" data-beat="0">
+  <div class="top">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-label="GovernVeil">
+        <rect x="6.5" y="6.5" width="87" height="87" fill="none" stroke="#0E1411" stroke-width="9"></rect>
+        <path d="M44 76 H76 V44" fill="none" stroke="#0E1411" stroke-width="8"></path>
+        <path d="M36 66 H66 V36" fill="none" stroke="#0E1411" stroke-width="8"></path>
+        <rect x="26" y="24" width="34" height="34" fill="#FF5B1F"></rect>
+        <rect x="32.5" y="37.5" width="21" height="7" fill="#FFFFFF"></rect>
+      </svg>
+      Govern<i>Veil</i>
+    </div>
+    <div style="text-align:right">
+      <p class="surface">GOVERNED SURFACE &#183; <b>/gw/claims</b></p>
+      <p class="note">Illustration of the governed path &#8212; not a screen recording.</p>
+    </div>
+  </div>
+
+  <div class="spine">
+    <div class="node n-person">
+      <p class="eb">THE CALLER</p>
+      <h2>Partner reporting tool</h2>
+      <p>A service account, not a person. It already holds a key.</p>
+    </div>
+    <div class="arrow a1" aria-hidden="true">&#8594;</div>
+    <div class="node gate n-gate">
+      <p class="eb">GOVERNVEIL &#183; /gw/claims</p>
+      <h2>Checked, then forwarded</h2>
+      <div class="checks">
+        <div class="chk c1">role &#8594; scope</div>
+        <div class="chk c2">operation</div>
+        <div class="chk c3">request body</div>
+        <div class="chk c4">response body</div>
+      </div>
+    </div>
+    <div class="arrow a2" aria-hidden="true">&#8594;</div>
+    <div class="node n-provider">
+      <p class="eb">YOUR CLAIMS SYSTEM</p>
+      <h2>Unchanged</h2>
+      <p>No SDK and no code change. It serves a normal caller on its own network.</p>
+    </div>
+  </div>
+
+  <div class="payload">
+    <div class="hd"><span id="phd">THE CALL</span><span class="verdict" id="vd">NOT YET FORWARDED</span></div>
+    <p class="ex" id="ex"></p>
+  </div>
+
+  <section class="panel p-scopes">
+    <div class="phd"><span>WHAT THIS CALLER MAY DO</span><span>app: claims &#183; default deny</span></div>
+    <div class="stable">
+      <div class="th">ROLE</div><div class="th">SCOPE</div><div class="th">PARTNER</div>
+      <div>Read one claim</div><div class="scope">claims:read</div><div><span class="yes">granted</span></div>
+      <div>Update an assessment</div><div class="scope">claims:update</div><div><span class="no">denied</span></div>
+      <div>Export in bulk</div><div class="scope">claims:export</div><div><span class="no">denied</span></div>
+    </div>
+    <p class="pfoot">Role, then scope, then operation &#8212; resolved at the proxy <b>before any content is read</b>. An app nobody registered gets nothing: the default is deny.</p>
+  </section>
+
+  <section class="panel p-ledger">
+    <div class="phd"><span>YOUR LEDGER &#183; HASH-CHAINED</span><span id="lnote">written before the caller is answered</span></div>
+    <div class="rows">
+      <div class="th">ENTRY</div><div class="th">DECISION</div><div class="th">OPERATION</div><div class="th">CALLER</div><div class="th">PREV HASH</div>
+      <div class="r r1 deny">#5120</div><div class="r r1 deny">block &#183; 403</div><div class="r r1 deny">claims:export</div><div class="r r1 deny">svc:partner-rpt</div><div class="r r1 hash">c41f&#8230;9ab2</div>
+      <div class="r r2 now">#5121</div><div class="r r2 now">mask</div><div class="r r2 now">claims:read</div><div class="r r2 now">svc:partner-rpt</div><div class="r r2 hash">7d60&#8230;1e38</div>
+    </div>
+    <p class="pfoot">The refusal is a row too. A denial nobody can see is not a control &#8212; and this one never left your perimeter to be recorded.</p>
+  </section>
+
+  <section class="panel p-attest">
+    <pre>GET /attestation          <span class="dim">signed</span>
+{
+  "inference_local":  <span class="g">true</span>,
+  "surfaces":         [ <span class="b">"/v1", "/gw/*", "/mcp/v1", "extension"</span> ],
+  "signature":        <span class="b">"hmac-sha256:&#8230;"</span>
+}</pre>
+    <div class="zero"><b>0</b><span>NON-ALLOWLISTED EGRESS ATTEMPTS</span></div>
+  </section>
+
+  <div class="cap"><span class="n" id="bn">01 / 10</span><p id="cap"></p></div>
+  <div class="bar" id="bar"></div>
+</div></div>
+
+<div id="ui">
+  <button id="play">Pause</button>
+  <button id="again">Replay</button>
+  <span class="t" id="clock">0:00 / 1:30</span>
+  <span>H hides this &#183; Space plays</span>
+</div>
+<script>
+/* The enterprise-API surface. The story the browser demo cannot tell: the
+   caller is a machine, the check is role -> scope -> operation and it runs
+   BEFORE any content is read, the default is deny, and the refusal is itself
+   a ledger row. The response is inspected too, because a reply leaks as
+   easily as a request. */
+const REQ_EXPORT = '<span class="m">GET</span> <span class="p">/gw/claims/claims?period=2026-10&amp;format=csv</span><br><span class="cm">Authorization: Bearer svc:partner-rpt &#183; role=partner</span>';
+const REQ_ONE    = '<span class="m">GET</span> <span class="p">/gw/claims/claims/AU-44182</span><br><span class="cm">Authorization: Bearer svc:partner-rpt &#183; role=partner</span>';
+const RES_REAL   = '<span class="cm">200 &#183; from your claims system</span><br>{ "claim":"AU-44182", "tfn":<span class="v real">"123 456 789"</span>, "medicare":<span class="v real">"2123 45678 1"</span>, "status":"assessed" }';
+const RES_MASK   = '<span class="cm">200 &#183; returned to the caller</span><br>{ "claim":"AU-44182", "tfn":<span class="v surr">"[TFN_1]"</span>, "medicare":<span class="v surr">"[MEDICARE_1]"</span>, "status":"assessed" }';
+
+const BEATS = [
+  {t:5000,  panel:'scopes', body:REQ_EXPORT, hd:'THE CALL',          vd:'NOT YET FORWARDED', vc:'',      cap:"Your claims system already has an API. Other applications already call it."},
+  {t:9000,  panel:'scopes', body:REQ_EXPORT, hd:'THE CALL',          vd:'DECIDING…',         vc:'',      cap:"A partner's reporting tool asks for a bulk export of last month's claims."},
+  {t:10000, panel:'scopes', body:REQ_EXPORT, hd:'THE CALL',          vd:'DECIDING…',         vc:'',      cap:"Role, then scope, then operation — resolved before any content is read."},
+  {t:8000,  panel:'scopes', body:REQ_EXPORT, hd:'REFUSED AT THE EDGE', vd:'403 · DENIED',    vc:' deny', cap:"It may read one claim. It may not export a thousand. The body was never opened."},
+  {t:9000,  panel:'ledger', body:REQ_EXPORT, hd:'REFUSED AT THE EDGE', vd:'403 · DENIED',    vc:' deny', cap:"The refusal is the evidence — and it never left your perimeter to be recorded."},
+  {t:9000,  panel:'ledger', body:REQ_ONE,    hd:'THE NEXT CALL',     vd:'SCOPE OK',          vc:' pass', cap:"The same tool asks for the one claim it is entitled to. That passes."},
+  {t:10000, panel:'ledger', body:RES_REAL,   hd:'WHAT YOUR SYSTEM RETURNED', vd:'INSPECTING…', vc:'',    cap:"But a reply leaks as easily as a request, so the response runs the same ladder."},
+  {t:10000, panel:'ledger', body:RES_MASK,   hd:'WHAT THE CALLER RECEIVES',  vd:'MASK · 2 VALUES', vc:' mask', cap:"Two values masked on the way out. The partner gets the claim, not the identifiers."},
+  {t:10000, panel:'ledger', body:RES_MASK,   hd:'WHAT THE CALLER RECEIVES',  vd:'MASK · 2 VALUES', vc:' mask', cap:"Both decisions sit on the same chain as every prompt, probe and policy change."},
+  {t:10000, panel:'attest', body:RES_MASK,   hd:'WHAT THE CALLER RECEIVES',  vd:'MASK · 2 VALUES', vc:' mask', cap:"Four surfaces — apps, agents, enterprise APIs and people. One engine. One ledger."}
+];
+const TOTAL = BEATS.reduce((a,b)=>a+b.t,0);
+const $ = s => document.querySelector(s);
+const stage=$('#stage'), cap=$('#cap'), bn=$('#bn'), bar=$('#bar'), vd=$('#vd'),
+      phd=$('#phd'), ex=$('#ex'), lnote=$('#lnote'), clock=$('#clock');
+const chk=n=>$('.c'+n), row=n=>document.querySelectorAll('.r'+n);
+const mmss=ms=>Math.floor(ms/60000)+":"+String(Math.floor(ms/1000)%60).padStart(2,'0');
+
+function render(i){
+  const B=BEATS[i];
+  stage.dataset.beat=i;
+  cap.textContent=B.cap; bn.textContent=String(i+1).padStart(2,'0')+" / "+BEATS.length;
+  ex.innerHTML=B.body; phd.textContent=B.hd;
+  vd.textContent=B.vd; vd.className="verdict"+B.vc;
+
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  $('.p-'+B.panel).classList.add('show');
+  document.querySelectorAll('.node').forEach(n=>n.classList.remove('live'));
+  document.querySelectorAll('.arrow').forEach(a=>a.classList.remove('hot'));
+  [1,2,3,4].forEach(n=>chk(n).classList.remove('on'));
+
+  if(i>=1) $('.n-person').classList.add('live');
+  if(i>=2){ $('.a1').classList.add('hot'); $('.n-gate').classList.add('live'); }
+  if(i===2){ [1,2].forEach((n,k)=>setTimeout(()=>chk(n).classList.add('on'), k*500)); }
+  if(i>2)  [1,2].forEach(n=>chk(n).classList.add('on'));
+  /* the upstream is only reached once a call actually passes */
+  if(i>=5){ $('.a2').classList.add('hot'); $('.n-provider').classList.add('live'); chk(3).classList.add('on'); }
+  if(i>=7) chk(4).classList.add('on');
+
+  row(1).forEach(e=>e.classList.toggle('in', i>=4));
+  row(2).forEach(e=>e.classList.toggle('in', i>=8));
+  lnote.textContent = i>=8 ? "two entries · chained to 7d60…1e38"
+                           : "written before the caller is answered";
+}
+
+let i=-1, started=performance.now(), before=0, playing=true, btn=$('#play');
+const startOf=n=>BEATS.slice(0,n).reduce((a,b)=>a+b.t,0);
+function tick(now){
+  if(playing){
+    const el=before+(now-started);
+    if(el>=TOTAL){ before=TOTAL; playing=false; btn.textContent="Replay"; }
+    const e=Math.min(el,TOTAL);
+    bar.style.width=(e/TOTAL*100)+"%";
+    clock.textContent=mmss(e)+" / "+mmss(TOTAL);
+    let n=0; while(n<BEATS.length-1 && e>=startOf(n+1)) n++;
+    if(n!==i){ i=n; render(i); }
+  }
+  requestAnimationFrame(tick);
+}
+function restart(){ i=-1; before=0; started=performance.now(); playing=true;
+                    btn.textContent="Pause"; render(0); i=0; }
+btn.onclick=()=>{
+  if(before>=TOTAL) return restart();
+  playing=!playing;
+  if(playing) started=performance.now(); else before+=performance.now()-started;
+  btn.textContent=playing?"Pause":"Play";
+};
+$('#again').onclick=restart;
+addEventListener('keydown',e=>{
+  if(e.key==='h'||e.key==='H') $('#ui').classList.toggle('hide');
+  if(e.code==='Space'){ e.preventDefault(); btn.click(); }
+});
+function fit(){ const d=document.documentElement;
+  stage.style.transform="scale("+Math.min(d.clientWidth/1920, d.clientHeight/1080)+")"; }
+addEventListener('resize',fit); addEventListener('load',fit);
+new ResizeObserver(fit).observe(document.documentElement);
+fit(); render(0); i=0; requestAnimationFrame(tick);
+</script>
