@@ -38,19 +38,18 @@ export default function HomeAU() {
       <section className="wrap" style={{"paddingBottom": 80}}>
       <div style={{"borderTop": "1px solid #D3D8D3", "borderBottom": "1px solid #D3D8D3", "padding": "22px 0", "display": "flex", "flexWrap": "wrap", "alignItems": "center", "justifyContent": "center", "gap": "12px 36px"}}>
       <span className="rl">GOVERNS TRAFFIC FROM AND TO</span>
-      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude Code</span>
-      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Codex</span>
-      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Your own agents</span>
-      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>MCP servers</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>OpenAI API</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Anthropic API</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>LLM gateways</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Your own agents</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>MCP servers</span>
       </div>
       <div style={{"borderBottom": "1px solid #D3D8D3", "padding": "20px 0", "display": "flex", "flexWrap": "wrap", "alignItems": "center", "justifyContent": "center", "gap": "12px 36px"}}>
-      <span className="rl">AND THE ASSISTANTS YOUR PEOPLE ALREADY USE</span>
+      <span className="rl">AND THESE, IN THE BROWSER</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>ChatGPT</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Gemini</span>
-      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Copilot</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Microsoft Copilot</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Perplexity</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>DeepSeek</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Grok</span>

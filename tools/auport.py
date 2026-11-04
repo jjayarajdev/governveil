@@ -96,8 +96,15 @@ CORRECTIONS = [
         'Denied, or merely observed and logged — it ships in observe mode and you turn enforcement on.',
     ),
     (
-        # "8 public assistants" asked a buyer to count; naming them makes
-        # someone see Copilot or ChatGPT and recognise their own problem.
+        # Three edits, Jay 4 Nov. Claude Code and Codex are gone: the
+        # mechanism is real but nothing in the gateway repo shows either was
+        # run through it, and "LLM gateways" covers them and more without
+        # asserting a product nobody has tested. The eight are named rather
+        # than counted, so someone sees Microsoft Copilot and recognises
+        # their own problem. And the second row says IN THE BROWSER, because
+        # that is the extension's actual reach -- a desktop app is governed
+        # by the forward proxy, a different mechanism, so the row says where
+        # these eight are caught without implying desktop is uncovered.
         # The count was right — eleven host patterns in the extension
         # manifest resolve to exactly these eight products.
         #
@@ -106,7 +113,7 @@ CORRECTIONS = [
         # chips in one undifferentiated line reads as a logo salad.
         'index',
         '<span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude Code</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Codex</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Your own agents</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>MCP servers</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>OpenAI API</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Anthropic API</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>8 public assistants</span>',
-        '<span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude Code</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Codex</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Your own agents</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>MCP servers</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>OpenAI API</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Anthropic API</span>\n      </div>\n      <div style={{"borderBottom": "1px solid #D3D8D3", "padding": "20px 0", "display": "flex", "flexWrap": "wrap", "alignItems": "center", "justifyContent": "center", "gap": "12px 36px"}}>\n      <span className="rl">AND THE ASSISTANTS YOUR PEOPLE ALREADY USE</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>ChatGPT</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Gemini</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Copilot</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Perplexity</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>DeepSeek</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Grok</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Le Chat</span>',
+        '<span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>OpenAI API</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Anthropic API</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>LLM gateways</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Your own agents</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>MCP servers</span>\n      </div>\n      <div style={{"borderBottom": "1px solid #D3D8D3", "padding": "20px 0", "display": "flex", "flexWrap": "wrap", "alignItems": "center", "justifyContent": "center", "gap": "12px 36px"}}>\n      <span className="rl">AND THESE, IN THE BROWSER</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>ChatGPT</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Gemini</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Microsoft Copilot</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Perplexity</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>DeepSeek</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Grok</span>\n      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Le Chat</span>',
     ),
 ]
 
