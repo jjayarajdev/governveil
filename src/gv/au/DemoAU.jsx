@@ -25,9 +25,9 @@ const TILES = [
   { id: 'apis', film: 'api', n: '03', s: 'Your enterprise APIs',
     t: 'An API call, governed', m: '1:29',
     d: 'A claims API behind the gateway: scope checked, unknown callers denied by default, the reply masked on the way back.' },
-  { id: 'agents', kind: 'page', n: '04', s: 'Your agents',
-    t: 'Agent tool calls, governed', m: '1:52',
-    d: 'An agent judged three times — at discovery, before the call, and before it reads the result.' },
+  { id: 'agents', film: 'mcp', n: '04', s: 'Your agents',
+    t: 'Agent tool calls, governed', m: '1:23',
+    d: 'An agent judged three times — at discovery, before the call runs, and before it reads the result.' },
 ]
 
 function PlayBadge() {
@@ -155,8 +155,8 @@ export default function DemoAU() {
         </div>
 
         <p className="mono" style={{ fontSize: 13, color: '#4A534E', marginTop: 26 }}>
-          Two recorded films and two illustrations of the governed path. The remaining
-          two films are in production and drop into the same tiles.
+          Three recorded films and one illustration. The applications film is in
+          production and drops into the same tile.
         </p>
       </section>
 
