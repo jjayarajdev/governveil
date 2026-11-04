@@ -196,3 +196,61 @@ Those reels stop at "Model thinks, Client asks, Server does." Every one of
 them ends before the only question a regulated buyer has: *once the server
 has done the work, who checked what left?* That is this deck, and we are
 among very few who can answer it with a corpus.
+
+---
+
+# Demo 4 — applications on `/v1`
+
+107 seconds, twelve beats. The fourth surface, which completes the set the
+close slide claims. Explainer: `sales/demo/explainer-v1.html`
+
+## Why this one is the easy sell
+
+The whole integration is a base-URL change — no SDK, no rewrite, no change to
+the prompts, and the API is the one the application already speaks. Lead with
+that and the architect stops looking for the catch.
+
+Its spine is the site's own framing, **"Eight steps. The order is the
+guarantee"**, used verbatim with the control references the site already
+prints:
+
+| | | |
+|---|---|---|
+| 01 | Ingress | base-URL change |
+| 02 | Grant check | ~0.5 ms |
+| 03 | Access plane | 403 on deny |
+| 04 | Documents | DS-05 |
+| 05 | Detection | sub-ms first |
+| 06 | Limits | AG-12 · MD-01 |
+| 07 | Verdict | most restrictive wins |
+| 08 | Sign → reply | RO-01 |
+
+## The three beats that land
+
+**Most requests never reach a model.** From the recorded replay already on
+`/platform`: of 125 requests, 38 settled on the pattern path in sub-
+milliseconds, 87 needed the local model at ~135–170 ms, and **nought** left
+the network. That answers the latency objection before it is raised.
+
+**Acknowledge degrades to mask here, and we say why.** Acknowledge needs a
+person to answer for the choice; on a server-to-server call there is nobody
+at the keyboard, so `/v1` masks rather than pretending someone consented.
+Saying that out loud is worth more than the feature.
+
+**Fail-safe, stated as a trade.** A masked value never leaves until its vault
+mapping is persisted — and if that write fails the gateway falls back to
+destructive redaction. It will lose the ability to unmask before it will let
+a real value through. Engineers trust a product more for naming which way it
+fails.
+
+## The set is now complete
+
+| Deck | Surface | Length |
+|---|---|---|
+| `explainer.html` | people · chatgpt.com | 90 s |
+| `explainer-api.html` | enterprise APIs · /gw/claims | 90 s |
+| `explainer-mcp.html` | agents · /mcp/v1 | 110 s |
+| `explainer-v1.html` | applications · /v1 | 107 s |
+
+Same stage, same system, one accent. "Four surfaces. One engine. One ledger."
+is now true of the assets as well as the product.
