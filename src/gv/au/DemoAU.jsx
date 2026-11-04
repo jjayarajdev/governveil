@@ -16,15 +16,15 @@ import { useNoIndex, hit } from './unlisted'
    other change. */
 
 const TILES = [
-  { id: 'gpt', kind: 'video', n: '01', s: 'A person, in a browser',
+  { id: 'gpt', film: 'gpt', n: '01', s: 'A person, in a browser',
     t: 'A prompt, governed', m: '1:28',
     d: 'A tax file number pasted into a public assistant — caught, masked and signed before it reaches the provider.' },
   { id: 'applications', kind: 'page', n: '02', s: 'Your applications',
     t: 'One line, then eight steps', m: '1:47',
     d: 'A base-URL change, and the eight steps every request then descends.' },
-  { id: 'apis', kind: 'page', n: '03', s: 'Your enterprise APIs',
-    t: 'An API call, governed', m: '1:30',
-    d: 'Five callers on a claims API: two allowed, two masked, two refused.' },
+  { id: 'apis', film: 'api', n: '03', s: 'Your enterprise APIs',
+    t: 'An API call, governed', m: '1:29',
+    d: 'A claims API behind the gateway: scope checked, unknown callers denied by default, the reply masked on the way back.' },
   { id: 'agents', kind: 'page', n: '04', s: 'Your agents',
     t: 'Agent tool calls, governed', m: '1:52',
     d: 'An agent judged three times — at discovery, before the call, and before it reads the result.' },
@@ -45,7 +45,7 @@ function PlayBadge() {
 }
 
 export default function DemoAU() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(null)   // the film id, or null
   const [muted, setMuted] = useState(false)
   const v = useRef(null)
   const done = useRef(false)
@@ -58,7 +58,7 @@ export default function DemoAU() {
   // Escape closes the player, and the page behind it must not scroll
   useEffect(() => {
     if (!open) return undefined
-    const onKey = (e) => { if (e.key === 'Escape') setOpen(false) }
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(null) }
     document.addEventListener('keydown', onKey)
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -90,7 +90,7 @@ export default function DemoAU() {
     }
   }
 
-  const src = portrait ? '/demo/gpt-mobile.mp4' : '/demo/gpt-desktop.mp4'
+  const src = open ? `/demo/${open}-${portrait ? 'mobile' : 'desktop'}.mp4` : null
 
   return (
     <main id="main">
@@ -109,7 +109,7 @@ export default function DemoAU() {
       <section className="wrap" style={{ paddingBottom: 88 }}>
         <div className="g2" style={{ gap: 24 }}>
           {TILES.map((x) => {
-            const isVideo = x.kind === 'video'
+            const isVideo = !!x.film
             const inner = (
               <>
                 <span style={{ position: 'relative', display: 'block', borderRadius: 14, overflow: 'hidden', background: '#EBEDE8' }}>
@@ -146,7 +146,7 @@ export default function DemoAU() {
             }
             return isVideo ? (
               <button key={x.id} type="button" style={style}
-                      onClick={() => { hit('play', 'gpt'); setOpen(true) }}>{inner}</button>
+                      onClick={() => { hit('play', x.id); done.current = false; setOpen(x.film) }}>{inner}</button>
             ) : (
               <a key={x.id} href={`/demo/${x.id}`} target="_blank" rel="noopener" style={style}
                  onClick={() => hit('play', x.id)}>{inner}</a>
@@ -155,8 +155,8 @@ export default function DemoAU() {
         </div>
 
         <p className="mono" style={{ fontSize: 13, color: '#4A534E', marginTop: 26 }}>
-          One recorded film and three illustrations of the governed path. The remaining
-          three films are in production and drop into the same tiles.
+          Two recorded films and two illustrations of the governed path. The remaining
+          two films are in production and drop into the same tiles.
         </p>
       </section>
 
@@ -180,13 +180,13 @@ export default function DemoAU() {
       </section>
 
       {open && (
-        <div role="dialog" aria-modal="true" aria-label="A prompt, governed"
-             onClick={(e) => { if (e.target === e.currentTarget) setOpen(false) }}
+        <div role="dialog" aria-modal="true" aria-label="Demonstration"
+             onClick={(e) => { if (e.target === e.currentTarget) setOpen(null) }}
              style={{
                position: 'fixed', inset: 0, background: 'rgba(14,20,17,.93)', zIndex: 40,
                display: 'grid', placeItems: 'center', padding: 24,
              }}>
-          <button type="button" onClick={() => setOpen(false)} aria-label="Close"
+          <button type="button" onClick={() => setOpen(null)} aria-label="Close"
                   style={{
                     position: 'absolute', top: 18, right: 22, font: 'inherit', fontSize: 15,
                     color: '#F4F5F2', background: 'transparent', border: '1px solid #4A534E',
