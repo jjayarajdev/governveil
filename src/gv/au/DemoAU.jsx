@@ -19,9 +19,9 @@ const TILES = [
   { id: 'gpt', film: 'gpt', n: '01', s: 'A person, in a browser',
     t: 'A prompt, governed', m: '1:28',
     d: 'A tax file number pasted into a public assistant — caught, masked and signed before it reaches the provider.' },
-  { id: 'applications', kind: 'page', n: '02', s: 'Your applications',
-    t: 'One line, then eight steps', m: '1:47',
-    d: 'A base-URL change, and the eight steps every request then descends.' },
+  { id: 'applications', film: 'llm', n: '02', s: 'Your applications',
+    t: 'One line, then eight steps', m: '1:29',
+    d: 'A base-URL change, then the eight steps every request descends — grant, scope, documents, detection, verdict, signed reply.' },
   { id: 'apis', film: 'api', n: '03', s: 'Your enterprise APIs',
     t: 'An API call, governed', m: '1:29',
     d: 'A claims API behind the gateway: scope checked, unknown callers denied by default, the reply masked on the way back.' },
@@ -155,8 +155,8 @@ export default function DemoAU() {
         </div>
 
         <p className="mono" style={{ fontSize: 13, color: '#4A534E', marginTop: 26 }}>
-          Three recorded films and one illustration. The applications film is in
-          production and drops into the same tile.
+          Four surfaces, four recorded films. Each is a walkthrough of the governed
+          path with synthetic data — the labelling on every film says so.
         </p>
       </section>
 
