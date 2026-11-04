@@ -10,6 +10,9 @@ import SecurityAU from './gv/au/SecurityAU'
 import BenchmarkAU from './gv/au/BenchmarkAU'
 import PilotAU from './gv/au/PilotAU'
 import AboutAU from './gv/au/AboutAU'
+/* unlisted, reached only from the printed card — see gv/au/unlisted.js */
+import DemoAU from './gv/au/DemoAU'
+import ConnectAU from './gv/au/ConnectAU'
 
 /* governveil.com.au. A separate entry from the .com app rather than a
    hostname branch inside it: the two sites have different page sets
@@ -60,6 +63,8 @@ export default function AppAU() {
         <Route path="/benchmark" element={<BenchmarkAU />} />
         <Route path="/pilot" element={<PilotAU />} />
         <Route path="/about" element={<AboutAU />} />
+        <Route path="/demo" element={<DemoAU />} />
+        <Route path="/connect" element={<ConnectAU />} />
         {Object.entries(LEGACY).map(([from, to]) => (
           <Route key={from} path={from} element={<Navigate to={to} replace />} />
         ))}

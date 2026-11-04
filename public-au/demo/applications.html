@@ -1,0 +1,379 @@
+<title>One Line, Then Eight Steps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* GovernVeil's own system — tokens lifted from the live sites, not invented.
+   Deliberately single-theme: this page exists to be screen-recorded, so it
+   must look identical on any host ground. Every colour is painted. */
+:root{
+  --ink:#0E1411; --ground:#F4F5F2; --alt:#EBEDE8; --panel:#18201C;
+  --line:#D3D8D3; --line-dk:#2A332E;
+  --acc:#FF5B1F; --acc-deep:#B83E0E;
+  --muted:#4A534E; --dim:#9DA8A1; --pale:#C2CBC5;
+  --risk:#FFB4A8; --risk-bg:#4A1C17;
+  --safe:#BBD0FF; --safe-bg:#2C3A5C;
+  --ok:#7FD6A4;
+  --sans:'Schibsted Grotesk',Arial,sans-serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);font-family:var(--sans);color:var(--ground);
+     display:grid;place-items:center;min-height:100vh;overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* ── the stage: fixed 1920×1080, scaled to the window ─────────────────── */
+#fit{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+#stage{width:1920px;height:1080px;flex:none;position:relative;background:var(--ground);
+       color:var(--ink);overflow:hidden;transform-origin:center}
+
+/* ── chrome ───────────────────────────────────────────────────────────── */
+.top{position:absolute;inset:0 0 auto 0;height:104px;padding:0 72px;
+     display:flex;align-items:center;justify-content:space-between;
+     border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:28px;letter-spacing:-.03em}
+.brand i{font-style:normal;color:var(--acc)}
+.surface{font-family:var(--mono);font-size:19px;letter-spacing:.1em;color:var(--muted)}
+.surface b{color:var(--ink);font-weight:600}
+.note{margin:5px 0 0;font-family:var(--mono);font-size:15px;color:var(--dim)}
+
+/* ── the spine ────────────────────────────────────────────────────────── */
+.spine{position:absolute;left:72px;right:72px;top:138px;
+       display:grid;grid-template-columns:1fr 92px 1fr 92px 1fr;align-items:stretch;gap:0}
+.node{border:1px solid var(--line);border-radius:18px;background:#FFFFFF;padding:34px 36px;
+      display:flex;flex-direction:column;gap:14px;min-height:208px;
+      transition:border-color .45s ease,box-shadow .45s ease,background .45s ease}
+.node .eb{font-family:var(--mono);font-size:17px;letter-spacing:.12em;color:var(--muted);margin:0}
+.node h2{margin:0;font-size:34px;font-weight:700;letter-spacing:-.02em}
+.node p{margin:0;font-size:21px;line-height:1.5;color:var(--muted)}
+.node.gate{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.node.gate .eb{color:var(--acc)}
+.node.gate p{color:var(--pale)}
+.node.live{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,91,31,.16)}
+.arrow{display:grid;place-items:center;font-size:40px;color:var(--line);transition:color .4s ease}
+.arrow.hot{color:var(--acc)}
+
+/* the engine's four checks, inside the gate */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.chk{background:#222B26;border-radius:9px;padding:12px 14px;font-family:var(--mono);
+     font-size:16px;color:var(--pale);opacity:.35;transition:opacity .3s ease,background .3s ease}
+.chk.on{opacity:1;background:#2E3A33;color:#FFFFFF}
+
+/* ── the payload ──────────────────────────────────────────────────────── */
+.payload{position:absolute;left:72px;right:72px;top:418px;
+         background:var(--panel);border:1px solid var(--line-dk);border-radius:18px;padding:26px 40px;
+         display:flex;flex-direction:column;gap:18px}
+.payload .hd{display:flex;justify-content:space-between;align-items:center;
+             font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--dim)}
+.wire{font-family:var(--mono);font-size:27px;line-height:1.75;color:#E6ECE7;
+      min-height:64px;position:relative}
+.wire .v{padding:3px 8px;border-radius:5px;transition:background .5s ease,color .5s ease}
+.wire .real{background:var(--risk-bg);color:var(--risk)}
+.wire .surr{background:var(--safe-bg);color:var(--safe)}
+.verdict{font-family:var(--mono);font-size:19px;letter-spacing:.12em;padding:9px 18px;border-radius:7px;
+         background:#2E3A33;color:var(--pale);transition:background .4s ease,color .4s ease}
+.verdict.mask{background:var(--safe);color:#0E1411}
+.verdict.held{background:var(--acc);color:#0E1411}
+
+/* ── the swap region: one panel per beat, same slot ───────────────────── */
+.panel{position:absolute;left:72px;right:72px;top:612px;height:320px;display:none;
+       border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden;
+       flex-direction:column}
+.panel.show{display:flex}
+.phd{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;flex:none;
+     border-bottom:1px solid var(--line);font-family:var(--mono);font-size:16px;
+     letter-spacing:.1em;color:var(--muted)}
+.pfoot{margin:auto 0 0;padding:12px 32px;border-top:1px solid var(--alt);background:var(--alt);
+       font-size:18px;line-height:1.45;color:var(--muted);flex:none}
+.pfoot b{color:var(--ink)}
+.th{font-family:var(--mono);font-size:15px;letter-spacing:.1em;color:var(--dim)}
+
+/* policy */
+.ptable{display:grid;grid-template-columns:190px 1fr 140px 210px;align-items:center;
+        font-size:19px;color:var(--ink)}
+.ptable>div{padding:10px 32px;border-bottom:1px solid var(--alt)}
+.pid{font-family:var(--mono);color:var(--acc-deep)}
+.act{font-family:var(--mono);font-size:16px;padding:4px 11px;border-radius:5px}
+.act.mask{background:var(--safe);color:#0E1411}
+.act.block{background:var(--acc);color:#0E1411}
+
+/* chain */
+.formula{margin:0;padding:16px 32px;font-family:var(--mono);font-size:23px;color:var(--ink)}
+.formula .hl{background:#FFE8DC;color:var(--acc-deep);padding:2px 7px;border-radius:4px}
+.chain{display:flex;align-items:center;gap:14px;padding:0 32px 10px}
+.blk{border:1px solid var(--line);border-radius:10px;padding:10px 18px;font-family:var(--mono)}
+.blk span{display:block;font-size:14px;color:var(--dim)}
+.blk b{font-size:20px;color:var(--muted)}
+.blk.on{border-color:var(--acc);background:#FFF4EF}
+.blk.on b{color:var(--acc-deep)}
+.lnk{color:var(--line);font-size:26px}
+.verify{margin:0;padding:0 32px 14px;font-family:var(--mono);font-size:20px;color:var(--ink)}
+.verify .ok{color:#1F6F43}
+
+/* attestation */
+.p-attest{background:var(--ink);border-color:var(--ink);flex-direction:row;align-items:center;
+          justify-content:space-between;padding:18px 40px;gap:26px}
+.p-attest pre{margin:0;font-family:var(--mono);font-size:21px;line-height:1.55;color:#E6ECE7}
+.p-attest .dim{color:var(--dim)} .p-attest .g{color:var(--ok)} .p-attest .b{color:var(--safe)}
+.rows{display:grid;grid-template-columns:140px 1fr 260px 160px 230px;
+      font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
+.rows>div{padding:12px 32px;border-bottom:1px solid var(--alt);color:var(--muted);white-space:nowrap;
+          overflow:hidden;text-overflow:ellipsis}
+.rows .r{opacity:0;transform:translateY(7px);transition:opacity .5s ease,transform .5s ease}
+.rows .r.in{opacity:1;transform:none}
+.rows .now{color:var(--ink);font-weight:600}
+.rows .hash{color:var(--acc-deep)}
+
+.zero{text-align:right;flex:none}
+.zero b{display:block;font-size:84px;font-weight:800;color:var(--acc);line-height:1}
+.zero span{font-family:var(--mono);font-size:17px;color:var(--dim);letter-spacing:.08em}
+
+/* ── caption lower-third ──────────────────────────────────────────────── */
+.cap{position:absolute;left:0;right:0;bottom:0;min-height:142px;padding-top:16px;padding-bottom:16px;background:var(--ink);
+     display:flex;align-items:center;padding:0 72px;gap:28px}
+.cap .n{font-family:var(--mono);font-size:19px;color:var(--acc);letter-spacing:.1em;flex:none}
+.cap p{margin:0;font-size:36px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
+       color:var(--ground);text-wrap:balance}
+.bar{position:absolute;left:0;bottom:0;height:5px;background:var(--acc);width:0}
+
+/* ── per-beat state ───────────────────────────────────────────────────── */
+.payload{transition:opacity .5s ease}
+#stage[data-beat="0"] .payload{opacity:.3}
+
+/* ── controls ─────────────────────────────────────────────────────────── */
+#ui{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:10px;
+    align-items:center;background:rgba(14,20,17,.92);border:1px solid #2A332E;border-radius:999px;
+    padding:9px 16px;font-family:var(--mono);font-size:13px;color:var(--pale);z-index:9}
+#ui.hide{display:none}
+#ui button{font:inherit;color:var(--ground);background:#222B26;border:1px solid #38423B;
+           border-radius:999px;padding:7px 15px;cursor:pointer}
+#ui button:hover{background:#2E3A33}
+#ui button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+#ui .t{color:var(--dim);font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
+
+/* ── this deck: the integration, then the eight-step ladder ───────────── */
+p,h1,h2,h3,ul,ol,pre{margin:0}                     /* default margins bit the MCP deck */
+.intro{position:absolute;left:72px;right:72px;top:128px;display:grid;
+       grid-template-columns:1.25fr 1fr;gap:28px;align-items:stretch}
+.diff{background:var(--panel);border:1px solid var(--line-dk);border-radius:16px;padding:22px 28px;
+      font-family:var(--mono);font-size:21px;line-height:1.75;color:#E6ECE7}
+.diff .lbl{font-size:15px;letter-spacing:.1em;color:var(--dim);margin-bottom:8px}
+.diff .was{color:var(--dim);text-decoration:line-through}
+.diff .now{background:#2C3A5C;color:var(--safe);padding:2px 8px;border-radius:4px}
+.says{display:flex;flex-direction:column;justify-content:center;gap:10px;
+      border:1px solid var(--line);border-radius:16px;background:#FFFFFF;padding:22px 28px}
+.says b{font-size:27px;font-weight:700;letter-spacing:-.02em}
+.says span{font-size:19px;line-height:1.5;color:var(--muted)}
+
+/* the eight-step ladder */
+.ladder{position:absolute;left:72px;right:72px;top:330px;
+        display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.stp{background:#FFFFFF;border:1px solid var(--line);border-radius:12px;padding:14px 13px;
+     display:flex;flex-direction:column;gap:7px;min-height:198px;
+     transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.stp i{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--dim)}
+.stp b{font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.stp em{font-style:normal;font-size:15px;line-height:1.4;color:var(--muted)}
+.stp u{text-decoration:none;margin-top:auto;font-family:var(--mono);font-size:13px;color:var(--acc-deep);
+       background:#FFF0E8;padding:4px 7px;border-radius:5px;display:block}
+.stp.on{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,91,31,.17)}
+.stp.done{background:var(--alt)}
+.stp.hit{background:var(--ink);border-color:var(--ink)}
+.stp.hit b{color:#F4F5F2} .stp.hit em{color:var(--pale)} .stp.hit i{color:var(--dim)}
+.stp.hit u{background:var(--acc);color:#0E1411}
+
+/* detail panels */
+.pn{position:absolute;left:72px;right:72px;top:566px;height:366px;display:none;
+    border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden;
+    flex-direction:column}
+.pn.show{display:flex}
+.pnhd{display:flex;justify-content:space-between;align-items:center;padding:14px 30px;flex:none;
+      border-bottom:1px solid var(--line);font-family:var(--mono);font-size:16px;
+      letter-spacing:.1em;color:var(--muted)}
+.pnft{margin-top:auto;padding:13px 30px;border-top:1px solid var(--alt);background:var(--alt);
+      font-size:18px;line-height:1.45;color:var(--muted);flex:none}
+.pnft b{color:var(--ink)}
+.body2{padding:18px 30px;font-family:var(--mono);font-size:21px;line-height:1.8;color:var(--ink)}
+.body2 .k{color:var(--muted)}
+.body2 .bad{background:var(--risk-bg);color:var(--risk);padding:2px 7px;border-radius:4px}
+.body2 .sur{background:var(--safe-bg);color:var(--safe);padding:2px 7px;border-radius:4px}
+.body2 .g{color:#1F6F43}
+
+/* the latency split */
+.split{padding:22px 30px;display:flex;flex-direction:column;gap:16px}
+.srow{display:grid;grid-template-columns:230px 1fr 150px;align-items:center;gap:18px}
+.srow .nm{font-size:21px;font-weight:600}
+.srow .tr{height:34px;background:var(--alt);border-radius:7px;overflow:hidden}
+.srow .fl{height:100%;border-radius:7px}
+.srow .vl{font-family:var(--mono);font-size:19px;text-align:right;color:var(--muted)}
+
+/* the five verdicts */
+.five{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:20px 30px}
+.vv{border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.vv b{display:block;font-family:var(--mono);font-size:17px}
+.vv span{font-size:15px;color:var(--muted)}
+.vv.pick{border-color:var(--acc);background:#FFF4EF;box-shadow:0 0 0 3px rgba(255,91,31,.15)}
+</style>
+<div id="fit"><div id="stage" data-beat="0">
+  <div class="top">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-label="GovernVeil">
+        <rect x="6.5" y="6.5" width="87" height="87" fill="none" stroke="#0E1411" stroke-width="9"></rect>
+        <path d="M44 76 H76 V44" fill="none" stroke="#0E1411" stroke-width="8"></path>
+        <path d="M36 66 H66 V36" fill="none" stroke="#0E1411" stroke-width="8"></path>
+        <rect x="26" y="24" width="34" height="34" fill="#FF5B1F"></rect>
+        <rect x="32.5" y="37.5" width="21" height="7" fill="#FFFFFF"></rect>
+      </svg>
+      Govern<i>Veil</i>
+    </div>
+    <div style="text-align:right">
+      <p class="surface">GOVERNED SURFACE &#183; <b>/v1/*</b> &#8594; your approved providers</p>
+      <p class="note">Illustration of the governed path &#8212; not a screen recording.</p>
+    </div>
+  </div>
+
+  <div class="intro">
+    <div class="diff">
+      <p class="lbl">YOUR APPLICATION, UNCHANGED EXCEPT FOR THIS</p>
+      <p><span class="k">client = OpenAI(</span></p>
+      <p>&#160;&#160;base_url = <span class="was">"https://api.openai.com/v1"</span></p>
+      <p>&#160;&#160;base_url = <span class="now">"https://governveil.internal/v1"</span> <span class="k">)</span></p>
+    </div>
+    <div class="says">
+      <b>One line of configuration</b>
+      <span>No SDK, no rewrite, no change to your prompts. The API is the one your code already speaks.</span>
+    </div>
+  </div>
+
+  <div class="ladder">
+    <div class="stp s01"><i>01</i><b>Ingress</b><em>An app calls /v1/*</em><u>base-URL change</u></div>
+    <div class="stp s02"><i>02</i><b>Grant check</b><em>A revoked grant is an instant 403</em><u>~0.5 ms</u></div>
+    <div class="stp s03"><i>03</i><b>Access plane</b><em>Role &#8594; scope &#8594; operation</em><u>403 on deny</u></div>
+    <div class="stp s04"><i>04</i><b>Documents</b><em>Attachments parsed and swept</em><u>DS-05</u></div>
+    <div class="stp s05"><i>05</i><b>Detection</b><em>Fast path, then one local model</em><u>sub-ms first</u></div>
+    <div class="stp s06"><i>06</i><b>Limits</b><em>Caps, and model approval</em><u>AG-12 &#183; MD-01</u></div>
+    <div class="stp s07"><i>07</i><b>Verdict</b><em>Exactly one outcome</em><u>most restrictive wins</u></div>
+    <div class="stp s08"><i>08</i><b>Sign &#8594; reply</b><em>The response runs it again</em><u>RO-01</u></div>
+  </div>
+
+  <section class="pn p-req">
+    <div class="pnhd"><span>POST /v1/chat/completions</span><span>from your claims application</span></div>
+    <p class="body2">{ "model": <span class="k">"gpt-4o"</span>, "messages": [ {<br>
+&#160;&#160;"role": <span class="k">"user"</span>, "content": "Summarise claim AU-44182 for the customer.<br>
+&#160;&#160;TFN <span class="bad">123 456 789</span>, Medicare <span class="bad">2123 45678 1</span>" } ] }</p>
+    <p class="pnft">The same JSON your application already sends. GovernVeil reads it, decides, and forwards what is allowed to leave &#8212; it does not ask your code to do anything differently.</p>
+  </section>
+
+  <section class="pn p-detect">
+    <div class="pnhd"><span>STEP 05 &#183; WHAT A VERDICT ACTUALLY COSTS</span><span>recorded replay &#183; 125 requests</span></div>
+    <div class="split">
+      <div class="srow"><span class="nm">Settled on patterns</span>
+        <div class="tr"><div class="fl" style="width:30.4%;background:#7FD6A4"></div></div>
+        <span class="vl">38 &#183; sub-ms</span></div>
+      <div class="srow"><span class="nm">Needed the local model</span>
+        <div class="tr"><div class="fl" style="width:69.6%;background:#FF5B1F"></div></div>
+        <span class="vl">87 &#183; ~135&#8211;170 ms</span></div>
+      <div class="srow"><span class="nm">Left your network</span>
+        <div class="tr"><div class="fl" style="width:0%;background:#0E1411"></div></div>
+        <span class="vl">0</span></div>
+    </div>
+    <p class="pnft">The obvious cases never reach a model. Only the ambiguous ones cost a pass &#8212; and that pass runs on <b>your</b> hardware, not someone else's.</p>
+  </section>
+
+  <section class="pn p-verdict">
+    <div class="pnhd"><span>STEP 07 &#183; EXACTLY ONE OUTCOME</span><span>the most restrictive wins</span></div>
+    <div class="five">
+      <div class="vv"><b>ALLOW</b><span>nothing found</span></div>
+      <div class="vv"><b>FLAG</b><span>sent, reviewed</span></div>
+      <div class="vv pick"><b>MASK</b><span>surrogates leave</span></div>
+      <div class="vv"><b>ACKNOWLEDGE</b><span>degrades to mask here</span></div>
+      <div class="vv"><b>BLOCK</b><span>does not leave</span></div>
+    </div>
+    <p class="pnft">Acknowledge needs a person to answer for the choice. On a server-to-server call there is nobody at the keyboard, so on <b>/v1</b> it degrades to mask rather than pretending someone consented.</p>
+  </section>
+
+  <section class="pn p-sign">
+    <div class="pnhd"><span>STEP 08 &#183; SIGN, THEN REPLY</span><span>control RO-01</span></div>
+    <p class="body2"><span class="k">&#8594; to the provider</span><br>
+"Summarise claim AU-44182. TFN <span class="sur">[TFN_1]</span>, Medicare <span class="sur">[MEDICARE_1]</span>"<br><br>
+<span class="k">&#8592; ledger #4188</span> &#160;mask &#183; 2 values &#183; prev 7d60&#8230;1e38 &#160;<span class="g">signed before the reply</span></p>
+    <p class="pnft">A masked value never leaves until its mapping is persisted. If that write fails the gateway falls back to <b>destructive redaction</b> &#8212; it will lose the ability to unmask before it will let a real value through.</p>
+  </section>
+
+  <div class="cap"><span class="n" id="bn">01 / 12</span><p id="cap"></p></div>
+  <div class="bar" id="bar"></div>
+</div></div>
+
+<div id="ui">
+  <button id="play">Pause</button><button id="again">Replay</button>
+  <span class="t" id="clock">0:00 / 1:47</span><span>H hides this &#183; Space plays</span>
+</div>
+<script>
+/* The fourth surface. Its own framing, from the site: "Eight steps. The
+   order is the guarantee." `step` lights one rung and marks the earlier ones
+   done; `hit` is the rung that decided this request. */
+const BEATS = [
+  {t:5000,  step:0, panel:'req',     cap:"Your applications already call model APIs. Nothing records what they send."},
+  {t:9000,  step:0, panel:'req',     cap:"Integration is one line. Point the base URL at GovernVeil and stop."},
+  {t:9000,  step:1, panel:'req',     cap:"Every request then descends the same eight steps. The order is the guarantee."},
+  {t:9000,  step:2, panel:'req',     hit:'s02', cap:"A revoked credential is a 403 in about half a millisecond, before inspection."},
+  {t:9000,  step:3, panel:'req',     hit:'s03', cap:"Role, scope, operation. A denial never leaves your perimeter, and is still a row."},
+  {t:9000,  step:4, panel:'req',     hit:'s04', cap:"Attachments are parsed and swept. Every error path is quarantine."},
+  {t:10000, step:5, panel:'detect',  hit:'s05', cap:"A sub-millisecond pattern path first. Most requests never reach a model."},
+  {t:9000,  step:6, panel:'detect',  hit:'s06', cap:"The model must be approved for the data classes still present after masking."},
+  {t:9000,  step:7, panel:'verdict', hit:'s07', cap:"Exactly one outcome, and the most restrictive one wins."},
+  {t:10000, step:7, panel:'verdict', hit:'s07', cap:"Acknowledge needs a person. On a server call there is none, so it becomes mask."},
+  {t:10000, step:8, panel:'sign',    hit:'s08', cap:"The response runs the same ladder, then the row is signed before the reply."},
+  {t:9000,  step:8, panel:'sign',    cap:"Four surfaces. One engine. One ledger."}
+];
+const TOTAL=BEATS.reduce((a,b)=>a+b.t,0);
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const stage=$('#stage'), cap=$('#cap'), bn=$('#bn'), bar=$('#bar'), clock=$('#clock');
+const mmss=ms=>Math.floor(ms/60000)+":"+String(Math.floor(ms/1000)%60).padStart(2,'0');
+const ID=n=>'s'+String(n).padStart(2,'0');
+
+function render(i){
+  const B=BEATS[i];
+  stage.dataset.beat=i; cap.textContent=B.cap;
+  bn.textContent=String(i+1).padStart(2,'0')+" / "+BEATS.length;
+  $$('.stp').forEach(s=>s.classList.remove('on','done','hit'));
+  for(let n=1;n<=8;n++){
+    const el=$('.'+ID(n));
+    if(n < B.step) el.classList.add('done');
+    else if(n === B.step) el.classList.add('on');
+  }
+  if(B.hit){ const h=$('.'+B.hit); h.classList.remove('on','done'); h.classList.add('hit'); }
+  $$('.pn').forEach(p=>p.classList.remove('show'));
+  $('.p-'+B.panel).classList.add('show');
+}
+
+let i=-1, started=performance.now(), before=0, playing=true, btn=$('#play');
+const startOf=n=>BEATS.slice(0,n).reduce((a,b)=>a+b.t,0);
+function tick(now){
+  if(playing){
+    const el=before+(now-started);
+    if(el>=TOTAL){ before=TOTAL; playing=false; btn.textContent="Replay"; }
+    const e=Math.min(el,TOTAL);
+    bar.style.width=(e/TOTAL*100)+"%";
+    clock.textContent=mmss(e)+" / "+mmss(TOTAL);
+    let n=0; while(n<BEATS.length-1 && e>=startOf(n+1)) n++;
+    if(n!==i){ i=n; render(i); }
+  }
+  requestAnimationFrame(tick);
+}
+function restart(){ i=-1; before=0; started=performance.now(); playing=true;
+                    btn.textContent="Pause"; render(0); i=0; }
+btn.onclick=()=>{ if(before>=TOTAL) return restart();
+  playing=!playing;
+  if(playing) started=performance.now(); else before+=performance.now()-started;
+  btn.textContent=playing?"Pause":"Play"; };
+$('#again').onclick=restart;
+addEventListener('keydown',e=>{
+  if(e.key==='h'||e.key==='H') $('#ui').classList.toggle('hide');
+  if(e.code==='Space'){ e.preventDefault(); btn.click(); } });
+function fit(){ const d=document.documentElement;
+  stage.style.transform="scale("+Math.min(d.clientWidth/1920, d.clientHeight/1080)+")"; }
+addEventListener('resize',fit); addEventListener('load',fit);
+new ResizeObserver(fit).observe(document.documentElement);
+fit(); render(0); i=0; requestAnimationFrame(tick);
+</script>

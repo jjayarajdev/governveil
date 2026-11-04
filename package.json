@@ -12,7 +12,8 @@
     "build:au": "vite build --config vite.config.au.js",
     "preview:au": "vite preview --config vite.config.au.js --outDir dist-au",
     "deploy:au": "vite build --config vite.config.au.js && npx wrangler pages deploy dist-au --project-name governveil-au --branch main --commit-dirty=true",
-    "enquiries": "./tools/enquiries.sh"
+    "enquiries": "./tools/enquiries.sh",
+    "visits": "./tools/visits.sh"
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
