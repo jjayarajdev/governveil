@@ -374,6 +374,8 @@ btn.onclick=()=>{ if(before>=TOTAL) return restart();
   if(playing) started=performance.now(); else before+=performance.now()-started;
   btn.textContent=playing?"Pause":"Play"; };
 $('#again').onclick=restart;
+/* ?ui=0 renders without the control pill — poster shots and booth loops */
+if(new URLSearchParams(location.search).get('ui')==='0') $('#ui').classList.add('hide');
 addEventListener('keydown',e=>{
   if(e.key==='h'||e.key==='H') $('#ui').classList.toggle('hide');
   if(e.code==='Space'){ e.preventDefault(); btn.click(); } });
