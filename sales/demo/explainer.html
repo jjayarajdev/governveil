@@ -129,10 +129,10 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .zero span{font-family:var(--mono);font-size:17px;color:var(--dim);letter-spacing:.08em}
 
 /* ── caption lower-third ──────────────────────────────────────────────── */
-.cap{position:absolute;left:0;right:0;bottom:0;min-height:132px;background:var(--ink);
+.cap{position:absolute;left:0;right:0;bottom:0;min-height:142px;padding-top:16px;padding-bottom:16px;background:var(--ink);
      display:flex;align-items:center;padding:0 72px;gap:28px}
 .cap .n{font-family:var(--mono);font-size:19px;color:var(--acc);letter-spacing:.1em;flex:none}
-.cap p{margin:0;font-size:40px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
+.cap p{margin:0;font-size:36px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
        color:var(--ground);text-wrap:balance}
 .bar{position:absolute;left:0;bottom:0;height:5px;background:var(--acc);width:0}
 
@@ -263,15 +263,15 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
    kept to four changes across the run so the lower third does not thrash. */
 const BEATS = [
   {t:5000,  panel:'ledger', cap:"Your people are already using this one. Nobody logged it."},
-  {t:8000,  panel:'ledger', cap:"A claims officer drafts a letter. The customer's tax file number goes in with it."},
+  {t:8000,  panel:'ledger', cap:"A claims officer drafts a letter. The customer's tax file number goes with it."},
   {t:11000, panel:'policy', cap:"Your AI policy is the control. Each clause becomes a question the engine asks."},
   {t:8000,  panel:'policy', cap:"GovernVeil holds the send and answers those questions inside your own network."},
   {t:8000,  panel:'ledger', cap:"Two values are replaced before the request leaves the browser."},
   {t:8000,  panel:'ledger', cap:"The assistant still answers. It never saw the real numbers."},
-  {t:11000, panel:'ledger', cap:"The decision is written before the reply arrives — who, what was found, what was done."},
-  {t:12000, panel:'chain',  cap:"Each row is hashed onto the one before it. Alter any history and every hash after it breaks."},
-  {t:10000, panel:'attest', cap:"Your security team pulls a signed statement that nothing left to reach that verdict."},
-  {t:9000,  panel:'attest', cap:"Eight public assistants, your applications and your agents — all on the same ledger."}
+  {t:11000, panel:'ledger', cap:"The decision is written before the reply arrives — who, what, and what was done."},
+  {t:12000, panel:'chain',  cap:"Each row is hashed onto the one before it. Alter history and every hash breaks."},
+  {t:10000, panel:'attest', cap:"Your team can pull a signed statement that nothing left to get that verdict."},
+  {t:9000,  panel:'attest', cap:"Eight public assistants, your apps and your agents — all on one ledger."}
 ];
 const TOTAL = BEATS.reduce((a,b)=>a+b.t,0);
 const $ = s => document.querySelector(s);

@@ -1,4 +1,4 @@
-<title>An API Call, Governed</title>
+<title>Claims API, Governed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -66,7 +66,7 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .payload .hd{display:flex;justify-content:space-between;align-items:center;
              font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--dim)}
 .wire{font-family:var(--mono);font-size:27px;line-height:1.75;color:#E6ECE7;
-      min-height:96px;position:relative}
+      min-height:64px;position:relative}
 .wire .v{padding:3px 8px;border-radius:5px;transition:background .5s ease,color .5s ease}
 .wire .real{background:var(--risk-bg);color:var(--risk)}
 .wire .surr{background:var(--safe-bg);color:var(--safe)}
@@ -129,10 +129,10 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .zero span{font-family:var(--mono);font-size:17px;color:var(--dim);letter-spacing:.08em}
 
 /* ── caption lower-third ──────────────────────────────────────────────── */
-.cap{position:absolute;left:0;right:0;bottom:0;min-height:132px;background:var(--ink);
+.cap{position:absolute;left:0;right:0;bottom:0;min-height:142px;padding-top:16px;padding-bottom:16px;background:var(--ink);
      display:flex;align-items:center;padding:0 72px;gap:28px}
 .cap .n{font-family:var(--mono);font-size:19px;color:var(--acc);letter-spacing:.1em;flex:none}
-.cap p{margin:0;font-size:40px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
+.cap p{margin:0;font-size:36px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
        color:var(--ground);text-wrap:balance}
 .bar{position:absolute;left:0;bottom:0;height:5px;background:var(--acc);width:0}
 
@@ -151,23 +151,66 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 #ui button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 #ui .t{color:var(--dim);font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
 
-/* ── this deck's extras: an HTTP exchange, scopes, a denial ───────────── */
-.ex{font-family:var(--mono);font-size:23px;line-height:1.7;color:#E6ECE7;min-height:72px}
-.ex .m{color:var(--acc);font-weight:600}
-.ex .p{color:#FFFFFF}
-.ex .cm{color:var(--dim)}
-.ex .v{padding:3px 8px;border-radius:5px;transition:background .5s ease,color .5s ease}
-.ex .real{background:var(--risk-bg);color:var(--risk)}
-.ex .surr{background:var(--safe-bg);color:var(--safe)}
-.verdict.deny{background:var(--acc);color:#0E1411}
-.verdict.pass{background:var(--ok);color:#0E1411}
-.stable{display:grid;grid-template-columns:200px 1fr 150px;align-items:center;font-size:19px}
-.stable>div{padding:10px 32px;border-bottom:1px solid var(--alt)}
-.scope{font-family:var(--mono);color:var(--muted);font-size:18px}
-.yes,.no{font-family:var(--mono);font-size:16px;padding:4px 11px;border-radius:5px}
-.yes{background:#D8F0E2;color:#1F6F43}
-.no{background:#FFE0D8;color:var(--acc-deep)}
-.rows .deny{color:var(--acc-deep);font-weight:600}
+/* ── this deck: three dense columns + a live call log ─────────────────── */
+.cols{position:absolute;left:72px;right:72px;top:126px;
+      display:grid;grid-template-columns:1fr 62px 1.22fr 62px 1fr;gap:0;align-items:start}
+.col{display:flex;flex-direction:column;gap:9px}
+.collab{font-family:var(--mono);font-size:16px;letter-spacing:.12em;color:var(--muted);margin:0 0 3px}
+
+/* callers */
+.caller{border:1px solid var(--line);border-radius:12px;background:#FFFFFF;padding:14px 18px;
+        display:flex;justify-content:space-between;align-items:center;gap:12px;
+        transition:border-color .35s ease,box-shadow .35s ease,background .35s ease}
+.caller b{font-size:21px;font-weight:700;display:block}
+.caller span{font-family:var(--mono);font-size:15px;color:var(--muted)}
+.caller .role{font-family:var(--mono);font-size:14px;background:var(--alt);color:var(--muted);
+              padding:4px 9px;border-radius:5px;white-space:nowrap}
+.caller.on{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,91,31,.15)}
+.caller.unreg{border-style:dashed;background:#FBFBF9}
+.caller.unreg .role{background:#FFE0D8;color:var(--acc-deep)}
+
+/* the ladder */
+.pipe{background:var(--ink);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:7px}
+.pipe .collab{color:var(--acc);padding:0 6px}
+.stg{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;
+     background:#1C241F;border-radius:9px;padding:12px 14px;opacity:.4;
+     transition:opacity .3s ease,background .3s ease}
+.stg.on{opacity:1;background:#2A352E}
+.stg i{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--dim)}
+.stg b{font-size:19px;font-weight:600;color:#F4F5F2}
+.stg em{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--pale)}
+.stg.hit{background:var(--acc)} .stg.hit b,.stg.hit i,.stg.hit em{color:#0E1411}
+
+/* endpoints */
+.ep{border:1px solid var(--line);border-radius:12px;background:#FFFFFF;padding:14px 18px;
+    transition:border-color .35s ease,box-shadow .35s ease}
+.ep code{font-family:var(--mono);font-size:17px;color:var(--ink);display:block}
+.ep .m{color:var(--acc-deep);font-weight:600}
+.ep span{font-family:var(--mono);font-size:14px;color:var(--muted);display:block;margin-top:5px}
+.ep.on{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,91,31,.15)}
+
+/* the log, which is also the ledger */
+.log{position:absolute;left:72px;right:72px;top:668px;height:264px;
+     border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden;
+     display:flex;flex-direction:column}
+.log.hide{display:none}
+.lgrid{display:grid;grid-template-columns:136px 212px 1fr 176px 118px 150px;
+       font-family:var(--mono);font-size:17px;font-variant-numeric:tabular-nums}
+.lgrid>div{padding:10px 20px;border-bottom:1px solid var(--alt);color:var(--muted);
+           white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lgrid .lr{opacity:0;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease}
+.lgrid .lr.in{opacity:1;transform:none}
+.vb{font-family:var(--mono);font-size:14px;padding:3px 9px;border-radius:5px}
+.vb.allow{background:#D8F0E2;color:#1F6F43}
+.vb.mask{background:var(--safe);color:#0E1411}
+.vb.deny{background:var(--acc);color:#0E1411}
+.lgrid .hash{color:var(--acc-deep)}
+.p-attest{position:absolute;left:72px;right:72px;top:668px;height:264px;display:none;
+          background:var(--ink);border-radius:18px;align-items:center;
+          justify-content:space-between;padding:22px 40px;gap:26px}
+.p-attest.show{display:flex}
+.p-attest pre{margin:0;font-family:var(--mono);font-size:21px;line-height:1.55;color:#E6ECE7}
+.p-attest .dim{color:var(--dim)} .p-attest .g{color:var(--ok)} .p-attest .b{color:var(--safe)}
 </style>
 <div id="fit"><div id="stage" data-beat="0">
   <div class="top">
@@ -182,63 +225,58 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
       Govern<i>Veil</i>
     </div>
     <div style="text-align:right">
-      <p class="surface">GOVERNED SURFACE &#183; <b>/gw/claims</b></p>
+      <p class="surface">GOVERNED SURFACE &#183; <b>/gw/claims</b> &#8594; claims.internal</p>
       <p class="note">Illustration of the governed path &#8212; not a screen recording.</p>
     </div>
   </div>
 
-  <div class="spine">
-    <div class="node n-person">
-      <p class="eb">THE CALLER</p>
-      <h2>Partner reporting tool</h2>
-      <p>A service account, not a person. It already holds a key.</p>
+  <div class="cols">
+    <div class="col">
+      <p class="collab">APPLICATIONS THAT CALL IT</p>
+      <div class="caller c-broker"><div><b>Broker portal</b><span>svc:broker-ui</span></div><span class="role">role=broker</span></div>
+      <div class="caller c-partner"><div><b>Partner reporting</b><span>svc:partner-rpt</span></div><span class="role">role=partner</span></div>
+      <div class="caller c-assessor"><div><b>Assessor desktop</b><span>svc:assess</span></div><span class="role">role=assessor</span></div>
+      <div class="caller c-agent"><div><b>Triage agent</b><span>svc:agent-triage</span></div><span class="role">role=agent</span></div>
+      <div class="caller c-unknown unreg"><div><b>Unregistered app</b><span>svc:— none —</span></div><span class="role">not in bundle</span></div>
     </div>
-    <div class="arrow a1" aria-hidden="true">&#8594;</div>
-    <div class="node gate n-gate">
-      <p class="eb">GOVERNVEIL &#183; /gw/claims</p>
-      <h2>Checked, then forwarded</h2>
-      <div class="checks">
-        <div class="chk c1">role &#8594; scope</div>
-        <div class="chk c2">operation</div>
-        <div class="chk c3">request body</div>
-        <div class="chk c4">response body</div>
-      </div>
+    <div class="arrow a1" aria-hidden="true" style="align-self:center">&#8594;</div>
+    <div class="pipe">
+      <p class="collab">GOVERNVEIL &#183; EVERY CALL, SAME LADDER</p>
+      <div class="stg s1"><i>01</i><b>Token &#8594; identity</b><em>who is calling</em></div>
+      <div class="stg s2"><i>02</i><b>Role &#8594; scope</b><em>what they may do</em></div>
+      <div class="stg s3"><i>03</i><b>Operation &#8594; route</b><em>default deny</em></div>
+      <div class="stg s4"><i>04</i><b>Request body</b><em>before forwarding</em></div>
+      <div class="stg s5"><i>05</i><b>Forward to upstream</b><em>your network</em></div>
+      <div class="stg s6"><i>06</i><b>Response body &#8594; ledger</b><em>before the caller sees it</em></div>
     </div>
-    <div class="arrow a2" aria-hidden="true">&#8594;</div>
-    <div class="node n-provider">
-      <p class="eb">YOUR CLAIMS SYSTEM</p>
-      <h2>Unchanged</h2>
-      <p>No SDK and no code change. It serves a normal caller on its own network.</p>
+    <div class="arrow a2" aria-hidden="true" style="align-self:center">&#8594;</div>
+    <div class="col">
+      <p class="collab">YOUR CLAIMS SYSTEM &#183; UNCHANGED</p>
+      <div class="ep e1"><code><span class="m">GET</span> /claims/{id}</code><span>needs claims:read</span></div>
+      <div class="ep e2"><code><span class="m">GET</span> /claims?period=</code><span>needs claims:export</span></div>
+      <div class="ep e3"><code><span class="m">POST</span> /claims/{id}/assessment</code><span>needs claims:update</span></div>
+      <div class="ep e4"><code><span class="m">GET</span> /claims/{id}/documents</code><span>needs claims:read</span></div>
     </div>
   </div>
 
-  <div class="payload">
-    <div class="hd"><span id="phd">THE CALL</span><span class="verdict" id="vd">NOT YET FORWARDED</span></div>
-    <p class="ex" id="ex"></p>
+  <div class="log" id="log">
+    <div class="lgrid">
+      <div class="th">TIME</div><div class="th">CALLER</div><div class="th">OPERATION</div>
+      <div class="th">DECISION</div><div class="th">LATENCY</div><div class="th">LEDGER</div>
+      <div class="lr n1">09:14:02</div><div class="lr n1">svc:broker-ui</div><div class="lr n1">GET /claims/AU-44182</div>
+      <div class="lr n1"><span class="vb allow">allow</span></div><div class="lr n1">4 ms</div><div class="lr n1 hash">a12f…77c0</div>
+      <div class="lr n2">09:14:08</div><div class="lr n2">svc:partner-rpt</div><div class="lr n2">GET /claims?period=2026-10</div>
+      <div class="lr n2"><span class="vb deny">403 · scope</span></div><div class="lr n2">1 ms</div><div class="lr n2 hash">c41f…9ab2</div>
+      <div class="lr n3">09:14:11</div><div class="lr n3">svc:— none —</div><div class="lr n3">GET /claims/AU-44182</div>
+      <div class="lr n3"><span class="vb deny">403 · default</span></div><div class="lr n3">1 ms</div><div class="lr n3 hash">e9b7…3d14</div>
+      <div class="lr n4">09:14:19</div><div class="lr n4">svc:assess</div><div class="lr n4">POST /claims/AU-44182/assessment</div>
+      <div class="lr n4"><span class="vb mask">mask · 1</span></div><div class="lr n4">38 ms</div><div class="lr n4 hash">2b55…c0de</div>
+      <div class="lr n5">09:14:26</div><div class="lr n5">svc:agent-triage</div><div class="lr n5">GET /claims/AU-44182</div>
+      <div class="lr n5"><span class="vb mask">mask · 2</span></div><div class="lr n5">31 ms</div><div class="lr n5 hash">7d60…1e38</div>
+    </div>
   </div>
 
-  <section class="panel p-scopes">
-    <div class="phd"><span>WHAT THIS CALLER MAY DO</span><span>app: claims &#183; default deny</span></div>
-    <div class="stable">
-      <div class="th">ROLE</div><div class="th">SCOPE</div><div class="th">PARTNER</div>
-      <div>Read one claim</div><div class="scope">claims:read</div><div><span class="yes">granted</span></div>
-      <div>Update an assessment</div><div class="scope">claims:update</div><div><span class="no">denied</span></div>
-      <div>Export in bulk</div><div class="scope">claims:export</div><div><span class="no">denied</span></div>
-    </div>
-    <p class="pfoot">Role, then scope, then operation &#8212; resolved at the proxy <b>before any content is read</b>. An app nobody registered gets nothing: the default is deny.</p>
-  </section>
-
-  <section class="panel p-ledger">
-    <div class="phd"><span>YOUR LEDGER &#183; HASH-CHAINED</span><span id="lnote">written before the caller is answered</span></div>
-    <div class="rows">
-      <div class="th">ENTRY</div><div class="th">DECISION</div><div class="th">OPERATION</div><div class="th">CALLER</div><div class="th">PREV HASH</div>
-      <div class="r r1 deny">#5120</div><div class="r r1 deny">block &#183; 403</div><div class="r r1 deny">claims:export</div><div class="r r1 deny">svc:partner-rpt</div><div class="r r1 hash">c41f&#8230;9ab2</div>
-      <div class="r r2 now">#5121</div><div class="r r2 now">mask</div><div class="r r2 now">claims:read</div><div class="r r2 now">svc:partner-rpt</div><div class="r r2 hash">7d60&#8230;1e38</div>
-    </div>
-    <p class="pfoot">The refusal is a row too. A denial nobody can see is not a control &#8212; and this one never left your perimeter to be recorded.</p>
-  </section>
-
-  <section class="panel p-attest">
+  <section class="p-attest">
     <pre>GET /attestation          <span class="dim">signed</span>
 {
   "inference_local":  <span class="g">true</span>,
@@ -253,66 +291,66 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 </div></div>
 
 <div id="ui">
-  <button id="play">Pause</button>
-  <button id="again">Replay</button>
-  <span class="t" id="clock">0:00 / 1:30</span>
-  <span>H hides this &#183; Space plays</span>
+  <button id="play">Pause</button><button id="again">Replay</button>
+  <span class="t" id="clock">0:00 / 1:30</span><span>H hides this &#183; Space plays</span>
 </div>
 <script>
-/* The enterprise-API surface. The story the browser demo cannot tell: the
-   caller is a machine, the check is role -> scope -> operation and it runs
-   BEFORE any content is read, the default is deny, and the refusal is itself
-   a ledger row. The response is inspected too, because a reply leaks as
-   easily as a request. */
-const REQ_EXPORT = '<span class="m">GET</span> <span class="p">/gw/claims/claims?period=2026-10&amp;format=csv</span><br><span class="cm">Authorization: Bearer svc:partner-rpt &#183; role=partner</span>';
-const REQ_ONE    = '<span class="m">GET</span> <span class="p">/gw/claims/claims/AU-44182</span><br><span class="cm">Authorization: Bearer svc:partner-rpt &#183; role=partner</span>';
-const RES_REAL   = '<span class="cm">200 &#183; from your claims system</span><br>{ "claim":"AU-44182", "tfn":<span class="v real">"123 456 789"</span>, "medicare":<span class="v real">"2123 45678 1"</span>, "status":"assessed" }';
-const RES_MASK   = '<span class="cm">200 &#183; returned to the caller</span><br>{ "claim":"AU-44182", "tfn":<span class="v surr">"[TFN_1]"</span>, "medicare":<span class="v surr">"[MEDICARE_1]"</span>, "status":"assessed" }';
-
+/* Five callers, one ladder, four endpoints, and a log that fills with real
+   traffic — including the refusals, which is the half most vendor demos cut.
+   `on` lights a caller, `hit` marks the ladder stage that decided the call,
+   `rows` is how many log lines have landed. */
 const BEATS = [
-  {t:5000,  panel:'scopes', body:REQ_EXPORT, hd:'THE CALL',          vd:'NOT YET FORWARDED', vc:'',      cap:"Your claims system already has an API. Other applications already call it."},
-  {t:9000,  panel:'scopes', body:REQ_EXPORT, hd:'THE CALL',          vd:'DECIDING…',         vc:'',      cap:"A partner's reporting tool asks for a bulk export of last month's claims."},
-  {t:10000, panel:'scopes', body:REQ_EXPORT, hd:'THE CALL',          vd:'DECIDING…',         vc:'',      cap:"Role, then scope, then operation — resolved before any content is read."},
-  {t:8000,  panel:'scopes', body:REQ_EXPORT, hd:'REFUSED AT THE EDGE', vd:'403 · DENIED',    vc:' deny', cap:"It may read one claim. It may not export a thousand. The body was never opened."},
-  {t:9000,  panel:'ledger', body:REQ_EXPORT, hd:'REFUSED AT THE EDGE', vd:'403 · DENIED',    vc:' deny', cap:"The refusal is the evidence — and it never left your perimeter to be recorded."},
-  {t:9000,  panel:'ledger', body:REQ_ONE,    hd:'THE NEXT CALL',     vd:'SCOPE OK',          vc:' pass', cap:"The same tool asks for the one claim it is entitled to. That passes."},
-  {t:10000, panel:'ledger', body:RES_REAL,   hd:'WHAT YOUR SYSTEM RETURNED', vd:'INSPECTING…', vc:'',    cap:"But a reply leaks as easily as a request, so the response runs the same ladder."},
-  {t:10000, panel:'ledger', body:RES_MASK,   hd:'WHAT THE CALLER RECEIVES',  vd:'MASK · 2 VALUES', vc:' mask', cap:"Two values masked on the way out. The partner gets the claim, not the identifiers."},
-  {t:10000, panel:'ledger', body:RES_MASK,   hd:'WHAT THE CALLER RECEIVES',  vd:'MASK · 2 VALUES', vc:' mask', cap:"Both decisions sit on the same chain as every prompt, probe and policy change."},
-  {t:10000, panel:'attest', body:RES_MASK,   hd:'WHAT THE CALLER RECEIVES',  vd:'MASK · 2 VALUES', vc:' mask', cap:"Four surfaces — apps, agents, enterprise APIs and people. One engine. One ledger."}
+  {t:5000, cap:"Your claims system already has an API. These applications already call it.",
+   caller:null, stages:0, ep:null, rows:0},
+  {t:9000, cap:"Five callers — and one nobody registered. That is the easiest decision.",
+   caller:'unknown', stages:0, ep:null, rows:0},
+  {t:10000, cap:"Every call runs the same ladder: who is calling, and what they may do.",
+   caller:null, stages:6, ep:null, rows:0},
+  {t:9000, cap:"The broker portal reads one claim. It holds that scope, so it passes.",
+   caller:'broker', stages:6, ep:'e1', rows:1},
+  {t:9000, cap:"The partner asks for a bulk export. Refused before the body is opened.",
+   caller:'partner', stages:6, ep:'e2', hit:'s3', rows:2},
+  {t:9000, cap:"The unregistered app is refused too, for a different reason. Default deny.",
+   caller:'unknown', stages:6, ep:null, hit:'s1', rows:3},
+  {t:10000, cap:"The assessor posts an assessment carrying a TFN. Masked before forwarding.",
+   caller:'assessor', stages:6, ep:'e3', hit:'s4', rows:4},
+  {t:10000, cap:"A triage agent reads a claim. The reply is masked on the way back.",
+   caller:'agent', stages:6, ep:'e1', hit:'s6', rows:5},
+  {t:10000, cap:"Five calls, one chain — the refusals recorded as carefully as the rest.",
+   caller:null, stages:6, ep:null, rows:5},
+  {t:9000, cap:"Four surfaces. One engine. One ledger.",
+   caller:null, stages:6, ep:null, rows:5, attest:true}
 ];
 const TOTAL = BEATS.reduce((a,b)=>a+b.t,0);
-const $ = s => document.querySelector(s);
-const stage=$('#stage'), cap=$('#cap'), bn=$('#bn'), bar=$('#bar'), vd=$('#vd'),
-      phd=$('#phd'), ex=$('#ex'), lnote=$('#lnote'), clock=$('#clock');
-const chk=n=>$('.c'+n), row=n=>document.querySelectorAll('.r'+n);
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const stage=$('#stage'), cap=$('#cap'), bn=$('#bn'), bar=$('#bar'), clock=$('#clock');
 const mmss=ms=>Math.floor(ms/60000)+":"+String(Math.floor(ms/1000)%60).padStart(2,'0');
+const STG=['s1','s2','s3','s4','s5','s6'];
 
 function render(i){
   const B=BEATS[i];
-  stage.dataset.beat=i;
-  cap.textContent=B.cap; bn.textContent=String(i+1).padStart(2,'0')+" / "+BEATS.length;
-  ex.innerHTML=B.body; phd.textContent=B.hd;
-  vd.textContent=B.vd; vd.className="verdict"+B.vc;
+  stage.dataset.beat=i; cap.textContent=B.cap;
+  bn.textContent=String(i+1).padStart(2,'0')+" / "+BEATS.length;
 
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
-  $('.p-'+B.panel).classList.add('show');
-  document.querySelectorAll('.node').forEach(n=>n.classList.remove('live'));
-  document.querySelectorAll('.arrow').forEach(a=>a.classList.remove('hot'));
-  [1,2,3,4].forEach(n=>chk(n).classList.remove('on'));
+  $$('.caller').forEach(c=>c.classList.remove('on'));
+  if(B.caller) $('.c-'+B.caller).classList.add('on');
 
-  if(i>=1) $('.n-person').classList.add('live');
-  if(i>=2){ $('.a1').classList.add('hot'); $('.n-gate').classList.add('live'); }
-  if(i===2){ [1,2].forEach((n,k)=>setTimeout(()=>chk(n).classList.add('on'), k*500)); }
-  if(i>2)  [1,2].forEach(n=>chk(n).classList.add('on'));
-  /* the upstream is only reached once a call actually passes */
-  if(i>=5){ $('.a2').classList.add('hot'); $('.n-provider').classList.add('live'); chk(3).classList.add('on'); }
-  if(i>=7) chk(4).classList.add('on');
+  $$('.ep').forEach(e=>e.classList.remove('on'));
+  if(B.ep) $('.'+B.ep).classList.add('on');
 
-  row(1).forEach(e=>e.classList.toggle('in', i>=4));
-  row(2).forEach(e=>e.classList.toggle('in', i>=8));
-  lnote.textContent = i>=8 ? "two entries · chained to 7d60…1e38"
-                           : "written before the caller is answered";
+  STG.forEach(s=>$('.'+s).classList.remove('on','hit'));
+  if(i===2){ STG.forEach((s,k)=>setTimeout(()=>$('.'+s).classList.add('on'), k*420)); }
+  else { for(let k=0;k<B.stages;k++) $('.'+STG[k]).classList.add('on'); }
+  if(B.hit) $('.'+B.hit).classList.add('hit');
+
+  ['n1','n2','n3','n4','n5'].forEach((n,k)=>
+    $$('.'+n).forEach(e=>e.classList.toggle('in', k < B.rows)));
+
+  $('#log').classList.toggle('hide', !!B.attest);
+  $('.p-attest').classList.toggle('show', !!B.attest);
+
+  $('.a1').classList.toggle('hot', !!B.caller || i>=2);
+  $('.a2').classList.toggle('hot', !!B.ep);
 }
 
 let i=-1, started=performance.now(), before=0, playing=true, btn=$('#play');
@@ -331,17 +369,14 @@ function tick(now){
 }
 function restart(){ i=-1; before=0; started=performance.now(); playing=true;
                     btn.textContent="Pause"; render(0); i=0; }
-btn.onclick=()=>{
-  if(before>=TOTAL) return restart();
+btn.onclick=()=>{ if(before>=TOTAL) return restart();
   playing=!playing;
   if(playing) started=performance.now(); else before+=performance.now()-started;
-  btn.textContent=playing?"Pause":"Play";
-};
+  btn.textContent=playing?"Pause":"Play"; };
 $('#again').onclick=restart;
 addEventListener('keydown',e=>{
   if(e.key==='h'||e.key==='H') $('#ui').classList.toggle('hide');
-  if(e.code==='Space'){ e.preventDefault(); btn.click(); }
-});
+  if(e.code==='Space'){ e.preventDefault(); btn.click(); } });
 function fit(){ const d=document.documentElement;
   stage.style.transform="scale("+Math.min(d.clientWidth/1920, d.clientHeight/1080)+")"; }
 addEventListener('resize',fit); addEventListener('load',fit);

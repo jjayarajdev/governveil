@@ -123,17 +123,21 @@ network.
 
 ## The run
 
+Five callers down the left, the resolution ladder in the middle, four
+endpoints on the right, and a call log that fills with real traffic —
+including the refusals, which is the half most vendor demos cut.
+
 | Beat | Shows |
 |---|---|
-| 1 | Your claims system already has an API. Other applications already call it. |
-| 2 | A partner's reporting tool asks for a bulk export. |
-| 3 | Role → scope → operation, resolved before any content is read. |
-| 4 | It may read one claim, not export a thousand. **403, body never opened.** |
-| 5 | The refusal is the evidence, and it never left your perimeter. |
-| 6 | The same tool asks for the one claim it is entitled to. That passes. |
-| 7 | A reply leaks as easily as a request — the response runs the same ladder. |
-| 8 | Two values masked on the way out. |
-| 9 | Both decisions on the same chain as every prompt, probe and policy change. |
+| 1 | Your claims system already has an API. These applications already call it. |
+| 2 | Five callers — and one nobody registered. |
+| 3 | Every call runs the same six-step ladder. |
+| 4 | Broker portal reads one claim. Holds the scope, passes in 4 ms. |
+| 5 | Partner asks for a bulk export. **Refused at step three, body never opened.** |
+| 6 | The unregistered app is refused too — default deny, 1 ms. |
+| 7 | Assessor posts an assessment carrying a TFN. Masked before forwarding. |
+| 8 | A triage agent reads a claim. The reply is masked on the way back. |
+| 9 | Five calls, one chain — refusals recorded as carefully as the rest. |
 | 10 | Four surfaces. One engine. One ledger. |
 
 ## Recording it for real
