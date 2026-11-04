@@ -1,0 +1,285 @@
+<title>A Prompt, Governed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* GovernVeil's own system — tokens lifted from the live sites, not invented.
+   Deliberately single-theme: this page exists to be screen-recorded, so it
+   must look identical on any host ground. Every colour is painted. */
+:root{
+  --ink:#0E1411; --ground:#F4F5F2; --alt:#EBEDE8; --panel:#18201C;
+  --line:#D3D8D3; --line-dk:#2A332E;
+  --acc:#FF5B1F; --acc-deep:#B83E0E;
+  --muted:#4A534E; --dim:#9DA8A1; --pale:#C2CBC5;
+  --risk:#FFB4A8; --risk-bg:#4A1C17;
+  --safe:#BBD0FF; --safe-bg:#2C3A5C;
+  --ok:#7FD6A4;
+  --sans:'Schibsted Grotesk',Arial,sans-serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);font-family:var(--sans);color:var(--ground);
+     display:grid;place-items:center;min-height:100vh;overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* ── the stage: fixed 1920×1080, scaled to the window ─────────────────── */
+#fit{width:100vw;height:100vh;display:grid;place-items:center}
+#stage{width:1920px;height:1080px;flex:none;position:relative;background:var(--ground);
+       color:var(--ink);overflow:hidden;transform-origin:center}
+
+/* ── chrome ───────────────────────────────────────────────────────────── */
+.top{position:absolute;inset:0 0 auto 0;height:104px;padding:0 72px;
+     display:flex;align-items:center;justify-content:space-between;
+     border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:28px;letter-spacing:-.03em}
+.brand i{font-style:normal;color:var(--acc)}
+.surface{font-family:var(--mono);font-size:19px;letter-spacing:.1em;color:var(--muted)}
+.surface b{color:var(--ink);font-weight:600}
+.note{position:absolute;right:72px;bottom:30px;font-family:var(--mono);font-size:15px;color:var(--dim)}
+
+/* ── the spine ────────────────────────────────────────────────────────── */
+.spine{position:absolute;left:72px;right:72px;top:168px;
+       display:grid;grid-template-columns:1fr 92px 1fr 92px 1fr;align-items:stretch;gap:0}
+.node{border:1px solid var(--line);border-radius:18px;background:#FFFFFF;padding:34px 36px;
+      display:flex;flex-direction:column;gap:14px;min-height:252px;
+      transition:border-color .45s ease,box-shadow .45s ease,background .45s ease}
+.node .eb{font-family:var(--mono);font-size:17px;letter-spacing:.12em;color:var(--muted);margin:0}
+.node h2{margin:0;font-size:34px;font-weight:700;letter-spacing:-.02em}
+.node p{margin:0;font-size:21px;line-height:1.5;color:var(--muted)}
+.node.gate{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.node.gate .eb{color:var(--acc)}
+.node.gate p{color:var(--pale)}
+.node.live{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,91,31,.16)}
+.arrow{display:grid;place-items:center;font-size:40px;color:var(--line);transition:color .4s ease}
+.arrow.hot{color:var(--acc)}
+
+/* the engine's four checks, inside the gate */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.chk{background:#222B26;border-radius:9px;padding:12px 14px;font-family:var(--mono);
+     font-size:16px;color:var(--pale);opacity:.35;transition:opacity .3s ease,background .3s ease}
+.chk.on{opacity:1;background:#2E3A33;color:#FFFFFF}
+
+/* ── the payload ──────────────────────────────────────────────────────── */
+.payload{position:absolute;left:72px;right:72px;top:470px;
+         background:var(--panel);border:1px solid var(--line-dk);border-radius:18px;padding:34px 40px;
+         display:flex;flex-direction:column;gap:18px}
+.payload .hd{display:flex;justify-content:space-between;align-items:center;
+             font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--dim)}
+.wire{font-family:var(--mono);font-size:27px;line-height:1.75;color:#E6ECE7;
+      min-height:96px;position:relative}
+.wire .v{padding:3px 8px;border-radius:5px;transition:background .5s ease,color .5s ease}
+.wire .real{background:var(--risk-bg);color:var(--risk)}
+.wire .surr{background:var(--safe-bg);color:var(--safe)}
+.verdict{font-family:var(--mono);font-size:19px;letter-spacing:.12em;padding:9px 18px;border-radius:7px;
+         background:#2E3A33;color:var(--pale);transition:background .4s ease,color .4s ease}
+.verdict.mask{background:var(--safe);color:#0E1411}
+.verdict.held{background:var(--acc);color:#0E1411}
+
+/* ── the ledger rail ──────────────────────────────────────────────────── */
+.ledger{position:absolute;left:72px;right:72px;top:716px;
+        border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden}
+.ledger .lhd{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;
+             border-bottom:1px solid var(--line);font-family:var(--mono);font-size:17px;
+             letter-spacing:.1em;color:var(--muted)}
+.rows{display:grid;grid-template-columns:150px 1fr 190px 150px 230px;
+      font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
+.rows div{padding:17px 32px;border-bottom:1px solid var(--alt);color:var(--muted);white-space:nowrap;
+          overflow:hidden;text-overflow:ellipsis}
+.rows .r{opacity:0;transform:translateY(7px);transition:opacity .5s ease,transform .5s ease}
+.rows .r.in{opacity:1;transform:none}
+.rows .now{color:var(--ink);font-weight:600}
+.rows .hash{color:var(--acc-deep)}
+
+/* ── the attestation, which replaces the ledger on its beat ───────────── */
+.attest{position:absolute;left:72px;right:72px;top:716px;background:var(--ink);border-radius:18px;
+        padding:34px 40px;display:none;gap:26px;align-items:center;justify-content:space-between}
+.attest pre{margin:0;font-family:var(--mono);font-size:25px;line-height:1.7;color:#E6ECE7}
+.attest .zero{text-align:right}
+.attest .zero b{display:block;font-size:112px;font-weight:800;color:var(--acc);line-height:1}
+.attest .zero span{font-family:var(--mono);font-size:19px;color:var(--dim);letter-spacing:.08em}
+
+/* ── caption lower-third ──────────────────────────────────────────────── */
+.cap{position:absolute;left:0;right:0;bottom:0;min-height:148px;background:var(--ink);
+     display:flex;align-items:center;padding:0 72px;gap:28px}
+.cap .n{font-family:var(--mono);font-size:19px;color:var(--acc);letter-spacing:.1em;flex:none}
+.cap p{margin:0;font-size:40px;font-weight:600;line-height:1.3;letter-spacing:-.015em;
+       color:var(--ground);text-wrap:balance}
+.bar{position:absolute;left:0;bottom:0;height:5px;background:var(--acc);width:0}
+
+/* ── per-beat state ───────────────────────────────────────────────────── */
+#stage[data-beat="0"] .payload,#stage[data-beat="0"] .ledger{opacity:.28}
+#stage[data-beat="1"] .n-person,#stage[data-beat="2"] .n-gate,
+#stage[data-beat="3"] .n-gate,#stage[data-beat="4"] .n-provider{}
+.payload,.ledger{transition:opacity .5s ease}
+#stage.att .ledger{display:none}
+#stage.att .attest{display:flex}
+
+/* ── controls ─────────────────────────────────────────────────────────── */
+#ui{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:10px;
+    align-items:center;background:rgba(14,20,17,.92);border:1px solid #2A332E;border-radius:999px;
+    padding:9px 16px;font-family:var(--mono);font-size:13px;color:var(--pale);z-index:9}
+#ui.hide{display:none}
+#ui button{font:inherit;color:var(--ground);background:#222B26;border:1px solid #38423B;
+           border-radius:999px;padding:7px 15px;cursor:pointer}
+#ui button:hover{background:#2E3A33}
+#ui button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+#ui .t{color:var(--dim);font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
+</style>
+
+<div id="fit"><div id="stage" data-beat="0">
+  <div class="top">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-label="GovernVeil">
+        <rect x="6.5" y="6.5" width="87" height="87" fill="none" stroke="#0E1411" stroke-width="9"></rect>
+        <path d="M44 76 H76 V44" fill="none" stroke="#0E1411" stroke-width="8"></path>
+        <path d="M36 66 H66 V36" fill="none" stroke="#0E1411" stroke-width="8"></path>
+        <rect x="26" y="24" width="34" height="34" fill="#FF5B1F"></rect>
+        <rect x="32.5" y="37.5" width="21" height="7" fill="#FFFFFF"></rect>
+      </svg>
+      Govern<i>Veil</i>
+    </div>
+    <p class="surface">GOVERNED SURFACE &#183; <b>chatgpt.com</b></p>
+  </div>
+
+  <div class="spine">
+    <div class="node n-person">
+      <p class="eb">YOUR PERSON</p>
+      <h2>Claims officer</h2>
+      <p>Drafting a letter in a browser, in an assistant you do not run.</p>
+    </div>
+    <div class="arrow a1" aria-hidden="true">&#8594;</div>
+    <div class="node gate n-gate">
+      <p class="eb">GOVERNVEIL &#183; IN YOUR OWN NETWORK</p>
+      <h2>The send is held</h2>
+      <div class="checks">
+        <div class="chk c1">pattern path</div>
+        <div class="chk c2">local model</div>
+        <div class="chk c3">policy engine</div>
+        <div class="chk c4">drip window</div>
+      </div>
+    </div>
+    <div class="arrow a2" aria-hidden="true">&#8594;</div>
+    <div class="node n-provider">
+      <p class="eb">THE AI PROVIDER</p>
+      <h2>Answers normally</h2>
+      <p>Sees the request, never the identifiers inside it.</p>
+    </div>
+  </div>
+
+  <div class="payload">
+    <div class="hd"><span id="phd">THE PROMPT, AS TYPED</span><span class="verdict" id="vd">DECIDING&#8230;</span></div>
+    <p class="wire" id="wire">"Draft a letter to the customer, TFN <span class="v real" id="v1">123 456 789</span>, Medicare <span class="v real" id="v2">2123 45678 1</span>"</p>
+  </div>
+
+  <div class="ledger">
+    <div class="lhd"><span>YOUR LEDGER &#183; HASH-CHAINED</span><span id="lnote">written before the reply</span></div>
+    <div class="rows">
+      <div>ENTRY</div><div>DECISION</div><div>FOUND</div><div>WHO</div><div>PREV HASH</div>
+      <div class="r r1">#4185</div><div class="r r1">allow</div><div class="r r1">&#8212;</div><div class="r r1">a.okafor</div><div class="r r1 hash">9f2c&#8230;e41a</div>
+      <div class="r r2">#4186</div><div class="r r2">acknowledge</div><div class="r r2">1 value</div><div class="r r2">s.nguyen</div><div class="r r2 hash">b7d1&#8230;0c93</div>
+      <div class="r r3 now">#4187</div><div class="r r3 now">mask</div><div class="r r3 now">2 values</div><div class="r r3 now">p.raman</div><div class="r r3 hash">4e8a&#8230;77bd</div>
+    </div>
+  </div>
+
+  <div class="attest">
+    <pre>GET /attestation          <span style="color:#9DA8A1">signed</span>
+{
+  "inference_local":  <span style="color:#7FD6A4">true</span>,
+  "egress_allowlist": [ <span style="color:#BBD0FF">your approved providers</span> ],
+  "signature":        <span style="color:#BBD0FF">"hmac-sha256:&#8230;"</span>
+}</pre>
+    <div class="zero"><b>0</b><span>NON-ALLOWLISTED EGRESS ATTEMPTS</span></div>
+  </div>
+
+  <div class="cap"><span class="n" id="bn">01 / 08</span><p id="cap">Your people are already using this one. Nobody logged it.</p></div>
+  <p class="note">Illustration of the governed path &#8212; not a screen recording.</p>
+  <div class="bar" id="bar"></div>
+</div></div>
+
+<div id="ui">
+  <button id="play">Pause</button>
+  <button id="again">Replay</button>
+  <span class="t" id="clock">0:00 / 1:15</span>
+  <span>H hides this &#183; Space plays</span>
+</div>
+
+<script>
+const BEATS = [
+  {t:5000,  cap:"Your people are already using this one. Nobody logged it."},
+  {t:9000,  cap:"A claims officer drafts a letter. The customer's tax file number goes in with it."},
+  {t:9000,  cap:"GovernVeil holds the send and decides inside your own network."},
+  {t:9000,  cap:"Two values are replaced before the request leaves the browser."},
+  {t:9000,  cap:"The assistant still answers. It never saw the real numbers."},
+  {t:13000, cap:"The decision is written to a hash-chained ledger before the reply arrives."},
+  {t:11000, cap:"Your security team can pull a signed statement that nothing left to reach that verdict."},
+  {t:10000, cap:"Eight public assistants, your applications and your agents — all on the same ledger."}
+];
+const TOTAL = BEATS.reduce((a,b)=>a+b.t,0);
+const stage=document.getElementById('stage'), cap=document.getElementById('cap'),
+      bn=document.getElementById('bn'), bar=document.getElementById('bar'),
+      vd=document.getElementById('vd'), phd=document.getElementById('phd'),
+      v1=document.getElementById('v1'), v2=document.getElementById('v2'),
+      lnote=document.getElementById('lnote'), clock=document.getElementById('clock');
+const chk=n=>document.querySelector('.c'+n), row=n=>document.querySelectorAll('.r'+n);
+const mmss=ms=>Math.floor(ms/60000)+":"+String(Math.floor(ms/1000)%60).padStart(2,'0');
+
+function render(i){
+  stage.dataset.beat=i;
+  cap.textContent=BEATS[i].cap;
+  bn.textContent=String(i+1).padStart(2,'0')+" / 08";
+  document.querySelectorAll('.node').forEach(n=>n.classList.remove('live'));
+  document.querySelectorAll('.arrow').forEach(a=>a.classList.remove('hot'));
+  [1,2,3,4].forEach(n=>chk(n).classList.remove('on'));
+  stage.classList.toggle('att', i===6);
+
+  if(i>=1){ document.querySelector('.n-person').classList.add('live'); }
+  if(i>=2){ document.querySelector('.a1').classList.add('hot'); }
+  if(i===2){ document.querySelector('.n-gate').classList.add('live');
+             [1,2,3,4].forEach((n,k)=>setTimeout(()=>chk(n).classList.add('on'),k*520)); }
+  if(i>=3){ [1,2,3,4].forEach(n=>chk(n).classList.add('on')); }
+  if(i>=4){ document.querySelector('.a2').classList.add('hot');
+            document.querySelector('.n-provider').classList.add('live'); }
+
+  const masked = i>=3;
+  v1.textContent = masked ? "[TFN_1]" : "123 456 789";
+  v2.textContent = masked ? "[MEDICARE_1]" : "2123 45678 1";
+  v1.className = v2.className = "v " + (masked ? "surr" : "real");
+  phd.textContent = masked ? "WHAT THE PROVIDER RECEIVES" : "THE PROMPT, AS TYPED";
+  vd.textContent = i<2 ? "NOT YET SENT" : i===2 ? "HELD" : "MASK · 2 VALUES";
+  vd.className = "verdict" + (i===2 ? " held" : masked ? " mask" : "");
+
+  [1,2,3].forEach(n=>row(n).forEach(e=>e.classList.toggle('in', i>=5)));
+  lnote.textContent = i>=5 ? "entry #4187 signed · chained to 4e8a…77bd" : "written before the reply";
+}
+
+let i=0, started=performance.now(), elapsedBefore=0, playing=true, raf;
+const startOf=n=>BEATS.slice(0,n).reduce((a,b)=>a+b.t,0);
+function tick(now){
+  if(playing){
+    const el = elapsedBefore + (now-started);
+    if(el>=TOTAL){ elapsedBefore=TOTAL; playing=false; document.getElementById('play').textContent="Play"; }
+    const e=Math.min(el,TOTAL);
+    bar.style.width=(e/TOTAL*100)+"%";
+    clock.textContent=mmss(e)+" / "+mmss(TOTAL);
+    let n=0; while(n<BEATS.length-1 && e>=startOf(n+1)) n++;
+    if(n!==i){ i=n; render(i); }
+  }
+  raf=requestAnimationFrame(tick);
+}
+function restart(){ i=0; render(0); elapsedBefore=0; started=performance.now();
+                    playing=true; document.getElementById('play').textContent="Pause"; }
+document.getElementById('play').onclick=()=>{
+  if(elapsedBefore>=TOTAL) return restart();
+  playing=!playing;
+  if(playing) started=performance.now(); else elapsedBefore+=performance.now()-started;
+  document.getElementById('play').textContent=playing?"Pause":"Play";
+};
+document.getElementById('again').onclick=restart;
+addEventListener('keydown',e=>{
+  if(e.key==='h'||e.key==='H') document.getElementById('ui').classList.toggle('hide');
+  if(e.code==='Space'){ e.preventDefault(); document.getElementById('play').click(); }
+});
+function fit(){ const s=Math.min(innerWidth/1920, innerHeight/1080);
+                stage.style.transform="scale("+s+")"; }
+addEventListener('resize',fit); fit(); render(0); raf=requestAnimationFrame(tick);
+</script>
