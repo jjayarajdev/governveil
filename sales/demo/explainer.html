@@ -23,7 +23,7 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
 /* ── the stage: fixed 1920×1080, scaled to the window ─────────────────── */
-#fit{width:100vw;height:100vh;display:grid;place-items:center}
+#fit{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
 #stage{width:1920px;height:1080px;flex:none;position:relative;background:var(--ground);
        color:var(--ink);overflow:hidden;transform-origin:center}
 
@@ -35,13 +35,13 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .brand i{font-style:normal;color:var(--acc)}
 .surface{font-family:var(--mono);font-size:19px;letter-spacing:.1em;color:var(--muted)}
 .surface b{color:var(--ink);font-weight:600}
-.note{position:absolute;right:72px;bottom:30px;font-family:var(--mono);font-size:15px;color:var(--dim)}
+.note{margin:5px 0 0;font-family:var(--mono);font-size:15px;color:var(--dim)}
 
 /* ── the spine ────────────────────────────────────────────────────────── */
-.spine{position:absolute;left:72px;right:72px;top:168px;
+.spine{position:absolute;left:72px;right:72px;top:152px;
        display:grid;grid-template-columns:1fr 92px 1fr 92px 1fr;align-items:stretch;gap:0}
 .node{border:1px solid var(--line);border-radius:18px;background:#FFFFFF;padding:34px 36px;
-      display:flex;flex-direction:column;gap:14px;min-height:252px;
+      display:flex;flex-direction:column;gap:14px;min-height:236px;
       transition:border-color .45s ease,box-shadow .45s ease,background .45s ease}
 .node .eb{font-family:var(--mono);font-size:17px;letter-spacing:.12em;color:var(--muted);margin:0}
 .node h2{margin:0;font-size:34px;font-weight:700;letter-spacing:-.02em}
@@ -60,7 +60,7 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .chk.on{opacity:1;background:#2E3A33;color:#FFFFFF}
 
 /* ── the payload ──────────────────────────────────────────────────────── */
-.payload{position:absolute;left:72px;right:72px;top:470px;
+.payload{position:absolute;left:72px;right:72px;top:452px;
          background:var(--panel);border:1px solid var(--line-dk);border-radius:18px;padding:34px 40px;
          display:flex;flex-direction:column;gap:18px}
 .payload .hd{display:flex;justify-content:space-between;align-items:center;
@@ -75,28 +75,58 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .verdict.mask{background:var(--safe);color:#0E1411}
 .verdict.held{background:var(--acc);color:#0E1411}
 
-/* ── the ledger rail ──────────────────────────────────────────────────── */
-.ledger{position:absolute;left:72px;right:72px;top:716px;
-        border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden}
-.ledger .lhd{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;
-             border-bottom:1px solid var(--line);font-family:var(--mono);font-size:17px;
-             letter-spacing:.1em;color:var(--muted)}
-.rows{display:grid;grid-template-columns:150px 1fr 190px 150px 230px;
+/* ── the swap region: one panel per beat, same slot ───────────────────── */
+.panel{position:absolute;left:72px;right:72px;top:676px;height:250px;display:none;
+       border:1px solid var(--line);border-radius:18px;background:#FFFFFF;overflow:hidden;
+       flex-direction:column}
+.panel.show{display:flex}
+.phd{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;flex:none;
+     border-bottom:1px solid var(--line);font-family:var(--mono);font-size:16px;
+     letter-spacing:.1em;color:var(--muted)}
+.pfoot{margin:auto 0 0;padding:14px 32px;border-top:1px solid var(--alt);background:var(--alt);
+       font-size:18px;line-height:1.45;color:var(--muted);flex:none}
+.pfoot b{color:var(--ink)}
+.th{font-family:var(--mono);font-size:15px;letter-spacing:.1em;color:var(--dim)}
+
+/* policy */
+.ptable{display:grid;grid-template-columns:190px 1fr 140px 210px;align-items:center;
+        font-size:19px;color:var(--ink)}
+.ptable>div{padding:13px 32px;border-bottom:1px solid var(--alt)}
+.pid{font-family:var(--mono);color:var(--acc-deep)}
+.act{font-family:var(--mono);font-size:16px;padding:4px 11px;border-radius:5px}
+.act.mask{background:var(--safe);color:#0E1411}
+.act.block{background:var(--acc);color:#0E1411}
+
+/* chain */
+.formula{margin:0;padding:16px 32px;font-family:var(--mono);font-size:23px;color:var(--ink)}
+.formula .hl{background:#FFE8DC;color:var(--acc-deep);padding:2px 7px;border-radius:4px}
+.chain{display:flex;align-items:center;gap:14px;padding:0 32px 10px}
+.blk{border:1px solid var(--line);border-radius:10px;padding:10px 18px;font-family:var(--mono)}
+.blk span{display:block;font-size:14px;color:var(--dim)}
+.blk b{font-size:20px;color:var(--muted)}
+.blk.on{border-color:var(--acc);background:#FFF4EF}
+.blk.on b{color:var(--acc-deep)}
+.lnk{color:var(--line);font-size:26px}
+.verify{margin:0;padding:0 32px 14px;font-family:var(--mono);font-size:20px;color:var(--ink)}
+.verify .ok{color:#1F6F43}
+
+/* attestation */
+.p-attest{background:var(--ink);border-color:var(--ink);flex-direction:row;align-items:center;
+          justify-content:space-between;padding:26px 40px;gap:26px}
+.p-attest pre{margin:0;font-family:var(--mono);font-size:22px;line-height:1.65;color:#E6ECE7}
+.p-attest .dim{color:var(--dim)} .p-attest .g{color:var(--ok)} .p-attest .b{color:var(--safe)}
+.rows{display:grid;grid-template-columns:140px 1fr 260px 160px 230px;
       font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
-.rows div{padding:17px 32px;border-bottom:1px solid var(--alt);color:var(--muted);white-space:nowrap;
+.rows>div{padding:12px 32px;border-bottom:1px solid var(--alt);color:var(--muted);white-space:nowrap;
           overflow:hidden;text-overflow:ellipsis}
 .rows .r{opacity:0;transform:translateY(7px);transition:opacity .5s ease,transform .5s ease}
 .rows .r.in{opacity:1;transform:none}
 .rows .now{color:var(--ink);font-weight:600}
 .rows .hash{color:var(--acc-deep)}
 
-/* ── the attestation, which replaces the ledger on its beat ───────────── */
-.attest{position:absolute;left:72px;right:72px;top:716px;background:var(--ink);border-radius:18px;
-        padding:34px 40px;display:none;gap:26px;align-items:center;justify-content:space-between}
-.attest pre{margin:0;font-family:var(--mono);font-size:25px;line-height:1.7;color:#E6ECE7}
-.attest .zero{text-align:right}
-.attest .zero b{display:block;font-size:112px;font-weight:800;color:var(--acc);line-height:1}
-.attest .zero span{font-family:var(--mono);font-size:19px;color:var(--dim);letter-spacing:.08em}
+.zero{text-align:right;flex:none}
+.zero b{display:block;font-size:92px;font-weight:800;color:var(--acc);line-height:1}
+.zero span{font-family:var(--mono);font-size:17px;color:var(--dim);letter-spacing:.08em}
 
 /* ── caption lower-third ──────────────────────────────────────────────── */
 .cap{position:absolute;left:0;right:0;bottom:0;min-height:148px;background:var(--ink);
@@ -107,12 +137,8 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
 .bar{position:absolute;left:0;bottom:0;height:5px;background:var(--acc);width:0}
 
 /* ── per-beat state ───────────────────────────────────────────────────── */
-#stage[data-beat="0"] .payload,#stage[data-beat="0"] .ledger{opacity:.28}
-#stage[data-beat="1"] .n-person,#stage[data-beat="2"] .n-gate,
-#stage[data-beat="3"] .n-gate,#stage[data-beat="4"] .n-provider{}
-.payload,.ledger{transition:opacity .5s ease}
-#stage.att .ledger{display:none}
-#stage.att .attest{display:flex}
+.payload{transition:opacity .5s ease}
+#stage[data-beat="0"] .payload{opacity:.3}
 
 /* ── controls ─────────────────────────────────────────────────────────── */
 #ui{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:10px;
@@ -138,7 +164,10 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
       </svg>
       Govern<i>Veil</i>
     </div>
-    <p class="surface">GOVERNED SURFACE &#183; <b>chatgpt.com</b></p>
+    <div style="text-align:right">
+      <p class="surface">GOVERNED SURFACE &#183; <b>chatgpt.com</b></p>
+      <p class="note">Illustration of the governed path &#8212; not a screen recording.</p>
+    </div>
   </div>
 
   <div class="spine">
@@ -171,115 +200,153 @@ body{background:var(--ink);font-family:var(--sans);color:var(--ground);
     <p class="wire" id="wire">"Draft a letter to the customer, TFN <span class="v real" id="v1">123 456 789</span>, Medicare <span class="v real" id="v2">2123 45678 1</span>"</p>
   </div>
 
-  <div class="ledger">
-    <div class="lhd"><span>YOUR LEDGER &#183; HASH-CHAINED</span><span id="lnote">written before the reply</span></div>
+  <!-- the swap region: one panel per beat -->
+  <section class="panel p-policy">
+    <div class="phd"><span>YOUR POLICY, AS THE ENGINE ASKS IT</span><span>3 of 41 controls shown</span></div>
+    <div class="ptable">
+      <div class="th">CONTROL</div><div class="th">THE QUESTION IT ASKS</div><div class="th">ACTION</div><div class="th">OWNER</div>
+      <div class="pid">au_tfn</div><div>Does this prompt contain an Australian Tax File Number?</div><div><span class="act mask">mask</span></div><div>Data Protection</div>
+      <div class="pid">au_medicare</div><div>Does this prompt contain a Medicare number?</div><div><span class="act mask">mask</span></div><div>Data Protection</div>
+      <div class="pid">inj_01</div><div>Is this an attempt to override the system instruction?</div><div><span class="act block">block</span></div><div>Security</div>
+    </div>
+    <p class="pfoot">You tune a control by editing the question, not by retraining a model. Changing one is itself a signed decision &#8212; who, when, and the before and after.</p>
+  </section>
+
+  <section class="panel p-ledger">
+    <div class="phd"><span>YOUR LEDGER &#183; HASH-CHAINED</span><span id="lnote">written before the reply</span></div>
     <div class="rows">
-      <div>ENTRY</div><div>DECISION</div><div>FOUND</div><div>WHO</div><div>PREV HASH</div>
+      <div class="th">ENTRY</div><div class="th">DECISION</div><div class="th">FOUND</div><div class="th">WHO</div><div class="th">PREV HASH</div>
       <div class="r r1">#4185</div><div class="r r1">allow</div><div class="r r1">&#8212;</div><div class="r r1">a.okafor</div><div class="r r1 hash">9f2c&#8230;e41a</div>
       <div class="r r2">#4186</div><div class="r r2">acknowledge</div><div class="r r2">1 value</div><div class="r r2">s.nguyen</div><div class="r r2 hash">b7d1&#8230;0c93</div>
-      <div class="r r3 now">#4187</div><div class="r r3 now">mask</div><div class="r r3 now">2 values</div><div class="r r3 now">p.raman</div><div class="r r3 hash">4e8a&#8230;77bd</div>
+      <div class="r r3 now">#4187</div><div class="r r3 now">mask</div><div class="r r3 now">2 values &#183; types only</div><div class="r r3 now">p.raman</div><div class="r r3 hash">4e8a&#8230;77bd</div>
     </div>
-  </div>
+    <p class="pfoot">The row records the field <b>types</b>, never the values. Prompts are one of eighteen decision types on the same chain &#8212; acknowledgements, probe runs, drift reports and policy changes sit beside them.</p>
+  </section>
 
-  <div class="attest">
-    <pre>GET /attestation          <span style="color:#9DA8A1">signed</span>
+  <section class="panel p-chain">
+    <div class="phd"><span>WHY IT CANNOT BE EDITED QUIETLY</span><span>cmd/audit-verify</span></div>
+    <p class="formula">row_hash = sha256( <span class="hl">prev_hash</span> &#124; canonical(fields) )</p>
+    <div class="chain">
+      <div class="blk"><span>#4185</span><b>9f2c&#8230;e41a</b></div>
+      <div class="lnk" aria-hidden="true">&#8594;</div>
+      <div class="blk"><span>#4186</span><b>b7d1&#8230;0c93</b></div>
+      <div class="lnk" aria-hidden="true">&#8594;</div>
+      <div class="blk on"><span>#4187</span><b>4e8a&#8230;77bd</b></div>
+    </div>
+    <p class="verify">$ make verify-chain<span class="ok">&#8195;chain intact &#183; 4,187 rows &#183; 0 breaks</span></p>
+    <p class="pfoot">Alter any historical row and every hash after it breaks. And because a determined database administrator could rebuild a whole chain, the head is anchored outside the database.</p>
+  </section>
+
+  <section class="panel p-attest">
+    <pre>GET /attestation          <span class="dim">signed</span>
 {
-  "inference_local":  <span style="color:#7FD6A4">true</span>,
-  "egress_allowlist": [ <span style="color:#BBD0FF">your approved providers</span> ],
-  "signature":        <span style="color:#BBD0FF">"hmac-sha256:&#8230;"</span>
+  "inference_local":  <span class="g">true</span>,
+  "egress_allowlist": [ <span class="b">your approved providers</span> ],
+  "signature":        <span class="b">"hmac-sha256:&#8230;"</span>
 }</pre>
     <div class="zero"><b>0</b><span>NON-ALLOWLISTED EGRESS ATTEMPTS</span></div>
-  </div>
+  </section>
 
-  <div class="cap"><span class="n" id="bn">01 / 08</span><p id="cap">Your people are already using this one. Nobody logged it.</p></div>
-  <p class="note">Illustration of the governed path &#8212; not a screen recording.</p>
+  <div class="cap"><span class="n" id="bn">01 / 10</span><p id="cap">Your people are already using this one. Nobody logged it.</p></div>
   <div class="bar" id="bar"></div>
 </div></div>
 
 <div id="ui">
   <button id="play">Pause</button>
   <button id="again">Replay</button>
-  <span class="t" id="clock">0:00 / 1:15</span>
+  <span class="t" id="clock">0:00 / 1:30</span>
   <span>H hides this &#183; Space plays</span>
 </div>
 
 <script>
+/* Ten beats. `panel` names which of the four swap panels is on screen —
+   kept to four changes across the run so the lower third does not thrash. */
 const BEATS = [
-  {t:5000,  cap:"Your people are already using this one. Nobody logged it."},
-  {t:9000,  cap:"A claims officer drafts a letter. The customer's tax file number goes in with it."},
-  {t:9000,  cap:"GovernVeil holds the send and decides inside your own network."},
-  {t:9000,  cap:"Two values are replaced before the request leaves the browser."},
-  {t:9000,  cap:"The assistant still answers. It never saw the real numbers."},
-  {t:13000, cap:"The decision is written to a hash-chained ledger before the reply arrives."},
-  {t:11000, cap:"Your security team can pull a signed statement that nothing left to reach that verdict."},
-  {t:10000, cap:"Eight public assistants, your applications and your agents — all on the same ledger."}
+  {t:5000,  panel:'ledger', cap:"Your people are already using this one. Nobody logged it."},
+  {t:8000,  panel:'ledger', cap:"A claims officer drafts a letter. The customer's tax file number goes in with it."},
+  {t:11000, panel:'policy', cap:"Your AI policy is the control. Each clause becomes a question the engine asks."},
+  {t:8000,  panel:'policy', cap:"GovernVeil holds the send and answers those questions inside your own network."},
+  {t:8000,  panel:'ledger', cap:"Two values are replaced before the request leaves the browser."},
+  {t:8000,  panel:'ledger', cap:"The assistant still answers. It never saw the real numbers."},
+  {t:11000, panel:'ledger', cap:"The decision is written before the reply arrives — who, what was found, what was done."},
+  {t:12000, panel:'chain',  cap:"Each row is hashed onto the one before it. Alter any history and every hash after it breaks."},
+  {t:10000, panel:'attest', cap:"Your security team pulls a signed statement that nothing left to reach that verdict."},
+  {t:9000,  panel:'attest', cap:"Eight public assistants, your applications and your agents — all on the same ledger."}
 ];
 const TOTAL = BEATS.reduce((a,b)=>a+b.t,0);
-const stage=document.getElementById('stage'), cap=document.getElementById('cap'),
-      bn=document.getElementById('bn'), bar=document.getElementById('bar'),
-      vd=document.getElementById('vd'), phd=document.getElementById('phd'),
-      v1=document.getElementById('v1'), v2=document.getElementById('v2'),
-      lnote=document.getElementById('lnote'), clock=document.getElementById('clock');
-const chk=n=>document.querySelector('.c'+n), row=n=>document.querySelectorAll('.r'+n);
+const $ = s => document.querySelector(s);
+const stage=$('#stage'), cap=$('#cap'), bn=$('#bn'), bar=$('#bar'), vd=$('#vd'),
+      phd=$('#phd'), v1=$('#v1'), v2=$('#v2'), lnote=$('#lnote'), clock=$('#clock');
+const chk=n=>$('.c'+n), row=n=>document.querySelectorAll('.r'+n);
 const mmss=ms=>Math.floor(ms/60000)+":"+String(Math.floor(ms/1000)%60).padStart(2,'0');
 
 function render(i){
+  const B = BEATS[i];
   stage.dataset.beat=i;
-  cap.textContent=BEATS[i].cap;
-  bn.textContent=String(i+1).padStart(2,'0')+" / 08";
+  cap.textContent=B.cap;
+  bn.textContent=String(i+1).padStart(2,'0')+" / "+BEATS.length;
+
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  $('.p-'+B.panel).classList.add('show');
+
   document.querySelectorAll('.node').forEach(n=>n.classList.remove('live'));
   document.querySelectorAll('.arrow').forEach(a=>a.classList.remove('hot'));
   [1,2,3,4].forEach(n=>chk(n).classList.remove('on'));
-  stage.classList.toggle('att', i===6);
 
-  if(i>=1){ document.querySelector('.n-person').classList.add('live'); }
-  if(i>=2){ document.querySelector('.a1').classList.add('hot'); }
-  if(i===2){ document.querySelector('.n-gate').classList.add('live');
-             [1,2,3,4].forEach((n,k)=>setTimeout(()=>chk(n).classList.add('on'),k*520)); }
-  if(i>=3){ [1,2,3,4].forEach(n=>chk(n).classList.add('on')); }
-  if(i>=4){ document.querySelector('.a2').classList.add('hot');
-            document.querySelector('.n-provider').classList.add('live'); }
+  if(i>=1) $('.n-person').classList.add('live');
+  if(i>=3) $('.a1').classList.add('hot');
+  if(i===3){ $('.n-gate').classList.add('live');
+             [1,2,3,4].forEach((n,k)=>setTimeout(()=>chk(n).classList.add('on'), k*460)); }
+  if(i>3)  [1,2,3,4].forEach(n=>chk(n).classList.add('on'));
+  if(i>=5){ $('.a2').classList.add('hot'); $('.n-provider').classList.add('live'); }
 
-  const masked = i>=3;
+  const masked = i>=4;
   v1.textContent = masked ? "[TFN_1]" : "123 456 789";
   v2.textContent = masked ? "[MEDICARE_1]" : "2123 45678 1";
   v1.className = v2.className = "v " + (masked ? "surr" : "real");
   phd.textContent = masked ? "WHAT THE PROVIDER RECEIVES" : "THE PROMPT, AS TYPED";
-  vd.textContent = i<2 ? "NOT YET SENT" : i===2 ? "HELD" : "MASK · 2 VALUES";
-  vd.className = "verdict" + (i===2 ? " held" : masked ? " mask" : "");
+  vd.textContent = i<3 ? "NOT YET SENT" : i===3 ? "HELD" : "MASK · 2 VALUES";
+  vd.className = "verdict" + (i===3 ? " held" : masked ? " mask" : "");
 
-  [1,2,3].forEach(n=>row(n).forEach(e=>e.classList.toggle('in', i>=5)));
-  lnote.textContent = i>=5 ? "entry #4187 signed · chained to 4e8a…77bd" : "written before the reply";
+  [1,2].forEach(n=>row(n).forEach(e=>e.classList.toggle('in', i>=1)));
+  row(3).forEach(e=>e.classList.toggle('in', i>=6));
+  lnote.textContent = i>=6 ? "entry #4187 signed · chained to 4e8a…77bd" : "written before the reply";
+  $('.blk.on')?.classList.toggle('on', true);
 }
 
-let i=0, started=performance.now(), elapsedBefore=0, playing=true, raf;
+let i=-1, started=performance.now(), before=0, playing=true, btn=$('#play');
 const startOf=n=>BEATS.slice(0,n).reduce((a,b)=>a+b.t,0);
 function tick(now){
   if(playing){
-    const el = elapsedBefore + (now-started);
-    if(el>=TOTAL){ elapsedBefore=TOTAL; playing=false; document.getElementById('play').textContent="Play"; }
+    const el = before + (now-started);
+    if(el>=TOTAL){ before=TOTAL; playing=false; btn.textContent="Replay"; }
     const e=Math.min(el,TOTAL);
     bar.style.width=(e/TOTAL*100)+"%";
     clock.textContent=mmss(e)+" / "+mmss(TOTAL);
     let n=0; while(n<BEATS.length-1 && e>=startOf(n+1)) n++;
     if(n!==i){ i=n; render(i); }
   }
-  raf=requestAnimationFrame(tick);
+  requestAnimationFrame(tick);
 }
-function restart(){ i=0; render(0); elapsedBefore=0; started=performance.now();
-                    playing=true; document.getElementById('play').textContent="Pause"; }
-document.getElementById('play').onclick=()=>{
-  if(elapsedBefore>=TOTAL) return restart();
+function restart(){ i=-1; before=0; started=performance.now(); playing=true;
+                    btn.textContent="Pause"; render(0); i=0; }
+btn.onclick=()=>{
+  if(before>=TOTAL) return restart();
   playing=!playing;
-  if(playing) started=performance.now(); else elapsedBefore+=performance.now()-started;
-  document.getElementById('play').textContent=playing?"Pause":"Play";
+  if(playing) started=performance.now(); else before+=performance.now()-started;
+  btn.textContent=playing?"Pause":"Play";
 };
-document.getElementById('again').onclick=restart;
+$('#again').onclick=restart;
 addEventListener('keydown',e=>{
-  if(e.key==='h'||e.key==='H') document.getElementById('ui').classList.toggle('hide');
-  if(e.code==='Space'){ e.preventDefault(); document.getElementById('play').click(); }
+  if(e.key==='h'||e.key==='H') $('#ui').classList.toggle('hide');
+  if(e.code==='Space'){ e.preventDefault(); btn.click(); }
 });
-function fit(){ const s=Math.min(innerWidth/1920, innerHeight/1080);
-                stage.style.transform="scale("+s+")"; }
-addEventListener('resize',fit); fit(); render(0); raf=requestAnimationFrame(tick);
+function fit(){
+  const d=document.documentElement;
+  stage.style.transform="scale("+Math.min(d.clientWidth/1920, d.clientHeight/1080)+")";
+}
+addEventListener('resize',fit);
+addEventListener('load',fit);
+new ResizeObserver(fit).observe(document.documentElement);
+fit(); render(0); i=0; requestAnimationFrame(tick);
 </script>
