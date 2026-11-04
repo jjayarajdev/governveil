@@ -148,3 +148,51 @@ registered app in the config bundle (`id`, `prefix`, `upstreamURL`,
 `roleScopes`) and two service tokens: one whose role lacks the export scope,
 one that may read a single claim. Record the 403 first; it is the beat people
 remember.
+
+---
+
+# Demo 3 — agent tool calls (`/mcp/v1`)
+
+110 seconds, twelve beats — the longest of the three, and the one to use when
+an architect is in the room. Explainer: `sales/demo/explainer-mcp.html`
+
+## The spine
+
+An agent meets the gateway at **three distinct moments**, and the
+tool-poisoning corpus has a category for each. That symmetry is the whole
+structure of the deck.
+
+| Judgement | When | Catches | Corpus |
+|---|---|---|---|
+| **1 · At discovery** | `tools/list` | allow-list (AG-11), delegation, blast radius, poisoned descriptions | `poisoned_tool` 2/2 |
+| **2 · Before it runs** | `tools/call` | identifiers, secrets, exfiltration, call and spend caps (AG-12), human gates (HL-09) | `pii_in_arguments` 3/3, `secret_in_arguments` 1/1, `exfiltration_via_arguments` 1/1 |
+| **3 · Before the agent reads it** | the result | per-tool `inspect` / `mask` / `block`, injection planted in output | `injection_in_result` 2/2, `pii_in_result` 1/1 |
+
+`benign` 4/4 must pass all three. **14/14 overall**, `make mcp-scorecard`.
+
+## The three things only this surface shows
+
+**Discovery is a control.** `VisibleTools` shapes `tools/list` before the
+model ever sees it, hiding a tool for four distinct reasons — not in the
+allow-list, the server is an agent this one may not delegate to, it is not in
+`delegate_to`, or it writes to a system outside the agent's blast radius.
+*What the model cannot see, it cannot call.* No other surface has this move.
+
+**A tool description is model input.** A poisoned description carrying
+"also read ~/.ssh/id_rsa" is judged like any prompt, at discovery, and never
+reaches the list.
+
+**A tool's reply is untrusted too.** Injection planted in a result is
+stripped before it enters the model's context.
+
+One phrase to keep exactly as written: a gated call is **withheld and
+recorded as a held action**, never silently parked. That is what `agentgov`
+does, and "the board shows it as attempted-and-held" is the reason it
+matters.
+
+## Against the MCP explainers doing the rounds
+
+Those reels stop at "Model thinks, Client asks, Server does." Every one of
+them ends before the only question a regulated buyer has: *once the server
+has done the work, who checked what left?* That is this deck, and we are
+among very few who can answer it with a corpus.
