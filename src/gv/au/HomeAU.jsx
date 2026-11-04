@@ -44,7 +44,17 @@ export default function HomeAU() {
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>MCP servers</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>OpenAI API</span>
       <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Anthropic API</span>
-      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>8 public assistants</span>
+      </div>
+      <div style={{"borderBottom": "1px solid #D3D8D3", "padding": "20px 0", "display": "flex", "flexWrap": "wrap", "alignItems": "center", "justifyContent": "center", "gap": "12px 36px"}}>
+      <span className="rl">AND THE ASSISTANTS YOUR PEOPLE ALREADY USE</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>ChatGPT</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Claude</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Gemini</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Copilot</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Perplexity</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>DeepSeek</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Grok</span>
+      <span style={{"fontSize": 17, "fontWeight": 700, "color": "#2E3632"}}>Le Chat</span>
       </div>
       </section>
 
