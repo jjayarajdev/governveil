@@ -31,7 +31,7 @@ export default function AboutAU() {
       </div>
       <div style={{"borderTop": "1px solid #2A332E", "marginTop": 88, "paddingTop": 56}}>
       <p className="eb" style={{"marginBottom": 20}}>The standard</p>
-      <p className="xl" style={{"margin": "0", "fontSize": 96, "lineHeight": "0.98", "fontWeight": 800, "letterSpacing": "-0.045em", "color": "#F4F5F2"}}>Claims are cheap.<br /><span style={{"color": "var(--acc)"}}>Evidence is the product.</span></p>
+      <p className="xl">Claims are cheap.<br /><span style={{"color": "var(--acc)"}}>Evidence is the product.</span></p>
       </div>
       </div>
       </section>

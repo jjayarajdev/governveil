@@ -92,7 +92,7 @@ export default function AgentsAU() {
       </div>
       <aside className="dcard">
       <div className="rl">RECEIPT · MCP SCORECARD</div>
-      <div style={{"fontSize": 104, "fontWeight": 800, "letterSpacing": "-0.05em", "lineHeight": 1, "color": "#F4F5F2", "marginTop": 16}}>14 <span style={{"fontWeight": 500, "color": "#9DA8A1"}}>/ 14</span></div>
+      <div className="fig">14 <span style={{"fontWeight": 500, "color": "#9DA8A1"}}>/ 14</span></div>
       <div style={{"fontSize": 16, "color": "#C2CBC5", "marginTop": 8}}>landed on an accepted verdict</div>
       <div className="mono" style={{"background": "#18201C", "borderRadius": 6, "padding": "12px 14px", "fontSize": 13, "marginTop": 24}}>$ make mcp-scorecard</div>
       <div className="rf"><span>replay of a recorded run · eval/mcp/corpus.json</span><Link to="/benchmark">Full benchmark →</Link></div>

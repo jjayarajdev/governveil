@@ -81,24 +81,24 @@
 .v3.p-benchmark .side{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
 .v3.p-pilot .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
 .v3.p-about .side{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
-.v3.p-home .h1x{font-size:96px;line-height:.95;font-weight:800;letter-spacing:-.05em;margin:0}
-.v3.p-platform .h1x{font-size:88px;line-height:.96;font-weight:800;letter-spacing:-.048em;margin:0}
-.v3.p-product .h1x{font-size:88px;line-height:.96;font-weight:800;letter-spacing:-.048em;margin:0}
-.v3.p-mcp .h1x{font-size:88px;line-height:.96;font-weight:800;letter-spacing:-.048em;margin:0}
-.v3.p-guard .h1x{font-size:120px;line-height:.92;font-weight:800;letter-spacing:-.055em;margin:0}
-.v3.p-security .h1x{font-size:80px;line-height:.98;font-weight:800;letter-spacing:-.045em;margin:0}
-.v3.p-benchmark .h1x{font-size:80px;line-height:.98;font-weight:800;letter-spacing:-.045em;margin:0}
-.v3.p-pilot .h1x{font-size:72px;line-height:1;font-weight:800;letter-spacing:-.045em;margin:0}
-.v3.p-about .h1x{font-size:104px;line-height:.95;font-weight:800;letter-spacing:-.05em;margin:0}
-.v3.p-home .h2x{font-size:50px;line-height:1.05;font-weight:700;letter-spacing:-.032em;margin:0}
-.v3.p-platform .h2x{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
-.v3.p-product .h2x{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
-.v3.p-mcp .h2x{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
-.v3.p-guard .h2x{font-size:44px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
-.v3.p-security .h2x{font-size:44px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
-.v3.p-benchmark .h2x{font-size:44px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
-.v3.p-pilot .h2x{font-size:42px;line-height:1.08;font-weight:700;letter-spacing:-.028em;margin:0}
-.v3.p-about .h2x{font-size:46px;line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-home .h1x{font-size:clamp(38px, 6.517vw + 12.58px, 96px);line-height:.95;font-weight:800;letter-spacing:-.05em;margin:0}
+.v3.p-platform .h1x{font-size:clamp(36px, 5.843vw + 13.21px, 88px);line-height:.96;font-weight:800;letter-spacing:-.048em;margin:0}
+.v3.p-product .h1x{font-size:clamp(36px, 5.843vw + 13.21px, 88px);line-height:.96;font-weight:800;letter-spacing:-.048em;margin:0}
+.v3.p-mcp .h1x{font-size:clamp(36px, 5.843vw + 13.21px, 88px);line-height:.96;font-weight:800;letter-spacing:-.048em;margin:0}
+.v3.p-guard .h1x{font-size:clamp(42px, 8.764vw + 7.82px, 120px);line-height:.92;font-weight:800;letter-spacing:-.055em;margin:0}
+.v3.p-security .h1x{font-size:clamp(34px, 5.169vw + 13.84px, 80px);line-height:.98;font-weight:800;letter-spacing:-.045em;margin:0}
+.v3.p-benchmark .h1x{font-size:clamp(34px, 5.169vw + 13.84px, 80px);line-height:.98;font-weight:800;letter-spacing:-.045em;margin:0}
+.v3.p-pilot .h1x{font-size:clamp(34px, 4.270vw + 17.35px, 72px);line-height:1;font-weight:800;letter-spacing:-.045em;margin:0}
+.v3.p-about .h1x{font-size:clamp(38px, 7.416vw + 9.08px, 104px);line-height:.95;font-weight:800;letter-spacing:-.05em;margin:0}
+.v3.p-home .h2x{font-size:clamp(28px, 2.472vw + 18.36px, 50px);line-height:1.05;font-weight:700;letter-spacing:-.032em;margin:0}
+.v3.p-platform .h2x{font-size:clamp(27px, 2.135vw + 18.67px, 46px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-product .h2x{font-size:clamp(27px, 2.135vw + 18.67px, 46px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-mcp .h2x{font-size:clamp(27px, 2.135vw + 18.67px, 46px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-guard .h2x{font-size:clamp(26px, 2.022vw + 18.11px, 44px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-security .h2x{font-size:clamp(26px, 2.022vw + 18.11px, 44px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-benchmark .h2x{font-size:clamp(26px, 2.022vw + 18.11px, 44px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
+.v3.p-pilot .h2x{font-size:clamp(26px, 1.798vw + 18.99px, 42px);line-height:1.08;font-weight:700;letter-spacing:-.028em;margin:0}
+.v3.p-about .h2x{font-size:clamp(27px, 2.135vw + 18.67px, 46px);line-height:1.06;font-weight:700;letter-spacing:-.03em;margin:0}
 .v3.p-home .h3x{font-size:24px;line-height:1.2;font-weight:700;margin:0}
 .v3.p-home .dk .h2x, .v3.p-home .dk .h3x{color:#F4F5F2}
 .v3.p-home .btns{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:6px;border:1px solid currentColor;color:inherit;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box}
@@ -125,10 +125,24 @@
 .v3.p-benchmark .rl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;color:#4A534E}
 .v3.p-pilot .rl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;color:#4A534E}
 .v3.p-home .dcard .rl{color:#9DA8A1}
-.v3.p-home .big{font-size:76px;font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
-.v3.p-platform .big{font-size:76px;font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
-.v3.p-product .big{font-size:76px;font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
-.v3.p-guard .big{font-size:76px;font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
+.v3.p-home .big{font-size:clamp(42px, 5.169vw + 21.84px, 88px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
+.v3.p-platform .big{font-size:clamp(40px, 4.045vw + 24.22px, 76px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
+.v3.p-product .big{font-size:clamp(40px, 4.045vw + 24.22px, 76px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
+.v3.p-guard .big{font-size:clamp(40px, 4.045vw + 24.22px, 76px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:14px}
+
+/* The display sizes the design carries as inline styles on a single element.
+   They lived in the markup, where no media query could reach them: an inline
+   font-size outranks the stylesheet, so the hero stayed 108px on a 390px
+   phone and the page scrolled sideways. Same numbers, in classes, fluid —
+   each one interpolates from its phone floor to the design size at 1280px,
+   the .wrap max-width. */
+.v3.p-home .h1x.hero-xl{font-size:clamp(38px, 7.865vw + 7.33px, 108px)}
+.v3.p-pilot .h2x.h2x-lg{font-size:clamp(28px, 2.697vw + 17.48px, 52px)}
+.v3.p-home .xl{font-size:clamp(56px, 13.483vw + 3.42px, 176px);line-height:.9;font-weight:800;letter-spacing:-.06em;color:#F4F5F2;margin:18px 0 0}
+.v3.p-about .xl{font-size:clamp(40px, 6.292vw + 15.46px, 96px);line-height:.98;font-weight:800;letter-spacing:-.045em;color:#F4F5F2;margin:0}
+/* .fig — the one oversized number inside a receipt card */
+.v3.p-home .fig{font-size:clamp(52px, 8.539vw + 18.70px, 128px);font-weight:800;line-height:.9;letter-spacing:-.05em;color:var(--acc)}
+.v3.p-mcp .fig{font-size:clamp(44px, 6.742vw + 17.71px, 104px);font-weight:800;line-height:1;letter-spacing:-.05em;color:#F4F5F2;margin-top:16px}
 .v3.p-home .cap{font-size:15px;line-height:1.5;color:#2E3632;margin-top:8px}
 .v3.p-platform .cap{font-size:15px;line-height:1.5;color:#2E3632;margin-top:8px}
 .v3.p-product .cap{font-size:15px;line-height:1.5;color:#2E3632;margin-top:8px}
@@ -293,30 +307,6 @@
   .v3.p-benchmark .g2, .v3.p-benchmark .g3, .v3.p-benchmark .pair, .v3.p-benchmark .side{grid-template-columns:minmax(0,1fr)}
   .v3.p-home .g4, .v3.p-home .g5{grid-template-columns:repeat(2,minmax(0,1fr))}
   .v3.p-guard .g4, .v3.p-guard .g5{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .v3.p-home .h1x{font-size:52px}
-  .v3.p-platform .h1x{font-size:52px}
-  .v3.p-product .h1x{font-size:52px}
-  .v3.p-mcp .h1x{font-size:52px}
-  .v3.p-guard .h1x{font-size:60px}
-  .v3.p-security .h1x{font-size:48px}
-  .v3.p-benchmark .h1x{font-size:48px}
-  .v3.p-pilot .h1x{font-size:44px}
-  .v3.p-about .h1x{font-size:52px}
-  .v3.p-home .h2x{font-size:32px}
-  .v3.p-platform .h2x{font-size:32px}
-  .v3.p-product .h2x{font-size:32px}
-  .v3.p-mcp .h2x{font-size:32px}
-  .v3.p-guard .h2x{font-size:32px}
-  .v3.p-security .h2x{font-size:32px}
-  .v3.p-benchmark .h2x{font-size:32px}
-  .v3.p-pilot .h2x{font-size:30px}
-  .v3.p-about .h2x{font-size:32px}
-  .v3.p-home .big{font-size:56px}
-  .v3.p-platform .big{font-size:56px}
-  .v3.p-product .big{font-size:56px}
-  .v3.p-guard .big{font-size:56px}
-  .v3.p-home .xl{font-size:88px!important}
-  .v3.p-about .xl{font-size:52px!important}
   .v3.p-platform .g2, .v3.p-platform .g3, .v3.p-platform .pair, .v3.p-platform .side, .v3.p-platform .tier{grid-template-columns:minmax(0,1fr)}
   .v3.p-platform .arrow{transform:rotate(90deg);height:40px}
   .v3.p-mcp .arrow{transform:rotate(90deg);height:40px}

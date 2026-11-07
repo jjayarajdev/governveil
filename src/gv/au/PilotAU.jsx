@@ -64,7 +64,7 @@ export default function PilotAU() {
       <div>
       <span style={{"display": "flex"}}><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><defs><pattern id="gvh-c" width="1.4" height="1.4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="0.6" height="1.4" fill="#8A948E" /></pattern></defs><rect x="2" y="10.9" width="20" height="4.6" fill="url(#gvh-c)" /><rect x="1" y="1" width="22" height="22" fill="none" stroke="#0E1411" strokeWidth="2" /><rect x="9.4" y="9.2" width="9.2" height="9.6" fill="#0E1411" /><rect x="7.25" y="7.1" width="8.85" height="9.1" fill="#0E1411" stroke="#F4F5F2" strokeWidth="0.9" /><rect x="5" y="5" width="8.6" height="8.6" fill="#FF5B1F" stroke="#F4F5F2" strokeWidth="0.9" /><rect x="6.4" y="8.2" width="5.8" height="1.5" fill="#FFFFFF" /></svg></span>
       <p className="eb" style={{"marginTop": 28}}>Request a pilot</p>
-      <h2 className="h2x" style={{"marginTop": 14, "fontSize": 52}}>Tell us what you can’t see today.</h2>
+      <h2 className="h2x h2x-lg" style={{"marginTop": 14}}>Tell us what you can’t see today.</h2>
       <p className="lead" style={{"margin": "20px 0 0"}}>The last question is the one we actually read first.</p>
       <p className="body" style={{"fontSize": 15, "color": "#4A534E", "margin": "28px 0 0"}}>Opens a pre-filled email in your own client. No backend, no mailing list, no tracking. You can also write to <a href="mailto:contact@governveil.com.au">contact@governveil.com.au</a>.</p>
       </div>

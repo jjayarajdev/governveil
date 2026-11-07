@@ -64,7 +64,7 @@ export default function PilotV3() {
       <div>
       <Mark size={34} tone="light" />
       <p className="eb" style={{"marginTop": 28}}>Request a pilot</p>
-      <h2 className="h2x" style={{"marginTop": 14, "fontSize": 52}}>Tell us what you can’t see today.</h2>
+      <h2 className="h2x h2x-lg" style={{"marginTop": 14}}>Tell us what you can’t see today.</h2>
       <p className="lead" style={{"margin": "20px 0 0"}}>The last question is the one we actually read first.</p>
       <p className="body" style={{"fontSize": 15, "color": "#4A534E", "margin": "28px 0 0"}}>Opens a pre-filled email in your own client. No backend, no mailing list, no tracking. You can also write to <a href="mailto:contact@syntegreti.com">contact@syntegreti.com</a>.</p>
       </div>

@@ -19,7 +19,7 @@ export default function HomeV3() {
       <main id="main">
       <section className="wrap" style={{"paddingTop": 96, "paddingBottom": 56, "textAlign": "center"}}>
       <p className="eb" style={{"marginBottom": 24}}>Self-hosted AI data-egress control &amp; evidence</p>
-      <h1 className="h1x" style={{"fontSize": 108, "maxWidth": 1120, "margin": "0 auto"}}>The evidence layer for enterprise AI<span style={{"color": "var(--acc)"}}>.</span></h1>
+      <h1 className="h1x hero-xl" style={{"maxWidth": 1120, "margin": "0 auto"}}>The evidence layer for enterprise AI<span style={{"color": "var(--acc)"}}>.</span></h1>
       <p className="lead" style={{"fontSize": 21, "maxWidth": 800, "margin": "32px auto 0"}}>GovernVeil governs every AI action in your own environment — prompts, agents, tool calls, documents and model responses. Sensitive values are caught before they leave, every decision is signed to a tamper-evident ledger, and nothing leaves your perimeter for a verdict.</p>
       <form aria-label="Book a pilot" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "center", "gap": 10, "maxWidth": 560, "margin": "36px auto 0"}}>
       <label htmlFor="h3-email" className="sr">Work email</label>
@@ -68,7 +68,7 @@ export default function HomeV3() {
       </div>
       <aside className="card" aria-label="Proof">
       <div className="rl">RECEIPT · COMBINED-1000 CORPUS</div>
-      <div className="big" style={{"fontSize": 88}}>93.25 %</div>
+      <div className="big">93.25 %</div>
       <div className="cap">recall at 100 % precision — and 0 of 200 benign prompts wrongly caught.</div>
       <div className="code" style={{"marginTop": 24}}>$ make benchmark <span style={{"color": "#9DA8A1"}}># no network required</span></div>
       <div className="rf"><span>run 2026-09-02 · local stack</span><Link to="/benchmark" style={{"fontWeight": "600", "fontFamily": "'Schibsted Grotesk', sans-serif", "fontSize": 14}}>Re-run it →</Link></div>
@@ -112,7 +112,7 @@ export default function HomeV3() {
       <aside className="dcard" aria-label="Proof">
       <div className="rl" style={{"display": "flex", "justifyContent": "space-between", "gap": 12}}><span>RECEIPT · GET /api/v1/attestation</span><span>hmac-sha256</span></div>
       <pre className="mono" style={{"margin": "22px 0 0", "fontSize": 14, "lineHeight": "1.9", "whiteSpace": "pre-wrap"}}>"inference_local":  <span style={{"color": "#7FD6A4"}}>true</span>{'\n'}"egress_enforced":  <span style={{"color": "#7FD6A4"}}>true</span>{'\n'}"non_allowlisted_egress_attempts":</pre>
-      <div style={{"fontSize": 128, "fontWeight": "800", "lineHeight": "0.9", "letterSpacing": "-0.05em", "color": "var(--acc)"}}>0</div>
+      <div className="fig">0</div>
       <div className="rf"><span>zero is the proof</span><Link to="/security" style={{"fontWeight": "600", "fontFamily": "'Schibsted Grotesk', sans-serif", "fontSize": 14}}>Read the fields →</Link></div>
       </aside>
       </div>
@@ -121,7 +121,7 @@ export default function HomeV3() {
       <section className="dk">
       <div className="wrap" style={{"paddingTop": 128, "paddingBottom": 128, "textAlign": "center"}}>
       <p style={{"fontSize": 30, "lineHeight": "1.25", "fontWeight": "600", "color": "#C2CBC5", "margin": "0"}}>Where does the prompt go for a verdict?</p>
-      <p className="xl" style={{"fontSize": 176, "lineHeight": "0.9", "fontWeight": "800", "letterSpacing": "-0.06em", "margin": "18px 0 0", "color": "#F4F5F2"}}>Nowhere<span style={{"color": "var(--acc)"}}>.</span></p>
+      <p className="xl">Nowhere<span style={{"color": "var(--acc)"}}>.</span></p>
       <p className="body" style={{"maxWidth": 760, "margin": "32px auto 0", "fontSize": 18}}>Ten of the thirteen products we verified send prompt content out to reach a verdict, several of them marketed as self-hosted. That difference is architectural, so we made it checkable.</p>
       </div>
       </section>

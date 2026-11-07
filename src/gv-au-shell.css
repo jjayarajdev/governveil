@@ -74,12 +74,82 @@
   border-top: 1px solid #2A332E;
 }
 
+/* ── phone menu ───────────────────────────────────────────────────────── */
+/* Hidden on desktop: the row nav is the design. The toggle only exists
+   below 900px, which is where the six links stop fitting on one line and
+   the header grew to 198px of wrapped rows. */
+.v3.au .navtoggle {
+  display: none; background: none; border: 1px solid #D3D8D3; border-radius: 6px;
+  color: #0E1411; cursor: pointer; width: 44px; height: 44px; flex: none;
+  align-items: center; justify-content: center;
+}
+.v3.au .navtoggle.on { background: #0E1411; color: #F4F5F2; border-color: #0E1411; }
+.v3.au .mobilenav { display: none; }
+.v3.au .mobilenav[hidden] { display: none; }
+
+@media (max-width: 900px) {
+  .v3.au .nav-links { display: none; }
+  .v3.au .hd-cta { display: none; }
+  .v3.au .navtoggle { display: inline-flex; }
+  .v3.au .hd-in { flex-wrap: nowrap; gap: 12px; }
+
+  .v3.au .mobilenav {
+    display: block; border-top: 1px solid #D3D8D3; background: #FFFFFF;
+    position: absolute; left: 0; right: 0; top: 100%; z-index: 10;
+    box-shadow: 0 12px 32px rgba(14, 20, 17, .10);
+    max-height: calc(100vh - 100%); overflow-y: auto;
+  }
+  .v3.au .mobilenav[hidden] { display: none; }
+  .v3.au .mobilenav .wrap { padding-top: 12px; padding-bottom: 24px; }
+  .v3.au .mobilenav a {
+    display: flex; align-items: center; min-height: 48px; text-decoration: none;
+    font-size: 17px; font-weight: 500; color: #0E1411;
+    border-bottom: 1px solid #EBEDE8;
+  }
+  .v3.au .mobilenav a[aria-current] { color: var(--acc); }
+  .v3.au .mobilenav-h {
+    font-size: 11px; color: #4A534E; margin: 22px 0 2px; border: 0;
+  }
+  .v3.au .mobilenav-cta {
+    justify-content: center; background: var(--acc); color: #0E1411;
+    border: 0; border-radius: 6px; font-weight: 700; margin-bottom: 8px;
+  }
+  .v3.au .mobilenav-cta:hover { color: #0E1411; }
+}
+
 @media (max-width: 760px) {
   .v3.au .hd-in { gap: 10px; }
   .v3.au .logo-w { font-size: 18px; }
 }
 
 
+
+/* The attestation sample wraps, but its keys are single unbreakable tokens
+   wider than a phone column — without this the card, and the page with it,
+   scrolled sideways. */
+.v3.au.p-home .dcard pre.mono { overflow-wrap: anywhere; }
+
+/* ── the home hero's one ask ──────────────────────────────────────────── */
+/* Two links, not a form: the health check is the ask, the pilot is the
+   quieter second line. They sit side by side with room, and stack on a
+   phone rather than squeezing to half a word each. */
+.v3.au.p-home .hero-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 10px 20px; margin-top: 36px;
+}
+.v3.au.p-home .hero-alt {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-weight: 600; font-size: 16px; color: #0E1411;
+  text-decoration: underline; text-underline-offset: 4px;
+}
+.v3.au.p-home .hero-alt:hover { color: var(--acc); }
+
+@media (max-width: 560px) {
+  .v3.au.p-home .hero-cta { flex-direction: column; gap: 6px; }
+  /* .btnp carries 22px of side padding and no box-sizing, so a bare
+     width:100% pushed it 44px past the column. */
+  .v3.au.p-home .hero-cta .btnp { width: 100%; box-sizing: border-box; }
+}
 
 /* ── /pilot's five-week band ──────────────────────────────────────────── */
 /* The hand-off's timeline is a six-column .g6 of .lp cells. Jay's structure

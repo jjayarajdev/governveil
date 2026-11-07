@@ -48,36 +48,38 @@ const PAGE_KEY = {
 
 export default function ShellAU({ children }) {
   const [mega, setMega] = useState(false)
+  const [menu, setMenu] = useState(false)
   const { pathname } = useLocation()
   const wrap = useRef(null)
   const page = useRef(null)
 
-  useEffect(() => setMega(false), [pathname])
+  useEffect(() => { setMega(false); setMenu(false) }, [pathname])
 
   /* The design's forms are inert markup; this is what makes them submit.
      Delegated from the root so it covers every form on every route without
      the generated page files having to know about it. */
   useEffect(() => wireForms(page.current), [])
   useEffect(() => {
-    if (!mega) return undefined
-    const onKey = (e) => { if (e.key === 'Escape') setMega(false) }
-    const onDown = (e) => { if (!wrap.current?.contains(e.target)) setMega(false) }
+    if (!mega && !menu) return undefined
+    const close = () => { setMega(false); setMenu(false) }
+    const onKey = (e) => { if (e.key === 'Escape') close() }
+    const onDown = (e) => { if (!wrap.current?.contains(e.target)) close() }
     document.addEventListener('keydown', onKey)
     document.addEventListener('pointerdown', onDown)
     return () => {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onDown)
     }
-  }, [mega])
+  }, [mega, menu])
 
   return (
     <div className={`v3 au p-${PAGE_KEY[pathname] || 'home'}`} ref={page}>
       <a className="skip" href="#main">Skip to content</a>
 
       <Link className="announce" to="/pilot">
-        <span className="mono announce-tag">EARLY ACCESS</span>
-        Three free pilot places, for regulated Australian organisations.{' '}
-        <span style={{ textDecoration: 'underline' }}>Apply →</span>
+        <span className="mono announce-tag">LAUNCH OFFER</span>
+        The first three pilots are free for Australian organisations.{' '}
+        <span style={{ textDecoration: 'underline' }}>How the pilot works →</span>
       </Link>
 
       <header className="hd" ref={wrap}>
@@ -106,8 +108,52 @@ export default function ShellAU({ children }) {
             ))}
           </nav>
 
-          <a className="hd-cta" href="#apply">Book a call</a>
+          {/* One ask, everywhere: the printed card, the LinkedIn post and this
+              button all promise the same free health check, and all land on
+              /connect. Requesting a pilot is the quieter second link. */}
+          <Link className="hd-cta" to="/connect">Book a free health check</Link>
+
+          <button
+            type="button"
+            className={`navtoggle${menu ? ' on' : ''}`}
+            aria-expanded={menu}
+            aria-controls="mobilenav"
+            aria-label={menu ? 'Close menu' : 'Open menu'}
+            onClick={() => { setMenu((v) => !v); setMega(false) }}
+          >
+            <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              {menu
+                ? <><path d="M5 5l12 12" /><path d="M17 5L5 17" /></>
+                : <><path d="M3 6h16" /><path d="M3 11h16" /><path d="M3 16h16" /></>}
+            </svg>
+          </button>
         </div>
+
+        {/* The phone menu. Below 900px the wrapped nav cost 198px of header
+            before a word of the page; this is the same links behind one
+            44px target. */}
+        <nav id="mobilenav" className="mobilenav" aria-label="Primary" hidden={!menu}>
+          <div className="wrap">
+            <Link className="mobilenav-cta" to="/connect">Book a free health check</Link>
+            {NAV.map(([to, label]) => (
+              <NavLink key={to} to={to} end>{label}</NavLink>
+            ))}
+            {/* The row nav and the Product menu overlap on /pilot; on one
+                phone list the same link twice reads as a mistake. */}
+            {MEGA.map(([heading, items]) => {
+              const rest = items.filter(([to]) => !NAV.some(([n]) => n === to))
+              return rest.length === 0 ? null : (
+                <div key={heading}>
+                  <p className="eb mobilenav-h">{heading}</p>
+                  {rest.map(([to, title]) => (
+                    <NavLink key={to} to={to} end>{title}</NavLink>
+                  ))}
+                </div>
+              )
+            })}
+          </div>
+        </nav>
 
         <div hidden={!mega}>
           <div id="mega" className="mega mega-p">
