@@ -150,14 +150,8 @@
   display: block; font-size: 11px; line-height: 15px; color: #4A534E;
   margin-bottom: 10px;
 }
-/* Side by side, one row carries that label and the other does not, which
-   left the two portraits 25px out of line. A head that IS the first child
-   has no label above it, so it reserves the label's height instead. Scoped
-   above the breakpoint where the pair stacks — once they are one column
-   there is nothing to align to. */
-@media (min-width: 961px) {
-  .v3.au.p-about .tm-head:first-child { margin-top: 25px; }
-}
+/* Both rows carry a label, so the portraits line up on their own. The
+   pinned 15px above is what keeps that true if either label rewraps. */
 /* The portrait is small and sits beside the name rather than above it, so a
    row without one reads as a variant and not as a missing photo. */
 .v3.au.p-about .tm-head { display: flex; align-items: center; gap: 14px; }
