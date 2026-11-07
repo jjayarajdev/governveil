@@ -114,7 +114,7 @@ export default function SecurityAU() {
       </div>
       <div style={{"display": "flex", "flexWrap": "wrap", "gap": 8}}>
       <span className="std">PSPF</span><span className="std">ISM</span><span className="std">APRA CPS 230</span><span className="std">APRA CPS 234</span><span className="std">SOCI</span><span className="std">AICD director guidance</span>
-      <span className="std" style={{"borderStyle": "dashed", "borderColor": "#8A948E", "color": "#4A534E"}}>[Certifications — add when held]</span>
+      <Link to="/frameworks" style={{"fontWeight": 600, "color": "var(--acc)", "alignSelf": "center"}}>Which ones, and how &rarr;</Link>
       </div>
       </div>
       </section>

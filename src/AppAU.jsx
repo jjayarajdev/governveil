@@ -9,6 +9,7 @@ import RuntimeAU from './gv/au/RuntimeAU'
 import SecurityAU from './gv/au/SecurityAU'
 import BenchmarkAU from './gv/au/BenchmarkAU'
 import PilotAU from './gv/au/PilotAU'
+import FrameworksAU from './gv/au/FrameworksAU'
 import AboutAU from './gv/au/AboutAU'
 /* unlisted, reached only from the printed card — see gv/au/unlisted.js */
 import DemoAU from './gv/au/DemoAU'
@@ -62,6 +63,7 @@ export default function AppAU() {
         <Route path="/security" element={<SecurityAU />} />
         <Route path="/benchmark" element={<BenchmarkAU />} />
         <Route path="/pilot" element={<PilotAU />} />
+        <Route path="/frameworks" element={<FrameworksAU />} />
         <Route path="/about" element={<AboutAU />} />
         <Route path="/demo" element={<DemoAU />} />
         <Route path="/connect" element={<ConnectAU />} />

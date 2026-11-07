@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useNoIndex, hit } from './unlisted'
 
 /* /connect — the other side of the card, "Free AI governance health check."
@@ -46,6 +47,12 @@ export default function ConnectAU() {
             </div>
           ))}
         </div>
+        <p className="body" style={{ margin: '20px 0 0', fontSize: 16 }}>
+          {/* Feedback 2.10: the promise above now has a page behind it. */}
+          <Link to="/frameworks" style={{ color: 'var(--acc)', fontWeight: 600 }}>
+            See which obligations we support, and how →
+          </Link>
+        </p>
       </section>
 
       <section id="apply" className="dk">

@@ -23,6 +23,7 @@ const MEGA = [
   ['Prove · to your board and APRA', [
     ['/security', 'Security & residency', 'signed attestation · assurance roadmap'],
     ['/benchmark', 'Benchmark & probes', 're-run it yourself · challenged daily'],
+    ['/frameworks', 'Frameworks', 'CPS 234 · ISM · Privacy Act · ISO 42001'],
     ['/pilot', 'Pilot', 'five weeks · in your environment'],
   ]],
 ]
@@ -44,6 +45,8 @@ const PAGE_KEY = {
   '/': 'home', '/platform': 'platform', '/how-it-works': 'product',
   '/agents': 'mcp', '/runtime': 'guard', '/security': 'security',
   '/benchmark': 'benchmark', '/pilot': 'pilot', '/about': 'about',
+  /* /frameworks borrows the security scope: same tables, same type scale. */
+  '/frameworks': 'security',
 }
 
 export default function ShellAU({ children }) {
