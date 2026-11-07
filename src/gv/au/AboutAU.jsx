@@ -48,8 +48,13 @@ export default function AboutAU() {
       </div>
       <div className="tm-row">
       <span className="eb tm-eb">Engineering partner</span>
-      <b>Jay Jayakeerthy</b><span className="tm-role">Product Engineering</span>
-      <p>Leads GovernVeil&apos;s product engineering through our contracted development partner.</p>
+      <div className="tm-head">
+      {/* alt is empty on purpose: the name sits beside it in text, so a
+          screen reader would otherwise read it twice. */}
+      <img className="tm-photo" src="/team/jay-jayakeerthy.jpg" alt="" width="64" height="64" loading="lazy" />
+      <span><b>Jay Jayakeerthy</b><span className="tm-role">Product Engineering</span></span>
+      </div>
+      <p>Leads GovernVeil&apos;s product engineering through our contracted development partner. Two decades in enterprise delivery and solution architecture, with leadership roles at Cognizant and YASH Technologies across AI, automation and banking platforms.</p>
       </div>
       </div>
       <p className="body tm-ip">All GovernVeil IP is assigned to and owned by GovernVeil Pty Ltd in Australia. Deployment and support are delivered by our team in Australia.</p>

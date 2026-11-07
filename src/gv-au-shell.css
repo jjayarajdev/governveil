@@ -148,6 +148,14 @@
 .v3.au.p-about .tm-eb {
   display: block; font-size: 11px; color: #4A534E; margin-bottom: 10px;
 }
+/* The portrait is small and sits beside the name rather than above it, so a
+   row without one reads as a variant and not as a missing photo. */
+.v3.au.p-about .tm-head { display: flex; align-items: center; gap: 14px; }
+.v3.au.p-about .tm-photo {
+  width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
+  flex: none; background: #EBEDE8; display: block;
+}
+
 .v3.au.p-about .tm-ip {
   margin: 36px 0 0; max-width: 820px; font-size: 16px; color: #4A534E;
   border-top: 1px solid #D3D8D3; padding-top: 20px;
