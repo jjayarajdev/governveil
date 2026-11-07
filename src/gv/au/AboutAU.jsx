@@ -58,7 +58,7 @@ export default function AboutAU() {
       <img className="tm-photo" src="/team/jay-jayakeerthy.jpg" alt="" width="64" height="64" loading="lazy" />
       <span><b>Jay Jayakeerthy</b><span className="tm-role">Product Engineering</span></span>
       </div>
-      <p>Leads GovernVeil&apos;s product engineering through our contracted development partner. Head of AI and VP at AlgoLeap Technologies, and delivery leadership at YASH Technologies, across two decades in AI, automation and banking platforms.</p>
+      <p>Leads GovernVeil&apos;s product engineering through our contracted development partner. Formerly Head of AI and VP at AlgoLeap Technologies, and delivery leadership at YASH Technologies, across two decades in AI, automation and banking platforms.</p>
       </div>
       </div>
       <p className="body tm-ip">All GovernVeil IP is assigned to and owned by GovernVeil Pty Ltd in Australia. Deployment and support are delivered by our team in Australia.</p>
