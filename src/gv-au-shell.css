@@ -129,6 +129,30 @@
    scrolled sideways. */
 .v3.au.p-home .dcard pre.mono { overflow-wrap: anywhere; }
 
+/* ── /about: the team ─────────────────────────────────────────────────── */
+/* Two named people, not a grid of photo cards. The design's .tm card is
+   built around a square portrait; until there are photos to put in it, a
+   name and a credential read better than an empty frame. */
+.v3.au.p-about .tm-row {
+  border-top: 2px solid #0E1411; padding-top: 18px;
+}
+.v3.au.p-about .tm-row b { display: block; font-size: 22px; letter-spacing: -.02em; }
+.v3.au.p-about .tm-row .tm-role {
+  display: block; font-size: 15px; font-weight: 600; color: var(--acc); margin-top: 2px;
+}
+.v3.au.p-about .tm-row p {
+  font-size: 16px; line-height: 1.6; color: #2E3632; margin: 12px 0 0;
+}
+/* the partner label sits above the name, so the relationship is read before
+   the person rather than after them */
+.v3.au.p-about .tm-eb {
+  display: block; font-size: 11px; color: #4A534E; margin-bottom: 10px;
+}
+.v3.au.p-about .tm-ip {
+  margin: 36px 0 0; max-width: 820px; font-size: 16px; color: #4A534E;
+  border-top: 1px solid #D3D8D3; padding-top: 20px;
+}
+
 /* ── /frameworks ──────────────────────────────────────────────────────── */
 /* The page borrows the security scope for its type, so only what the mapping
    needs is added here. */

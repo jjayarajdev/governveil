@@ -17,7 +17,7 @@ export default function AboutAU() {
       <h1 className="h1x" style={{"maxWidth": 1100}}>Evidence-first, by conviction<span style={{"color": "var(--acc)"}}>.</span></h1>
       <div className="g2" style={{"marginTop": 40, "alignItems": "start"}}>
       <p style={{"fontSize": 24, "lineHeight": "1.35", "fontWeight": 600, "letterSpacing": "-0.01em", "margin": "0"}}>Enterprises are told to choose: let AI in and lose sight of the data, or block it and watch people route around you.</p>
-      <p className="lead" style={{"margin": "0"}}>GovernVeil Pty Ltd is an Australian company, with its intellectual property owned in Australia. We build AI data-egress control and evidence for regulated enterprises — BFSI, healthcare and life sciences, global capability centres, and any organisation whose data cannot leave its perimeter for a verdict.</p>
+      <p className="lead" style={{"margin": "0"}}>GovernVeil Pty Ltd is an Australian company, with its intellectual property owned in Australia. We build AI data-egress control and evidence for organisations that need to adopt AI safely: financial services and insurance, health, government, and any organisation whose data cannot leave its perimeter for a verdict.</p>
       </div>
       </section>
 
@@ -37,30 +37,31 @@ export default function AboutAU() {
       </section>
 
       <section className="wrap sec">
-      <div style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-between", "alignItems": "end", "gap": 24, "marginBottom": 40}}>
-      <div><p className="eb">The team</p><h2 className="h2x" style={{"marginTop": 14, "maxWidth": 720}}>Small team. Architects who also write the code.</h2></div>
-      <a href="https://governveil.com/" style={{"fontWeight": 600}}>governveil.com ↗</a>
+      <div style={{"marginBottom": 40}}>
+      <p className="eb">The team</p>
+      <h2 className="h2x" style={{"marginTop": 14, "maxWidth": 720}}>Led from Sydney.</h2>
       </div>
-      <div className="g4">
-      <div className="tm"><div className="ph" aria-hidden="true">[PHOTO]</div><b>[Founder name]</b><span>Founder · [one-line credential]</span></div>
-      <div className="tm"><div className="ph" aria-hidden="true">[PHOTO]</div><b>[Name]</b><span>[Role] · [credential]</span></div>
-      <div className="tm"><div className="ph" aria-hidden="true">[PHOTO]</div><b>[Name]</b><span>[Role] · [credential]</span></div>
-      <div className="tm"><div className="ph" aria-hidden="true">[PHOTO]</div><b>[Name]</b><span>[Role] · [credential]</span></div>
+      <div className="g2" style={{"gap": 24, "alignItems": "start"}}>
+      <div className="tm-row">
+      <b>Bijal Sejpal</b><span className="tm-role">Founder &amp; CEO</span>
+      <p>Former COO, Group Data, Analytics &amp; AI at QBE Group, and COO, Technology &amp; Digital at Bupa APAC.</p>
       </div>
+      <div className="tm-row">
+      <span className="eb tm-eb">Engineering partner</span>
+      <b>Jay Jayakeerthy</b><span className="tm-role">Product Engineering</span>
+      <p>Leads GovernVeil&apos;s product engineering through our contracted development partner.</p>
+      </div>
+      </div>
+      <p className="body tm-ip">All GovernVeil IP is assigned to and owned by GovernVeil Pty Ltd in Australia. Deployment and support are delivered by our team in Australia.</p>
       </section>
 
       <section className="alt">
-      <div className="wrap sec g2" style={{"alignItems": "start", "gap": 64}}>
+      <div className="wrap sec" style={{"maxWidth": 900}}>
       <div>
       <p className="q">Q · Is GovernVeil a standalone product?</p>
       <h2 className="h2x">One spine that governs how an enterprise adopts AI.</h2>
       <p className="body" style={{"margin": "18px 0 14px"}}>GovernVeil Pty Ltd is the Australian company behind GovernVeil: an Australian Private Company, ABN 94 703 419 194, with its intellectual property owned here and its delivery and support onshore.</p>
       <p className="body" style={{"margin": "0"}}>A working result in your environment in weeks, not quarters — which is why the pilot is five weeks rather than two quarters.</p>
-      </div>
-      <div style={{"display": "flex", "flexDirection": "column", "gap": 8}}>
-      <div className="sp"><i>OPERATE</i><span>Round-the-clock operations on what ships</span></div>
-      <div className="sp"><i>BUILD</i><span>Platforms and AI-assisted delivery on the governed spine</span></div>
-      <div className="sp" style={{"background": "#0E1411", "borderColor": "#0E1411", "color": "#F4F5F2"}}><i style={{"color": "var(--acc)"}}>GOVERN</i><span>GovernVeil — policy, masking and evidence on every AI action</span></div>
       </div>
       </div>
       </section>
