@@ -43,7 +43,10 @@ export default function AboutAU() {
       </div>
       <div className="g2" style={{"gap": 24, "alignItems": "start"}}>
       <div className="tm-row">
-      <b>Bijal Sejpal</b><span className="tm-role">Founder &amp; CEO</span>
+      <div className="tm-head">
+      <img className="tm-photo" src="/team/bijal-sejpal.jpg" alt="" width="64" height="64" loading="lazy" />
+      <span><b>Bijal Sejpal</b><span className="tm-role">Founder &amp; CEO</span></span>
+      </div>
       <p>Former COO, Group Data, Analytics &amp; AI at QBE Group, and COO, Technology &amp; Digital at Bupa APAC.</p>
       </div>
       <div className="tm-row">
