@@ -23,7 +23,7 @@ const MEGA = [
   ['Prove · to your board and APRA', [
     ['/security', 'Security & residency', 'signed attestation · assurance roadmap'],
     ['/benchmark', 'Benchmark & probes', 're-run it yourself · challenged daily'],
-    ['/pilot', 'Pilot', 'five weeks · first three free'],
+    ['/pilot', 'Pilot', 'five weeks · in your environment'],
   ]],
 ]
 

@@ -29,8 +29,8 @@ export default function PilotAU() {
       <p className="eb" style={{"marginBottom": 18}}>From first catch to audit-ready evidence</p>
       <div className="g3" style={{"gap": "0", "borderTop": "2px solid #0E1411"}}>
       <div className="ph"><em style={{"background": "var(--acc)", "borderColor": "var(--acc)"}}>WK 1</em><h2>First catch, live</h2><p>Point one application at the gateway, or install the extension for one team. Watch it replace a real value before the prompt leaves, and pull the signed no-egress attestation the same day.</p></div>
-      <div className="ph"><em>WK 2–4</em><h2>Coverage expansion</h2><p>Register assets, models and agents with named owners. Run in detective mode to size the blast radius. Import a week of DNS or proxy telemetry for your real coverage number.</p></div>
-      <div className="ph"><em>WK 5–12</em><h2>Evidence production</h2><p>Map your AI policy to controls, flip them to enforced, run the probes, and produce the gap assessment, attestations and drift report — plus the production architecture.</p></div>
+      <div className="ph"><em>WK 2–4</em><h2>Coverage</h2><p>Register assets, models and agents with named owners. Run in detective mode to size the blast radius. Import a week of DNS or proxy telemetry for your real coverage number.</p></div>
+      <div className="ph"><em>WK 5</em><h2>Evidence and a verdict</h2><p>Policy mapped to controls, the probes run, and a gap assessment and report your board can read. Week five ends in a clear yes or no.</p></div>
       </div>
       </section>
 
@@ -40,8 +40,8 @@ export default function PilotAU() {
       <p className="q">Q · What are the terms?</p>
       <h2 className="h2x" style={{"marginBottom": 28}}>Plain terms, and a clear path to production.</h2>
       <div style={{"borderTop": "1px solid #E6ECE7"}}>
-      <div className="kv"><span>SCOPE</span><span>Up to 5 governed assets and 500 users; one application surface plus the extension</span></div>
-      <div className="kv"><span>CONVERSION</span><span>20 % off year one, 50 % of the fee credited, 10 % off permanently from year two</span></div>
+      <div className="kv"><span>SCOPE</span><span>Free pilots: up to 5 governed assets and 100 users. Paid pilots: scoped and quoted with you up front.</span></div>
+      <div className="kv"><span>COST</span><span>We quote for your scope. No lock-in, and if you go ahead the pilot fee is credited to your subscription.</span></div>
       <div className="kv"><span>FINDINGS &amp; IP</span><span>Yours. We retain no rights to your data.</span></div>
       <div className="kv"><span>SUPPORT</span><span>Dedicated deployment support throughout</span></div>
       </div>
@@ -55,7 +55,7 @@ export default function PilotAU() {
       <li className="need"><i>03</i><span>A named owner who can schedule the integration call and chase a firewall change. The single best predictor of whether a pilot reaches a verdict.</span></li>
       <li className="need"><i>04</i><span>An honest answer to what you are worried about, so week one tests that.</span></li>
       </ol>
-      <p className="body" style={{"fontSize": 16, "margin": "20px 0 0"}}>Three success criteria agreed in writing before we start, so at week twelve there is a yes or a no.</p>
+      <p className="body" style={{"fontSize": 16, "margin": "20px 0 0"}}>Three success criteria agreed in writing before we start, so week five ends in a yes or a no.</p>
       </div>
       </div>
       </section>
@@ -81,8 +81,8 @@ export default function PilotAU() {
       <div className="wrap sec side">
       <p className="eb">Questions</p>
       <div style={{"borderTop": "1px solid #0E1411"}}>
-      <details open><summary>Why is the pilot paid?</summary><p>It funds dedicated deployment support and keeps the cohort to teams who will reach a verdict. Half the fee is credited if you convert.</p></details>
-      <details><summary>What happens at week twelve?</summary><p>You measure against the three success criteria agreed before we started, and decide yes or no. Findings and IP are yours either way.</p></details>
+      <details open><summary>What does a pilot cost?</summary><p>The first three are free for Australian organisations. After that we quote for your scope. There is no lock-in, and if you go ahead the pilot fee is credited to your subscription.</p></details>
+      <details><summary>What happens at week five?</summary><p>You measure against the three success criteria agreed before we started, and decide yes or no. Findings and IP are yours either way.</p></details>
       <details><summary>Do we need to send you any data?</summary><p>No. It runs in your environment, and the signed attestation shows that nothing left.</p></details>
       </div>
       </div>
