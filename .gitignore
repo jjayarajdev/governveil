@@ -11,3 +11,7 @@ dist/
 claude-design/v2/
 dist-au
 .wrangler/
+
+# Jay's working copies of the review documents. The asks they carry are
+# tracked as commits and as the plan; the .docx files themselves are not.
+feedback/
