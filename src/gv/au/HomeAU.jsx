@@ -165,16 +165,6 @@ export default function HomeAU() {
       </div>
       </section>
 
-      <section className="wrap sec side">
-      <div><p className="eb">What’s new</p><p className="body" style={{"fontSize": 15, "color": "#4A534E", "margin": "12px 0 0"}}>The record of what we measured, changed and fixed.</p></div>
-      <div style={{"borderTop": "1px solid #0E1411"}}>
-      <Link to="/platform" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-10-31</span><span style={{"fontSize": 19, "fontWeight": 600}}>Repository counted: 46,676 lines of Go, 157 API paths, 70 migrations</span><span aria-hidden="true">→</span></Link>
-      <Link to="/benchmark" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-09-03</span><span style={{"fontSize": 19, "fontWeight": 600}}>Load test: ~7.4 req/s per GPU at 100 % escalation, no fail-open observed</span><span aria-hidden="true">→</span></Link>
-      <Link to="/benchmark" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>2026-09-02</span><span style={{"fontSize": 19, "fontWeight": 600}}>Combined-1000 benchmark run against a local stack</span><span aria-hidden="true">→</span></Link>
-      <Link to="/benchmark#miss" style={{"display": "grid", "gridTemplateColumns": "140px minmax(0,1fr) auto", "gap": 24, "alignItems": "baseline", "padding": "20px 0", "borderBottom": "1px solid #D3D8D3", "textDecoration": "none"}}><span className="mono" style={{"fontSize": 13, "color": "#4A534E"}}>[DATE]</span><span style={{"fontSize": 19, "fontWeight": 600}}>A miss we published: first-message-only inspection, fixed the same day</span><span aria-hidden="true">→</span></Link>
-      </div>
-      </section>
-
       <section className="alt">
       <div className="wrap sec side">
       <p className="eb">Questions</p>
