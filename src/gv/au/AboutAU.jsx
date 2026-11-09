@@ -48,7 +48,7 @@ export default function AboutAU() {
       <img className="tm-photo" src="/team/bijal-sejpal.jpg" alt="" width="64" height="64" loading="lazy" />
       <span><b>Bijal Sejpal</b><span className="tm-role">Founder &amp; CEO</span></span>
       </div>
-      <p>Former COO, Group Data, Analytics &amp; AI at QBE Group, and COO, Technology &amp; Digital at Bupa APAC.</p>
+      <p>Founded GovernVeil so organisations can use AI at scale with independent evidence that it&rsquo;s governed. Former COO, Group Data, Analytics &amp; AI at QBE Group, where she ran first-line data and AI risk and implemented the group-wide AI policy. Former COO, Technology at Bupa APAC, where she led first-line risk across technology, lifted the function&rsquo;s risk maturity and took it through a successful APRA review. Began her career with 13 years in the NSW Police Force.</p>
       </div>
       <div className="tm-row">
       <span className="eb tm-eb">Engineering partner</span>
@@ -56,9 +56,9 @@ export default function AboutAU() {
       {/* alt is empty on purpose: the name sits beside it in text, so a
           screen reader would otherwise read it twice. */}
       <img className="tm-photo" src="/team/jay-jayakeerthy.jpg" alt="" width="64" height="64" loading="lazy" />
-      <span><b>Jay Jayakeerthy</b><span className="tm-role">Product Engineering</span></span>
+      <span><b>Jay Jayakeerthy</b><span className="tm-role">Engineering</span></span>
       </div>
-      <p>Leads GovernVeil&apos;s product engineering through our contracted development partner. Formerly Head of AI and VP at AlgoLeap Technologies, and delivery leadership at YASH Technologies, across two decades in AI, automation and banking platforms.</p>
+      <p>Leads engineering for GovernVeil through our contracted development partner, under product direction set in Sydney. Formerly Head of AI and VP at AlgoLeap Technologies, with two decades in AI, automation and banking platforms.</p>
       </div>
       </div>
       <p className="body tm-ip">All GovernVeil IP is assigned to and owned by GovernVeil Pty Ltd in Australia. Deployment and support are delivered by our team in Australia.</p>
