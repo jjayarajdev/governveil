@@ -26,6 +26,8 @@
 .v3 .lead{font-size:19px;line-height:1.55;color:#2E3632}
 .v3 .body{font-size:17px;line-height:1.6;color:#2E3632}
 .v3 .dk .lead, .v3 .dk .body{color:#C2CBC5}
+.v3 .dk:not(.foot) a:not([class]){color:#F4F5F2;text-decoration:underline;text-underline-offset:3px}
+.v3 .dk:not(.foot) a:not([class]):hover{color:var(--acc)}
 .v3 .btnp{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:6px;background:var(--acc);color:#0E1411;font:inherit;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer}
 .v3 .skip{position:absolute;left:-9999px;top:8px}
 .v3 .skip:focus{left:16px;background:#FFFFFF;padding:10px 14px;z-index:30}
