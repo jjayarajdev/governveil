@@ -31,6 +31,20 @@ const SUFFIX = {
 function readForm(form) {
   const out = {}
   for (const el of form.querySelectorAll('input, textarea, select')) {
+    /* Shared questions (EnquiryFields.jsx) name their field outright. A
+       checkbox group is several inputs and one answer, so it collects. */
+    const field = el.dataset.field
+    if (field) {
+      if (el.type === 'checkbox') {
+        if (el.checked) (out[field] ||= []).push(el.value)
+      } else if (el.type === 'radio') {
+        if (el.checked) out[field] = el.value
+      } else {
+        const v = (el.value || '').trim()
+        if (v) out[field] = v
+      }
+      continue
+    }
     const id = el.id || ''
     const key = Object.entries(SUFFIX).find(([s]) => id.endsWith(s))?.[1]
     if (!key) continue
@@ -55,7 +69,24 @@ function setStatus(form, text, tone) {
   el.textContent = text
 }
 
+/* Opt-in: only forms that mark fields `required` or carry a required
+   checkbox group are checked here, so the other forms behave as before.
+   The browser's own messages and focus handling do the reporting. */
+function validate(form) {
+  for (const group of form.querySelectorAll('[data-required-group]')) {
+    const boxes = [...group.querySelectorAll('input[type="checkbox"]')]
+    const none = boxes.length && !boxes.some((b) => b.checked)
+    boxes.forEach((b) => b.setCustomValidity(''))
+    if (none) boxes[0].setCustomValidity('Select at least one option.')
+  }
+  return form.reportValidity()
+}
+
 async function submit(form, button) {
+  if (!validate(form)) {
+    setStatus(form, 'Please complete the highlighted fields.', 'bad')
+    return
+  }
   const data = readForm(form)
 
   if (!data.email) {
@@ -85,7 +116,9 @@ async function submit(form, button) {
 
     if (res.ok && body.ok) {
       form.replaceChildren()
-      setStatus(form, `Thank you — we have your details and will reply to ${data.email}.`, 'good')
+      setStatus(form, data.follow_up === 'call' && data.phone
+        ? `Thank you — we have your details and will call you on ${data.phone}.`
+        : `Thank you — we have your details and will reply to ${data.email}.`, 'good')
       return
     }
     setStatus(form, body.error || 'Something went wrong. Please try again.', 'bad')

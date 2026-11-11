@@ -4,6 +4,7 @@
 #   ./tools/enquiries.sh              the 20 most recent, one block each
 #   ./tools/enquiries.sh count        how many, by site and by day
 #   ./tools/enquiries.sh au           governveil.com.au only
+#   ./tools/enquiries.sh callbacks    call-back requests, newest first
 #   ./tools/enquiries.sh csv          CSV to stdout, for a spreadsheet
 #   ./tools/enquiries.sh sql "..."    any query you like
 set -euo pipefail
@@ -12,17 +13,22 @@ run() { npx wrangler d1 execute "$DB" --remote --command "$1"; }
 
 case "${1:-recent}" in
   recent)
-    run "SELECT at, site, intent, name, email, org, sector, question
+    run "SELECT at, site, intent, name, email, org, concerns, concerns_other,
+                follow_up, phone, call_time, sector, question
          FROM enquiries ORDER BY at DESC LIMIT 20" ;;
   count)
     run "SELECT site, substr(at,1,10) AS day, COUNT(*) AS n
          FROM enquiries GROUP BY site, day ORDER BY day DESC, site" ;;
   au)
-    run "SELECT at, intent, name, email, org, sector, question
+    run "SELECT at, intent, name, email, org, role, size, region, concerns,
+                concerns_other, follow_up, phone, call_time, question
          FROM enquiries WHERE site LIKE '%.com.au' ORDER BY at DESC LIMIT 20" ;;
   com)
     run "SELECT at, intent, name, email, org, role, size, region, question
          FROM enquiries WHERE site NOT LIKE '%.com.au' ORDER BY at DESC LIMIT 20" ;;
+  callbacks)
+    run "SELECT at, name, org, phone, call_time, email, page
+         FROM enquiries WHERE follow_up = 'call' ORDER BY at DESC" ;;
   csv)
     npx wrangler d1 execute "$DB" --remote --json --command \
       "SELECT * FROM enquiries ORDER BY at DESC" \

@@ -247,3 +247,56 @@
 @media (max-width: 960px) {
   .v3.au.p-pilot .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ── Enquiry forms: /connect (health check) and /pilot#request ────────── */
+/* One treatment for both, so they read as the same product. The base
+   input/label rules in gv-v3.css still apply; this adds the grouped
+   questions (EnquiryFields.jsx) and the states. */
+.v3.au .gvf { display: flex; flex-direction: column; gap: 22px; color: #0E1411; }
+.v3.au .gvf-lead {
+  max-width: 880px; background: #FFFFFF; border: 1px solid #D3D8D3;
+  border-radius: 12px; padding: 40px; box-sizing: border-box;
+}
+.v3.au .gvf input::placeholder { color: #8A948E; }
+.v3.au .gvf input:focus-visible, .v3.au .gvf select:focus-visible, .v3.au .gvf textarea:focus-visible {
+  outline: 2px solid var(--acc); outline-offset: 1px; border-color: #0E1411;
+}
+.v3.au .gvf input:user-invalid, .v3.au .gvf select:user-invalid { border-color: #B83E0E; }
+.v3.au .gvf-group { border: 0; margin: 0; padding: 0; min-width: 0; }
+.v3.au .gvf-group legend { padding: 0; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.v3.au .gvf-help { margin: 0 0 12px; font-size: 14px; color: #4A534E; }
+.v3.au .gvf-opt { font-weight: 400; color: #4A534E; }
+.v3.au .gvf-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.v3.au .gvf-check {
+  display: flex; align-items: flex-start; gap: 12px; margin: 0; padding: 13px 14px;
+  min-height: 48px; box-sizing: border-box; border: 1px solid #D3D8D3; border-radius: 8px;
+  background: #FFFFFF; font-size: 15px; font-weight: 400; line-height: 1.4; cursor: pointer;
+}
+.v3.au .gvf-check:hover { border-color: #8A948E; }
+.v3.au .gvf-check:has(input:checked) { border-color: #0E1411; background: #F4F5F2; }
+.v3.au .gvf-check:has(input:focus-visible) { outline: 2px solid var(--acc); outline-offset: 1px; }
+.v3.au .gvf-check input {
+  width: 18px; height: 18px; min-height: 0; margin: 1px 0 0; padding: 0; flex: none;
+  accent-color: #0E1411; cursor: pointer;
+}
+.v3.au .gvf-seg { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.v3.au .gvf-pill { align-items: center; padding: 11px 16px; }
+.v3.au .gvf-reveal { margin-top: 14px; }
+.v3.au .gvf-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 4px; }
+.v3.au .gvf-note { margin: 0; font-size: 15px; color: #4A534E; }
+
+/* /connect's explanation, beneath the form: three quiet columns, no cards */
+.v3.au .gvc-what {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px;
+  margin-top: 40px; padding-top: 28px; border-top: 1px solid #0E1411;
+}
+.v3.au .gvc-what h2 { font-size: 12px; letter-spacing: .1em; color: #B83E0E; font-weight: 600; margin: 0; }
+.v3.au .gvc-what p { font-size: 17px; line-height: 1.6; color: #2E3632; margin: 12px 0 0; }
+
+@media (max-width: 760px) {
+  .v3.au .gvf-lead { padding: 24px 20px; }
+  .v3.au .gvf-checks, .v3.au .gvc-what { grid-template-columns: minmax(0, 1fr); }
+  .v3.au .gvc-what { gap: 24px; }
+  .v3.au .gvf .g2 { grid-template-columns: minmax(0, 1fr); }
+  .v3.au .gvf-actions .btnp { width: 100%; }
+}

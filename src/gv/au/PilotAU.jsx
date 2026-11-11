@@ -6,6 +6,8 @@
    stamped on the root is "pilot", matching gv-v3.css which both sites share.
    Copy changes belong in the design source or in AULOCAL, not here. */
 
+import { ConcernsField, FollowUpField } from './EnquiryFields'
+
 export default function PilotAU() {
   return (
     <>
@@ -64,16 +66,20 @@ export default function PilotAU() {
       <div>
       <span style={{"display": "flex"}}><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><defs><pattern id="gvh-c" width="1.4" height="1.4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="0.6" height="1.4" fill="#8A948E" /></pattern></defs><rect x="2" y="10.9" width="20" height="4.6" fill="url(#gvh-c)" /><rect x="1" y="1" width="22" height="22" fill="none" stroke="#0E1411" strokeWidth="2" /><rect x="9.4" y="9.2" width="9.2" height="9.6" fill="#0E1411" /><rect x="7.25" y="7.1" width="8.85" height="9.1" fill="#0E1411" stroke="#F4F5F2" strokeWidth="0.9" /><rect x="5" y="5" width="8.6" height="8.6" fill="#FF5B1F" stroke="#F4F5F2" strokeWidth="0.9" /><rect x="6.4" y="8.2" width="5.8" height="1.5" fill="#FFFFFF" /></svg></span>
       <p className="eb" style={{"marginTop": 28}}>Request a pilot</p>
-      <h2 className="h2x h2x-lg" style={{"marginTop": 14}}>Tell us what you can’t see today.</h2>
-      <p className="lead" style={{"margin": "20px 0 0"}}>The last question is the one we actually read first.</p>
-      <p className="body" style={{"fontSize": 15, "color": "#4A534E", "margin": "28px 0 0"}}>Opens a pre-filled email in your own client. No backend, no mailing list, no tracking. You can also write to <a href="mailto:contact@governveil.com.au">contact@governveil.com.au</a>.</p>
+      <h2 className="h2x h2x-lg" style={{"marginTop": 14}}>Request a GovernVeil pilot.</h2>
+      <p className="lead" style={{"margin": "20px 0 0"}}>Validate how GovernVeil can protect sensitive data, enforce AI governance policies, and provide verifiable audit evidence within your organisation.</p>
+      <p className="body" style={{"fontSize": 15, "color": "#4A534E", "margin": "28px 0 0"}}>Our team will contact you to understand your requirements and discuss the next steps. You can also write to <a href="mailto:contact@governveil.com.au">contact@governveil.com.au</a>.</p>
       </div>
-      <form style={{"background": "#FFFFFF", "border": "1px solid #D3D8D3", "borderRadius": 12, "padding": 32, "display": "flex", "flexDirection": "column", "gap": 18}}>
-      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pl3-name">Name</label><input id="pl3-name" type="text" autoComplete="name" /></div><div><label htmlFor="pl3-email">Work email</label><input id="pl3-email" type="email" autoComplete="email" /></div></div>
-      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pl3-co">Company</label><input id="pl3-co" type="text" autoComplete="organization" /></div><div><label htmlFor="pl3-role">Role</label><select id="pl3-role"><option>Select role</option><option>CISO / security leadership</option><option>Security engineering</option><option>Risk &amp; compliance</option><option>AI / platform engineering</option><option>Other</option></select></div></div>
-      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pl3-size">Company size</label><select id="pl3-size"><option>Select size</option><option>Under 500</option><option>500–2,000</option><option>2,000–10,000</option><option>10,000+</option></select></div><div><label htmlFor="pl3-region">Region</label><select id="pl3-region"><option>Select region</option><option>Australia</option><option>Asia-Pacific</option><option>New Zealand</option><option>Europe</option><option>Australia / New Zealand</option><option>North America</option></select></div></div>
-      <div><label htmlFor="pl3-q">What AI traffic can’t you see today?</label><textarea id="pl3-q" rows="5" style={{"minHeight": 140, "resize": "vertical"}}></textarea></div>
-      <button type="button" className="btnp">Request a pilot</button>
+      {/* Hand-edited 2026-11-11 for the finalised questionnaire; the shared
+          questions live in EnquiryFields.jsx. Re-running tools/auport.py would
+          revert this form — port it back by hand if that ever happens. */}
+      <form className="gvf" noValidate style={{"background": "#FFFFFF", "border": "1px solid #D3D8D3", "borderRadius": 12, "padding": 32}}>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pl3-name">Full name</label><input id="pl3-name" type="text" autoComplete="name" required placeholder="Enter your full name" /></div><div><label htmlFor="pl3-email">Work email</label><input id="pl3-email" type="email" autoComplete="email" required placeholder="name@company.com" /></div></div>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pl3-co">Organisation</label><input id="pl3-co" type="text" autoComplete="organization" required placeholder="Enter your organisation’s name" /></div><div><label htmlFor="pl3-role">Your role</label><select id="pl3-role" required defaultValue=""><option value="" disabled>Select role</option><option>CISO / Security leadership</option><option>Security engineering</option><option>Risk &amp; Compliance</option><option>AI / Platform engineering</option><option>Other</option></select></div></div>
+      <div className="g2" style={{"gap": 16}}><div><label htmlFor="pl3-size">Company size</label><select id="pl3-size" required defaultValue=""><option value="" disabled>Select size</option><option>Under 500</option><option>500–2,000</option><option>2,000–10,000</option><option>10,000+</option></select></div><div><label htmlFor="pl3-region">Region</label><select id="pl3-region" required defaultValue=""><option value="" disabled>Select region</option><option>Australia</option><option>New Zealand</option><option>Rest of Asia-Pacific</option><option>Europe</option><option>North America</option><option>Other</option></select></div></div>
+      <ConcernsField prefix="pl3" />
+      <FollowUpField prefix="pl3" />
+      <div className="gvf-actions"><button type="button" className="btnp">Request a pilot</button></div>
       </form>
       </section>
 

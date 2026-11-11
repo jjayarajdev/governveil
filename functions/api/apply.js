@@ -25,8 +25,21 @@
  * Either one is enough; both is fine.
  */
 
-const FIELDS = ['name', 'email', 'org', 'role', 'size', 'region', 'sector', 'question']
-const MAX = { name: 120, email: 254, org: 160, role: 120, size: 60, region: 60, sector: 60, question: 4000 }
+const FIELDS = [
+  'name', 'email', 'org', 'role', 'size', 'region', 'sector', 'question',
+  // the finalised health-check / pilot questionnaire, db/0003
+  'concerns', 'concerns_other', 'follow_up', 'phone', 'call_time',
+]
+const MAX = {
+  name: 120, email: 254, org: 160, role: 120, size: 60, region: 60, sector: 60, question: 4000,
+  concerns: 1000, concerns_other: 500, follow_up: 10, phone: 30, call_time: 40,
+}
+
+const LABEL = {
+  name: 'Name', email: 'Email', org: 'Organisation', role: 'Role', size: 'Size', region: 'Region',
+  sector: 'Sector', question: 'Question', concerns: 'Concerns', concerns_other: 'Other concern',
+  follow_up: 'Follow up by', phone: 'Phone', call_time: 'Best time to call',
+}
 
 const json = (status, body) =>
   new Response(JSON.stringify(body), {
@@ -49,6 +62,12 @@ export async function onRequestPost({ request, env }) {
   // Honeypot: a field no human sees and no real browser fills.
   if (body.website) return json(200, { ok: true })
 
+  // A checkbox group arrives as a list; it is stored as one readable string.
+  if (Array.isArray(body.concerns)) {
+    body.concerns = body.concerns.filter((c) => typeof c === 'string').join(' | ')
+  }
+  if (body.follow_up !== 'call') { delete body.phone; delete body.call_time }
+
   const data = {}
   for (const f of FIELDS) {
     const v = typeof body[f] === 'string' ? body[f].trim() : ''
@@ -57,6 +76,9 @@ export async function onRequestPost({ request, env }) {
 
   if (!data.email) return json(400, { ok: false, error: 'An email address is required.' })
   if (!looksLikeEmail(data.email)) return json(400, { ok: false, error: 'That email address does not look right.' })
+  if (data.follow_up === 'call' && !data.phone) {
+    return json(400, { ok: false, error: 'Please add a phone number so we can call you back.' })
+  }
 
   const meta = {
     site: new URL(request.url).hostname,
@@ -70,7 +92,7 @@ export async function onRequestPost({ request, env }) {
     `New enquiry — ${meta.site}${meta.page ? ' ' + meta.page : ''}`,
     meta.intent ? `Intent: ${meta.intent}` : '',
     '',
-    ...FIELDS.filter((f) => data[f]).map((f) => `${f[0].toUpperCase() + f.slice(1)}: ${data[f]}`),
+    ...FIELDS.filter((f) => data[f]).map((f) => `${(LABEL[f] || f)}: ${data[f]}`),
     '',
     `${meta.at}${meta.country ? ' · ' + meta.country : ''}`,
   ].filter(Boolean)
@@ -85,14 +107,17 @@ export async function onRequestPost({ request, env }) {
     try {
       await env.DB.prepare(
         `INSERT INTO enquiries
-           (at, site, page, intent, name, email, org, role, size, region, sector, question, country)
-         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
+           (at, site, page, intent, name, email, org, role, size, region, sector, question, country,
+            concerns, concerns_other, follow_up, phone, call_time)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
       )
         .bind(
           meta.at, meta.site, meta.page || null, meta.intent || null,
           data.name || null, data.email, data.org || null, data.role || null,
           data.size || null, data.region || null, data.sector || null,
-          data.question || null, meta.country || null
+          data.question || null, meta.country || null,
+          data.concerns || null, data.concerns_other || null, data.follow_up || null,
+          data.phone || null, data.call_time || null
         )
         .run()
       stored = true
